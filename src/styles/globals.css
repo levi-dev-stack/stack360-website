@@ -1,0 +1,101 @@
+@import "tailwindcss";
+
+/* --- Design Tokens Definition --- */
+:root {
+  /* Colors */
+  --color-primary-light: #ef9e60; /* Sandy Brown */
+  --color-primary: #e77725; /* Zest */
+  --color-primary-dark: #e4813b; /* Burnt Sienna */
+
+  --color-secondary-light: #508ff3; /* Cornflower Blue */
+  --color-secondary: #1d3fab; /* Persian Blue */
+
+  --color-success: #82cd25; /* Atlantis */
+  --color-danger: #a22727; /* Mexican Red */
+  --color-warning: #ef9e60; /* Reused Sandy Brown */
+
+  --color-neutral-50: #ffffff;
+  --color-neutral-100: #f6f0ed;
+  --color-neutral-200: #efc59c;
+  --color-neutral-400: #9f9f9f;
+  --color-neutral-600: #5d5d5d;
+  --color-neutral-700: #4b5563;
+  --color-neutral-800: #2c2c2e;
+  --color-neutral-950: #171717;
+  --color-neutral-black: #111827;
+
+  /* Spacing Range */
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
+  --space-2xl: 3rem;
+
+  /* Border Radius Range */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+}
+
+/* --- Tailwind Core Variable Mapping --- */
+@theme {
+  /* Extending Brand & Status Colors */
+  --color-primary-light: var(--color-primary-light);
+  --color-primary: var(--color-primary);
+  --color-primary-dark: var(--color-primary-dark);
+
+  --color-secondary-light: var(--color-secondary-light);
+  --color-secondary: var(--color-secondary);
+
+  --color-success: var(--color-success);
+  --color-danger: var(--color-danger);
+  --color-warning: var(--color-warning);
+
+  /* Extending Neutral Scale */
+  --color-neutral-50: var(--color-neutral-50);
+  --color-neutral-100: var(--color-neutral-100);
+  --color-neutral-200: var(--color-neutral-200);
+  --color-neutral-400: var(--color-neutral-400);
+  --color-neutral-600: var(--color-neutral-600);
+  --color-neutral-700: var(--color-neutral-700);
+  --color-neutral-800: var(--color-neutral-800);
+  --color-neutral-950: var(--color-neutral-950);
+  --color-neutral-black: var(--color-neutral-black);
+
+  /* Extending Custom Spacing Utilities */
+  --spacing-xs: var(--space-xs);
+  --spacing-sm: var(--space-sm);
+  --spacing-md: var(--space-md);
+  --spacing-lg: var(--space-lg);
+  --spacing-xl: var(--space-xl);
+  --spacing-2xl: var(--space-2xl);
+
+  /* Extending Custom Radius Utilities */
+  --border-radius-sm: var(--radius-sm);
+  --border-radius-md: var(--radius-md);
+  --border-radius-lg: var(--radius-lg);
+  --border-radius-xl: var(--radius-xl);
+}
+
+/* --- Base Rules & Defaults --- */
+@layer base {
+  body {
+    @apply bg-neutral-50 text-neutral-950 antialiased;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply text-neutral-950 font-bold tracking-tight;
+  }
+
+  a {
+    @apply text-secondary transition-colors duration-200 hover:text-secondary-light;
+  }
+}
