@@ -7,19 +7,65 @@
   },
   "files": {
     "ignoreUnknown": true,
-    "includes": ["**", "!node_modules", "!.next", "!dist", "!build"]
+    "includes": [
+      "**/*",
+      "!node_modules",
+      "!.next",
+      "!out",
+      "!dist",
+      "!build",
+      "!coverage",
+      "!**/*.min.js",
+      "!next-env.d.ts",
+      "!.vscode",
+      "!.husky"
+    ]
   },
   "formatter": {
     "enabled": true,
     "indentStyle": "space",
-    "indentWidth": 2
+    "indentWidth": 2,
+    "lineWidth": 100
+  },
+  "assist": {
+    "enabled": true,
+    "actions": {
+      "source": {
+        "organizeImports": "on"
+      }
+    }
   },
   "linter": {
     "enabled": true,
     "rules": {
       "recommended": true,
+      "correctness": {
+        "noUnusedVariables": "error",
+        "noUnusedPrivateClassMembers": "error",
+        "noConstAssign": "error",
+        "noEmptyPattern": "warn"
+      },
       "suspicious": {
-        "noUnknownAtRules": "off"
+        "noExplicitAny": "warn",
+        "noApproximativeNumericConstant": "warn",
+        "noUnknownAtRules": "off",
+        "noEmptyBlockStatements": "warn"
+      },
+      "style": {
+        "useBlockStatements": "error",
+        "useConsistentArrayType": "error",
+        "useShorthandAssign": "error",
+        "noNegationElse": "error",
+        "noUselessElse": "error",
+        "noYodaExpression": "warn"
+      },
+      "performance": {
+        "noDelete": "warn",
+        "noAccumulatingSpread": "warn",
+        "noAwaitInLoops": "warn"
+      },
+      "security": {
+        "noDangerouslySetInnerHtml": "warn"
       }
     },
     "domains": {
@@ -27,11 +73,15 @@
       "react": "recommended"
     }
   },
-  "assist": {
-    "actions": {
-      "source": {
-        "organizeImports": "on"
-      }
+  "javascript": {
+    "formatter": {
+      "quoteStyle": "single",
+      "semicolons": "always",
+      "trailingCommas": "es5",
+      "arrowParentheses": "always"
+    },
+    "parser": {
+      "unsafeParameterDecoratorsEnabled": false
     }
   }
 }
