@@ -60,7 +60,7 @@ export default function HorizontalWedgeTrack({
   const x = useTransform(scrollYProgress, [0, 1], [0, -maxShift]);
 
   return (
-    <div ref={targetRef} className="relative h-[300vh] bg-neutral-black">
+    <div ref={targetRef} className="relative h-[180vh] bg-neutral-black">
       <div className="sticky top-0 flex h-screen w-full flex-col justify-center overflow-hidden">
         <div className="site-container flex h-full flex-col justify-center">
           <div className="mb-xl w-full space-y-sm">

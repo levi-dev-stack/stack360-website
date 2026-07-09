@@ -1,4 +1,4 @@
-import { Layers, ShieldAlert, Terminal } from 'lucide-react';
+import { Globe2, Layers, ShieldAlert, Terminal } from 'lucide-react';
 
 export const MOCK_WEDGES = [
   {
@@ -38,6 +38,19 @@ export const MOCK_WEDGES = [
       { value: '15+', label: 'Regulated' },
       { value: '2', label: 'Gov Clients' },
       { value: 'ISO', label: '9001-Aligned' },
+    ],
+  },
+  {
+    number: '04',
+    tagline: 'Wedge Four',
+    title: 'Global Delivery, One Team.',
+    description:
+      'Lahore engineering hub, UK regional office, and follow-the-sun delivery under one accountable studio. Single roadmap, single PM, single invoice — no handoff chaos.',
+    icon: <Globe2 />,
+    stats: [
+      { value: '2', label: 'Offices' },
+      { value: '24/7', label: 'Coverage' },
+      { value: '1', label: 'Account Team' },
     ],
   },
 ];

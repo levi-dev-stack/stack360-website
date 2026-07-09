@@ -1,4 +1,5 @@
 import BlueprintGrid from '@/components/layout/BlueprintGrid';
+import Footer from '@/components/layout/Footer';
 import PremiumNavbar from '@/components/layout/Navbar';
 
 export const metadata = {
@@ -18,6 +19,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       </div>
 
       <main className="relative z-10 min-h-[calc(100vh-4.5rem)] w-full">{children}</main>
+      <Footer />
     </div>
   );
 }
