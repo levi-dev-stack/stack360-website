@@ -32,7 +32,10 @@ export default function ClientsMarquee() {
   const track = [...CLIENTS, ...CLIENTS];
 
   return (
-    <section className="w-full border-t border-neutral-200 bg-neutral-100">
+    <section
+      className="w-full border-t border-neutral-200 bg-neutral-100"
+      aria-labelledby="clients-marquee-label"
+    >
       <div className="flex w-full items-stretch">
         <div className="flex shrink-0 items-center gap-lg border-r border-neutral-200 bg-neutral-50 px-lg py-md sm:gap-xl sm:px-xl">
           {STATS.map((stat) => (
@@ -45,12 +48,19 @@ export default function ClientsMarquee() {
           ))}
         </div>
 
-        <div className="relative flex-1 overflow-hidden">
-          <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-16 bg-linear-to-r from-neutral-100 to-transparent" />
+        <div className="relative flex min-w-0 flex-1 items-center overflow-hidden">
+          <p
+            id="clients-marquee-label"
+            className="z-20 shrink-0 border-r border-neutral-200 bg-neutral-100 py-md pl-lg pr-md text-[10px] font-bold uppercase tracking-widest text-neutral-500 sm:pl-xl sm:pr-lg"
+          >
+            Trusted by
+          </p>
+
+          <div className="pointer-events-none absolute inset-y-0 left-24 z-10 w-12 bg-linear-to-r from-neutral-100 to-transparent sm:left-28" />
           <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 bg-linear-to-l from-neutral-100 to-transparent" />
 
           <motion.div
-            className="flex w-max items-center gap-2xl py-md pl-2xl"
+            className="flex w-max items-center gap-2xl py-md pl-xl"
             animate={{ x: ['0%', '-50%'] }}
             transition={{ duration: 22, repeat: Infinity, ease: 'linear' }}
           >

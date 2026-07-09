@@ -18,7 +18,7 @@ export default function Stack360Logo() {
       {/* Persistent Icon Image */}
       <div className="relative h-8 w-8 shrink-0 transition-transform duration-200 group-hover:scale-105">
         <Image
-          src="/stack360-icon.png"
+          src="/favicon.svg"
           alt="Stack360 Logo"
           width={32}
           height={32}
