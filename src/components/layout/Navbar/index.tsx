@@ -3,6 +3,7 @@
 import { ChevronDown } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
 import { cn } from '@/styles/tailwind.utils';
 import Stack360Logo from './Stack360Logo';
@@ -255,6 +256,17 @@ const NAVIGATION_DATA: NavSection[] = [
 export default function PremiumNavbar() {
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const headerRef = useRef<HTMLElement>(null);
+  const pathname = usePathname();
+
+  const isPathActive = (href?: string) => {
+    if (!href) {
+      return false;
+    }
+    if (href === '/') {
+      return pathname === '/';
+    }
+    return pathname === href || pathname.startsWith(`${href}/`);
+  };
 
   const toggleDropdown = (label: string) => {
     setActiveDropdown((current) => (current === label ? null : label));
@@ -290,7 +302,7 @@ export default function PremiumNavbar() {
       ref={headerRef}
       className="relative z-50 w-full border-b border-neutral-200 bg-neutral-50"
     >
-      <div className="mx-auto flex h-18 w-full max-w-content items-center justify-between gap-xl px-lg lg:gap-2xl lg:px-2xl">
+      <div className="site-container flex h-18 items-center justify-between gap-xl lg:gap-2xl">
         <Stack360Logo />
 
         <nav
@@ -299,13 +311,22 @@ export default function PremiumNavbar() {
         >
           {NAVIGATION_DATA.map((item) => {
             const isDropdownOpen = activeDropdown === item.label;
+            const hasActiveSubItem = item.columns?.some((col) =>
+              col.items.some((subItem) => isPathActive(subItem.href))
+            );
+            const isItemSelected = isPathActive(item.href) || Boolean(hasActiveSubItem);
 
             if (item.type === 'link') {
               return (
                 <Link
                   key={item.label}
                   href={item.href ?? '/'}
-                  className="rounded-sm px-sm py-xs text-sm font-medium text-neutral-600 transition-colors hover:text-neutral-900 lg:px-md"
+                  className={cn(
+                    'rounded-sm px-sm py-xs text-sm font-medium transition-colors lg:px-md',
+                    isItemSelected
+                      ? 'bg-primary/10 text-primary'
+                      : 'text-neutral-600 hover:bg-neutral-100 hover:text-neutral-900'
+                  )}
                 >
                   {item.label}
                 </Link>
@@ -321,15 +342,21 @@ export default function PremiumNavbar() {
                   onClick={() => toggleDropdown(item.label)}
                   className={cn(
                     'cursor-pointer inline-flex h-full items-center gap-xs rounded-sm px-sm py-xs text-sm font-medium transition-colors lg:px-md',
-                    isDropdownOpen ? 'text-primary' : 'text-neutral-600 hover:text-neutral-900'
+                    isDropdownOpen
+                      ? 'bg-neutral-100 text-neutral-900'
+                      : 'text-neutral-600 hover:bg-neutral-100 hover:text-neutral-900'
                   )}
                 >
                   {item.label}
                   <ChevronDown
                     aria-hidden
                     className={cn(
-                      'h-3.5 w-3.5 text-neutral-400 transition-transform duration-200',
-                      isDropdownOpen && 'rotate-180 text-primary'
+                      'h-3.5 w-3.5 transition-transform duration-200',
+                      isDropdownOpen
+                        ? 'rotate-180 text-neutral-700'
+                        : isItemSelected
+                          ? 'text-primary'
+                          : 'text-neutral-400'
                     )}
                   />
                 </button>
@@ -345,22 +372,41 @@ export default function PremiumNavbar() {
                             </h4>
                           )}
                           <ul className="space-y-sm">
-                            {col.items.map((subItem) => (
-                              <li key={subItem.title}>
-                                <Link
-                                  href={subItem.href}
-                                  onClick={() => setActiveDropdown(null)}
-                                  className="group/item block rounded-md p-sm transition-colors hover:bg-neutral-100"
-                                >
-                                  <div className="text-sm font-semibold text-neutral-900 transition-colors group-hover/item:text-primary">
-                                    {subItem.title}
-                                  </div>
-                                  <p className="mt-xs text-xs leading-relaxed text-neutral-600">
-                                    {subItem.desc}
-                                  </p>
-                                </Link>
-                              </li>
-                            ))}
+                            {col.items.map((subItem) => {
+                              const isSubItemSelected = isPathActive(subItem.href);
+
+                              return (
+                                <li key={subItem.title}>
+                                  <Link
+                                    href={subItem.href}
+                                    onClick={() => setActiveDropdown(null)}
+                                    className={cn(
+                                      'group/item block rounded-md p-sm transition-colors',
+                                      isSubItemSelected ? 'bg-primary/10' : 'hover:bg-neutral-100'
+                                    )}
+                                  >
+                                    <div
+                                      className={cn(
+                                        'text-sm font-semibold transition-colors',
+                                        isSubItemSelected
+                                          ? 'text-primary'
+                                          : 'text-neutral-900 group-hover/item:text-primary'
+                                      )}
+                                    >
+                                      {subItem.title}
+                                    </div>
+                                    <p
+                                      className={cn(
+                                        'mt-xs text-xs leading-relaxed',
+                                        isSubItemSelected ? 'text-neutral-700' : 'text-neutral-600'
+                                      )}
+                                    >
+                                      {subItem.desc}
+                                    </p>
+                                  </Link>
+                                </li>
+                              );
+                            })}
                           </ul>
                         </div>
                       ))}
