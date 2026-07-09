@@ -14,10 +14,9 @@ export default function HeroContent() {
       animate="show"
       className="relative z-10 mx-auto flex w-full max-w-3xl flex-col items-center text-center"
     >
-      <motion.div variants={fadeUp} className="mb-lg flex items-center gap-sm">
-        <span className="h-px w-8 bg-primary" />
-        <span className="text-xs font-bold uppercase tracking-[0.25em] text-primary">
-          Digital Excellence
+      <motion.div variants={fadeUp} className="mb-lg flex items-center">
+        <span className="font-sans text-2xl font-black tracking-tight text-neutral-950 select-none">
+          Stack<span className="text-primary">360</span>
         </span>
       </motion.div>
 

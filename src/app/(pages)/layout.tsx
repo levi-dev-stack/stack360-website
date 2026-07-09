@@ -1,3 +1,4 @@
+import BlueprintGrid from '@/components/layout/BlueprintGrid';
 import PremiumNavbar from '@/components/layout/Navbar';
 
 export const metadata = {
@@ -9,9 +10,10 @@ export const metadata = {
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="min-h-screen bg-neutral-100 selection:bg-primary/20 selection:text-primary">
+    <div className="relative min-h-screen bg-neutral-50 selection:bg-primary/20 selection:text-primary">
+      <BlueprintGrid />
       <PremiumNavbar />
-      <main className="min-h-[calc(100vh-4.5rem)] w-full">{children}</main>
+      <main className="relative z-10 min-h-[calc(100vh-4.5rem)] w-full">{children}</main>
     </div>
   );
 }

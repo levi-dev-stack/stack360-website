@@ -1,5 +1,3 @@
-'use client';
-
 import FloatingObjects from './floating-objects';
 import HeroContent from './HeroContent';
 

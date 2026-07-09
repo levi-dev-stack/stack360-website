@@ -265,7 +265,7 @@ export default function CaseStudiesSection() {
     <section className="relative w-full overflow-hidden bg-neutral-950 px-md py-2xl lg:px-2xl">
       <div className="pointer-events-none absolute -left-32 top-0 h-96 w-96 rounded-full bg-secondary/20 blur-[120px]" />
 
-      <div className="relative grid grid-cols-1 gap-xl lg:grid-cols-12">
+      <div className=" grid grid-cols-1 gap-xl lg:grid-cols-12">
         <div className="flex flex-col justify-between gap-lg lg:col-span-4 lg:pr-lg">
           <div className="space-y-md">
             <span className="inline-flex items-center rounded-full bg-neutral-50/10 px-md py-xs text-xs font-bold uppercase tracking-widest text-neutral-50">
@@ -274,7 +274,7 @@ export default function CaseStudiesSection() {
             <h2 className="text-4xl font-black leading-[1.05] tracking-tight text-neutral-50 lg:text-5xl">
               Real case studies with real results.
             </h2>
-            <p className="max-w-md text-sm leading-relaxed text-neutral-400">
+            <p className="text-sm leading-relaxed text-neutral-400">
               Explore our clients&apos; success stories with custom architecture, infrastructure
               scale, and SEO — and learn how we helped them grow.
             </p>

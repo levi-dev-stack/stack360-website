@@ -1,11 +1,11 @@
-/** biome-ignore-all lint/a11y/noStaticElementInteractions: <explanation> */
-/** biome-ignore-all lint/a11y/useValidAnchor: <explanation> */
-/** biome-ignore-all lint/suspicious/noArrayIndexKey: <explanation> */
-/** biome-ignore-all lint/a11y/useButtonType: <explanation> */
 'use client';
+
+import { ChevronDown } from 'lucide-react';
+import Image from 'next/image';
 import Link from 'next/link';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { cn } from '@/styles/tailwind.utils';
+import Stack360Logo from './Stack360Logo';
 
 interface SubItem {
   title: string;
@@ -22,7 +22,6 @@ interface NavSection {
 }
 
 const NAVIGATION_DATA: NavSection[] = [
-  // { label: 'Home', type: 'link', href: '/' },
   {
     label: 'What We Build',
     type: 'dropdown',
@@ -255,22 +254,49 @@ const NAVIGATION_DATA: NavSection[] = [
 
 export default function PremiumNavbar() {
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+  const headerRef = useRef<HTMLElement>(null);
+
+  const toggleDropdown = (label: string) => {
+    setActiveDropdown((current) => (current === label ? null : label));
+  };
+
+  useEffect(() => {
+    if (!activeDropdown) {
+      return;
+    }
+
+    const handlePointerDown = (event: MouseEvent) => {
+      if (!headerRef.current?.contains(event.target as Node)) {
+        setActiveDropdown(null);
+      }
+    };
+
+    const handleEscape = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        setActiveDropdown(null);
+      }
+    };
+
+    document.addEventListener('mousedown', handlePointerDown);
+    document.addEventListener('keydown', handleEscape);
+    return () => {
+      document.removeEventListener('mousedown', handlePointerDown);
+      document.removeEventListener('keydown', handleEscape);
+    };
+  }, [activeDropdown]);
 
   return (
-    <header className="relative z-50 w-full border-b border-neutral-200 bg-neutral-50">
-      <div className="flex h-18 w-full items-center justify-between px-lg lg:px-xl">
-        {/* Brand Logo */}
-        <div className="flex items-center">
-          <Link
-            href="/"
-            className="font-sans text-xl font-bold tracking-tight text-neutral-950 hover:text-neutral-950"
-          >
-            Stack<span className="text-primary">360</span>
-          </Link>
-        </div>
+    <header
+      ref={headerRef}
+      className="relative z-50 w-full border-b border-neutral-200 bg-neutral-50"
+    >
+      <div className="mx-auto flex h-18 w-full max-w-content items-center justify-between gap-xl px-lg lg:gap-2xl lg:px-2xl">
+        <Stack360Logo />
 
-        {/* Central Navigation Items */}
-        <nav className="hidden h-full md:flex items-center space-x-xs relative">
+        <nav
+          className="hidden h-full flex-1 items-center justify-center gap-sm md:flex lg:gap-md"
+          aria-label="Main navigation"
+        >
           {NAVIGATION_DATA.map((item) => {
             const isDropdownOpen = activeDropdown === item.label;
 
@@ -278,8 +304,8 @@ export default function PremiumNavbar() {
               return (
                 <Link
                   key={item.label}
-                  href={item.href ?? '#'}
-                  className="px-md py-sm text-sm font-semibold tracking-wide text-neutral-700 transition-colors duration-150 hover:text-primary rounded-sm"
+                  href={item.href ?? '/'}
+                  className="rounded-sm px-sm py-xs text-sm font-medium text-neutral-600 transition-colors hover:text-neutral-900 lg:px-md"
                 >
                   {item.label}
                 </Link>
@@ -287,53 +313,49 @@ export default function PremiumNavbar() {
             }
 
             return (
-              <div
-                key={item.label}
-                className="h-full flex items-center"
-                onMouseEnter={() => setActiveDropdown(item.label)}
-                onMouseLeave={() => setActiveDropdown(null)}
-              >
-                {/* Tab Indicator cleaned up via `cn` */}
+              <div key={item.label} className="relative flex h-full items-center">
                 <button
+                  type="button"
+                  aria-expanded={isDropdownOpen}
+                  aria-haspopup="true"
+                  onClick={() => toggleDropdown(item.label)}
                   className={cn(
-                    'relative flex items-center h-full px-md text-sm font-semibold tracking-wide transition-all duration-150 border-t-2 border-b-2 border-transparent focus:outline-none text-neutral-700 hover:text-primary',
-                    isDropdownOpen && 'border-t-primary text-primary bg-neutral-50 font-bold'
+                    'cursor-pointer inline-flex h-full items-center gap-xs rounded-sm px-sm py-xs text-sm font-medium transition-colors lg:px-md',
+                    isDropdownOpen ? 'text-primary' : 'text-neutral-600 hover:text-neutral-900'
                   )}
                 >
                   {item.label}
-                  <span
+                  <ChevronDown
+                    aria-hidden
                     className={cn(
-                      'ml-xs text-[10px] transition-transform duration-200 text-neutral-400 downwards-arrow',
+                      'h-3.5 w-3.5 text-neutral-400 transition-transform duration-200',
                       isDropdownOpen && 'rotate-180 text-primary'
                     )}
-                  >
-                    ▼
-                  </span>
+                  />
                 </button>
 
-                {/* Centered Dropdown Overlay (70% Window Width) */}
                 {isDropdownOpen && item.columns && (
-                  <div className="fixed left-1/2 top-18 w-[70vw] -translate-x-1/2 border border-t-0 border-neutral-200 bg-neutral-50 shadow-card rounded-b-md overflow-hidden flex flex-row animate-in fade-in slide-in-from-top-1 duration-150">
-                    {/* Grid Columns */}
-                    <div className="flex-1 grid grid-cols-2 gap-lg p-lg bg-neutral-50 max-h-[60vh] overflow-y-auto">
-                      {item.columns.map((col, colIdx) => (
-                        <div key={colIdx} className="space-y-sm">
+                  <div className="fixed left-1/2 top-18 z-50 flex w-[min(70rem,calc(100vw-3rem))] -translate-x-1/2 flex-row overflow-hidden rounded-b-md border border-t-0 border-neutral-200 bg-neutral-50 shadow-card">
+                    <div className="grid max-h-[60vh] flex-1 grid-cols-2 gap-xl overflow-y-auto p-xl">
+                      {item.columns.map((col) => (
+                        <div key={col.title ?? col.items[0]?.title} className="space-y-md">
                           {col.title && (
-                            <h4 className="text-xs font-bold tracking-wider text-neutral-400 uppercase">
+                            <h4 className="font-mono text-xs font-bold uppercase tracking-wider text-neutral-500">
                               {col.title}
                             </h4>
                           )}
-                          <ul className="space-y-md">
+                          <ul className="space-y-sm">
                             {col.items.map((subItem) => (
-                              <li key={subItem.title} className="group/item">
+                              <li key={subItem.title}>
                                 <Link
                                   href={subItem.href}
-                                  className="block rounded-sm p-sm transition-colors hover:bg-neutral-100"
+                                  onClick={() => setActiveDropdown(null)}
+                                  className="group/item block rounded-md p-sm transition-colors hover:bg-neutral-100"
                                 >
-                                  <div className="flex items-center text-sm font-semibold text-neutral-900 transition-colors group-hover/item:text-primary">
+                                  <div className="text-sm font-semibold text-neutral-900 transition-colors group-hover/item:text-primary">
                                     {subItem.title}
                                   </div>
-                                  <p className="mt-xs text-xs leading-normal text-neutral-500">
+                                  <p className="mt-xs text-xs leading-relaxed text-neutral-600">
                                     {subItem.desc}
                                   </p>
                                 </Link>
@@ -344,29 +366,31 @@ export default function PremiumNavbar() {
                       ))}
                     </div>
 
-                    {/* Image Preview Box Pane */}
                     {item.imagePreview && (
-                      <div className="w-[32%] bg-neutral-100 p-lg border-l border-neutral-200 flex flex-col justify-between">
-                        <div className="space-y-sm">
-                          <span className="text-[10px] font-bold tracking-widest text-neutral-400 uppercase block">
+                      <div className="flex w-[32%] flex-col justify-between border-l border-neutral-200 bg-neutral-100 p-xl">
+                        <div className="space-y-md">
+                          <span className="block font-mono text-[10px] font-bold uppercase tracking-wider text-neutral-500">
                             Studio Vision
                           </span>
-                          <div className="aspect-16/10 w-full overflow-hidden rounded-md bg-neutral-300 border border-neutral-200 relative group">
-                            <img
+                          <div className="group relative aspect-16/10 w-full overflow-hidden rounded-md border border-neutral-200 bg-neutral-300">
+                            <Image
                               src={item.imagePreview.src}
                               alt={item.imagePreview.alt}
+                              width={600}
+                              height={375}
                               className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
                             />
                           </div>
-                          <p className="text-xs leading-relaxed text-neutral-600 font-medium pt-xs">
+                          <p className="pt-xs text-xs leading-relaxed font-medium text-neutral-600">
                             {item.imagePreview.caption}
                           </p>
                         </div>
 
-                        <div className="pt-sm">
+                        <div className="pt-md">
                           <Link
-                            href={item.href ?? '#'}
-                            className="inline-flex items-center text-xs font-bold text-primary group/link hover:text-primary-dark"
+                            href={item.href ?? '/'}
+                            onClick={() => setActiveDropdown(null)}
+                            className="group/link inline-flex items-center text-xs font-bold text-primary hover:text-primary-dark"
                           >
                             Discover Studio Standards
                             <span className="ml-xs transition-transform group-hover/link:translate-x-xs">
@@ -383,11 +407,10 @@ export default function PremiumNavbar() {
           })}
         </nav>
 
-        {/* Call to Action Button */}
-        <div className="flex items-center">
+        <div className="flex shrink-0 items-center">
           <Link
             href="/contact"
-            className="bg-primary text-neutral-50 px-md py-sm text-sm font-bold rounded-sm border border-transparent shadow-sm hover:bg-primary-dark hover:text-neutral-50 transition-all active:scale-[0.98]"
+            className="rounded-sm border border-transparent bg-primary px-lg py-sm text-sm font-bold text-neutral-50 shadow-sm transition-all hover:bg-primary-dark active:scale-[0.98]"
           >
             Contact Us
           </Link>
