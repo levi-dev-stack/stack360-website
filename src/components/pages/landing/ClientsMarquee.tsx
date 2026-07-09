@@ -33,11 +33,11 @@ export default function ClientsMarquee() {
 
   return (
     <section
-      className="w-full border-t border-neutral-200 bg-neutral-100"
+      className="site-section w-full border-t border-neutral-200 bg-neutral-100"
       aria-labelledby="clients-marquee-label"
     >
       <div className="flex w-full items-stretch">
-        <div className="flex shrink-0 items-center gap-lg border-r border-neutral-200 bg-neutral-50 px-lg py-md sm:gap-xl sm:px-xl">
+        <div className="site-inset-left flex shrink-0 items-center gap-lg border-r border-neutral-200 bg-neutral-50 py-md pr-lg sm:gap-xl sm:pr-xl">
           {STATS.map((stat) => (
             <div key={stat.label} className="whitespace-nowrap">
               <p className="text-2xl font-bold leading-none text-primary">{stat.value}</p>
@@ -51,7 +51,7 @@ export default function ClientsMarquee() {
         <div className="relative flex min-w-0 flex-1 items-center overflow-hidden">
           <p
             id="clients-marquee-label"
-            className="z-20 shrink-0 border-r border-neutral-200 bg-neutral-100 py-md pl-lg pr-md text-[10px] font-bold uppercase tracking-widest text-neutral-500 sm:pl-xl sm:pr-lg"
+            className="z-20 shrink-0 border-r border-neutral-200 bg-neutral-100 py-md pl-lg pr-md text-[10px] font-bold uppercase tracking-widest text-neutral-500 sm:pr-lg"
           >
             Trusted by
           </p>

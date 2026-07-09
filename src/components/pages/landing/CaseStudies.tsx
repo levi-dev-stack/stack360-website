@@ -262,10 +262,10 @@ function CaseStudyCard({ study, index }: { study: CaseStudy; index: number }) {
 
 export default function CaseStudiesSection() {
   return (
-    <section className="relative w-full overflow-hidden bg-neutral-950 px-md py-2xl lg:px-2xl">
+    <section className="site-section relative w-full overflow-hidden bg-neutral-950 py-2xl">
       <div className="pointer-events-none absolute -left-32 top-0 h-96 w-96 rounded-full bg-secondary/20 blur-[120px]" />
 
-      <div className=" grid grid-cols-1 gap-xl lg:grid-cols-12">
+      <div className="site-container relative grid grid-cols-1 gap-xl lg:grid-cols-12">
         <div className="flex flex-col justify-between gap-lg lg:col-span-4 lg:pr-lg">
           <div className="space-y-md">
             <span className="inline-flex items-center rounded-full bg-neutral-50/10 px-md py-xs text-xs font-bold uppercase tracking-widest text-neutral-50">
