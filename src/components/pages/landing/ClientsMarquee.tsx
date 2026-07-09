@@ -17,7 +17,6 @@ const STATS: Stat[] = [
   { value: '95%', label: 'Retention Rate' },
 ];
 
-// TODO: replace with real client data (logo is optional).
 const CLIENTS: Client[] = [
   { name: 'TechCorp' },
   { name: 'GlobalLogistics' },
@@ -30,13 +29,11 @@ const CLIENTS: Client[] = [
 ];
 
 export default function ClientsMarquee() {
-  // Duplicate the list so the track can scroll a full copy and loop seamlessly.
   const track = [...CLIENTS, ...CLIENTS];
 
   return (
     <section className="w-full border-t border-neutral-200 bg-neutral-100">
       <div className="flex w-full items-stretch">
-        {/* Fixed stats panel */}
         <div className="flex shrink-0 items-center gap-lg border-r border-neutral-200 bg-neutral-50 px-lg py-md sm:gap-xl sm:px-xl">
           {STATS.map((stat) => (
             <div key={stat.label} className="whitespace-nowrap">
@@ -48,9 +45,7 @@ export default function ClientsMarquee() {
           ))}
         </div>
 
-        {/* Scrolling clients carousel */}
         <div className="relative flex-1 overflow-hidden">
-          {/* Edge fades */}
           <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-16 bg-linear-to-r from-neutral-100 to-transparent" />
           <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 bg-linear-to-l from-neutral-100 to-transparent" />
 

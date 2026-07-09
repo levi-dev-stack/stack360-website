@@ -3,11 +3,6 @@
 import { motion } from 'motion/react';
 import { cn } from '@/styles/tailwind.utils';
 
-/* ────────────────────────────────────────────────────────────
-   Chart geometry + deterministic series (no Math.random, so SSR
-   and client render identically — avoids hydration mismatches).
-   ──────────────────────────────────────────────────────────── */
-
 const CHART_W = 320;
 const CHART_H = 170;
 const N = 48;
@@ -15,8 +10,6 @@ const N = 48;
 const clamp = (v: number, min: number, max: number) => Math.min(max, Math.max(min, v));
 const smoothstep = (t: number) => t * t * (3 - 2 * t);
 
-// Hockey-stick "organic traffic" curve: flat early, explosive later,
-// with volatility that grows over time.
 function trafficSeries(seed: number): number[] {
   return Array.from({ length: N }, (_, i) => {
     const t = i / (N - 1);
@@ -26,7 +19,6 @@ function trafficSeries(seed: number): number[] {
   });
 }
 
-// Smoother, lower "domain rating" line.
 function drSeries(seed: number): number[] {
   return Array.from({ length: N }, (_, i) => {
     const t = i / (N - 1);
@@ -126,7 +118,6 @@ function CaseStudyCard({ study, index }: { study: CaseStudy; index: number }) {
 
   return (
     <div className="flex flex-col rounded-lg border border-neutral-200 bg-neutral-100 p-md shadow-sm transition-shadow hover:shadow-card">
-      {/* Header metric chips */}
       <div className="mb-sm flex items-center justify-between text-sm font-bold text-neutral-800">
         <span className="inline-flex items-center gap-xs">
           <span className={accent.chipText}>◈</span>
@@ -143,22 +134,18 @@ function CaseStudyCard({ study, index }: { study: CaseStudy; index: number }) {
         </span>
       </div>
 
-      {/* Plot */}
       <div className="relative aspect-16/10 w-full overflow-hidden rounded-md border border-neutral-200 bg-neutral-50">
-        {/* Horizontal gridlines */}
         <div className="pointer-events-none absolute inset-0 flex flex-col justify-between p-xs">
           {[0, 1, 2, 3].map((row) => (
             <div key={row} className="border-b border-dashed border-neutral-200" />
           ))}
         </div>
-        {/* Vertical gridlines */}
         <div className="pointer-events-none absolute inset-0 flex justify-between p-xs">
           {[0, 1, 2, 3].map((col) => (
             <div key={col} className="border-r border-dashed border-neutral-200" />
           ))}
         </div>
 
-        {/* Line + area (stroke stays crisp via non-scaling-stroke) */}
         <svg
           className="absolute inset-0 h-full w-full"
           viewBox={`0 0 ${CHART_W} ${CHART_H}`}
@@ -209,12 +196,10 @@ function CaseStudyCard({ study, index }: { study: CaseStudy; index: number }) {
           />
         </svg>
 
-        {/* Marker vertical line */}
         <div
           style={{ left: `${markerLeft}%` }}
           className="pointer-events-none absolute inset-y-0 w-px border-l border-dashed border-neutral-400/60"
         />
-        {/* Marker dot */}
         <motion.div
           style={{ left: `${markerLeft}%`, top: `${markerTop}%` }}
           initial={{ scale: 0, opacity: 0 }}
@@ -223,7 +208,6 @@ function CaseStudyCard({ study, index }: { study: CaseStudy; index: number }) {
           className="absolute h-2.5 w-2.5 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-neutral-50 bg-neutral-900 shadow-sm"
         />
 
-        {/* Tooltip */}
         <motion.div
           style={{ left: `${markerLeft}%` }}
           initial={{ opacity: 0, y: 6 }}
@@ -246,7 +230,6 @@ function CaseStudyCard({ study, index }: { study: CaseStudy; index: number }) {
           </p>
         </motion.div>
 
-        {/* X-axis labels */}
         <div className="pointer-events-none absolute inset-x-0 bottom-1 flex justify-between px-sm font-mono text-[9px] text-neutral-400">
           {study.axis.map((label) => (
             <span key={label}>{label}</span>
@@ -254,7 +237,6 @@ function CaseStudyCard({ study, index }: { study: CaseStudy; index: number }) {
         </div>
       </div>
 
-      {/* Footer */}
       <div className="mt-md flex flex-1 flex-col">
         <span className="mb-xs block font-mono text-[10px] font-bold uppercase tracking-wider text-neutral-400">
           {study.tag}
@@ -281,11 +263,9 @@ function CaseStudyCard({ study, index }: { study: CaseStudy; index: number }) {
 export default function CaseStudiesSection() {
   return (
     <section className="relative w-full overflow-hidden bg-neutral-950 px-md py-2xl lg:px-2xl">
-      {/* Ambient accent glow */}
       <div className="pointer-events-none absolute -left-32 top-0 h-96 w-96 rounded-full bg-secondary/20 blur-[120px]" />
 
       <div className="relative grid grid-cols-1 gap-xl lg:grid-cols-12">
-        {/* Left info column */}
         <div className="flex flex-col justify-between gap-lg lg:col-span-4 lg:pr-lg">
           <div className="space-y-md">
             <span className="inline-flex items-center rounded-full bg-neutral-50/10 px-md py-xs text-xs font-bold uppercase tracking-widest text-neutral-50">
@@ -313,7 +293,6 @@ export default function CaseStudiesSection() {
           </div>
         </div>
 
-        {/* Cards */}
         <div className="grid grid-cols-1 gap-lg md:grid-cols-2 lg:col-span-8">
           {CASE_STUDIES.map((study, index) => (
             <CaseStudyCard key={study.title} study={study} index={index} />
