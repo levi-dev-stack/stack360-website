@@ -200,3 +200,7 @@
     padding-left: calc((100vw - min(var(--token-container), 100vw)) / 2 + var(--site-gutter));
   }
 }
+
+button {
+  cursor: pointer;
+}
