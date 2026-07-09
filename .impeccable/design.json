@@ -1,0 +1,236 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-07-08T14:45:00.000Z",
+  "title": "Design System: Stack360",
+  "extensions": {
+    "colorMeta": {
+      "primary": {
+        "role": "primary",
+        "displayName": "Signal Orange",
+        "canonical": "#e77725",
+        "tonalRamp": [
+          "#3a1c07",
+          "#5c2f0d",
+          "#8a4712",
+          "#c9651a",
+          "#e77725",
+          "#ef9e60",
+          "#efc59c",
+          "#fae9db"
+        ]
+      },
+      "secondary": {
+        "role": "secondary",
+        "displayName": "Blueprint Blue",
+        "canonical": "#1d3fab",
+        "tonalRamp": [
+          "#0a1436",
+          "#122457",
+          "#183485",
+          "#1d3fab",
+          "#3b63d4",
+          "#508ff3",
+          "#93bafa",
+          "#d5e4fe"
+        ]
+      },
+      "success": {
+        "role": "tertiary",
+        "displayName": "Circuit Green",
+        "canonical": "#82cd25",
+        "tonalRamp": [
+          "#1e3007",
+          "#33520c",
+          "#4d7a14",
+          "#69a31d",
+          "#82cd25",
+          "#a4de5c",
+          "#c6ec97",
+          "#e6f8cf"
+        ]
+      },
+      "neutral-100": {
+        "role": "neutral",
+        "displayName": "Warm Paper",
+        "canonical": "#f6f0ed",
+        "tonalRamp": [
+          "#171717",
+          "#2c2c2e",
+          "#4b5563",
+          "#737373",
+          "#9f9f9f",
+          "#d4d4d4",
+          "#ebebeb",
+          "#f6f0ed"
+        ]
+      },
+      "neutral-950": {
+        "role": "neutral",
+        "displayName": "Instrument Black",
+        "canonical": "#171717",
+        "tonalRamp": [
+          "#111111",
+          "#171717",
+          "#1a1a1a",
+          "#2c2c2e",
+          "#4b5563",
+          "#737373",
+          "#9f9f9f",
+          "#d4d4d4"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "Hero headline only." },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Section titles, especially on dark instrument sections."
+      },
+      "title": { "displayName": "Title", "purpose": "Card titles and sub-heads." },
+      "body": { "displayName": "Body", "purpose": "Paragraph copy; measure capped at 65-75ch." },
+      "label": {
+        "displayName": "Label / Mono",
+        "purpose": "Data, code, axis ticks, metadata. Geist Mono only."
+      }
+    },
+    "shadows": [
+      {
+        "name": "hairline-lift",
+        "value": "0 1px 2px 0 rgb(0 0 0 / 0.05)",
+        "purpose": "Barely-there separation on the light field: rating pill, resting cards, nav CTA."
+      },
+      {
+        "name": "standing",
+        "value": "0 4px 6px -1px rgb(0 0 0 / 0.1)",
+        "purpose": "Primary/secondary buttons and active dark-section CTAs."
+      },
+      {
+        "name": "floating",
+        "value": "0 4px 24px rgb(0 0 0 / 0.25)",
+        "purpose": "Genuinely floating elements only: hero decor cards, dropdown panel, tooltips, card hover."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-out-quart",
+        "value": "cubic-bezier(0.22, 1, 0.36, 1)",
+        "purpose": "Entrance reveals and hero choreography (fade-up, float-in)."
+      },
+      {
+        "name": "float-loop",
+        "value": "6s ease-in-out infinite",
+        "purpose": "Slow infinite y-drift on floating hero spec cards (5.5-7s range)."
+      },
+      {
+        "name": "path-draw",
+        "value": "1.2s ease-out",
+        "purpose": "SVG pathLength line-draw for telemetry charts."
+      }
+    ],
+    "breakpoints": [
+      { "name": "md", "value": "768px" },
+      { "name": "lg", "value": "1024px" },
+      { "name": "xl", "value": "1280px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Main CTA. Signal Orange fill, deepens to Ember on hover, subtle press-in.",
+      "html": "<button class=\"ds-btn-primary\">Start Your Project</button>",
+      "css": ".ds-btn-primary { background: #e77725; color: #ffffff; padding: 1rem 2rem; border: none; border-radius: 4px; font-family: Geist, system-ui, sans-serif; font-size: 0.875rem; font-weight: 700; box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1); cursor: pointer; transition: background 0.2s ease, transform 0.12s ease; } .ds-btn-primary:hover { background: #c9651a; } .ds-btn-primary:active { transform: scale(0.97); } .ds-btn-primary:focus-visible { outline: 2px solid #1d3fab; outline-offset: 2px; }"
+    },
+    {
+      "name": "Secondary Button",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Lower-emphasis CTA on the light field. Bordered, paper fill.",
+      "html": "<button class=\"ds-btn-secondary\">View Our Work</button>",
+      "css": ".ds-btn-secondary { background: #ffffff; color: #2c2c2e; padding: 1rem 2rem; border: 1px solid #d4d4d4; border-radius: 4px; font-family: Geist, system-ui, sans-serif; font-size: 0.875rem; font-weight: 700; cursor: pointer; transition: border-color 0.2s ease, color 0.2s ease, transform 0.12s ease; } .ds-btn-secondary:hover { border-color: #9f9f9f; color: #1a1a1a; } .ds-btn-secondary:active { transform: scale(0.97); } .ds-btn-secondary:focus-visible { outline: 2px solid #1d3fab; outline-offset: 2px; }"
+    },
+    {
+      "name": "Accent Button (Dark)",
+      "kind": "button",
+      "refersTo": "button-accent",
+      "description": "Pill CTA used on dark instrument sections, with a sliding arrow chip.",
+      "html": "<button class=\"ds-btn-accent\">Explore more <span class=\"ds-btn-accent__chip\">&#8594;</span></button>",
+      "css": ".ds-btn-accent { display: inline-flex; align-items: center; gap: 0.5rem; background: #1d3fab; color: #ffffff; padding: 1rem 1.5rem; border: none; border-radius: 9999px; font-family: Geist, system-ui, sans-serif; font-size: 0.875rem; font-weight: 700; box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1); cursor: pointer; transition: background 0.2s ease; } .ds-btn-accent:hover { background: #508ff3; } .ds-btn-accent__chip { display: inline-flex; align-items: center; justify-content: center; width: 1.5rem; height: 1.5rem; border-radius: 9999px; background: rgb(255 255 255 / 0.2); transition: transform 0.2s ease; } .ds-btn-accent:hover .ds-btn-accent__chip { transform: translateX(0.25rem); }"
+    },
+    {
+      "name": "Nav CTA",
+      "kind": "nav",
+      "refersTo": "nav-cta",
+      "description": "Compact header call-to-action.",
+      "html": "<a class=\"ds-nav-cta\" href=\"#\">Contact Us</a>",
+      "css": ".ds-nav-cta { display: inline-block; background: #e77725; color: #ffffff; padding: 0.5rem 1rem; border: 1px solid transparent; border-radius: 4px; font-family: Geist, system-ui, sans-serif; font-size: 0.875rem; font-weight: 700; text-decoration: none; box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05); transition: background 0.2s ease, transform 0.12s ease; } .ds-nav-cta:hover { background: #c9651a; } .ds-nav-cta:active { transform: scale(0.98); }"
+    },
+    {
+      "name": "Content Card",
+      "kind": "card",
+      "refersTo": "card",
+      "description": "Resting card on the light field: flat with a hairline border, lifts on hover.",
+      "html": "<div class=\"ds-card\"><span class=\"ds-card__tag\">FINTECH OPTIMIZATION</span><h3 class=\"ds-card__title\">Real case studies with real results.</h3></div>",
+      "css": ".ds-card { display: flex; flex-direction: column; gap: 0.5rem; background: #f6f0ed; border: 1px solid #ebebeb; border-radius: 12px; padding: 1rem; box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05); transition: box-shadow 0.2s ease; } .ds-card:hover { box-shadow: 0 4px 24px rgb(0 0 0 / 0.25); } .ds-card__tag { font-family: 'Geist Mono', ui-monospace, monospace; font-size: 0.625rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #9f9f9f; } .ds-card__title { font-family: Geist, system-ui, sans-serif; font-size: 1.125rem; font-weight: 700; line-height: 1.375; letter-spacing: -0.01em; color: #1a1a1a; margin: 0; }"
+    },
+    {
+      "name": "Data Chip",
+      "kind": "chip",
+      "refersTo": "success",
+      "description": "Positive-delta telemetry chip; Circuit Green on a tint. Reserved for real metrics.",
+      "html": "<span class=\"ds-chip-success\">&#8593; 1000%</span>",
+      "css": ".ds-chip-success { display: inline-flex; align-items: center; background: rgb(130 205 37 / 0.15); color: #4d7a14; padding: 0.125rem 0.25rem; border-radius: 4px; font-family: Geist, system-ui, sans-serif; font-size: 0.75rem; font-weight: 700; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Engineering Blueprint",
+    "overview": "Stack360 is a custom software architecture studio, and the site reads like a spec sheet drawn by someone who ships. The dominant surface is a clean, near-paper light field where structure, data, and typography carry the weight, punctuated by one warm, load-bearing orange that behaves like a highlighter on a technical drawing. Depth is engineered, not decorative: most surfaces sit flat, and elevation appears only where an element is genuinely lifted or where the narrative drops into a dark instrumentation section for case-study telemetry. Evidence beats adjectives: real charts, real metrics, precise system copy.",
+    "keyCharacteristics": [
+      "Light, near-paper base with a single committed warm-orange accent.",
+      "Dark instrumentation sections for data-heavy proof (case studies, telemetry).",
+      "Geist Sans for voice, Geist Mono for data/labels — the sans/mono contrast is the type system.",
+      "Flat by default; shadow only signals genuine lift.",
+      "Tight radii (4-16px) and choreographed, intentional motion."
+    ],
+    "rules": [
+      {
+        "name": "The One Orange Rule",
+        "body": "Signal Orange is the only accent that carries brand voice, and it stays under ~10% of any light screen. Its scarcity is what makes it read as important, not loud. Blueprint Blue is the data voice, not a second brand color.",
+        "section": "colors"
+      },
+      {
+        "name": "The Two-Field Rule",
+        "body": "The site lives in exactly two worlds: the light paper field (marketing voice) and the dark instrument field (proof/telemetry). Don't invent a third mid-gray surface.",
+        "section": "colors"
+      },
+      {
+        "name": "The Mono-Means-Data Rule",
+        "body": "Geist Mono is reserved for things that are literally data or code (labels, chart axes, tooltips, code snippets). It is never used as body copy or as generic techy decoration.",
+        "section": "typography"
+      },
+      {
+        "name": "The Earned-Shadow Rule",
+        "body": "A shadow must correspond to real lift. Surfaces are flat at rest; shadow-card is the signal that something is floating above the plane, not a decoration for every card.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do keep Signal Orange (#e77725) as the single brand accent, under ~10% of any light screen.",
+      "Do use Geist Mono strictly for data/labels/code, and Geist Sans for everything spoken.",
+      "Do keep the light field flat with 1px borders; reserve shadow-card for genuinely floating or dark-section elements.",
+      "Do prove claims with real charts, metrics, and precise system copy — evidence over adjectives.",
+      "Do drop into the dark instrument field (#171717) for data-heavy proof, and keep marketing voice on the light field.",
+      "Do keep display headings <=4rem, letter-spacing >= -0.04em, and body measure at 65-75ch."
+    ],
+    "donts": [
+      "Don't ship the generic digital-agency template: stock hero + identical icon-feature card grids + logo soup.",
+      "Don't lean on AI-slop grammar: tiny uppercase tracked eyebrows over every section, 01/02/03 numbered section markers, or the hero-metric template.",
+      "Don't use gradient background-clip: text for emphasis; emphasize with weight, size, or the solid Signal Orange instead.",
+      "Don't use glassmorphism decoratively — backdrop-blur is only for the one floating hero card.",
+      "Don't set body text in Muted #9f9f9f; it fails contrast on the light field. Use Quiet #737373 or darker.",
+      "Don't default the body background to beige/cream warmth; warmth comes from the orange accent and typography, not the surface.",
+      "Don't add a third mid-gray surface world or a second brand accent color."
+    ]
+  }
+}
