@@ -15,8 +15,11 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: 'Nofil',
-  description: 'Created to save time',
+  title: {
+    default: 'Stack360 | Software Engineering & Consulting',
+    template: '%s | Stack360',
+  },
+  description: 'Architecting complex software ecosystems for enterprise scale.',
 };
 
 export default function RootLayout({ children }: Readonly<ReactComponentChildren>) {

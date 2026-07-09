@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { ArrowUpRight, Mail, MapPin, Phone } from 'lucide-react';
+import { ArrowUpRight, Mail, Phone } from 'lucide-react';
 import type { ReactNode } from 'react';
 import Stack360Logo from './Navbar/Stack360Logo';
 
@@ -20,7 +20,7 @@ function LinkedInIcon({ className }: { className?: string }) {
 const SOCIAL_LINKS: SocialLink[] = [
   {
     label: 'LinkedIn',
-    href: 'https://www.linkedin.com/company/stack360',
+    href: 'https://www.linkedin.com/company/stack360co',
     icon: <LinkedInIcon className="h-4 w-4" />,
   },
   { label: 'GitHub', slug: 'github', href: 'https://github.com/stack360co' },
@@ -42,22 +42,28 @@ const COMPANY_LINKS = [
 
 const OFFICES = [
   {
+    number: '01',
     country: 'Pakistan',
     role: 'Global Delivery Center',
     flagSrc: 'https://flagcdn.com/pk.svg',
     address: '82-G, First Floor, DHA Phase 1, Lahore, Punjab, Pakistan',
-    contactLabel: '+92 331 11 11 753',
-    contactHref: 'tel:+923311111753',
-    contactIcon: 'phone' as const,
+    stats: [
+      { value: 'LHR', label: 'City hub' },
+      { value: 'PK', label: 'Region' },
+      { value: '+92', label: 'Direct line', href: 'tel:+923311111753' },
+    ],
   },
   {
+    number: '02',
     country: 'United Kingdom',
     role: 'Regional Office',
     flagSrc: 'https://flagcdn.com/gb.svg',
     address: '58 St. Johns Road, Barking, Essex, IG11 7XL, United Kingdom',
-    contactLabel: 'sales@stack360.co',
-    contactHref: 'mailto:sales@stack360.co',
-    contactIcon: 'mail' as const,
+    stats: [
+      { value: 'ESX', label: 'County' },
+      { value: 'UK', label: 'Region' },
+      { value: 'SALES', label: 'Channel', href: 'mailto:sales@stack360.co' },
+    ],
   },
 ] as const;
 
@@ -144,59 +150,69 @@ function FooterLinkColumn({
   );
 }
 
-function OfficeCard({
-  country,
-  role,
-  flagSrc,
-  address,
-  contactLabel,
-  contactHref,
-  contactIcon,
-}: (typeof OFFICES)[number]) {
-  const ContactIcon = contactIcon === 'phone' ? Phone : Mail;
-
+function OfficeCard({ number, country, role, flagSrc, address, stats }: (typeof OFFICES)[number]) {
   return (
-    <div className="group relative overflow-hidden rounded-xl border border-neutral-800 bg-neutral-950 p-xl shadow-card transition-colors hover:border-neutral-700">
+    <div className="group relative flex h-full min-h-[17.5rem] flex-col justify-between overflow-hidden rounded-xl border border-neutral-700 bg-linear-to-b from-neutral-800 to-neutral-900 p-lg shadow-card transition-colors hover:border-neutral-600">
       <div
         aria-hidden
-        className="pointer-events-none absolute -right-10 -top-10 h-36 w-36 rounded-full bg-primary/10 blur-3xl transition-opacity group-hover:opacity-125"
+        className="pointer-events-none absolute -right-20 -top-20 h-40 w-40 rounded-full bg-primary/10 blur-3xl transition-opacity duration-500 group-hover:bg-primary/20"
       />
 
-      <div className="relative space-y-lg">
-        <div className="flex items-start justify-between gap-md">
-          <div className="flex items-center gap-md">
-            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg border border-neutral-800 bg-neutral-900">
-              <Image
-                src={flagSrc}
-                alt={`${country} flag`}
-                width={28}
-                height={20}
-                unoptimized
-                className="h-5 w-7 rounded-[2px] object-cover shadow-sm"
-              />
-            </div>
-            <div>
-              <span className="block font-mono text-[10px] font-bold uppercase tracking-widest text-primary">
-                {role}
-              </span>
-              <h3 className="text-lg font-bold tracking-tight text-neutral-50">{country}</h3>
-            </div>
+      <div className="relative">
+        <div className="flex items-center justify-between">
+          <span className="font-mono text-4xl font-black tracking-tight text-primary/30">
+            {number}
+          </span>
+          <div className="flex h-10 w-10 items-center justify-center rounded-lg border border-neutral-600/80 bg-neutral-700/60 transition-transform duration-300 group-hover:scale-105">
+            <Image
+              src={flagSrc}
+              alt={`${country} flag`}
+              width={28}
+              height={20}
+              unoptimized
+              className="h-5 w-7 rounded-[2px] object-cover shadow-sm"
+            />
           </div>
-          <MapPin
-            size={16}
-            className="shrink-0 text-neutral-600 transition-colors group-hover:text-primary"
-          />
         </div>
 
-        <p className="text-sm leading-relaxed text-neutral-400">{address}</p>
+        <div className="mt-lg space-y-xs">
+          <span className="block font-mono text-[10px] font-bold uppercase tracking-widest text-primary">
+            {role}
+          </span>
+          <h3 className="text-xl font-bold tracking-tight text-neutral-50">{country}</h3>
+          <p className="mt-md text-sm leading-relaxed text-neutral-400">{address}</p>
+        </div>
+      </div>
 
-        <a
-          href={contactHref}
-          className="inline-flex items-center gap-sm rounded-md border border-neutral-800 bg-neutral-900 px-md py-sm text-sm font-medium text-neutral-200 transition-colors hover:border-primary/30 hover:text-primary"
-        >
-          <ContactIcon size={14} className="text-primary" />
-          {contactLabel}
-        </a>
+      <div className="relative grid grid-cols-3 gap-sm border-t border-neutral-700/60 pt-md font-mono">
+        {stats.map((stat) => {
+          const content = (
+            <>
+              <div className="text-lg font-black text-neutral-100">{stat.value}</div>
+              <div className="text-[9px] font-bold uppercase tracking-wider text-neutral-500">
+                {stat.label}
+              </div>
+            </>
+          );
+
+          if ('href' in stat && stat.href) {
+            return (
+              <a
+                key={stat.label}
+                href={stat.href}
+                className="space-y-[2px] transition-colors hover:text-primary [&:hover_div]:text-primary"
+              >
+                {content}
+              </a>
+            );
+          }
+
+          return (
+            <div key={stat.label} className="space-y-[2px]">
+              {content}
+            </div>
+          );
+        })}
       </div>
     </div>
   );
@@ -271,7 +287,7 @@ export default function Footer() {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 gap-lg md:grid-cols-2">
+          <div className="grid grid-cols-1 items-stretch gap-lg md:grid-cols-2">
             {OFFICES.map((office) => (
               <OfficeCard key={office.country} {...office} />
             ))}
@@ -303,7 +319,7 @@ export default function Footer() {
             </Link>
             <span className="text-neutral-300">/</span>
             <Link href="/privacy" className="transition-colors hover:text-primary">
-              Privacy Framework
+              Privacy Policy
             </Link>
           </div>
         </div>

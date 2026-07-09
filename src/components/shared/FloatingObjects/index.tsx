@@ -1,6 +1,6 @@
 'use client';
 
-import { motion } from 'motion/react';
+import { motion, useReducedMotion } from 'motion/react';
 import type { ReactNode } from 'react';
 import { cn } from '@/styles/tailwind.utils';
 import { floatCard } from './variants';
@@ -20,16 +20,20 @@ export default function FloatingObject({
   floatDuration = 6,
   children,
 }: FloatingObjectProps) {
+  const reduced = useReducedMotion();
+
   return (
     <motion.div
       variants={floatCard}
       initial="hidden"
       animate="show"
-      className={cn('pointer-events-none absolute hidden lg:block', className)}
+      className={cn('pointer-events-none absolute z-0 hidden lg:block', className)}
     >
       <motion.div
-        animate={{ y: floatY }}
-        transition={{ duration: floatDuration, repeat: Infinity, ease: 'easeInOut' }}
+        animate={reduced ? undefined : { y: floatY }}
+        transition={
+          reduced ? undefined : { duration: floatDuration, repeat: Infinity, ease: 'easeInOut' }
+        }
         className={contentClassName}
       >
         {children}

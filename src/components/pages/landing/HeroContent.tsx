@@ -26,7 +26,7 @@ export default function HeroContent() {
       variants={container}
       initial="hidden"
       animate="show"
-      className="relative z-10 mx-auto flex h-[calc(100vh-260px)] w-full max-w-3xl flex-col items-center justify-center text-center"
+      className="relative z-10 mx-auto flex w-full max-w-3xl flex-col items-center justify-center text-center"
     >
       <motion.div variants={fadeUp} className="mb-lg flex items-center">
         <span className="font-sans text-2xl font-black tracking-tight text-neutral-950 select-none">

@@ -3,17 +3,15 @@ import FloatingObject from '@/components/shared/FloatingObjects';
 export default function CodeSnippet() {
   return (
     <FloatingObject
-      className="left-[5%] top-[16%] xl:left-[7%]"
-      floatY={[0, -14, 0]}
-      floatDuration={6}
-      contentClassName="rounded-lg border border-neutral-200 bg-neutral-50/80 p-md shadow-card backdrop-blur-sm"
+      className="left-0 top-[19%]"
+      floatY={[0, -8, 0]}
+      floatDuration={6.4}
+      contentClassName="-rotate-1 rounded-md border border-neutral-200 bg-neutral-50/85 p-sm shadow-sm backdrop-blur-sm"
     >
-      <pre className="font-mono text-xs leading-relaxed text-neutral-400">
-        <span className="text-neutral-500">const</span> engine ={' '}
+      <pre className="font-mono text-[10px] leading-snug text-neutral-400">
+        <span className="text-neutral-500">const</span> stack ={' '}
         <span className="text-primary">new</span> Stack360();{'\n'}
-        {'  '}engine.scale(<span className="text-primary-dark">&apos;unlimited&apos;</span>);
-        {'\n'}
-        {'  '}engine.deploy();
+        stack.deploy();
       </pre>
     </FloatingObject>
   );
