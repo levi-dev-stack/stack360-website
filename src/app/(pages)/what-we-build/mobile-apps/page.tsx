@@ -1,5 +1,5 @@
 import WorkInProgress from '@/components/element/WorkInProgress';
 
 export default function Page() {
-  return <WorkInProgress title="Mobile Apps" />;
+  return <WorkInProgress />;
 }
