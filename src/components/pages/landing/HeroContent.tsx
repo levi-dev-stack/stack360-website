@@ -1,10 +1,24 @@
 'use client';
 
+import Image from 'next/image';
 import { motion } from 'motion/react';
 import { container, fadeUp } from '@/components/shared/FloatingObjects/variants';
 import RotatingHighlight from './RotatingHighlight';
 
-const AVATAR_COLORS = ['#e77725', '#ef9e60', '#1d3fab'];
+const TEAM_AVATARS = [
+  {
+    src: 'https://randomuser.me/api/portraits/women/44.jpg',
+    alt: 'Stack360 client partner portrait',
+  },
+  {
+    src: 'https://randomuser.me/api/portraits/men/32.jpg',
+    alt: 'Stack360 client partner portrait',
+  },
+  {
+    src: 'https://randomuser.me/api/portraits/women/68.jpg',
+    alt: 'Stack360 client partner portrait',
+  },
+] as const;
 
 export default function HeroContent() {
   return (
@@ -12,7 +26,7 @@ export default function HeroContent() {
       variants={container}
       initial="hidden"
       animate="show"
-      className="relative z-10 mx-auto flex w-full max-w-3xl flex-col items-center justify-center text-center h-[calc(100vh-260px)]"
+      className="relative z-10 mx-auto flex h-[calc(100vh-260px)] w-full max-w-3xl flex-col items-center justify-center text-center"
     >
       <motion.div variants={fadeUp} className="mb-lg flex items-center">
         <span className="font-sans text-2xl font-black tracking-tight text-neutral-950 select-none">
@@ -37,18 +51,19 @@ export default function HeroContent() {
 
       <motion.div
         variants={fadeUp}
-        className="mt-xl flex items-center gap-md rounded-md border border-neutral-200 bg-neutral-50 px-md py-sm shadow-sm"
+        className="mt-xl flex flex-wrap items-center justify-center gap-md rounded-md border border-neutral-200 bg-neutral-50 px-md py-sm shadow-sm"
       >
         <div className="flex items-center">
-          {AVATAR_COLORS.map((color, i) => (
+          {TEAM_AVATARS.map((avatar, index) => (
             <span
-              // biome-ignore lint/suspicious/noArrayIndexKey: static avatar dots
-              key={i}
-              style={{ backgroundColor: color, marginLeft: i === 0 ? 0 : -8 }}
-              className="flex h-6 w-6 items-center justify-center rounded-full border-2 border-neutral-50 text-[8px] font-bold text-neutral-50"
-            />
+              key={avatar.src}
+              style={{ marginLeft: index === 0 ? 0 : -8 }}
+              className="relative inline-block h-7 w-7 overflow-hidden rounded-full border-2 border-neutral-50"
+            >
+              <Image src={avatar.src} alt={avatar.alt} fill sizes="28px" className="object-cover" />
+            </span>
           ))}
-          <span className="-ml-2 flex h-6 items-center rounded-full border-2 border-neutral-50 bg-neutral-900 px-xs text-[9px] font-bold text-neutral-50">
+          <span className="-ml-2 flex h-7 items-center rounded-full border-2 border-neutral-50 bg-neutral-900 px-xs text-[9px] font-bold text-neutral-50">
             +500
           </span>
         </div>
@@ -56,8 +71,8 @@ export default function HeroContent() {
           <span className="text-sm tracking-tight text-primary">★★★★★</span>
           <span className="text-sm font-bold text-neutral-900">5.0</span>
         </div>
-        <span className="h-4 w-px bg-neutral-200" />
-        <span className="text-[10px] font-bold uppercase tracking-widest text-neutral-400">
+        <span className="hidden h-4 w-px bg-neutral-200 sm:block" />
+        <span className="text-[10px] font-bold uppercase tracking-widest text-neutral-500">
           Trusted by 500+ companies
         </span>
       </motion.div>

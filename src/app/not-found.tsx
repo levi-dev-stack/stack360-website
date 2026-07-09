@@ -6,10 +6,10 @@ import Link from 'next/link';
 
 export default function NotFound() {
   return (
-    <div className="relative min-h-[100vh] w-full flex items-center justify-center overflow-hidden bg-neutral-black px-md py-2xl">
+    <div className="relative min-h-screen w-full flex items-center justify-center overflow-hidden bg-neutral-black px-md py-2xl">
       {/* BACKGROUND GRAPHIC: Blueprint Grid Overlay */}
       <div className="absolute inset-0 z-0 opacity-[0.02] pointer-events-none select-none mix-blend-difference">
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff_1px,transparent_1px),linear-gradient(to_bottom,#ffffff_1px,transparent_1px)] bg-[size:32px_32px]" />
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff_1px,transparent_1px),linear-gradient(to_bottom,#ffffff_1px,transparent_1px)] bg-size-[32px_32px]" />
       </div>
 
       {/* Main Structural Layout Block */}

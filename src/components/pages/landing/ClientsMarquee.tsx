@@ -1,21 +1,11 @@
 'use client';
 
-import { motion } from 'motion/react';
+import { motion, useReducedMotion } from 'motion/react';
 
 interface Client {
   name: string;
   logo?: string;
 }
-
-interface Stat {
-  value: string;
-  label: string;
-}
-
-const STATS: Stat[] = [
-  { value: '200+', label: 'Projects Delivered' },
-  { value: '95%', label: 'Retention Rate' },
-];
 
 const CLIENTS: Client[] = [
   { name: 'TechCorp' },
@@ -30,39 +20,37 @@ const CLIENTS: Client[] = [
 
 export default function ClientsMarquee() {
   const track = [...CLIENTS, ...CLIENTS];
+  const reduced = useReducedMotion();
 
   return (
     <section
       className="site-section w-full border-t border-neutral-200 bg-neutral-100"
       aria-labelledby="clients-marquee-label"
     >
-      <div className="flex w-full items-stretch">
-        <div className="site-inset-left flex shrink-0 items-center gap-lg border-r border-neutral-200 bg-neutral-50 py-md pr-lg sm:gap-xl sm:pr-xl">
-          {STATS.map((stat) => (
-            <div key={stat.label} className="whitespace-nowrap">
-              <p className="text-2xl font-bold leading-none text-primary">{stat.value}</p>
-              <p className="mt-xs text-[10px] font-bold uppercase tracking-widest text-neutral-500">
-                {stat.label}
-              </p>
-            </div>
-          ))}
-        </div>
-
-        <div className="relative flex min-w-0 flex-1 items-center overflow-hidden">
+      <div className="flex min-h-14 w-full items-stretch sm:min-h-16">
+        <div className="site-inset-left flex shrink-0 items-center border-r border-neutral-200 bg-neutral-950 py-md pr-lg lg:pr-xl">
           <p
             id="clients-marquee-label"
-            className="z-20 shrink-0 border-r border-neutral-200 bg-neutral-100 py-md pl-lg pr-md text-[10px] font-bold uppercase tracking-widest text-neutral-500 sm:pr-lg"
+            className="font-mono text-[10px] font-bold uppercase tracking-widest text-neutral-50"
           >
             Trusted by
           </p>
+        </div>
 
-          <div className="pointer-events-none absolute inset-y-0 left-24 z-10 w-12 bg-linear-to-r from-neutral-100 to-transparent sm:left-28" />
-          <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 bg-linear-to-l from-neutral-100 to-transparent" />
+        <div className="relative flex min-w-0 flex-1 items-center overflow-hidden">
+          <div
+            aria-hidden
+            className="pointer-events-none absolute inset-y-0 left-0 z-10 w-10 bg-linear-to-r from-neutral-100 to-transparent"
+          />
+          <div
+            aria-hidden
+            className="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 bg-linear-to-l from-neutral-100 to-transparent"
+          />
 
           <motion.div
-            className="flex w-max items-center gap-2xl py-md pl-xl"
-            animate={{ x: ['0%', '-50%'] }}
-            transition={{ duration: 22, repeat: Infinity, ease: 'linear' }}
+            className="flex w-max items-center gap-xl py-md pl-lg pr-lg sm:gap-2xl sm:pl-xl"
+            animate={reduced ? undefined : { x: ['0%', '-50%'] }}
+            transition={reduced ? undefined : { duration: 22, repeat: Infinity, ease: 'linear' }}
           >
             {track.map((client, index) => (
               <div key={`${client.name}-${index}`} className="flex shrink-0 items-center gap-sm">
@@ -73,7 +61,7 @@ export default function ClientsMarquee() {
                     className="h-6 w-6 bg-contain bg-center bg-no-repeat opacity-60 grayscale"
                   />
                 )}
-                <span className="whitespace-nowrap text-lg font-bold uppercase tracking-wide text-neutral-400 transition-colors hover:text-neutral-600">
+                <span className="whitespace-nowrap text-base font-bold uppercase tracking-wide text-neutral-500 transition-colors hover:text-neutral-700 sm:text-lg">
                   {client.name}
                 </span>
               </div>
