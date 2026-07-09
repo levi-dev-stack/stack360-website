@@ -12,7 +12,11 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <div className="relative min-h-screen bg-neutral-50 selection:bg-primary/20 selection:text-primary">
       <BlueprintGrid />
-      <PremiumNavbar />
+
+      <div className="sticky top-0 z-50 w-full">
+        <PremiumNavbar />
+      </div>
+
       <main className="relative z-10 min-h-[calc(100vh-4.5rem)] w-full">{children}</main>
     </div>
   );
