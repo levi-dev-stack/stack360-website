@@ -268,7 +268,7 @@ export default function CaseStudiesSection() {
       <div className="site-container relative grid grid-cols-1 gap-xl lg:grid-cols-12">
         <div className="flex flex-col justify-between gap-lg lg:col-span-4 lg:pr-lg">
           <div className="space-y-md">
-            <span className="inline-flex items-center rounded-full bg-neutral-50/10 px-md py-xs text-xs font-bold uppercase tracking-widest text-neutral-50">
+            <span className="block font-mono text-xs font-bold uppercase tracking-widest text-primary">
               Our Work
             </span>
             <h2 className="text-4xl font-black leading-[1.05] tracking-tight text-neutral-50 lg:text-5xl">

@@ -47,9 +47,9 @@ export default function WorkInProgress() {
           <div className="flex w-full flex-col items-center text-center">
             <motion.div
               variants={itemVariants}
-              className="mb-lg inline-flex items-center gap-sm rounded-sm border border-primary/25 bg-primary-tint/15 px-md py-xs"
+              className="mb-lg inline-flex items-center gap-sm font-mono text-xs font-bold uppercase tracking-wider text-primary"
             >
-              <span className="h-2 w-2 shrink-0 rounded-full bg-primary motion-safe:animate-pulse" />
+              <span className="h-2 w-2 shrink-0 bg-primary motion-safe:animate-pulse" />
               <span className="font-mono text-xs font-bold uppercase tracking-wider text-primary">
                 In development
               </span>

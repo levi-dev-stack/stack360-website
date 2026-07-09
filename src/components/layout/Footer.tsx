@@ -126,7 +126,7 @@ function FooterLinkColumn({
             >
               {link.label}
               {link.badge && (
-                <span className="rounded-sm bg-primary/10 px-xs py-px font-mono text-[9px] font-bold uppercase tracking-wide text-primary">
+                <span className="font-mono text-[9px] font-bold uppercase tracking-wide text-primary">
                   {link.badge}
                 </span>
               )}

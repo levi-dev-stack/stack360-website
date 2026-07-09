@@ -1,5 +1,5 @@
-import WorkInProgress from '@/components/element/WorkInProgress';
+import CulturePage from '@/components/pages/who-we-are/culture';
 
 export default function Page() {
-  return <WorkInProgress />;
+  return <CulturePage />;
 }

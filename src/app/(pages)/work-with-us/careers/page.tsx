@@ -1,5 +1,5 @@
-import WorkInProgress from '@/components/element/WorkInProgress';
+import CareersPage from '@/components/pages/work-with-us/careers';
 
 export default function Page() {
-  return <WorkInProgress />;
+  return <CareersPage />;
 }

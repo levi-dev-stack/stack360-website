@@ -1,11 +1,19 @@
 'use client';
 
 import { ChevronDown } from 'lucide-react';
+import { AnimatePresence, motion, useReducedMotion } from 'motion/react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
 import { cn } from '@/styles/tailwind.utils';
+import {
+  dropdownPanel,
+  EASE_OUT_EXPO,
+  fadeUp,
+  motionVariants,
+  staggerContainer,
+} from '@/components/shared/motion/variants';
 import Stack360Logo from './Stack360Logo';
 
 interface SubItem {
@@ -257,6 +265,7 @@ export default function PremiumNavbar() {
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const headerRef = useRef<HTMLElement>(null);
   const pathname = usePathname();
+  const reduced = useReducedMotion();
 
   const isPathActive = (href?: string) => {
     if (!href) {
@@ -298,8 +307,11 @@ export default function PremiumNavbar() {
   }, [activeDropdown]);
 
   return (
-    <header
+    <motion.header
       ref={headerRef}
+      initial={reduced ? false : { y: -8, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.45, ease: EASE_OUT_EXPO }}
       className="relative z-50 w-full border-b border-neutral-200 bg-neutral-50"
     >
       <div className="site-container flex h-18 items-center justify-between gap-xl lg:gap-2xl">
@@ -318,40 +330,57 @@ export default function PremiumNavbar() {
 
             if (item.type === 'link') {
               return (
-                <Link
-                  key={item.label}
-                  href={item.href ?? '/'}
-                  className={cn(
-                    'rounded-sm px-sm py-xs text-sm font-medium transition-colors lg:px-md',
-                    isItemSelected
-                      ? 'bg-primary/10 text-primary'
-                      : 'text-neutral-600 hover:bg-neutral-100 hover:text-neutral-900'
-                  )}
-                >
-                  {item.label}
-                </Link>
+                <motion.div key={item.label} whileHover={reduced ? undefined : { y: -1 }}>
+                  <Link
+                    href={item.href ?? '/'}
+                    className={cn(
+                      'relative rounded-sm px-sm py-xs text-sm font-medium transition-colors lg:px-md',
+                      isItemSelected
+                        ? 'bg-primary/10 text-primary'
+                        : 'text-neutral-600 hover:bg-neutral-100 hover:text-neutral-900'
+                    )}
+                  >
+                    {isItemSelected && (
+                      <motion.span
+                        layoutId="nav-active-pill"
+                        className="absolute inset-0 rounded-sm bg-primary/10"
+                        transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+                      />
+                    )}
+                    <span className="relative z-10">{item.label}</span>
+                  </Link>
+                </motion.div>
               );
             }
 
             return (
               <div key={item.label} className="relative flex h-full items-center">
-                <button
+                <motion.button
                   type="button"
                   aria-expanded={isDropdownOpen}
                   aria-haspopup="true"
                   onClick={() => toggleDropdown(item.label)}
+                  whileHover={reduced ? undefined : { y: -1 }}
+                  whileTap={{ scale: 0.98 }}
                   className={cn(
-                    'cursor-pointer inline-flex h-full items-center gap-xs rounded-sm px-sm py-xs text-sm font-medium transition-colors lg:px-md',
+                    'relative cursor-pointer inline-flex h-full items-center gap-xs rounded-sm px-sm py-xs text-sm font-medium transition-colors lg:px-md',
                     isDropdownOpen
                       ? 'bg-neutral-100 text-neutral-900'
                       : 'text-neutral-600 hover:bg-neutral-100 hover:text-neutral-900'
                   )}
                 >
-                  {item.label}
+                  {isItemSelected && !isDropdownOpen && (
+                    <motion.span
+                      layoutId="nav-active-pill"
+                      className="absolute inset-0 rounded-sm bg-primary/10"
+                      transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+                    />
+                  )}
+                  <span className="relative z-10">{item.label}</span>
                   <ChevronDown
                     aria-hidden
                     className={cn(
-                      'h-3.5 w-3.5 transition-transform duration-200',
+                      'relative z-10 h-3.5 w-3.5 transition-transform duration-200',
                       isDropdownOpen
                         ? 'rotate-180 text-neutral-700'
                         : isItemSelected
@@ -359,109 +388,135 @@ export default function PremiumNavbar() {
                           : 'text-neutral-400'
                     )}
                   />
-                </button>
+                </motion.button>
 
-                {isDropdownOpen && item.columns && (
-                  <div className="fixed left-1/2 top-18 z-50 flex w-[min(70rem,calc(100vw-3rem))] -translate-x-1/2 flex-row overflow-hidden rounded-b-md border border-t-0 border-neutral-200 bg-neutral-50 shadow-card">
-                    <div className="grid max-h-[60vh] flex-1 grid-cols-2 gap-xl overflow-y-auto p-xl">
-                      {item.columns.map((col) => (
-                        <div key={col.title ?? col.items[0]?.title} className="space-y-md">
-                          {col.title && (
-                            <h4 className="font-mono text-xs font-bold uppercase tracking-wider text-neutral-500">
-                              {col.title}
-                            </h4>
-                          )}
-                          <ul className="space-y-sm">
-                            {col.items.map((subItem) => {
-                              const isSubItemSelected = isPathActive(subItem.href);
+                <AnimatePresence>
+                  {isDropdownOpen && item.columns && (
+                    <motion.div
+                      key={item.label}
+                      variants={motionVariants(reduced, dropdownPanel)}
+                      initial="hidden"
+                      animate="show"
+                      exit="exit"
+                      className="fixed left-1/2 top-18 z-50 flex w-[min(70rem,calc(100vw-3rem))] -translate-x-1/2 flex-row overflow-hidden rounded-b-md border border-t-0 border-neutral-200 bg-neutral-50 shadow-card"
+                    >
+                      <motion.div
+                        variants={motionVariants(reduced, staggerContainer)}
+                        initial="hidden"
+                        animate="show"
+                        className="grid max-h-[60vh] flex-1 grid-cols-2 gap-xl overflow-y-auto p-xl"
+                      >
+                        {item.columns.map((col) => (
+                          <div key={col.title ?? col.items[0]?.title} className="space-y-md">
+                            {col.title && (
+                              <h4 className="font-mono text-xs font-bold uppercase tracking-wider text-neutral-500">
+                                {col.title}
+                              </h4>
+                            )}
+                            <ul className="space-y-sm">
+                              {col.items.map((subItem) => {
+                                const isSubItemSelected = isPathActive(subItem.href);
 
-                              return (
-                                <li key={subItem.title}>
-                                  <Link
-                                    href={subItem.href}
-                                    onClick={() => setActiveDropdown(null)}
-                                    className={cn(
-                                      'group/item block rounded-md p-sm transition-colors',
-                                      isSubItemSelected ? 'bg-primary/10' : 'hover:bg-neutral-100'
-                                    )}
+                                return (
+                                  <motion.li
+                                    key={subItem.title}
+                                    variants={motionVariants(reduced, fadeUp)}
                                   >
-                                    <div
+                                    <Link
+                                      href={subItem.href}
+                                      onClick={() => setActiveDropdown(null)}
                                       className={cn(
-                                        'text-sm font-semibold transition-colors',
-                                        isSubItemSelected
-                                          ? 'text-primary'
-                                          : 'text-neutral-900 group-hover/item:text-primary'
+                                        'group/item block rounded-md p-sm transition-colors',
+                                        isSubItemSelected ? 'bg-primary/10' : 'hover:bg-neutral-100'
                                       )}
                                     >
-                                      {subItem.title}
-                                    </div>
-                                    <p
-                                      className={cn(
-                                        'mt-xs text-xs leading-relaxed',
-                                        isSubItemSelected ? 'text-neutral-700' : 'text-neutral-600'
-                                      )}
-                                    >
-                                      {subItem.desc}
-                                    </p>
-                                  </Link>
-                                </li>
-                              );
-                            })}
-                          </ul>
-                        </div>
-                      ))}
-                    </div>
-
-                    {item.imagePreview && (
-                      <div className="flex w-[32%] flex-col justify-between border-l border-neutral-200 bg-neutral-100 p-xl">
-                        <div className="space-y-md">
-                          <span className="block font-mono text-[10px] font-bold uppercase tracking-wider text-neutral-500">
-                            Studio Vision
-                          </span>
-                          <div className="group relative aspect-16/10 w-full overflow-hidden rounded-md border border-neutral-200 bg-neutral-300">
-                            <Image
-                              src={item.imagePreview.src}
-                              alt={item.imagePreview.alt}
-                              width={600}
-                              height={375}
-                              className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
-                            />
+                                      <div
+                                        className={cn(
+                                          'text-sm font-semibold transition-colors',
+                                          isSubItemSelected
+                                            ? 'text-primary'
+                                            : 'text-neutral-900 group-hover/item:text-primary'
+                                        )}
+                                      >
+                                        {subItem.title}
+                                      </div>
+                                      <p
+                                        className={cn(
+                                          'mt-xs text-xs leading-relaxed',
+                                          isSubItemSelected
+                                            ? 'text-neutral-700'
+                                            : 'text-neutral-600'
+                                        )}
+                                      >
+                                        {subItem.desc}
+                                      </p>
+                                    </Link>
+                                  </motion.li>
+                                );
+                              })}
+                            </ul>
                           </div>
-                          <p className="pt-xs text-xs leading-relaxed font-medium text-neutral-600">
-                            {item.imagePreview.caption}
-                          </p>
-                        </div>
+                        ))}
+                      </motion.div>
 
-                        <div className="pt-md">
-                          <Link
-                            href={item.href ?? '/'}
-                            onClick={() => setActiveDropdown(null)}
-                            className="group/link inline-flex items-center text-xs font-bold text-primary hover:text-primary-dark"
-                          >
-                            Discover Studio Standards
-                            <span className="ml-xs transition-transform group-hover/link:translate-x-xs">
-                              →
+                      {item.imagePreview && (
+                        <motion.div
+                          initial={reduced ? false : { opacity: 0, x: 16 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          transition={{ duration: 0.4, delay: 0.1, ease: EASE_OUT_EXPO }}
+                          className="flex w-[32%] flex-col justify-between border-l border-neutral-200 bg-neutral-100 p-xl"
+                        >
+                          <div className="space-y-md">
+                            <span className="block font-mono text-[10px] font-bold uppercase tracking-wider text-neutral-500">
+                              Studio Vision
                             </span>
-                          </Link>
-                        </div>
-                      </div>
-                    )}
-                  </div>
-                )}
+                            <div className="group relative aspect-16/10 w-full overflow-hidden rounded-md border border-neutral-200 bg-neutral-300">
+                              <Image
+                                src={item.imagePreview.src}
+                                alt={item.imagePreview.alt}
+                                width={600}
+                                height={375}
+                                className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                              />
+                            </div>
+                            <p className="pt-xs text-xs leading-relaxed font-medium text-neutral-600">
+                              {item.imagePreview.caption}
+                            </p>
+                          </div>
+
+                          <div className="pt-md">
+                            <Link
+                              href={item.href ?? '/'}
+                              onClick={() => setActiveDropdown(null)}
+                              className="group/link inline-flex items-center text-xs font-bold text-primary hover:text-primary-dark"
+                            >
+                              Discover Studio Standards
+                              <span className="ml-xs transition-transform group-hover/link:translate-x-xs">
+                                →
+                              </span>
+                            </Link>
+                          </div>
+                        </motion.div>
+                      )}
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </div>
             );
           })}
         </nav>
 
         <div className="flex shrink-0 items-center">
-          <Link
-            href="/contact"
-            className="rounded-sm border border-transparent bg-primary px-lg py-sm text-sm font-bold text-neutral-50 shadow-sm transition-all hover:bg-primary-dark active:scale-[0.98]"
-          >
-            Contact Us
-          </Link>
+          <motion.div whileHover={reduced ? undefined : { scale: 1.03 }} whileTap={{ scale: 0.97 }}>
+            <Link
+              href="/contact"
+              className="rounded-sm border border-transparent bg-primary px-lg py-sm text-sm font-bold text-neutral-50 shadow-sm transition-all hover:bg-primary-dark"
+            >
+              Contact Us
+            </Link>
+          </motion.div>
         </div>
       </div>
-    </header>
+    </motion.header>
   );
 }

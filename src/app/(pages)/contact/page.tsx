@@ -1,5 +1,5 @@
-import WorkInProgress from '@/components/element/WorkInProgress';
+import ContactPage from '@/components/pages/contact';
 
 export default function Page() {
-  return <WorkInProgress />;
+  return <ContactPage />;
 }

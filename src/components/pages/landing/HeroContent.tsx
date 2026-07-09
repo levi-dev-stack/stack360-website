@@ -37,7 +37,7 @@ export default function HeroContent() {
 
       <motion.div
         variants={fadeUp}
-        className="mt-xl flex items-center gap-md rounded-full border border-neutral-200 bg-neutral-50 px-md py-sm shadow-sm"
+        className="mt-xl flex items-center gap-md rounded-md border border-neutral-200 bg-neutral-50 px-md py-sm shadow-sm"
       >
         <div className="flex items-center">
           {AVATAR_COLORS.map((color, i) => (
