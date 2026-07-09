@@ -74,6 +74,14 @@
 
   /* Layout */
   --token-container: 80rem;
+  --site-gutter: var(--token-space-lg);
+  --site-gutter-lg: var(--token-space-2xl);
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --site-gutter: var(--site-gutter-lg);
+  }
 }
 
 /* --- Tailwind Core Variable Mapping --- */
@@ -173,5 +181,22 @@
 
   a {
     @apply text-neutral-700 transition-colors duration-200 hover:text-primary;
+  }
+}
+
+@layer components {
+  /* Centered page content — matches navbar alignment */
+  .site-container {
+    @apply mx-auto w-full max-w-content px-lg lg:px-2xl;
+  }
+
+  /* Full-width section shell; pair with .site-container for aligned content */
+  .site-section {
+    @apply w-full;
+  }
+
+  /* Align block to container left edge while background bleeds full width */
+  .site-inset-left {
+    padding-left: calc((100vw - min(var(--token-container), 100vw)) / 2 + var(--site-gutter));
   }
 }
