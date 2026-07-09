@@ -22,7 +22,7 @@ interface NavSection {
 }
 
 const NAVIGATION_DATA: NavSection[] = [
-  { label: 'Home', type: 'link', href: '/' },
+  // { label: 'Home', type: 'link', href: '/' },
   {
     label: 'What We Build',
     type: 'dropdown',
@@ -258,7 +258,7 @@ export default function PremiumNavbar() {
 
   return (
     <header className="relative z-50 w-full border-b border-neutral-200 bg-neutral-50">
-      <div className="mx-auto flex max-w-content h-[4.5rem] items-center justify-between px-md lg:px-xl">
+      <div className="flex h-18 w-full items-center justify-between px-lg lg:px-xl">
         {/* Brand Logo */}
         <div className="flex items-center">
           <Link
@@ -313,7 +313,7 @@ export default function PremiumNavbar() {
 
                 {/* Centered Dropdown Overlay (70% Window Width) */}
                 {isDropdownOpen && item.columns && (
-                  <div className="fixed left-1/2 top-[4.5rem] w-[70vw] -translate-x-1/2 border border-t-0 border-neutral-200 bg-neutral-50 shadow-card rounded-b-md overflow-hidden flex flex-row animate-in fade-in slide-in-from-top-1 duration-150">
+                  <div className="fixed left-1/2 top-18 w-[70vw] -translate-x-1/2 border border-t-0 border-neutral-200 bg-neutral-50 shadow-card rounded-b-md overflow-hidden flex flex-row animate-in fade-in slide-in-from-top-1 duration-150">
                     {/* Grid Columns */}
                     <div className="flex-1 grid grid-cols-2 gap-lg p-lg bg-neutral-50 max-h-[60vh] overflow-y-auto">
                       {item.columns.map((col, colIdx) => (
@@ -351,7 +351,7 @@ export default function PremiumNavbar() {
                           <span className="text-[10px] font-bold tracking-widest text-neutral-400 uppercase block">
                             Studio Vision
                           </span>
-                          <div className="aspect-[16/10] w-full overflow-hidden rounded-md bg-neutral-300 border border-neutral-200 relative group">
+                          <div className="aspect-16/10 w-full overflow-hidden rounded-md bg-neutral-300 border border-neutral-200 relative group">
                             <img
                               src={item.imagePreview.src}
                               alt={item.imagePreview.alt}
