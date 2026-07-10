@@ -80,9 +80,9 @@ function BrandMark({ size = 28, className }: { size?: number; className?: string
       <Image
         src="/favicon.svg"
         alt=""
-        width={Math.round(size * 0.62)}
-        height={Math.round(size * 0.7)}
-        className="h-auto w-auto object-contain"
+        fill
+        sizes={`${size}px`}
+        className="object-contain p-[18%]"
       />
     </span>
   );
@@ -895,7 +895,7 @@ export default function ChatAssistant() {
         onClick={() => setOpen((v) => !v)}
         whileHover={reduced ? undefined : { scale: 1.05 }}
         whileTap={{ scale: 0.96 }}
-        className="pointer-events-auto flex h-14 w-14 items-center justify-center rounded-full bg-primary text-neutral-50 shadow-card transition-colors hover:bg-primary-dark"
+        className="pointer-events-auto flex h-14 w-14 items-center justify-center overflow-hidden rounded-full bg-primary text-neutral-50 shadow-card transition-colors hover:bg-primary-dark"
       >
         <AnimatePresence mode="wait" initial={false}>
           {open ? (
@@ -915,14 +915,14 @@ export default function ChatAssistant() {
               animate={{ opacity: 1, scale: 1 }}
               exit={reduced ? undefined : { opacity: 0, scale: 0.8 }}
               transition={{ duration: 0.2 }}
-              className="relative flex h-full w-full items-center justify-center"
+              className="relative flex h-7 w-7 items-center justify-center overflow-hidden"
             >
               <Image
                 src="/icon.svg"
                 alt=""
-                width={26}
-                height={30}
-                className="h-auto w-auto object-contain brightness-0 invert"
+                fill
+                sizes="28px"
+                className="object-contain brightness-0 invert"
               />
               <span className="sr-only">
                 <MessageCircle size={22} />
