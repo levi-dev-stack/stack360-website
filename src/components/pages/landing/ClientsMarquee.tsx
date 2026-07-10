@@ -43,7 +43,14 @@ export default function ClientsMarquee() {
             className="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 bg-linear-to-l from-neutral-100 to-transparent"
           />
 
+          <ul className="sr-only">
+            {CLIENTS.map((client) => (
+              <li key={client.name}>{client.name}</li>
+            ))}
+          </ul>
+
           <motion.div
+            aria-hidden
             className="flex w-max items-center gap-xl py-md pl-lg pr-lg sm:gap-2xl sm:pl-xl"
             animate={reduced ? undefined : { x: ['0%', '-50%'] }}
             transition={reduced ? undefined : { duration: 22, repeat: Infinity, ease: 'linear' }}
@@ -52,7 +59,6 @@ export default function ClientsMarquee() {
               <div key={`${client.name}-${index}`} className="flex shrink-0 items-center gap-sm">
                 {client.logo && (
                   <span
-                    aria-hidden="true"
                     style={{ backgroundImage: `url(${client.logo})` }}
                     className="h-6 w-6 bg-contain bg-center bg-no-repeat opacity-60 grayscale"
                   />

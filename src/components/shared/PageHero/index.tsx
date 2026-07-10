@@ -1,12 +1,7 @@
 'use client';
 
 import { motion, useReducedMotion } from 'motion/react';
-import {
-  // EASE_OUT_EXPO,
-  fadeUp,
-  motionVariants,
-  staggerContainer,
-} from '@/components/shared/motion/variants';
+import { fadeUp, motionVariants, staggerContainer } from '@/components/shared/motion/variants';
 
 interface PageHeroProps {
   eyebrow: string;

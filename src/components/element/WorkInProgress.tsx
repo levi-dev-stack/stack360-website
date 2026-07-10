@@ -1,7 +1,7 @@
 'use client';
 
 import { ArrowLeft, Hammer } from 'lucide-react';
-import { motion, type Variants } from 'motion/react';
+import { motion, useReducedMotion, type Variants } from 'motion/react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
@@ -30,15 +30,26 @@ const itemVariants: Variants = {
   },
 };
 
+const instantContainer: Variants = {
+  hidden: { opacity: 1 },
+  visible: { opacity: 1 },
+};
+
+const instantItem: Variants = {
+  hidden: { opacity: 1, y: 0 },
+  visible: { opacity: 1, y: 0 },
+};
+
 export default function WorkInProgress() {
   const pathname = usePathname();
+  const reduced = useReducedMotion();
   const lastSegment = pathname.split('/').filter(Boolean).at(-1);
   const title = lastSegment ? formatSegment(lastSegment) : 'Home';
 
   return (
     <section className="relative w-full min-h-[calc(100vh-4.5rem)] px-lg py-2xl lg:px-2xl">
       <motion.div
-        variants={containerVariants}
+        variants={reduced ? instantContainer : containerVariants}
         initial="hidden"
         animate="visible"
         className="relative mx-auto w-full max-w-5xl"
@@ -46,19 +57,20 @@ export default function WorkInProgress() {
         <div className="w-full rounded-lg border border-neutral-200 bg-neutral-50 p-lg shadow-sm md:p-xl">
           <div className="flex w-full flex-col items-center text-center">
             <motion.div
-              variants={itemVariants}
+              variants={reduced ? instantItem : itemVariants}
               className="mb-lg inline-flex items-center gap-sm font-mono text-xs font-bold uppercase tracking-wider text-primary"
             >
-              <span className="h-2 w-2 shrink-0 bg-primary motion-safe:animate-pulse" />
-              <span className="font-mono text-xs font-bold uppercase tracking-wider text-primary">
-                In development
-              </span>
+              <span className="h-2 w-2 shrink-0 bg-primary" />
+              <span>In development</span>
             </motion.div>
 
-            <motion.div variants={itemVariants} className="mb-lg w-full space-y-sm">
-              <p className="font-mono text-xs text-neutral-500">
-                <span className="text-neutral-400">Route</span>{' '}
-                <span className="text-neutral-700">{pathname}</span>
+            <motion.div
+              variants={reduced ? instantItem : itemVariants}
+              className="mb-lg w-full space-y-sm"
+            >
+              <p className="font-mono text-xs text-neutral-600">
+                <span className="text-neutral-600">Route</span>{' '}
+                <span className="text-neutral-800">{pathname}</span>
               </p>
               <h1 className="w-full text-balance text-3xl font-bold tracking-tight text-neutral-900 md:text-4xl">
                 {title}
@@ -66,7 +78,7 @@ export default function WorkInProgress() {
             </motion.div>
 
             <motion.div
-              variants={itemVariants}
+              variants={reduced ? instantItem : itemVariants}
               className="mb-xl flex w-full items-center justify-center gap-md rounded-md border border-neutral-200 bg-neutral-100 px-lg py-lg"
             >
               <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-md bg-primary-tint/30 text-primary">
@@ -81,32 +93,31 @@ export default function WorkInProgress() {
               </div>
             </motion.div>
 
-            <motion.div variants={itemVariants} className="w-full">
-              <div className="mb-sm flex items-center justify-between font-mono text-[10px] font-bold uppercase tracking-wider text-neutral-500">
-                <span>Progress</span>
-                <span className="text-primary">Staging</span>
-              </div>
-              <div className="h-1.5 w-full overflow-hidden rounded-full bg-neutral-200">
-                <motion.div
-                  className="h-full rounded-full bg-primary"
-                  initial={{ width: '0%' }}
-                  animate={{ width: '38%' }}
-                  transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1], delay: 0.3 }}
-                />
-              </div>
-            </motion.div>
-
             <motion.div
-              variants={itemVariants}
-              className="mt-xl w-full border-t border-neutral-200 pt-lg"
+              variants={reduced ? instantItem : itemVariants}
+              className="mt-sm w-full border-t border-neutral-200 pt-lg"
             >
-              <Link
-                href="/"
-                className="inline-flex items-center gap-sm text-sm font-semibold text-primary transition-colors hover:text-primary-dark"
-              >
-                <ArrowLeft className="h-4 w-4" aria-hidden />
-                Back to home
-              </Link>
+              <div className="flex flex-wrap items-center justify-center gap-md">
+                <Link
+                  href="/"
+                  className="inline-flex min-h-11 items-center gap-sm text-sm font-semibold text-primary transition-colors hover:text-primary-dark"
+                >
+                  <ArrowLeft className="h-4 w-4" aria-hidden />
+                  Back to home
+                </Link>
+                <Link
+                  href="/our-work"
+                  className="inline-flex min-h-11 items-center text-sm font-semibold text-neutral-700 transition-colors hover:text-primary"
+                >
+                  Browse our work
+                </Link>
+                <Link
+                  href="/contact"
+                  className="inline-flex min-h-11 items-center rounded-sm bg-primary px-lg text-sm font-bold text-neutral-50"
+                >
+                  Contact us
+                </Link>
+              </div>
             </motion.div>
           </div>
         </div>

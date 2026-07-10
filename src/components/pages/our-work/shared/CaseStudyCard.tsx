@@ -47,7 +47,12 @@ export default function CaseStudyCard({ study, index, variant = 'dark' }: CaseSt
           >
             {study.metric}
           </p>
-          <p className="font-mono text-[9px] font-bold uppercase tracking-wider text-neutral-500">
+          <p
+            className={cn(
+              'font-mono text-[9px] font-bold uppercase tracking-wider',
+              dark ? 'text-neutral-400' : 'text-neutral-600'
+            )}
+          >
             {study.metricLabel}
           </p>
         </div>
@@ -61,7 +66,12 @@ export default function CaseStudyCard({ study, index, variant = 'dark' }: CaseSt
       >
         {study.title}
       </h3>
-      <p className="mt-xs font-mono text-[10px] font-bold uppercase tracking-wider text-neutral-500">
+      <p
+        className={cn(
+          'mt-xs font-mono text-[10px] font-bold uppercase tracking-wider',
+          dark ? 'text-neutral-400' : 'text-neutral-600'
+        )}
+      >
         {study.subtitle}
       </p>
       <p
@@ -98,8 +108,8 @@ export default function CaseStudyCard({ study, index, variant = 'dark' }: CaseSt
           className={cn(
             'text-xs font-bold transition-colors',
             dark
-              ? 'text-neutral-500 group-hover:text-primary'
-              : 'text-neutral-500 group-hover:text-primary'
+              ? 'text-neutral-400 group-hover:text-primary'
+              : 'text-neutral-600 group-hover:text-primary'
           )}
         >
           Details →

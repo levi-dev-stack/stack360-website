@@ -1,5 +1,12 @@
-import WorkInProgress from '@/components/element/WorkInProgress';
+import SectionHub from '@/components/shared/SectionHub';
+import { WHAT_WE_BUILD_HUB } from '@/constants/component/section-hubs-data';
+
+export const metadata = {
+  title: 'What We Build | Stack360',
+  description:
+    'ERP, CRM, AI, SaaS, mobile, web, cloud, DevOps, and automation — systems Stack360 architects end to end.',
+};
 
 export default function Page() {
-  return <WorkInProgress />;
+  return <SectionHub {...WHAT_WE_BUILD_HUB} />;
 }

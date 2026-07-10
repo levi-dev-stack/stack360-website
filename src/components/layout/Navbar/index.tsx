@@ -1,11 +1,11 @@
 'use client';
 
-import { ChevronDown } from 'lucide-react';
+import { ChevronDown, Menu, X } from 'lucide-react';
 import { AnimatePresence, motion, useReducedMotion } from 'motion/react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useId, useRef, useState } from 'react';
 import {
   dropdownPanel,
   EASE_OUT_EXPO,
@@ -263,9 +263,13 @@ const NAVIGATION_DATA: NavSection[] = [
 
 export default function PremiumNavbar() {
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const [mobileExpanded, setMobileExpanded] = useState<string | null>(null);
   const headerRef = useRef<HTMLElement>(null);
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
   const pathname = usePathname();
   const reduced = useReducedMotion();
+  const mobileNavId = useId();
 
   const isPathActive = (href?: string) => {
     if (!href) {
@@ -281,8 +285,21 @@ export default function PremiumNavbar() {
     setActiveDropdown((current) => (current === label ? null : label));
   };
 
+  const closeMobile = () => {
+    setMobileOpen(false);
+    setMobileExpanded(null);
+  };
+
+  // Close menus after client-side navigation.
+  // biome-ignore lint/correctness/useExhaustiveDependencies: pathname is the route-change signal
   useEffect(() => {
-    if (!activeDropdown) {
+    setMobileOpen(false);
+    setMobileExpanded(null);
+    setActiveDropdown(null);
+  }, [pathname]);
+
+  useEffect(() => {
+    if (!activeDropdown && !mobileOpen) {
       return;
     }
 
@@ -295,6 +312,11 @@ export default function PremiumNavbar() {
     const handleEscape = (event: KeyboardEvent) => {
       if (event.key === 'Escape') {
         setActiveDropdown(null);
+        if (mobileOpen) {
+          setMobileOpen(false);
+          setMobileExpanded(null);
+          menuButtonRef.current?.focus();
+        }
       }
     };
 
@@ -304,7 +326,18 @@ export default function PremiumNavbar() {
       document.removeEventListener('mousedown', handlePointerDown);
       document.removeEventListener('keydown', handleEscape);
     };
-  }, [activeDropdown]);
+  }, [activeDropdown, mobileOpen]);
+
+  useEffect(() => {
+    if (!mobileOpen) {
+      return;
+    }
+    const previous = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.body.style.overflow = previous;
+    };
+  }, [mobileOpen]);
 
   return (
     <motion.header
@@ -312,7 +345,7 @@ export default function PremiumNavbar() {
       initial={reduced ? false : { y: -8, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.45, ease: EASE_OUT_EXPO }}
-      className="relative z-50 w-full border-b border-neutral-200 bg-white shadow-xs"
+      className="relative z-50 w-full border-b border-neutral-200 bg-neutral-50 shadow-xs"
     >
       <div className="site-container flex h-18 items-center justify-between gap-xl lg:gap-2xl">
         <Stack360Logo />
@@ -493,17 +526,162 @@ export default function PremiumNavbar() {
           })}
         </nav>
 
-        <div className="flex shrink-0 items-center">
-          <motion.div whileHover={reduced ? undefined : { scale: 1.03 }} whileTap={{ scale: 0.97 }}>
+        <div className="flex shrink-0 items-center gap-sm">
+          <motion.div
+            whileHover={reduced ? undefined : { scale: 1.03 }}
+            whileTap={reduced ? undefined : { scale: 0.97 }}
+            className="hidden sm:block"
+          >
             <Link
               href="/contact"
-              className="rounded-sm border border-transparent bg-primary px-lg py-sm text-sm font-bold text-neutral-50 shadow-sm transition-all hover:bg-primary-dark"
+              className="inline-flex min-h-11 items-center rounded-sm border border-transparent bg-primary px-lg py-sm text-sm font-bold text-neutral-50 shadow-sm transition-all hover:bg-primary-dark focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
             >
               Contact Us
             </Link>
           </motion.div>
+
+          <button
+            ref={menuButtonRef}
+            type="button"
+            className="inline-flex h-11 w-11 items-center justify-center rounded-sm border border-neutral-200 text-neutral-800 transition-colors hover:border-neutral-300 hover:bg-neutral-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary md:hidden"
+            aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
+            aria-expanded={mobileOpen}
+            aria-controls={mobileNavId}
+            onClick={() => setMobileOpen((open) => !open)}
+          >
+            {mobileOpen ? <X size={20} aria-hidden /> : <Menu size={20} aria-hidden />}
+          </button>
         </div>
       </div>
+
+      <AnimatePresence>
+        {mobileOpen && (
+          <motion.nav
+            id={mobileNavId}
+            aria-label="Mobile navigation"
+            initial={reduced ? false : { height: 0, opacity: 0 }}
+            animate={{ height: 'auto', opacity: 1 }}
+            exit={reduced ? undefined : { height: 0, opacity: 0 }}
+            transition={{ duration: 0.28, ease: EASE_OUT_EXPO }}
+            className="border-t border-neutral-200 bg-neutral-50 md:hidden"
+          >
+            <div className="site-container max-h-[min(70vh,32rem)] overflow-y-auto py-md">
+              <ul className="space-y-xs">
+                {NAVIGATION_DATA.map((item) => {
+                  const expanded = mobileExpanded === item.label;
+                  const panelId = `${mobileNavId}-${item.label.replace(/\s+/g, '-').toLowerCase()}`;
+
+                  if (item.type === 'link') {
+                    return (
+                      <li key={item.label}>
+                        <Link
+                          href={item.href ?? '/'}
+                          onClick={closeMobile}
+                          className={cn(
+                            'flex min-h-11 items-center rounded-md px-md text-sm font-semibold transition-colors',
+                            isPathActive(item.href)
+                              ? 'bg-primary/10 text-primary'
+                              : 'text-neutral-800 hover:bg-neutral-100'
+                          )}
+                        >
+                          {item.label}
+                        </Link>
+                      </li>
+                    );
+                  }
+
+                  return (
+                    <li key={item.label} className="rounded-md border border-neutral-200">
+                      <button
+                        type="button"
+                        aria-expanded={expanded}
+                        aria-controls={panelId}
+                        onClick={() =>
+                          setMobileExpanded((current) =>
+                            current === item.label ? null : item.label
+                          )
+                        }
+                        className="flex min-h-11 w-full items-center justify-between gap-sm px-md text-left text-sm font-semibold text-neutral-900"
+                      >
+                        <span>{item.label}</span>
+                        <ChevronDown
+                          aria-hidden
+                          className={cn(
+                            'h-4 w-4 text-neutral-600 transition-transform',
+                            expanded && 'rotate-180'
+                          )}
+                        />
+                      </button>
+                      <AnimatePresence initial={false}>
+                        {expanded && item.columns && (
+                          <motion.div
+                            id={panelId}
+                            initial={reduced ? false : { height: 0, opacity: 0 }}
+                            animate={{ height: 'auto', opacity: 1 }}
+                            exit={reduced ? undefined : { height: 0, opacity: 0 }}
+                            transition={{ duration: 0.22, ease: EASE_OUT_EXPO }}
+                            className="overflow-hidden border-t border-neutral-200"
+                          >
+                            {item.href && (
+                              <Link
+                                href={item.href}
+                                onClick={closeMobile}
+                                className="block px-md py-sm text-xs font-bold text-primary"
+                              >
+                                Overview
+                              </Link>
+                            )}
+                            <ul className="space-y-xs px-sm pb-sm">
+                              {item.columns.flatMap((col) =>
+                                col.items.map((subItem) => (
+                                  <li key={subItem.href}>
+                                    <Link
+                                      href={subItem.href}
+                                      onClick={closeMobile}
+                                      className={cn(
+                                        'block rounded-md px-sm py-sm transition-colors',
+                                        isPathActive(subItem.href)
+                                          ? 'bg-primary/10'
+                                          : 'hover:bg-neutral-100'
+                                      )}
+                                    >
+                                      <span
+                                        className={cn(
+                                          'block text-sm font-semibold',
+                                          isPathActive(subItem.href)
+                                            ? 'text-primary'
+                                            : 'text-neutral-900'
+                                        )}
+                                      >
+                                        {subItem.title}
+                                      </span>
+                                      <span className="mt-xs block text-xs leading-relaxed text-neutral-600">
+                                        {subItem.desc}
+                                      </span>
+                                    </Link>
+                                  </li>
+                                ))
+                              )}
+                            </ul>
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                    </li>
+                  );
+                })}
+              </ul>
+
+              <Link
+                href="/contact"
+                onClick={closeMobile}
+                className="mt-md flex min-h-11 items-center justify-center rounded-sm bg-primary px-lg text-sm font-bold text-neutral-50"
+              >
+                Contact Us
+              </Link>
+            </div>
+          </motion.nav>
+        )}
+      </AnimatePresence>
     </motion.header>
   );
 }

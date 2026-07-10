@@ -23,12 +23,6 @@ export default function ServicesContent() {
           viewport={reduced ? undefined : viewport}
           className="mb-2xl max-w-4xl space-y-md"
         >
-          <motion.span
-            variants={motionVariants(reduced, fadeUp)}
-            className="block font-mono text-xs font-bold uppercase tracking-widest text-primary"
-          >
-            What we build
-          </motion.span>
           <motion.h2
             variants={motionVariants(reduced, fadeUp)}
             className="text-balance text-3xl font-black tracking-tight text-neutral-900 md:text-4xl"
@@ -37,7 +31,7 @@ export default function ServicesContent() {
           </motion.h2>
           <motion.p
             variants={motionVariants(reduced, fadeUp)}
-            className="text-sm leading-relaxed text-neutral-500"
+            className="text-sm leading-relaxed text-neutral-600"
           >
             From web and mobile to DevOps, design, QA, and data — one studio accountable for the
             full stack.
@@ -54,14 +48,14 @@ export default function ServicesContent() {
               transition={{ duration: 0.5, delay: groupIndex * 0.08 }}
               className="space-y-md"
             >
-              <h3 className="border-b border-neutral-200 pb-sm font-mono text-[10px] font-bold uppercase tracking-widest text-neutral-500">
+              <h3 className="border-b border-neutral-200 pb-sm font-mono text-[10px] font-bold uppercase tracking-widest text-neutral-600">
                 {group.category}
               </h3>
               <ul className="space-y-md">
                 {group.items.map((item) => (
                   <li
                     key={item.title}
-                    className="group rounded-lg border border-neutral-200 bg-neutral-100 p-md transition-colors hover:border-primary/25 hover:bg-white"
+                    className="group rounded-lg border border-neutral-200 bg-neutral-50 p-md transition-colors hover:border-primary/25 hover:bg-neutral-50"
                   >
                     <div className="mb-sm flex items-center gap-sm">
                       <span className="flex h-10 w-10 items-center justify-center rounded-md border border-neutral-200 bg-neutral-50">
@@ -69,7 +63,7 @@ export default function ServicesContent() {
                       </span>
                       <h4 className="text-sm font-bold text-neutral-900">{item.title}</h4>
                     </div>
-                    <p className="text-sm leading-relaxed text-neutral-500">{item.description}</p>
+                    <p className="text-sm leading-relaxed text-neutral-600">{item.description}</p>
                   </li>
                 ))}
               </ul>
@@ -82,9 +76,9 @@ export default function ServicesContent() {
           whileInView={reduced ? undefined : { opacity: 1, y: 0 }}
           viewport={reduced ? undefined : viewport}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className="mt-2xl rounded-xl border border-neutral-200 bg-neutral-100 p-lg"
+          className="mt-2xl rounded-xl border border-neutral-200 bg-neutral-50 p-lg"
         >
-          <p className="mb-lg font-mono text-[10px] font-bold uppercase tracking-widest text-neutral-500">
+          <p className="mb-lg font-mono text-[10px] font-bold uppercase tracking-widest text-neutral-600">
             The right tech stack for every visionary project
           </p>
           <div className="flex flex-wrap gap-md">

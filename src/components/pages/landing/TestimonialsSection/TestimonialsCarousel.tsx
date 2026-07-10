@@ -1,6 +1,6 @@
 'use client';
 
-import { ChevronLeft, ChevronRight, Quote } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Pause, Play, Quote } from 'lucide-react';
 import { AnimatePresence, motion, useReducedMotion } from 'motion/react';
 import Image from 'next/image';
 import { useCallback, useEffect, useState } from 'react';
@@ -10,6 +10,7 @@ import { LANDING_TESTIMONIALS } from '@/constants/component/landing-data';
 export default function TestimonialsCarousel() {
   const reduced = useReducedMotion();
   const [active, setActive] = useState(0);
+  const [paused, setPaused] = useState(false);
   const total = LANDING_TESTIMONIALS.length;
   const current = LANDING_TESTIMONIALS[active];
 
@@ -24,7 +25,7 @@ export default function TestimonialsCarousel() {
   const prev = useCallback(() => goTo(active - 1), [active, goTo]);
 
   useEffect(() => {
-    if (reduced) {
+    if (reduced || paused) {
       return;
     }
 
@@ -33,32 +34,40 @@ export default function TestimonialsCarousel() {
     }, 8000);
 
     return () => window.clearInterval(timer);
-  }, [reduced, total]);
+  }, [reduced, paused, total]);
 
   return (
     <section className="site-section relative w-full overflow-hidden bg-neutral-black py-2xl">
       <div
         aria-hidden
-        className="pointer-events-none absolute -right-24 top-0 h-80 w-80 rounded-full bg-primary/10 blur-[100px]"
+        className="pointer-events-none absolute -right-24 top-0 h-80 w-80 rounded-full bg-primary/10 blur-[80px]"
       />
 
       <div className="site-container relative">
         <div className="mb-xl flex flex-col gap-lg sm:flex-row sm:items-end sm:justify-between">
           <div className="max-w-3xl space-y-md">
-            <span className="block font-mono text-xs font-bold uppercase tracking-widest text-primary">
-              Voices
-            </span>
             <h2 className="text-balance text-3xl font-black tracking-tight text-neutral-50 md:text-4xl">
               What our partners <span className="font-medium italic text-primary">say.</span>
             </h2>
           </div>
 
           <div className="flex items-center gap-sm sm:shrink-0">
+            {!reduced && (
+              <button
+                type="button"
+                onClick={() => setPaused((value) => !value)}
+                aria-label={paused ? 'Play testimonials' : 'Pause testimonials'}
+                aria-pressed={paused}
+                className="flex h-11 w-11 items-center justify-center rounded-full border border-neutral-700 text-neutral-300 transition-colors hover:border-primary/40 hover:text-primary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+              >
+                {paused ? <Play size={16} aria-hidden /> : <Pause size={16} aria-hidden />}
+              </button>
+            )}
             <button
               type="button"
               onClick={prev}
               aria-label="Previous testimonial"
-              className="flex h-11 w-11 items-center justify-center rounded-full border border-neutral-700 text-neutral-400 transition-colors hover:border-primary/40 hover:text-primary"
+              className="flex h-11 w-11 items-center justify-center rounded-full border border-neutral-700 text-neutral-300 transition-colors hover:border-primary/40 hover:text-primary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
             >
               <ChevronLeft size={18} />
             </button>
@@ -66,14 +75,18 @@ export default function TestimonialsCarousel() {
               type="button"
               onClick={next}
               aria-label="Next testimonial"
-              className="flex h-11 w-11 items-center justify-center rounded-full border border-neutral-700 text-neutral-400 transition-colors hover:border-primary/40 hover:text-primary"
+              className="flex h-11 w-11 items-center justify-center rounded-full border border-neutral-700 text-neutral-300 transition-colors hover:border-primary/40 hover:text-primary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
             >
               <ChevronRight size={18} />
             </button>
           </div>
         </div>
 
-        <div className="relative min-h-[20rem] md:min-h-[18rem]">
+        <div
+          className="relative min-h-[20rem] md:min-h-[18rem]"
+          aria-live="polite"
+          aria-atomic="true"
+        >
           <AnimatePresence mode="wait" initial={false}>
             <motion.article
               key={active}
@@ -116,7 +129,7 @@ export default function TestimonialsCarousel() {
                     <p className="text-sm font-bold text-neutral-50">
                       {current.name} · {current.role}
                     </p>
-                    <p className="mt-xs text-sm text-neutral-500">
+                    <p className="mt-xs text-sm text-neutral-400">
                       {current.company} · {current.industry}
                     </p>
                   </div>
@@ -143,10 +156,14 @@ export default function TestimonialsCarousel() {
               onClick={() => goTo(index)}
               aria-label={`Show testimonial from ${item.name}`}
               aria-current={index === active ? 'true' : undefined}
-              className={`h-2 rounded-full transition-all ${
-                index === active ? 'w-8 bg-primary' : 'w-2 bg-neutral-700 hover:bg-neutral-500'
-              }`}
-            />
+              className="flex h-11 w-11 items-center justify-center"
+            >
+              <span
+                className={`block h-2 rounded-full transition-all ${
+                  index === active ? 'w-8 bg-primary' : 'w-2 bg-neutral-700 hover:bg-neutral-500'
+                }`}
+              />
+            </button>
           ))}
         </div>
       </div>

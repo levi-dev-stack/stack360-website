@@ -34,7 +34,7 @@ function CaseStudyCard({
         </span>
         <div className="text-right">
           <p className="font-mono text-xl font-black text-neutral-50">{study.metric}</p>
-          <p className="font-mono text-[9px] font-bold uppercase tracking-wider text-neutral-500">
+          <p className="font-mono text-[9px] font-bold uppercase tracking-wider text-neutral-400">
             {study.metricLabel}
           </p>
         </div>
@@ -57,7 +57,7 @@ function CaseStudyCard({
         </div>
         <Link
           href="/our-work/case-studies"
-          className="text-xs font-bold text-neutral-500 transition-colors group-hover:text-primary"
+          className="text-xs font-bold text-neutral-400 transition-colors group-hover:text-primary"
         >
           View case →
         </Link>
@@ -82,12 +82,6 @@ export default function CaseStudiesSection() {
           className="mb-2xl flex flex-col gap-lg lg:flex-row lg:items-end lg:justify-between"
         >
           <div className="max-w-3xl space-y-md">
-            <motion.span
-              variants={motionVariants(reduced, fadeUp)}
-              className="block font-mono text-xs font-bold uppercase tracking-widest text-primary"
-            >
-              Our work
-            </motion.span>
             <motion.h2
               variants={motionVariants(reduced, fadeUp)}
               className="text-balance text-3xl font-black leading-[1.05] tracking-tight text-neutral-50 md:text-4xl"

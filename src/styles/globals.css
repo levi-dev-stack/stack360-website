@@ -205,8 +205,30 @@ button {
   cursor: pointer;
 }
 
+/*
+  Root layout uses selection:bg-primary/20 + selection:text-primary.
+  On orange primary CTAs that already use white type, that combo washes out.
+  Invert selection on buttons and primary link-buttons only.
+*/
+button::selection,
+button *::selection,
+a.bg-primary::selection,
+a.bg-primary *::selection {
+  background-color: var(--token-neutral-950);
+  color: var(--token-neutral-50);
+}
+
 @media (prefers-reduced-motion: reduce) {
   html:focus-within {
     scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }

@@ -20,7 +20,7 @@ function SocialIcon({
       aria-label={label}
       target="_blank"
       rel="noopener noreferrer"
-      className="group flex h-10 w-10 items-center justify-center rounded-md border border-neutral-200 bg-neutral-50 text-neutral-500 transition-all hover:border-primary/30 hover:bg-primary/5 hover:text-primary hover:shadow-sm"
+      className="group flex h-11 w-11 items-center justify-center rounded-md border border-neutral-200 bg-neutral-50 text-neutral-600 transition-all hover:border-primary/30 hover:bg-primary/5 hover:text-primary hover:shadow-sm"
     >
       <span className="sr-only">{label}</span>
       {children}
@@ -157,7 +157,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 gap-2xl lg:grid-cols-12 lg:gap-xl">
           <div className="space-y-lg lg:col-span-4">
             <Stack360Logo />
-            <p className=" text-sm leading-relaxed text-neutral-500">
+            <p className=" text-sm leading-relaxed text-neutral-600">
               An architectural technology partner engineering high-velocity production systems,
               enterprise structures, and scalable multi-tenant digital networks.
             </p>
@@ -181,10 +181,10 @@ export default function Footer() {
               <div className="space-y-sm">
                 <a
                   href="tel:+923311111753"
-                  className="group block rounded-md border border-neutral-200 bg-neutral-50 p-sm transition-all hover:border-primary/20 hover:bg-white hover:shadow-sm"
+                  className="group block rounded-md border border-neutral-200 bg-neutral-50 p-sm transition-all hover:border-primary/20 hover:bg-neutral-50 hover:shadow-sm"
                 >
                   <div className="flex items-center justify-between">
-                    <span className="font-mono text-[9px] font-bold uppercase tracking-wider text-neutral-400 group-hover:text-primary transition-colors">
+                    <span className="font-mono text-[9px] font-bold uppercase tracking-wider text-neutral-600 group-hover:text-primary transition-colors">
                       Voice Comms
                     </span>
                     <ArrowRight
@@ -199,10 +199,10 @@ export default function Footer() {
 
                 <a
                   href="mailto:sales@stack360.co"
-                  className="group block rounded-md border border-neutral-200 bg-neutral-50 p-sm transition-all hover:border-primary/20 hover:bg-white hover:shadow-sm"
+                  className="group block rounded-md border border-neutral-200 bg-neutral-50 p-sm transition-all hover:border-primary/20 hover:bg-neutral-50 hover:shadow-sm"
                 >
                   <div className="flex items-center justify-between">
-                    <span className="font-mono text-[9px] font-bold uppercase tracking-wider text-neutral-400 group-hover:text-primary transition-colors">
+                    <span className="font-mono text-[9px] font-bold uppercase tracking-wider text-neutral-600 group-hover:text-primary transition-colors">
                       Inbound Mail
                     </span>
                     <ArrowRight
@@ -224,7 +224,7 @@ export default function Footer() {
             <h2 className="text-lg font-bold tracking-tight text-neutral-900">
               Where we build from
             </h2>
-            <span className="font-mono text-[10px] font-bold uppercase tracking-widest text-neutral-400">
+            <span className="font-mono text-[10px] font-bold uppercase tracking-widest text-neutral-600">
               2 studios · follow-the-sun
             </span>
           </div>
@@ -256,10 +256,10 @@ export default function Footer() {
         </div>
 
         <div className="site-container relative flex flex-col items-center justify-between gap-md p-lg sm:flex-row">
-          <p className="font-mono text-xs text-neutral-500">
+          <p className="font-mono text-xs text-neutral-600">
             © {currentYear} Stack360 Studio. All rights reserved.
           </p>
-          <div className="flex items-center gap-md font-mono text-xs text-neutral-500">
+          <div className="flex items-center gap-md font-mono text-xs text-neutral-600">
             <Link href="/terms" className="transition-colors hover:text-primary">
               Terms of Use
             </Link>

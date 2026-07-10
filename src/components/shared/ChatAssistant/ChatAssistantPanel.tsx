@@ -524,7 +524,7 @@ export default function ChatAssistant() {
                 <BrandMark size={32} className="border border-white/30" />
                 <div className="min-w-0">
                   <p className="truncate text-sm font-bold tracking-tight">{ASSISTANT_META.name}</p>
-                  <p className="truncate font-mono text-[9px] font-bold uppercase tracking-wider text-primary-tint">
+                  <p className="truncate font-mono text-[9px] font-bold uppercase tracking-wider text-neutral-50/90">
                     {busy ? ASSISTANT_META.typingLabel : ASSISTANT_META.tagline}
                   </p>
                 </div>
@@ -536,7 +536,7 @@ export default function ChatAssistant() {
                   disabled={busy || resetting}
                   aria-label="Reset conversation"
                   aria-expanded={confirmReset}
-                  className="flex h-8 w-8 items-center justify-center rounded-sm text-neutral-50/80 transition-colors hover:bg-white/10 hover:text-neutral-50 disabled:opacity-50"
+                  className="flex h-11 w-11 items-center justify-center rounded-sm text-neutral-50 transition-colors hover:bg-white/10 disabled:opacity-50"
                 >
                   {resetting ? (
                     <Loader2 size={15} className="animate-spin" />
@@ -555,7 +555,7 @@ export default function ChatAssistant() {
                   }}
                   disabled={resetting}
                   aria-label="Close guide"
-                  className="flex h-8 w-8 items-center justify-center rounded-sm text-neutral-50/80 transition-colors hover:bg-white/10 hover:text-neutral-50 disabled:opacity-50"
+                  className="flex h-11 w-11 items-center justify-center rounded-sm text-neutral-50 transition-colors hover:bg-white/10 disabled:opacity-50"
                 >
                   <X size={16} />
                 </button>
