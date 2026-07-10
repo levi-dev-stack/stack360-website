@@ -44,6 +44,12 @@ export const LANDING_SERVICES = [
           'Brand systems, marketing assets, and product visuals aligned with your digital experience.',
         icon: 'sketch',
       },
+      {
+        title: 'Social Media Designing',
+        description:
+          'Feed-ready creatives, story templates, and campaign visuals built for consistency across every channel.',
+        icon: 'instagram',
+      },
     ],
   },
   {

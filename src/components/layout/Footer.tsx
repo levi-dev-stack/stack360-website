@@ -1,4 +1,4 @@
-import { ArrowUpRight, Mail, Phone } from 'lucide-react';
+import { ArrowRight, ArrowUpRight, MapPin } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import type { ReactNode } from 'react';
@@ -88,71 +88,63 @@ function FooterLinkColumn({
   );
 }
 
-function OfficeCard({ number, country, role, flagSrc, address, stats }: (typeof OFFICES)[number]) {
+function OfficeRow({ country, role, flagSrc, address, stats }: (typeof OFFICES)[number]) {
   return (
-    <div className="group relative flex h-full min-h-70 flex-col justify-between overflow-hidden rounded-xl border border-neutral-700 bg-linear-to-b from-neutral-800 to-neutral-900 p-lg shadow-card transition-colors hover:border-neutral-600">
-      <div
-        aria-hidden
-        className="pointer-events-none absolute -right-20 -top-20 h-40 w-40 rounded-full bg-primary/10 blur-3xl transition-opacity duration-500 group-hover:bg-primary/20"
-      />
-
-      <div className="relative">
-        <div className="flex items-center justify-between">
-          <span className="font-mono text-4xl font-black tracking-tight text-primary/30">
-            {number}
-          </span>
-          <div className="flex h-10 w-10 items-center justify-center rounded-lg border border-neutral-600/80 bg-neutral-700/60 transition-transform duration-300 group-hover:scale-105">
-            <Image
-              src={flagSrc}
-              alt={`${country} flag`}
-              width={28}
-              height={20}
-              unoptimized
-              className="h-5 w-7 rounded-[2px] object-cover shadow-sm"
-            />
-          </div>
-        </div>
-
-        <div className="mt-lg space-y-xs">
-          <span className="block font-mono text-[10px] font-bold uppercase tracking-widest text-primary">
+    <article className="group flex min-w-0 flex-1 flex-col gap-sm py-md sm:flex-row sm:items-start sm:gap-lg sm:py-0">
+      <div className="flex shrink-0 items-center gap-sm sm:w-40 sm:flex-col sm:items-start sm:gap-xs">
+        <Image
+          src={flagSrc}
+          alt=""
+          width={28}
+          height={20}
+          unoptimized
+          className="h-4 w-6 rounded-[2px] object-cover ring-1 ring-neutral-300"
+        />
+        <div>
+          <p className="font-mono text-[9px] font-bold uppercase tracking-widest text-primary">
             {role}
-          </span>
-          <h3 className="text-xl font-bold tracking-tight text-neutral-50">{country}</h3>
-          <p className="mt-md text-sm leading-relaxed text-neutral-400">{address}</p>
+          </p>
+          <h3 className="text-base font-bold tracking-tight text-neutral-900">{country}</h3>
         </div>
       </div>
 
-      <div className="relative grid grid-cols-3 gap-sm border-t border-neutral-700/60 pt-md font-mono">
-        {stats.map((stat) => {
-          const content = (
-            <>
-              <div className="text-lg font-black text-neutral-100">{stat.value}</div>
-              <div className="text-[9px] font-bold uppercase tracking-wider text-neutral-500">
-                {stat.label}
-              </div>
-            </>
-          );
+      <div className="min-w-0 flex-1 space-y-sm">
+        <p className="flex gap-xs text-sm leading-snug text-neutral-600">
+          <MapPin size={14} className="mt-0.5 shrink-0 text-neutral-400" aria-hidden />
+          <span className="text-pretty">{address}</span>
+        </p>
+        <p className="flex flex-wrap items-center gap-x-sm gap-y-xs font-mono text-[11px] text-neutral-500">
+          {stats.map((stat, index) => {
+            const value =
+              'href' in stat && stat.href ? (
+                <a
+                  key={stat.label}
+                  href={stat.href}
+                  className="font-bold text-neutral-700 transition-colors hover:text-primary"
+                >
+                  {stat.value}
+                </a>
+              ) : (
+                <span key={stat.label} className="font-bold text-neutral-700">
+                  {stat.value}
+                </span>
+              );
 
-          if ('href' in stat && stat.href) {
             return (
-              <a
-                key={stat.label}
-                href={stat.href}
-                className="space-y-[2px] transition-colors hover:text-primary [&:hover_div]:text-primary"
-              >
-                {content}
-              </a>
+              <span key={stat.label} className="inline-flex items-center gap-sm">
+                {index > 0 && (
+                  <span className="text-neutral-300" aria-hidden>
+                    ·
+                  </span>
+                )}
+                <span className="uppercase tracking-wider">{stat.label}</span>
+                {value}
+              </span>
             );
-          }
-
-          return (
-            <div key={stat.label} className="space-y-[2px]">
-              {content}
-            </div>
-          );
-        })}
+          })}
+        </p>
       </div>
-    </div>
+    </article>
   );
 }
 
@@ -163,9 +155,9 @@ export default function Footer() {
     <footer className="site-section border-t border-neutral-200 bg-neutral-50">
       <div className="site-container py-2xl">
         <div className="grid grid-cols-1 gap-2xl lg:grid-cols-12 lg:gap-xl">
-          <div className="space-y-lg lg:col-span-5">
+          <div className="space-y-lg lg:col-span-4">
             <Stack360Logo />
-            <p className="max-w-4xl text-base leading-relaxed text-neutral-600">
+            <p className=" text-sm leading-relaxed text-neutral-500">
               An architectural technology partner engineering high-velocity production systems,
               enterprise structures, and scalable multi-tenant digital networks.
             </p>
@@ -178,57 +170,73 @@ export default function Footer() {
             </div>
           </div>
 
-          <div className="grid grid-cols-2 gap-xl sm:grid-cols-3 lg:col-span-7">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-xl lg:col-span-8">
             <FooterLinkColumn title="Explore" links={EXPLORE_LINKS} />
             <FooterLinkColumn title="Company" links={COMPANY_LINKS} />
-            <div className="col-span-2 space-y-md sm:col-span-1">
+
+            <div className="space-y-md">
               <span className="block font-mono text-[10px] font-bold uppercase tracking-widest text-primary">
                 Direct Channels
               </span>
-              <ul className="space-y-md">
-                <li>
-                  <a
-                    href="tel:+923311111753"
-                    className="group flex items-center gap-sm text-sm text-neutral-600 transition-colors hover:text-neutral-900"
-                  >
-                    <span className="flex h-9 w-9 items-center justify-center rounded-md border border-neutral-200 bg-neutral-50 transition-colors group-hover:border-primary/30 group-hover:bg-primary/5">
-                      <Phone size={14} className="text-neutral-400 group-hover:text-primary" />
+              <div className="space-y-sm">
+                <a
+                  href="tel:+923311111753"
+                  className="group block rounded-md border border-neutral-200 bg-neutral-50 p-sm transition-all hover:border-primary/20 hover:bg-white hover:shadow-sm"
+                >
+                  <div className="flex items-center justify-between">
+                    <span className="font-mono text-[9px] font-bold uppercase tracking-wider text-neutral-400 group-hover:text-primary transition-colors">
+                      Voice Comms
                     </span>
+                    <ArrowRight
+                      size={10}
+                      className="text-neutral-300 transition-transform group-hover:translate-x-xs group-hover:text-primary"
+                    />
+                  </div>
+                  <p className="mt-xs text-sm font-bold text-neutral-800 tracking-tight font-mono">
                     +92 331 11 11 753
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="mailto:sales@stack360.co"
-                    className="group flex items-center gap-sm text-sm text-neutral-600 transition-colors hover:text-neutral-900"
-                  >
-                    <span className="flex h-9 w-9 items-center justify-center rounded-md border border-neutral-200 bg-neutral-50 transition-colors group-hover:border-primary/30 group-hover:bg-primary/5">
-                      <Mail size={14} className="text-neutral-400 group-hover:text-primary" />
+                  </p>
+                </a>
+
+                <a
+                  href="mailto:sales@stack360.co"
+                  className="group block rounded-md border border-neutral-200 bg-neutral-50 p-sm transition-all hover:border-primary/20 hover:bg-white hover:shadow-sm"
+                >
+                  <div className="flex items-center justify-between">
+                    <span className="font-mono text-[9px] font-bold uppercase tracking-wider text-neutral-400 group-hover:text-primary transition-colors">
+                      Inbound Mail
                     </span>
+                    <ArrowRight
+                      size={10}
+                      className="text-neutral-300 transition-transform group-hover:translate-x-xs group-hover:text-primary"
+                    />
+                  </div>
+                  <p className="mt-xs text-sm font-bold text-neutral-800 tracking-tight font-mono">
                     sales@stack360.co
-                  </a>
-                </li>
-              </ul>
+                  </p>
+                </a>
+              </div>
             </div>
           </div>
         </div>
 
-        <div className="mt-2xl border-t border-neutral-200 pt-2xl">
-          <div className="mb-lg flex items-end justify-between gap-md">
-            <div>
-              <span className="block font-mono text-[10px] font-bold uppercase tracking-widest text-primary">
-                Global Presence
-              </span>
-              <h2 className="mt-xs text-2xl font-black tracking-tight text-neutral-900">
-                Where we build from
-              </h2>
-            </div>
+        <div className="mt-2xl border-t border-neutral-200 pt-xl">
+          <div className="mb-md flex flex-wrap items-baseline justify-between gap-sm">
+            <h2 className="text-lg font-bold tracking-tight text-neutral-900">
+              Where we build from
+            </h2>
+            <span className="font-mono text-[10px] font-bold uppercase tracking-widest text-neutral-400">
+              2 studios · follow-the-sun
+            </span>
           </div>
 
-          <div className="grid grid-cols-1 items-stretch gap-lg md:grid-cols-2">
-            {OFFICES.map((office) => (
-              <OfficeCard key={office.country} {...office} />
-            ))}
+          <div className="overflow-hidden rounded-md border border-neutral-200 bg-neutral-100/60 px-md sm:px-lg">
+            <div className="divide-y divide-neutral-200 sm:grid sm:grid-cols-2 sm:divide-x sm:divide-y-0">
+              {OFFICES.map((office) => (
+                <div key={office.country} className="sm:px-lg sm:first:pl-0 sm:last:pr-0 py-3">
+                  <OfficeRow {...office} />
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>

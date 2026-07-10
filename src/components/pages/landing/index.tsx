@@ -5,7 +5,6 @@ import HeroSection from '@/components/pages/landing/HeroSection';
 import HorizontalWedgeTrack from '@/components/pages/landing/HorizontalWedge';
 import LandingCta from '@/components/pages/landing/LandingCta';
 import SectionSkeleton from '@/components/pages/landing/SectionSkeleton';
-import StatsStrip from '@/components/pages/landing/StatsStrip';
 import { MOCK_WEDGES } from '@/constants/component/wedge-data';
 
 const ServicesSection = dynamic(() => import('@/components/pages/landing/ServicesSection'), {
@@ -32,7 +31,6 @@ export default function LandingPage() {
     <div className="flex min-h-[calc(100vh-4.5rem)] w-full flex-col">
       <HeroSection />
       <ClientsMarquee />
-      <StatsStrip />
 
       <Suspense fallback={<SectionSkeleton variant="tall" className="bg-neutral-50" />}>
         <ServicesSection />

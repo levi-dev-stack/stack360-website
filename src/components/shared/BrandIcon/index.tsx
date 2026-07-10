@@ -13,6 +13,7 @@ import {
   type LucideIcon,
   Palette,
   Server,
+  Share2,
   Smartphone,
   TestTube2,
   TrendingUp,
@@ -46,6 +47,7 @@ const SLUG_ALIASES: Record<string, string> = {
   android: 'android',
   swift: 'swift',
   laravel: 'laravel',
+  instagram: 'instagram',
 };
 
 const FALLBACK_ICONS: Record<string, LucideIcon> = {
@@ -80,6 +82,7 @@ const FALLBACK_ICONS: Record<string, LucideIcon> = {
   android: Smartphone,
   swift: Smartphone,
   laravel: Code2,
+  instagram: Share2,
 };
 
 type BrandIconVariant = 'service' | 'tech' | 'stack-dark';
