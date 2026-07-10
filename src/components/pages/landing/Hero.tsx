@@ -1,0 +1,306 @@
+'use client';
+
+import { Star } from 'lucide-react';
+import { AnimatePresence, motion, useReducedMotion, type Variants } from 'motion/react';
+import Image from 'next/image';
+import Link from 'next/link';
+import { useEffect, useState } from 'react';
+import { EASE_OUT_EXPO, motionVariants } from '@/components/shared/motion/variants';
+import { cn } from '@/styles/tailwind.utils';
+
+const ROTATING_PHRASES = ['Scale Seamlessly.', 'Drive Outcomes.', 'Perform Under Load.'] as const;
+
+const TEAM_AVATARS = [
+  {
+    src: 'https://randomuser.me/api/portraits/women/44.jpg',
+    alt: 'Stack360 client partner',
+  },
+  {
+    src: 'https://randomuser.me/api/portraits/men/32.jpg',
+    alt: 'Stack360 client partner',
+  },
+  {
+    src: 'https://randomuser.me/api/portraits/women/68.jpg',
+    alt: 'Stack360 client partner',
+  },
+] as const;
+
+const METRICS = [
+  {
+    id: 'code',
+    placement: 'tl',
+    label: 'Deploy ritual',
+    body: (
+      <pre className="font-mono text-[10px] leading-snug text-neutral-600">
+        <span className="text-neutral-500">const</span> stack ={' '}
+        <span className="text-primary">new</span> Stack360();{'\n'}
+        stack.deploy();
+      </pre>
+    ),
+  },
+  {
+    id: 'retention',
+    placement: 'tr',
+    label: 'Retention rate',
+    body: <p className="font-mono text-2xl font-black tracking-tight text-neutral-900">95%</p>,
+  },
+  {
+    id: 'projects',
+    placement: 'bl',
+    label: 'Projects delivered',
+    body: <p className="font-mono text-2xl font-black tracking-tight text-neutral-900">200+</p>,
+  },
+  {
+    id: 'accuracy',
+    placement: 'br',
+    label: 'Accuracy',
+    body: <p className="font-mono text-2xl font-black tracking-tight text-neutral-900">99.8%</p>,
+  },
+] as const;
+
+const PLACEMENT_CLASS: Record<(typeof METRICS)[number]['placement'], string> = {
+  tl: 'lg:absolute lg:left-0 lg:top-[14%] lg:-rotate-1',
+  tr: 'lg:absolute lg:right-0 lg:top-[16%] lg:rotate-1',
+  bl: 'lg:absolute lg:bottom-[18%] lg:left-0 lg:rotate-1',
+  br: 'lg:absolute lg:bottom-[16%] lg:right-0 lg:-rotate-1',
+};
+
+const stagger: Variants = {
+  hidden: {},
+  show: { transition: { staggerChildren: 0.1, delayChildren: 0.08 } },
+};
+
+const fadeUp: Variants = {
+  hidden: { opacity: 0, y: 22 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.55, ease: EASE_OUT_EXPO },
+  },
+};
+
+function RotatingPhrase({ reduced }: { reduced: boolean | null }) {
+  const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    if (reduced) {
+      return;
+    }
+    const id = window.setInterval(() => {
+      setIndex((current) => (current + 1) % ROTATING_PHRASES.length);
+    }, 2600);
+    return () => window.clearInterval(id);
+  }, [reduced]);
+
+  const phrase = ROTATING_PHRASES[index];
+
+  return (
+    <span className="relative mt-sm block min-h-[1.15em] overflow-hidden text-primary">
+      <span className="invisible block" aria-hidden>
+        Perform Under Load.
+      </span>
+      <AnimatePresence mode="wait" initial={false}>
+        <motion.span
+          key={phrase}
+          initial={reduced ? false : { y: '110%', opacity: 0 }}
+          animate={{ y: '0%', opacity: 1 }}
+          exit={reduced ? undefined : { y: '-110%', opacity: 0 }}
+          transition={{ duration: reduced ? 0 : 0.48, ease: EASE_OUT_EXPO }}
+          className="absolute inset-x-0 top-0 block text-primary"
+        >
+          {phrase}
+        </motion.span>
+      </AnimatePresence>
+    </span>
+  );
+}
+
+function MetricBadge({
+  metric,
+  index,
+  reduced,
+}: {
+  metric: (typeof METRICS)[number];
+  index: number;
+  reduced: boolean | null;
+}) {
+  return (
+    <motion.div
+      initial={reduced ? false : { opacity: 0, y: 14, scale: 0.97 }}
+      animate={{ opacity: 1, y: 0, scale: 1 }}
+      transition={{
+        duration: 0.55,
+        delay: reduced ? 0 : 0.35 + index * 0.08,
+        ease: EASE_OUT_EXPO,
+      }}
+      className={cn(
+        'rounded-md border border-neutral-200 bg-neutral-50 px-sm py-sm shadow-sm',
+        PLACEMENT_CLASS[metric.placement]
+      )}
+    >
+      <p className="mb-xs font-mono text-[9px] font-bold uppercase tracking-widest text-neutral-500">
+        {metric.label}
+      </p>
+      {metric.body}
+    </motion.div>
+  );
+}
+
+export default function Hero() {
+  const reduced = useReducedMotion();
+
+  return (
+    <section className="site-section relative flex w-full flex-1 items-center justify-center overflow-hidden py-2xl">
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,var(--token-neutral-50)_0%,var(--token-neutral-50)_28%,color-mix(in_srgb,var(--token-neutral-100)_42%,var(--token-neutral-50))_62%,var(--token-neutral-100)_100%)]"
+      />
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_88%_52%_at_50%_0%,color-mix(in_srgb,var(--token-primary)_13%,transparent),transparent_72%)]"
+      />
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_38%_34%_at_88%_72%,color-mix(in_srgb,var(--token-secondary)_6%,transparent),transparent_68%)]"
+      />
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 opacity-[0.28]"
+        style={{
+          backgroundImage: `
+            linear-gradient(to right, rgb(0 0 0 / 0.028) 1px, transparent 1px),
+            linear-gradient(to bottom, rgb(0 0 0 / 0.028) 1px, transparent 1px)
+          `,
+          backgroundSize: '32px 32px',
+          maskImage: 'linear-gradient(180deg, black 0%, black 45%, transparent 88%)',
+        }}
+      />
+      <div
+        aria-hidden
+        className="pointer-events-none absolute top-[38%] left-1/2 h-[28rem] w-[min(72rem,100vw)] -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary-tint/18 blur-[100px]"
+        style={{ maskImage: 'linear-gradient(180deg, black 0%, transparent 78%)' }}
+      />
+
+      <div className="site-container relative flex min-h-[calc(100vh-250px)] w-full items-center justify-center">
+        {/* Desktop floating metrics */}
+        <div className="pointer-events-none absolute inset-0 z-0 hidden lg:block" aria-hidden>
+          {METRICS.map((metric, index) => (
+            <MetricBadge key={metric.id} metric={metric} index={index} reduced={reduced} />
+          ))}
+        </div>
+
+        <motion.div
+          variants={motionVariants(reduced, stagger)}
+          initial={reduced ? false : 'hidden'}
+          animate="show"
+          className="relative z-10 mx-auto flex w-full max-w-3xl flex-col items-center text-center"
+        >
+          <motion.p
+            variants={motionVariants(reduced, fadeUp)}
+            className="mb-lg font-sans text-2xl font-black tracking-tight text-neutral-950 select-none"
+          >
+            Stack<span className="text-primary">360</span>
+          </motion.p>
+
+          <motion.h1
+            variants={motionVariants(reduced, fadeUp)}
+            className="text-balance text-4xl font-black leading-[1.08] tracking-tight text-neutral-900 md:text-5xl lg:text-[clamp(3rem,5vw,4rem)]"
+          >
+            Build digital products that
+            <RotatingPhrase reduced={reduced} />
+          </motion.h1>
+
+          <motion.p
+            variants={motionVariants(reduced, fadeUp)}
+            className="mt-lg text-pretty text-base leading-relaxed font-medium text-neutral-700"
+          >
+            From high-scale AI solutions to dedicated expert teams, we help market leaders launch
+            faster and innovate with engineering confidence.
+          </motion.p>
+
+          <motion.div
+            variants={motionVariants(reduced, fadeUp)}
+            className="mt-xl flex flex-wrap items-center justify-center gap-md rounded-md border border-neutral-200 bg-neutral-50 px-md py-sm shadow-sm"
+          >
+            <div className="flex items-center">
+              {TEAM_AVATARS.map((avatar, index) => (
+                <span
+                  key={avatar.src}
+                  style={{ marginLeft: index === 0 ? 0 : -8 }}
+                  className="relative inline-block h-7 w-7 overflow-hidden rounded-full border-2 border-neutral-50"
+                >
+                  <Image
+                    src={avatar.src}
+                    alt={avatar.alt}
+                    fill
+                    sizes="28px"
+                    className="object-cover"
+                  />
+                </span>
+              ))}
+              <span className="-ml-2 flex h-7 items-center rounded-full border-2 border-neutral-50 bg-neutral-900 px-xs text-[9px] font-bold text-neutral-50">
+                +500
+              </span>
+            </div>
+            <div className="flex items-center gap-xs" role="img" aria-label="5.0 out of 5 stars">
+              {(['a', 'b', 'c', 'd', 'e'] as const).map((id) => (
+                <Star key={id} size={14} className="fill-primary text-primary" aria-hidden />
+              ))}
+              <span className="ml-xs text-sm font-bold text-neutral-900">5.0</span>
+            </div>
+            <span className="hidden h-4 w-px bg-neutral-200 sm:block" aria-hidden />
+            <span className="font-mono text-[10px] font-bold tracking-widest text-neutral-600 uppercase">
+              Trusted by 500+ companies
+            </span>
+          </motion.div>
+
+          <motion.div
+            variants={motionVariants(reduced, fadeUp)}
+            className="mt-xl flex flex-col items-center gap-md sm:flex-row"
+          >
+            <motion.div
+              whileHover={reduced ? undefined : { scale: 1.03 }}
+              whileTap={{ scale: 0.97 }}
+            >
+              <Link
+                href="/work-with-us/software-partner"
+                className="inline-flex rounded-sm bg-primary px-xl py-md text-sm font-bold text-neutral-50 shadow-md transition-colors hover:bg-primary-dark"
+              >
+                Start Your Project
+              </Link>
+            </motion.div>
+            <motion.div
+              whileHover={reduced ? undefined : { scale: 1.03 }}
+              whileTap={{ scale: 0.97 }}
+            >
+              <Link
+                href="/our-work"
+                className="inline-flex rounded-sm border border-neutral-300 bg-neutral-50 px-xl py-md text-sm font-bold text-neutral-800 transition-colors hover:border-neutral-500 hover:text-neutral-900"
+              >
+                View Our Work
+              </Link>
+            </motion.div>
+          </motion.div>
+
+          {/* Mobile / tablet metric stack */}
+          <motion.div
+            variants={motionVariants(reduced, fadeUp)}
+            className="mt-2xl grid w-full grid-cols-2 gap-sm lg:hidden"
+          >
+            {METRICS.map((metric) => (
+              <div
+                key={metric.id}
+                className="rounded-md border border-neutral-200 bg-neutral-50 px-sm py-sm text-left"
+              >
+                <p className="mb-xs font-mono text-[9px] font-bold tracking-widest text-neutral-500 uppercase">
+                  {metric.label}
+                </p>
+                {metric.body}
+              </div>
+            ))}
+          </motion.div>
+        </motion.div>
+      </div>
+    </section>
+  );
+}

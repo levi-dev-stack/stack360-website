@@ -1,5 +1,11 @@
-import WorkInProgress from '@/components/element/WorkInProgress';
+import OurWorkPage from '@/components/pages/our-work';
+
+export const metadata = {
+  title: 'Our Work | Stack360',
+  description:
+    'Case studies, featured projects, client success stories, and studio insights from Stack360.',
+};
 
 export default function Page() {
-  return <WorkInProgress />;
+  return <OurWorkPage />;
 }

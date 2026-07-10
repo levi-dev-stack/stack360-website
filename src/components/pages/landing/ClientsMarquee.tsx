@@ -31,7 +31,7 @@ export default function ClientsMarquee() {
         <div className="site-inset-left flex shrink-0 items-center py-md pr-lg lg:pr-xl">
           <p
             id="clients-marquee-label"
-            className="font-mono text-[10px] font-bold uppercase tracking-widest text-neutral-50"
+            className="font-mono text-[15px] font-bold uppercase tracking-widest text-neutral-50"
           >
             Trusted by
           </p>
