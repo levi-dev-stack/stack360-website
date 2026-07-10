@@ -97,7 +97,6 @@ function OfficeRow({ country, role, flagSrc, address, stats }: (typeof OFFICES)[
           alt=""
           width={28}
           height={20}
-          unoptimized
           className="h-4 w-6 rounded-[2px] object-cover ring-1 ring-neutral-300"
         />
         <div>
@@ -251,7 +250,7 @@ export default function Footer() {
             alt=""
             width={96}
             height={96}
-            className="h-full w-full object-contain"
+            className="h-auto w-auto object-contain"
           />
         </div>
 

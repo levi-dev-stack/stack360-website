@@ -29,7 +29,7 @@ export default function Stack360Logo() {
           width={32}
           height={32}
           priority
-          className="h-full w-full rounded-sm object-contain"
+          className="h-auto w-auto rounded-sm object-contain"
         />
       </div>
 

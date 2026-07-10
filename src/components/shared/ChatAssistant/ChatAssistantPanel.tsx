@@ -82,7 +82,7 @@ function BrandMark({ size = 28, className }: { size?: number; className?: string
         alt=""
         width={Math.round(size * 0.62)}
         height={Math.round(size * 0.7)}
-        className="object-contain"
+        className="h-auto w-auto object-contain"
       />
     </span>
   );
@@ -218,19 +218,31 @@ export default function ChatAssistant() {
   const streamMessages = useCallback(
     async (next: ChatMessage[]) => {
       abortRef.current?.abort();
+
       const controller = new AbortController();
       abortRef.current = controller;
+
       setBusy(true);
 
-      try {
-        // Sequential stream: typing → message → typing → message (intentional await-in-loop)
-        for (const message of next) {
-          setTyping(true);
-          await delay(reduced ? 80 : 520 + Math.floor(Math.random() * 380), controller.signal);
-          setTyping(false);
-          setMessages((prev) => [...prev, message]);
-          await delay(reduced ? 40 : 140, controller.signal);
+      const stream = async (index: number): Promise<void> => {
+        if (index >= next.length) {
+          return;
         }
+
+        setTyping(true);
+
+        await delay(reduced ? 80 : 520 + Math.floor(Math.random() * 380), controller.signal);
+
+        setTyping(false);
+        setMessages((prev) => [...prev, next[index]]);
+
+        await delay(reduced ? 40 : 140, controller.signal);
+
+        return stream(index + 1);
+      };
+
+      try {
+        await stream(0);
       } catch {
         setTyping(false);
       } finally {
@@ -602,11 +614,16 @@ export default function ChatAssistant() {
             <div
               ref={listRef}
               className={cn(
-                'flex-1 space-y-md overflow-y-auto bg-neutral-100 px-md py-md',
+                'flex-1 overflow-y-auto bg-neutral-100 px-md py-md',
                 (busy || resetting) && 'select-none'
               )}
             >
-              <div className={cn((busy || resetting) && 'pointer-events-none opacity-70')}>
+              <div
+                className={cn(
+                  'space-y-lg',
+                  (busy || resetting) && 'pointer-events-none opacity-70'
+                )}
+              >
                 {messages.map((message) => (
                   <div
                     key={message.id}
@@ -905,7 +922,7 @@ export default function ChatAssistant() {
                 alt=""
                 width={26}
                 height={30}
-                className="object-contain brightness-0 invert"
+                className="h-auto w-auto object-contain brightness-0 invert"
               />
               <span className="sr-only">
                 <MessageCircle size={22} />
