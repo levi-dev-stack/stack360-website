@@ -1,14 +1,14 @@
+import { Mail, Phone } from 'lucide-react';
 import Image from 'next/image';
-import PageHero from '@/components/shared/PageHero';
-import PageClosingCta from '@/components/shared/PageClosingCta';
 import MotionCard from '@/components/shared/motion/MotionCard';
 import MotionSection from '@/components/shared/motion/MotionSection';
 import {
+  MotionReveal,
   MotionStagger,
   MotionStaggerItem,
-  MotionReveal,
 } from '@/components/shared/motion/MotionStagger';
-import { Mail, Phone } from 'lucide-react';
+import PageClosingCta from '@/components/shared/PageClosingCta';
+import PageHero from '@/components/shared/PageHero';
 import {
   CONTACT_CHANNELS,
   CONTACT_CTA,

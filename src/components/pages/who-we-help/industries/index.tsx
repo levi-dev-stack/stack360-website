@@ -1,9 +1,9 @@
 import Link from 'next/link';
-import PageHero from '@/components/shared/PageHero';
-import PageClosingCta from '@/components/shared/PageClosingCta';
 import IndustryGrid from '@/components/pages/who-we-help/shared/IndustryGrid';
 import MotionSection from '@/components/shared/motion/MotionSection';
 import { MotionStagger, MotionStaggerItem } from '@/components/shared/motion/MotionStagger';
+import PageClosingCta from '@/components/shared/PageClosingCta';
+import PageHero from '@/components/shared/PageHero';
 import {
   INDUSTRIES,
   INDUSTRIES_CTA,

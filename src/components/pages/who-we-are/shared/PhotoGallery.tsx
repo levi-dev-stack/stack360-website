@@ -1,7 +1,7 @@
 'use client';
 
-import Image from 'next/image';
 import { motion, useReducedMotion } from 'motion/react';
+import Image from 'next/image';
 import MotionCard from '@/components/shared/motion/MotionCard';
 import { EASE_OUT_EXPO, viewport } from '@/components/shared/motion/variants';
 

@@ -1,8 +1,8 @@
 'use client';
 
 import type { HTMLMotionProps } from 'motion/react';
-import type { ReactNode } from 'react';
 import { motion, useReducedMotion } from 'motion/react';
+import type { ReactNode } from 'react';
 import { cn } from '@/styles/tailwind.utils';
 import { EASE_OUT_EXPO } from './variants';
 

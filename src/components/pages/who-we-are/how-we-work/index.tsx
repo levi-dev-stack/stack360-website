@@ -1,9 +1,9 @@
-import PageHero from '@/components/shared/PageHero';
-import PageClosingCta from '@/components/shared/PageClosingCta';
 import LeaderCards from '@/components/pages/who-we-are/shared/LeaderCards';
 import MotionCard from '@/components/shared/motion/MotionCard';
 import MotionSection from '@/components/shared/motion/MotionSection';
 import { MotionStagger, MotionStaggerItem } from '@/components/shared/motion/MotionStagger';
+import PageClosingCta from '@/components/shared/PageClosingCta';
+import PageHero from '@/components/shared/PageHero';
 import {
   HOW_WE_WORK_CTA,
   HOW_WE_WORK_HERO,

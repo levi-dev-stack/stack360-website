@@ -1,9 +1,9 @@
 import Link from 'next/link';
-import PageHero from '@/components/shared/PageHero';
-import PageClosingCta from '@/components/shared/PageClosingCta';
 import MotionCard from '@/components/shared/motion/MotionCard';
 import MotionSection from '@/components/shared/motion/MotionSection';
 import { MotionStagger, MotionStaggerItem } from '@/components/shared/motion/MotionStagger';
+import PageClosingCta from '@/components/shared/PageClosingCta';
+import PageHero from '@/components/shared/PageHero';
 import {
   STARTUPS_CTA,
   STARTUPS_HERO,

@@ -1,7 +1,7 @@
 'use client';
 
-import type { ReactNode } from 'react';
 import { motion, useReducedMotion } from 'motion/react';
+import type { ReactNode } from 'react';
 import MotionCard from '@/components/shared/motion/MotionCard';
 import { EASE_OUT_EXPO, viewport } from '@/components/shared/motion/variants';
 

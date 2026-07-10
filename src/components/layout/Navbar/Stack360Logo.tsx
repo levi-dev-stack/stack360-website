@@ -1,8 +1,8 @@
 'use client';
 
+import { motion } from 'motion/react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { motion } from 'motion/react';
 import { useState } from 'react';
 
 export default function Stack360Logo() {

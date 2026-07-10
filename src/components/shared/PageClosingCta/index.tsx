@@ -1,7 +1,7 @@
 'use client';
 
-import Link from 'next/link';
 import { motion, useReducedMotion } from 'motion/react';
+import Link from 'next/link';
 import {
   EASE_OUT_EXPO,
   fadeUp,

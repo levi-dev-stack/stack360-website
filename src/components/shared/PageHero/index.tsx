@@ -2,7 +2,7 @@
 
 import { motion, useReducedMotion } from 'motion/react';
 import {
-  EASE_OUT_EXPO,
+  // EASE_OUT_EXPO,
   fadeUp,
   motionVariants,
   staggerContainer,

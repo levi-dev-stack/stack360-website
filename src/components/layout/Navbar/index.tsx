@@ -6,7 +6,6 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
-import { cn } from '@/styles/tailwind.utils';
 import {
   dropdownPanel,
   EASE_OUT_EXPO,
@@ -14,6 +13,7 @@ import {
   motionVariants,
   staggerContainer,
 } from '@/components/shared/motion/variants';
+import { cn } from '@/styles/tailwind.utils';
 import Stack360Logo from './Stack360Logo';
 
 interface SubItem {
