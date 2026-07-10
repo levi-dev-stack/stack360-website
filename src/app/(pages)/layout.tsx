@@ -1,6 +1,7 @@
 import BlueprintGrid from '@/components/layout/BlueprintGrid';
 import Footer from '@/components/layout/Footer';
 import PremiumNavbar from '@/components/layout/Navbar';
+import ChatAssistant from '@/components/shared/ChatAssistant';
 
 export const metadata = {
   title: 'Stack360 | Custom Software Architecture Studio',
@@ -20,6 +21,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
       <main className="relative z-10 min-h-[calc(100vh-4.5rem)] w-full">{children}</main>
       <Footer />
+      <ChatAssistant />
     </div>
   );
 }

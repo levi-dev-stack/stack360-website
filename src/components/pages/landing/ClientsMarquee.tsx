@@ -23,10 +23,7 @@ export default function ClientsMarquee() {
   const reduced = useReducedMotion();
 
   return (
-    <section
-      className="site-section w-full border-t border-neutral-200 bg-neutral-100"
-      aria-labelledby="clients-marquee-label"
-    >
+    <section className="site-section w-full bg-neutral-100" aria-labelledby="clients-marquee-label">
       <div className="flex min-h-14 w-full items-stretch sm:min-h-16">
         <div className="site-inset-left flex shrink-0 items-center border-r border-neutral-200 bg-neutral-950 py-md pr-lg lg:pr-xl">
           <p

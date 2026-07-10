@@ -51,7 +51,7 @@ export default function HeroContent() {
 
       <motion.div
         variants={fadeUp}
-        className="mt-xl flex flex-wrap items-center justify-center gap-md rounded-md border border-neutral-200 bg-neutral-50 px-md py-sm shadow-sm"
+        className="mt-xl flex flex-wrap items-center justify-center gap-md rounded-md border border-neutral-200/80 bg-neutral-50/95 px-md py-sm shadow-sm"
       >
         <div className="flex items-center">
           {TEAM_AVATARS.map((avatar, index) => (
@@ -90,7 +90,7 @@ export default function HeroContent() {
           href="/our-work"
           whileHover={{ scale: 1.03 }}
           whileTap={{ scale: 0.97 }}
-          className="rounded-sm border border-neutral-300 bg-neutral-50 px-xl py-md text-sm font-bold text-neutral-800 transition-colors hover:border-neutral-400 hover:text-neutral-900"
+          className="rounded-sm border border-neutral-300/90 bg-neutral-50/95 px-xl py-md text-sm font-bold text-neutral-800 transition-colors hover:border-neutral-400 hover:text-neutral-900"
         >
           View Our Work
         </motion.a>
