@@ -312,7 +312,7 @@ export default function PremiumNavbar() {
       initial={reduced ? false : { y: -8, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.45, ease: EASE_OUT_EXPO }}
-      className="relative z-50 w-full border-t-2 border-t-primary border-b border-neutral-200 bg-white shadow-xs"
+      className="relative z-50 w-full border-b border-neutral-200 bg-white shadow-xs"
     >
       <div className="site-container flex h-18 items-center justify-between gap-xl lg:gap-2xl">
         <Stack360Logo />
