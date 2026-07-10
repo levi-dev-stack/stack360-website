@@ -73,7 +73,7 @@ export default function HorizontalWedgeTrack({
                 {sectionHighlight}
               </span>
             </h2>
-            <p className="max-w-5xl text-sm leading-relaxed text-neutral-400">{sectionSubtitle}</p>
+            <p className="max-w-4xl text-sm leading-relaxed text-neutral-400">{sectionSubtitle}</p>
           </div>
 
           <div ref={viewportRef} className="relative w-full overflow-visible">

@@ -1,301 +1,124 @@
 'use client';
 
-import { motion } from 'motion/react';
-import { cn } from '@/styles/tailwind.utils';
+import { motion, useReducedMotion } from 'motion/react';
+import Link from 'next/link';
+import BrandIcon from '@/components/shared/BrandIcon';
+import {
+  fadeUp,
+  motionVariants,
+  staggerContainer,
+  viewport,
+} from '@/components/shared/motion/variants';
+import { LANDING_CASE_STUDIES } from '@/constants/component/landing-data';
 
-const CHART_W = 320;
-const CHART_H = 170;
-const N = 48;
-
-const clamp = (v: number, min: number, max: number) => Math.min(max, Math.max(min, v));
-const smoothstep = (t: number) => t * t * (3 - 2 * t);
-
-function trafficSeries(seed: number): number[] {
-  return Array.from({ length: N }, (_, i) => {
-    const t = i / (N - 1);
-    const base = 6 + 82 * t ** 3.1;
-    const vol = (Math.sin(i * 1.9 + seed) + 0.6 * Math.sin(i * 0.7 + seed)) * (2 + 9 * t);
-    return clamp(base + vol, 2, 98);
-  });
-}
-
-function drSeries(seed: number): number[] {
-  return Array.from({ length: N }, (_, i) => {
-    const t = i / (N - 1);
-    const base = 8 + 32 * smoothstep(t);
-    return clamp(base + Math.sin(i * 1.2 + seed) * 1.1, 2, 58);
-  });
-}
-
-function toPath(series: number[], close = false): string {
-  const line = series
-    .map((v, i) => {
-      const x = (i / (N - 1)) * CHART_W;
-      const y = CHART_H - (v / 100) * CHART_H;
-      return `${i === 0 ? 'M' : 'L'}${x.toFixed(1)},${y.toFixed(1)}`;
-    })
-    .join(' ');
-  return close ? `${line} L${CHART_W},${CHART_H} L0,${CHART_H} Z` : line;
-}
-
-interface Accent {
-  line: string;
-  soft: string;
-  chipText: string;
-  color: string;
-}
-
-const ACCENTS: Record<'secondary' | 'primary', Accent> = {
-  secondary: {
-    line: 'stroke-secondary',
-    soft: 'stroke-secondary-light',
-    chipText: 'text-secondary',
-    color: 'var(--token-secondary)',
-  },
-  primary: {
-    line: 'stroke-primary',
-    soft: 'stroke-primary-light',
-    chipText: 'text-primary',
-    color: 'var(--token-primary)',
-  },
-};
-
-interface CaseStudy {
-  tag: string;
-  title: string;
-  drFrom: number;
-  drTo: number;
-  traffic: string;
-  accent: keyof typeof ACCENTS;
-  seed: number;
-  axis: string[];
-  marker: { fraction: number; date: string; dr: string; traffic: string };
-}
-
-const CASE_STUDIES: CaseStudy[] = [
-  {
-    tag: 'FinTech Optimization',
-    title: "Boosting SuperAnnotate's Position to The 1st On Search Results",
-    drFrom: 39,
-    drTo: 72,
-    traffic: '1000%',
-    accent: 'secondary',
-    seed: 1.4,
-    axis: ['22 May 2020', '16 Jan 2022', '13 Sep 2023', '10 May 2025'],
-    marker: {
-      fraction: 0.4,
-      date: 'Dec 23, 2021',
-      dr: '36.0',
-      traffic: '3,064',
-    },
-  },
-  {
-    tag: 'AI Infrastructure',
-    title: 'How 90 Backlinks Helped an AI Generation Client Improve Ranking',
-    drFrom: 52,
-    drTo: 63,
-    traffic: '368%',
-    accent: 'primary',
-    seed: 5.1,
-    axis: ['22 May 2020', '16 Jan 2022', '13 Sep 2023', '10 May 2025'],
-    marker: {
-      fraction: 0.52,
-      date: 'Mar 17, 2022',
-      dr: '71.0',
-      traffic: '27,950',
-    },
-  },
-];
-
-function CaseStudyCard({ study, index }: { study: CaseStudy; index: number }) {
-  const accent = ACCENTS[study.accent];
-  const traffic = trafficSeries(study.seed);
-  const dr = drSeries(study.seed);
-  const markerIdx = clamp(Math.round(study.marker.fraction * (N - 1)), 0, N - 1);
-  const markerLeft = (markerIdx / (N - 1)) * 100;
-  const markerTop = 100 - traffic[markerIdx];
-  const gradientId = `case-area-${index}`;
+function CaseStudyCard({
+  study,
+  index,
+}: {
+  study: (typeof LANDING_CASE_STUDIES)[number];
+  index: number;
+}) {
+  const reduced = useReducedMotion();
 
   return (
-    <div className="flex flex-col rounded-lg border border-neutral-200 bg-neutral-100 p-md shadow-sm transition-shadow hover:shadow-card">
-      <div className="mb-sm flex items-center justify-between text-sm font-bold text-neutral-800">
-        <span className="inline-flex items-center gap-xs">
-          <span className={accent.chipText}>◈</span>
-          DR <span className="text-neutral-400">{study.drFrom}</span>
-          <span className="text-neutral-400">→</span>
-          {study.drTo}
-        </span>
-        <span className="inline-flex items-center gap-xs">
-          <span className={accent.chipText}>▤</span>
-          Traffic
-          <span className="rounded-sm bg-success/15 px-xs py-px text-xs font-bold text-success">
-            ↑ {study.traffic}
-          </span>
-        </span>
-      </div>
-
-      <div className="relative aspect-16/10 w-full overflow-hidden rounded-md border border-neutral-200 bg-neutral-50">
-        <div className="pointer-events-none absolute inset-0 flex flex-col justify-between p-xs">
-          {[0, 1, 2, 3].map((row) => (
-            <div key={row} className="border-b border-dashed border-neutral-200" />
-          ))}
-        </div>
-        <div className="pointer-events-none absolute inset-0 flex justify-between p-xs">
-          {[0, 1, 2, 3].map((col) => (
-            <div key={col} className="border-r border-dashed border-neutral-200" />
-          ))}
-        </div>
-
-        <svg
-          className="absolute inset-0 h-full w-full"
-          viewBox={`0 0 ${CHART_W} ${CHART_H}`}
-          preserveAspectRatio="none"
-        >
-          <title>{`${study.title} performance chart`}</title>
-          <defs>
-            <linearGradient id={gradientId} x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor={accent.color} stopOpacity="0.28" />
-              <stop offset="100%" stopColor={accent.color} stopOpacity="0" />
-            </linearGradient>
-          </defs>
-
-          <motion.path
-            d={toPath(traffic, true)}
-            fill={`url(#${gradientId})`}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.4 + index * 0.15 }}
-          />
-          <motion.path
-            d={toPath(dr)}
-            fill="none"
-            strokeWidth={1.5}
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            vectorEffect="non-scaling-stroke"
-            className={cn(accent.soft, 'opacity-70')}
-            initial={{ pathLength: 0 }}
-            animate={{ pathLength: 1 }}
-            transition={{ duration: 1.1, ease: 'easeOut', delay: index * 0.15 }}
-          />
-          <motion.path
-            d={toPath(traffic)}
-            fill="none"
-            strokeWidth={2.5}
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            vectorEffect="non-scaling-stroke"
-            className={accent.line}
-            initial={{ pathLength: 0 }}
-            animate={{ pathLength: 1 }}
-            transition={{
-              duration: 1.3,
-              ease: 'easeOut',
-              delay: 0.1 + index * 0.15,
-            }}
-          />
-        </svg>
-
-        <div
-          style={{ left: `${markerLeft}%` }}
-          className="pointer-events-none absolute inset-y-0 w-px border-l border-dashed border-neutral-400/60"
-        />
-        <motion.div
-          style={{ left: `${markerLeft}%`, top: `${markerTop}%` }}
-          initial={{ scale: 0, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          transition={{ duration: 0.4, delay: 1 + index * 0.15 }}
-          className="absolute h-2.5 w-2.5 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-neutral-50 bg-neutral-900 shadow-sm"
-        />
-
-        <motion.div
-          style={{ left: `${markerLeft}%` }}
-          initial={{ opacity: 0, y: 6 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4, delay: 1.1 + index * 0.15 }}
-          className="absolute top-[14%] z-10 -translate-x-1/2 space-y-[3px] rounded-md border border-neutral-800 bg-neutral-950 p-sm text-[10px] font-mono text-neutral-50 shadow-card"
-        >
-          <div className="mb-[3px] border-b border-neutral-800 pb-[3px] font-bold uppercase tracking-wider text-neutral-400">
-            {study.marker.date}
-          </div>
-          <p className="flex items-center gap-xs whitespace-nowrap">
-            <span className={cn('text-sm leading-none', accent.chipText)}>•</span>
-            Domain Rating
-            <span className="font-bold text-neutral-50">{study.marker.dr}</span>
-          </p>
-          <p className="flex items-center gap-xs whitespace-nowrap">
-            <span className="text-sm leading-none text-success">•</span>
-            Organic traffic
-            <span className="font-bold text-neutral-50">{study.marker.traffic}</span>
-          </p>
-        </motion.div>
-
-        <div className="pointer-events-none absolute inset-x-0 bottom-1 flex justify-between px-sm font-mono text-[9px] text-neutral-400">
-          {study.axis.map((label) => (
-            <span key={label}>{label}</span>
-          ))}
-        </div>
-      </div>
-
-      <div className="mt-md flex flex-1 flex-col">
-        <span className="mb-xs block font-mono text-[10px] font-bold uppercase tracking-wider text-neutral-400">
+    <motion.article
+      initial={reduced ? false : { opacity: 0, y: 24 }}
+      whileInView={reduced ? undefined : { opacity: 1, y: 0 }}
+      viewport={reduced ? undefined : viewport}
+      transition={{ duration: 0.5, delay: index * 0.08 }}
+      className="group flex flex-col rounded-xl border border-neutral-800 bg-neutral-900 p-lg transition-colors hover:border-neutral-700"
+    >
+      <div className="mb-md flex items-start justify-between gap-md">
+        <span className="font-mono text-[10px] font-bold uppercase tracking-widest text-primary">
           {study.tag}
         </span>
-        <h3 className="text-base font-bold leading-snug tracking-tight text-neutral-900 transition-colors group-hover:text-primary">
-          {study.title}
-        </h3>
-        <div className="mt-auto flex justify-end border-t border-neutral-200 pt-sm">
-          <a
-            href="/our-work/case-studies"
-            className="group/link inline-flex items-center gap-xs text-xs font-bold text-neutral-500 transition-colors hover:text-primary"
-          >
-            Read more
-            <span className="flex h-5 w-5 items-center justify-center rounded-full bg-neutral-900 text-neutral-50 transition-transform group-hover/link:translate-x-xs">
-              →
-            </span>
-          </a>
+        <div className="text-right">
+          <p className="font-mono text-xl font-black text-neutral-50">{study.metric}</p>
+          <p className="font-mono text-[9px] font-bold uppercase tracking-wider text-neutral-500">
+            {study.metricLabel}
+          </p>
         </div>
       </div>
-    </div>
+
+      <h3 className="text-lg font-bold tracking-tight text-neutral-50">{study.title}</h3>
+      <p className="mt-sm flex-1 text-sm leading-relaxed text-neutral-400">{study.description}</p>
+
+      <div className="mt-lg flex items-center justify-between border-t border-neutral-800 pt-md">
+        <div className="flex items-center gap-sm">
+          {study.stack.map((slug) => (
+            <span
+              key={slug}
+              className="flex h-8 w-8 items-center justify-center rounded-md border border-neutral-800 bg-neutral-950"
+              title={slug}
+            >
+              <BrandIcon slug={slug} size={16} variant="stack-dark" />
+            </span>
+          ))}
+        </div>
+        <Link
+          href="/our-work/case-studies"
+          className="text-xs font-bold text-neutral-500 transition-colors group-hover:text-primary"
+        >
+          View case →
+        </Link>
+      </div>
+    </motion.article>
   );
 }
 
 export default function CaseStudiesSection() {
+  const reduced = useReducedMotion();
+
   return (
     <section className="site-section relative w-full overflow-hidden bg-neutral-950 py-2xl">
       <div className="pointer-events-none absolute -left-32 top-0 h-96 w-96 rounded-full bg-secondary/20 blur-[120px]" />
 
-      <div className="site-container relative grid grid-cols-1 gap-xl lg:grid-cols-12">
-        <div className="flex flex-col justify-between gap-lg lg:col-span-4 lg:pr-lg">
-          <div className="space-y-md">
-            <span className="block font-mono text-xs font-bold uppercase tracking-widest text-primary">
-              Our Work
-            </span>
-            <h2 className="text-4xl font-black leading-[1.05] tracking-tight text-neutral-50 lg:text-5xl">
-              Real case studies with real results.
-            </h2>
-            <p className="text-sm leading-relaxed text-neutral-400">
-              Explore our clients&apos; success stories with custom architecture, infrastructure
-              scale, and SEO — and learn how we helped them grow.
-            </p>
+      <div className="site-container relative">
+        <motion.div
+          variants={motionVariants(reduced, staggerContainer)}
+          initial="hidden"
+          whileInView="show"
+          viewport={reduced ? undefined : viewport}
+          className="mb-2xl flex flex-col gap-lg lg:flex-row lg:items-end lg:justify-between"
+        >
+          <div className="max-w-3xl space-y-md">
+            <motion.span
+              variants={motionVariants(reduced, fadeUp)}
+              className="block font-mono text-xs font-bold uppercase tracking-widest text-primary"
+            >
+              Our work
+            </motion.span>
+            <motion.h2
+              variants={motionVariants(reduced, fadeUp)}
+              className="text-balance text-3xl font-black leading-[1.05] tracking-tight text-neutral-50 md:text-4xl"
+            >
+              Success stories with measurable outcomes.
+            </motion.h2>
+            <motion.p
+              variants={motionVariants(reduced, fadeUp)}
+              className="text-sm leading-relaxed text-neutral-400"
+            >
+              Real platforms shipped for eCommerce, operations, marketplaces, and health — with
+              metrics that survived production.
+            </motion.p>
           </div>
 
-          <div>
-            <a
+          <motion.div variants={motionVariants(reduced, fadeUp)}>
+            <Link
               href="/our-work/case-studies"
-              className="group inline-flex items-center gap-sm rounded-full bg-secondary px-lg py-md text-sm font-bold text-neutral-50 shadow-md transition-colors hover:bg-secondary-light hover:text-neutral-50"
+              className="group inline-flex items-center gap-sm rounded-full bg-secondary px-lg py-md text-sm font-bold text-neutral-50 shadow-md transition-colors hover:bg-secondary-light"
             >
-              Explore more
-              <span className="flex h-6 w-6 items-center justify-center rounded-full bg-neutral-50/20 transition-transform group-hover:translate-x-xs">
+              Explore all cases
+              <span className="flex h-6 w-6 items-center justify-center rounded-full bg-neutral-50/20 transition-transform group-hover:translate-x-0.5">
                 →
               </span>
-            </a>
-          </div>
-        </div>
+            </Link>
+          </motion.div>
+        </motion.div>
 
-        <div className="grid grid-cols-1 gap-lg md:grid-cols-2 lg:col-span-8">
-          {CASE_STUDIES.map((study, index) => (
-            <CaseStudyCard key={study.title} study={study} index={index} />
+        <div className="grid grid-cols-1 gap-lg md:grid-cols-2">
+          {LANDING_CASE_STUDIES.map((study, index) => (
+            <CaseStudyCard key={study.slug} study={study} index={index} />
           ))}
         </div>
       </div>
