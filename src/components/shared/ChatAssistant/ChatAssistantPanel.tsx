@@ -817,12 +817,6 @@ export default function ChatAssistant() {
                               </Link>
                             ))}
                           </div>
-                          <Link
-                            href="/who-we-are"
-                            className="inline-flex text-xs font-bold text-primary hover:text-primary-dark"
-                          >
-                            Explore Who We Are →
-                          </Link>
                         </div>
                       )}
 

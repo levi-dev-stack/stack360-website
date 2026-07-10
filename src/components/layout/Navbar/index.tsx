@@ -468,7 +468,7 @@ export default function PremiumNavbar() {
                         >
                           <div className="space-y-md">
                             <span className="block font-mono text-[10px] font-bold uppercase tracking-wider text-neutral-500">
-                              Studio Vision
+                              Our Vision
                             </span>
                             <div className="group relative aspect-16/10 w-full overflow-hidden rounded-md border border-neutral-200 bg-neutral-300">
                               <Image
@@ -482,19 +482,6 @@ export default function PremiumNavbar() {
                             <p className="pt-xs text-xs leading-relaxed font-medium text-neutral-600">
                               {item.imagePreview.caption}
                             </p>
-                          </div>
-
-                          <div className="pt-md">
-                            <Link
-                              href={item.href ?? '/'}
-                              onClick={() => setActiveDropdown(null)}
-                              className="group/link inline-flex items-center text-xs font-bold text-primary hover:text-primary-dark"
-                            >
-                              Discover Studio Standards
-                              <span className="ml-xs transition-transform group-hover/link:translate-x-xs">
-                                →
-                              </span>
-                            </Link>
                           </div>
                         </motion.div>
                       )}
