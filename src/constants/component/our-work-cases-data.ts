@@ -20,7 +20,7 @@ export const CASE_STUDIES = [
     description:
       'Autobuffy was created to make it easier to find affordable, high-quality auto parts using modern technology in the USA — with streamlined search and checkout.',
     stack: ['rubyonrails', 'angular', 'amazonaws', 'postgresql'],
-    href: '/our-work/case-studies#autobuffy',
+    href: '/our-work/case-studies/autobuffy',
   },
   {
     slug: 'coach-catalyst',
@@ -33,7 +33,7 @@ export const CASE_STUDIES = [
     description:
       'Streamlining fitness coaching with automated client management, progress tracking, and seamless integration with nutrition apps.',
     stack: ['rubyonrails', 'vuedotjs', 'amazonaws', 'stripe', 'postgresql'],
-    href: '/our-work/case-studies#coach-catalyst',
+    href: '/our-work/case-studies/coach-catalyst',
   },
   {
     slug: 'atc',
@@ -46,7 +46,7 @@ export const CASE_STUDIES = [
     description:
       'ATC is a management tool developed for project handling and HR management — centralized workflows, invoicing, and real-time updates with communication integrations.',
     stack: ['rubyonrails', 'redis', 'amazonaws', 'stripe', 'trello'],
-    href: '/our-work/case-studies#atc',
+    href: '/our-work/case-studies/atc',
   },
   {
     slug: 'buffyhub',
@@ -59,7 +59,7 @@ export const CASE_STUDIES = [
     description:
       'BuffyHub is a unified e-commerce platform that centralizes inventory, orders, brands, and vendors into one place.',
     stack: ['rubyonrails', 'github', 'amazonaws', 'postgresql'],
-    href: '/our-work/case-studies#buffyhub',
+    href: '/our-work/case-studies/buffyhub',
   },
   {
     slug: 'cercle',
@@ -72,7 +72,7 @@ export const CASE_STUDIES = [
     description:
       'Cercle is a fashion rental platform promoting sustainability by allowing users to borrow luxury fashion instead of buying — with scalable automation for rental management.',
     stack: ['rubyonrails', 'nextdotjs', 'amazonaws', 'stripe'],
-    href: '/our-work/case-studies#cercle',
+    href: '/our-work/featured-projects#cercle',
   },
 ] as const;
 
@@ -104,6 +104,7 @@ export const SUCCESS_STORIES = [
     industry: 'Operations · United States',
     metric: '40% faster coordination',
     relatedSlug: 'atc',
+    relatedHref: '/our-work/case-studies/atc',
   },
   {
     quote:
@@ -114,6 +115,7 @@ export const SUCCESS_STORIES = [
     industry: 'eCommerce · United States',
     metric: '2× speed & traffic',
     relatedSlug: 'autobuffy',
+    relatedHref: '/our-work/case-studies/autobuffy',
   },
   {
     quote:
@@ -124,6 +126,7 @@ export const SUCCESS_STORIES = [
     industry: 'Marketplace · United States',
     metric: '12+ channels unified',
     relatedSlug: 'buffyhub',
+    relatedHref: '/our-work/case-studies/buffyhub',
   },
   {
     quote:
@@ -134,6 +137,7 @@ export const SUCCESS_STORIES = [
     industry: 'Fashion rental · Global',
     metric: '60% fewer manual workflows',
     relatedSlug: 'cercle',
+    relatedHref: '/our-work/featured-projects#cercle',
   },
   {
     quote:
@@ -144,5 +148,6 @@ export const SUCCESS_STORIES = [
     industry: 'Fitness · United States',
     metric: '3× daily active users',
     relatedSlug: 'coach-catalyst',
+    relatedHref: '/our-work/case-studies/coach-catalyst',
   },
 ] as const;

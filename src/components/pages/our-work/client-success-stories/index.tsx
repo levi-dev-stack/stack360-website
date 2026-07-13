@@ -43,7 +43,7 @@ export default function ClientSuccessStoriesPage() {
                   </p>
                   <p className="mt-xs text-xs text-neutral-500">{story.industry}</p>
                   <Link
-                    href={`/our-work/case-studies#${story.relatedSlug}`}
+                    href={story.relatedHref}
                     className="mt-md inline-flex text-xs font-bold text-primary hover:text-primary-dark"
                   >
                     Related case →

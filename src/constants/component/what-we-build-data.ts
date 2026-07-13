@@ -1,5 +1,7 @@
 /** Capability pages under /what-we-build — sourced from stack360.co/services where available. */
 
+import { PORTFOLIO_PROJECTS_BY_SLUG } from '@/constants/component/our-work-portfolio-data';
+
 export type CapabilitySlug =
   | 'erp'
   | 'crm'
@@ -52,48 +54,29 @@ export interface CapabilityPageData {
   };
 }
 
-const PROJECT = {
-  autobuffy: {
-    slug: 'autobuffy',
-    title: 'Autobuffy',
-    subtitle: 'Selling auto parts in the USA',
-    metric: '2×',
-    metricLabel: 'Website speed & traffic',
-    href: '/our-work/case-studies#autobuffy',
-  },
-  coachCatalyst: {
-    slug: 'coach-catalyst',
-    title: 'Coach Catalyst',
-    subtitle: 'Fitness management',
-    metric: '3×',
-    metricLabel: 'Daily active users',
-    href: '/our-work/case-studies#coach-catalyst',
-  },
-  atc: {
-    slug: 'atc',
-    title: 'ATC — Air Traffic Controller',
-    subtitle: 'Project & HR management',
-    metric: '40%',
-    metricLabel: 'Faster project & HR coordination',
-    href: '/our-work/case-studies#atc',
-  },
-  buffyhub: {
-    slug: 'buffyhub',
-    title: 'BuffyHub',
-    subtitle: 'Unified e-commerce control plane',
-    metric: '12+',
-    metricLabel: 'Marketplaces in one dashboard',
-    href: '/our-work/case-studies#buffyhub',
-  },
-  cercle: {
-    slug: 'cercle',
-    title: 'Cercle',
-    subtitle: 'Sustainable fashion rental',
-    metric: '60%',
-    metricLabel: 'Reduction in manual workflows',
-    href: '/our-work/case-studies#cercle',
-  },
-} as const satisfies Record<string, CapabilityProjectRef>;
+/** Slugs that have an in-depth case study — link to the deep dive, not the portfolio. */
+const CASE_STUDY_SLUGS = new Set(['autobuffy', 'atc', 'coach-catalyst', 'buffyhub']);
+
+/**
+ * Build a capability project reference from the shared portfolio registry so
+ * /what-we-build links stay in sync with the Featured Projects archive.
+ */
+function projectRef(slug: string): CapabilityProjectRef {
+  const project = PORTFOLIO_PROJECTS_BY_SLUG[slug];
+  if (!project) {
+    throw new Error(`Unknown portfolio project slug referenced in what-we-build: "${slug}"`);
+  }
+  return {
+    slug: project.slug,
+    title: project.name,
+    subtitle: project.industry,
+    metric: project.metric,
+    metricLabel: project.metricLabel,
+    href: CASE_STUDY_SLUGS.has(slug)
+      ? `/our-work/case-studies/${slug}`
+      : `/our-work/featured-projects#${slug}`,
+  };
+}
 
 const defaultCta = (system: string) =>
   ({
@@ -170,7 +153,7 @@ export const CAPABILITY_PAGES: Record<CapabilitySlug, CapabilityPageData> = {
       },
     ],
     tech: ['react', 'nextdotjs', 'vuedotjs', 'angular', 'nodedotjs', 'typescript', 'tailwindcss'],
-    projects: [PROJECT.autobuffy, PROJECT.buffyhub, PROJECT.cercle],
+    projects: [projectRef('autobuffy'), projectRef('buffyhub'), projectRef('cinekit')],
     faqs: [
       {
         id: 'web-tech',
@@ -266,7 +249,7 @@ export const CAPABILITY_PAGES: Record<CapabilitySlug, CapabilityPageData> = {
       },
     ],
     tech: ['swift', 'kotlin', 'reactnative', 'flutter', 'firebase', 'nodedotjs'],
-    projects: [PROJECT.coachCatalyst, PROJECT.cercle, PROJECT.autobuffy],
+    projects: [projectRef('slumber-sprout'), projectRef('coach-catalyst'), projectRef('mi-taller')],
     faqs: [
       {
         id: 'mobile-native',
@@ -361,7 +344,7 @@ export const CAPABILITY_PAGES: Record<CapabilitySlug, CapabilityPageData> = {
       },
     ],
     tech: ['docker', 'kubernetes', 'amazonaws', 'github', 'terraform'],
-    projects: [PROJECT.autobuffy, PROJECT.atc, PROJECT.buffyhub],
+    projects: [projectRef('truck-4'), projectRef('buffyhub'), projectRef('atc')],
     faqs: [
       {
         id: 'devops-scope',
@@ -461,7 +444,7 @@ export const CAPABILITY_PAGES: Record<CapabilitySlug, CapabilityPageData> = {
       },
     ],
     tech: ['python', 'tensorflow', 'pytorch', 'huggingface', 'langchain'],
-    projects: [PROJECT.coachCatalyst, PROJECT.cercle, PROJECT.autobuffy],
+    projects: [projectRef('moneyball'), projectRef('natif'), projectRef('siterank')],
     faqs: [
       {
         id: 'ai-services',
@@ -557,7 +540,7 @@ export const CAPABILITY_PAGES: Record<CapabilitySlug, CapabilityPageData> = {
       },
     ],
     tech: ['nodedotjs', 'postgresql', 'react', 'amazonaws', 'docker'],
-    projects: [PROJECT.atc, PROJECT.buffyhub, PROJECT.autobuffy],
+    projects: [projectRef('atc'), projectRef('fisar'), projectRef('falcore')],
     faqs: [
       {
         id: 'erp-custom',
@@ -639,7 +622,7 @@ export const CAPABILITY_PAGES: Record<CapabilitySlug, CapabilityPageData> = {
       },
     ],
     tech: ['react', 'nodedotjs', 'postgresql', 'amazonaws', 'stripe'],
-    projects: [PROJECT.atc, PROJECT.coachCatalyst, PROJECT.autobuffy],
+    projects: [projectRef('atc'), projectRef('contakti'), projectRef('klingit')],
     faqs: [
       {
         id: 'crm-vs-saas',
@@ -723,7 +706,7 @@ export const CAPABILITY_PAGES: Record<CapabilitySlug, CapabilityPageData> = {
       },
     ],
     tech: ['nextdotjs', 'nodedotjs', 'postgresql', 'stripe', 'amazonaws', 'docker'],
-    projects: [PROJECT.coachCatalyst, PROJECT.cercle, PROJECT.buffyhub],
+    projects: [projectRef('whistle'), projectRef('one40connect'), projectRef('legal-atoms')],
     faqs: [
       {
         id: 'saas-tenant',
@@ -806,7 +789,7 @@ export const CAPABILITY_PAGES: Record<CapabilitySlug, CapabilityPageData> = {
       },
     ],
     tech: ['rubyonrails', 'react', 'nodedotjs', 'postgresql', 'amazonaws'],
-    projects: [PROJECT.atc, PROJECT.buffyhub, PROJECT.cercle],
+    projects: [projectRef('atc'), projectRef('nuvana'), projectRef('cadcam-masters')],
     faqs: [
       {
         id: 'custom-when',
@@ -887,7 +870,7 @@ export const CAPABILITY_PAGES: Record<CapabilitySlug, CapabilityPageData> = {
       },
     ],
     tech: ['amazonaws', 'docker', 'kubernetes', 'terraform', 'github'],
-    projects: [PROJECT.autobuffy, PROJECT.buffyhub, PROJECT.coachCatalyst],
+    projects: [projectRef('truck-4'), projectRef('autobuffy'), projectRef('whistle')],
     faqs: [
       {
         id: 'cloud-providers',
@@ -970,7 +953,7 @@ export const CAPABILITY_PAGES: Record<CapabilitySlug, CapabilityPageData> = {
       },
     ],
     tech: ['nodedotjs', 'python', 'zapier', 'n8n', 'amazonaws', 'redis'],
-    projects: [PROJECT.cercle, PROJECT.coachCatalyst, PROJECT.atc],
+    projects: [projectRef('cercle'), projectRef('falcore'), projectRef('alertia')],
     faqs: [
       {
         id: 'auto-tools',

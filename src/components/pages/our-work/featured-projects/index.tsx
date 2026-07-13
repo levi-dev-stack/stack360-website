@@ -1,75 +1,98 @@
+import { ArrowUpRight } from 'lucide-react';
 import Link from 'next/link';
-import CaseStudyCard from '@/components/pages/our-work/shared/CaseStudyCard';
-import BrandIcon from '@/components/shared/BrandIcon';
+import PortfolioProjectCard from '@/components/pages/our-work/shared/PortfolioProjectCard';
 import MotionSection from '@/components/shared/motion/MotionSection';
-import { MotionReveal } from '@/components/shared/motion/MotionStagger';
+import {
+  MotionReveal,
+  MotionStagger,
+  MotionStaggerItem,
+} from '@/components/shared/motion/MotionStagger';
 import PageClosingCta from '@/components/shared/PageClosingCta';
 import PageHero from '@/components/shared/PageHero';
-import {
-  FEATURED_PROJECTS,
-  FEATURED_PROJECTS_HERO,
-} from '@/constants/component/our-work-cases-data';
 import { OUR_WORK_CTA } from '@/constants/component/our-work-data';
+import {
+  FEATURED_PROJECTS_HERO,
+  PORTFOLIO_GROUPS,
+} from '@/constants/component/our-work-portfolio-data';
+import { cn } from '@/styles/tailwind.utils';
 
 export default function FeaturedProjectsPage() {
-  const [lead, ...rest] = FEATURED_PROJECTS;
-
   return (
     <div className="flex w-full flex-col">
       <PageHero {...FEATURED_PROJECTS_HERO} />
 
-      {lead && (
-        <MotionSection className="border-b border-neutral-200 py-2xl">
-          <div className="site-container grid grid-cols-1 items-end gap-2xl lg:grid-cols-12">
-            <MotionReveal className="lg:col-span-7">
-              <span className="font-mono text-[10px] font-bold uppercase tracking-widest text-primary">
-                Spotlight · {lead.tag}
+      {/* Domain index — quick jump to each grouped section */}
+      <MotionSection className="border-b border-neutral-200 py-xl">
+        <div className="site-container">
+          <MotionStagger className="flex flex-wrap items-center gap-sm">
+            <MotionStaggerItem>
+              <span className="mr-xs font-mono text-[10px] font-bold uppercase tracking-widest text-neutral-500">
+                Domains
               </span>
-              <h2 className="mt-md text-balance text-3xl font-black tracking-tight text-neutral-900 md:text-4xl">
-                {lead.title}
-              </h2>
-              <p className="mt-xs font-mono text-xs font-bold uppercase tracking-wider text-neutral-600">
-                {lead.subtitle}
-              </p>
-              <p className="mt-lg text-sm leading-relaxed text-neutral-600">{lead.description}</p>
-              <div className="mt-lg flex flex-wrap items-center gap-sm">
-                {lead.stack.map((slug) => (
-                  <span
-                    key={slug}
-                    className="flex h-9 w-9 items-center justify-center rounded-md border border-neutral-200 bg-neutral-50"
-                  >
-                    <BrandIcon slug={slug} size={18} variant="tech" />
-                  </span>
-                ))}
-              </div>
-              <Link
-                href={lead.href}
-                className="mt-xl inline-flex min-h-11 items-center rounded-sm bg-primary px-xl py-md text-sm font-bold text-neutral-50 transition-colors hover:bg-primary-dark"
-              >
-                Open case study
-              </Link>
-            </MotionReveal>
-            <MotionReveal className="lg:col-span-5">
-              <div className="rounded-xl border border-neutral-200 bg-neutral-50 p-xl">
-                <p className="font-mono text-5xl font-black tracking-tight text-neutral-900">
-                  {lead.metric}
-                </p>
-                <p className="mt-sm font-mono text-xs font-bold uppercase tracking-widest text-neutral-600">
-                  {lead.metricLabel}
-                </p>
-              </div>
-            </MotionReveal>
-          </div>
-        </MotionSection>
-      )}
-
-      <MotionSection className="py-2xl">
-        <div className="site-container grid grid-cols-1 gap-lg md:grid-cols-2">
-          {rest.map((study, index) => (
-            <CaseStudyCard key={study.slug} study={study} index={index} variant="light" />
-          ))}
+            </MotionStaggerItem>
+            {PORTFOLIO_GROUPS.map((group) => (
+              <MotionStaggerItem key={group.id}>
+                <a
+                  href={`#${group.id}`}
+                  className="inline-flex items-center rounded-full border border-neutral-200 bg-neutral-50 px-md py-xs text-xs font-semibold text-neutral-700 transition-colors hover:border-primary/40 hover:text-primary"
+                >
+                  {group.category}
+                </a>
+              </MotionStaggerItem>
+            ))}
+          </MotionStagger>
         </div>
       </MotionSection>
+
+      {PORTFOLIO_GROUPS.map((group, index) => {
+        const warmSection = index % 2 === 1;
+        const cardSurface = warmSection ? 'paper' : 'warm';
+        const singleProject = group.projects.length === 1;
+
+        return (
+          <MotionSection
+            key={group.id}
+            id={group.id}
+            className={cn(
+              'scroll-mt-20 border-b border-neutral-200 py-2xl',
+              warmSection ? 'bg-neutral-100' : 'bg-neutral-50'
+            )}
+          >
+            <div className="site-container">
+              <MotionReveal className="mb-xl flex flex-col gap-md border-b border-neutral-200 pb-lg lg:flex-row lg:items-end lg:justify-between">
+                <div className="max-w-content">
+                  <span className="font-mono text-[10px] font-bold uppercase tracking-widest text-primary">
+                    {group.domain}
+                  </span>
+                  <h2 className="mt-sm text-balance text-3xl font-black tracking-tight text-neutral-900">
+                    {group.category}
+                  </h2>
+                  <p className="mt-sm text-pretty text-sm leading-relaxed text-neutral-600">
+                    {group.blurb}
+                  </p>
+                </div>
+                <Link
+                  href={group.capability.href}
+                  className="inline-flex shrink-0 items-center gap-xs text-sm font-bold text-primary hover:text-primary-dark"
+                >
+                  Explore {group.capability.label}
+                  <ArrowUpRight size={14} />
+                </Link>
+              </MotionReveal>
+
+              <MotionStagger
+                className={cn('grid grid-cols-1 gap-lg', !singleProject && 'lg:grid-cols-2')}
+              >
+                {group.projects.map((project) => (
+                  <MotionStaggerItem key={project.slug} className="h-full">
+                    <PortfolioProjectCard project={project} surface={cardSurface} />
+                  </MotionStaggerItem>
+                ))}
+              </MotionStagger>
+            </div>
+          </MotionSection>
+        );
+      })}
 
       <PageClosingCta {...OUR_WORK_CTA} />
     </div>
