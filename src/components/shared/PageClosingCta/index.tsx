@@ -8,8 +8,8 @@ import {
   motionVariants,
   slideFromRight,
   staggerContainer,
-  viewport,
 } from '@/components/shared/motion/variants';
+import { useMotionVisible } from '@/hooks/use-motion-visible';
 
 interface CtaLink {
   label: string;
@@ -30,21 +30,21 @@ export default function PageClosingCta({
   secondary,
 }: PageClosingCtaProps) {
   const reduced = useReducedMotion();
+  const { ref, visible } = useMotionVisible<HTMLElement>();
 
   return (
     <motion.section
-      initial={reduced ? false : { opacity: 0 }}
-      whileInView={reduced ? undefined : { opacity: 1 }}
-      viewport={reduced ? undefined : viewport}
+      ref={ref}
+      initial={false}
+      animate={visible ? { opacity: 1 } : { opacity: 0 }}
       transition={{ duration: 0.5, ease: EASE_OUT_EXPO }}
       className="site-section border-t border-neutral-200 bg-neutral-950 py-2xl"
     >
       <div className="site-container flex flex-col items-start justify-between gap-lg md:flex-row md:items-center">
         <motion.div
           variants={motionVariants(reduced, staggerContainer)}
-          initial="hidden"
-          whileInView="show"
-          viewport={reduced ? undefined : viewport}
+          initial={false}
+          animate={visible ? 'show' : 'hidden'}
           className="max-w-3xl space-y-sm"
         >
           <motion.h2
@@ -63,9 +63,8 @@ export default function PageClosingCta({
 
         <motion.div
           variants={motionVariants(reduced, slideFromRight)}
-          initial="hidden"
-          whileInView="show"
-          viewport={reduced ? undefined : viewport}
+          initial={false}
+          animate={visible ? 'show' : 'hidden'}
           className="flex flex-wrap gap-sm"
         >
           <motion.div whileHover={reduced ? undefined : { scale: 1.03 }} whileTap={{ scale: 0.97 }}>

@@ -232,3 +232,29 @@ a.bg-primary *::selection {
     scroll-behavior: auto !important;
   }
 }
+
+/*
+  No-JS / scripting disabled: Motion writes opacity/transform as inline styles
+  on SSR and never reaches `animate` / `whileInView` without JS — content stays
+  invisible. Force the visible end-state so crawlers and no-JS users see the page.
+*/
+@media (scripting: none) {
+  .js-only {
+    display: none !important;
+  }
+
+  main [style*='opacity'],
+  header [style*='opacity'],
+  footer [style*='opacity'],
+  main [style*='transform'],
+  header [style*='transform'] {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+  }
+}
+
+/* Progressive enhancement: hide JS chrome until the boot script adds `js` */
+html:not(.js) .js-only {
+  display: none !important;
+}

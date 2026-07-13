@@ -1,10 +1,11 @@
 'use client';
 
 import type { HTMLMotionProps } from 'motion/react';
-import { motion, useReducedMotion } from 'motion/react';
+import { motion } from 'motion/react';
 import type { ReactNode } from 'react';
+import { useMotionVisible } from '@/hooks/use-motion-visible';
 import { cn } from '@/styles/tailwind.utils';
-import { EASE_OUT_EXPO, viewport } from './variants';
+import { EASE_OUT_EXPO } from './variants';
 
 interface MotionSectionProps extends HTMLMotionProps<'section'> {
   children: ReactNode;
@@ -17,13 +18,13 @@ export default function MotionSection({
   delay = 0,
   ...props
 }: MotionSectionProps) {
-  const reduced = useReducedMotion();
+  const { ref, visible } = useMotionVisible<HTMLElement>();
 
   return (
     <motion.section
-      initial={reduced ? false : { opacity: 0, y: 32 }}
-      whileInView={reduced ? undefined : { opacity: 1, y: 0 }}
-      viewport={reduced ? undefined : viewport}
+      ref={ref}
+      initial={false}
+      animate={visible ? { opacity: 1, y: 0 } : { opacity: 0, y: 32 }}
       transition={{ duration: 0.6, delay, ease: EASE_OUT_EXPO }}
       className={cn('site-section', className)}
       {...props}

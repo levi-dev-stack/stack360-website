@@ -1,6 +1,7 @@
 import BlueprintGrid from '@/components/layout/BlueprintGrid';
 import Footer from '@/components/layout/Footer';
 import PremiumNavbar from '@/components/layout/Navbar';
+import NoJsSiteNav from '@/components/layout/Navbar/NoJsSiteNav';
 import ChatAssistant from '@/components/shared/ChatAssistant';
 
 export const metadata = {
@@ -22,13 +23,19 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
       <div className="sticky top-0 z-50 w-full">
         <PremiumNavbar />
+        {/* Only parsed/shown when JS is disabled — never visible with scripting on */}
+        <noscript>
+          <NoJsSiteNav />
+        </noscript>
       </div>
 
       <main id="main-content" className="relative z-10 min-h-[calc(100vh-4.5rem)] w-full">
         {children}
       </main>
       <Footer />
-      <ChatAssistant />
+      <div className="js-only">
+        <ChatAssistant />
+      </div>
     </div>
   );
 }

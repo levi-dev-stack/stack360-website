@@ -6,6 +6,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { EASE_OUT_EXPO, motionVariants } from '@/components/shared/motion/variants';
+import { useCanAnimate } from '@/hooks/use-can-animate';
 
 const ROTATING_PHRASES = ['Scale Seamlessly.', 'Drive Outcomes.', 'Perform Under Load.'] as const;
 
@@ -40,18 +41,24 @@ const fadeUp: Variants = {
 
 function RotatingPhrase({ reduced }: { reduced: boolean | null }) {
   const [index, setIndex] = useState(0);
+  const canAnimate = useCanAnimate();
 
   useEffect(() => {
-    if (reduced) {
+    if (reduced || !canAnimate) {
       return;
     }
     const id = window.setInterval(() => {
       setIndex((current) => (current + 1) % ROTATING_PHRASES.length);
     }, 2600);
     return () => window.clearInterval(id);
-  }, [reduced]);
+  }, [reduced, canAnimate]);
 
   const phrase = ROTATING_PHRASES[index];
+
+  // Static first phrase for SSR / no-JS — animated rotator is progressive enhancement.
+  if (!canAnimate) {
+    return <span className="mt-sm block text-primary">{ROTATING_PHRASES[0]}</span>;
+  }
 
   return (
     <span className="relative mt-sm block min-h-[1.15em] overflow-hidden text-primary">
@@ -114,9 +121,12 @@ export default function Hero() {
       />
 
       <div className="site-container relative flex min-h-[calc(100vh-250px)] w-full items-center justify-center">
+        {/*
+          initial={false}: LCP / SEO content is fully visible in SSR HTML and with JS disabled.
+        */}
         <motion.div
           variants={motionVariants(reduced, stagger)}
-          initial={reduced ? false : 'hidden'}
+          initial={false}
           animate="show"
           className="relative z-10 mx-auto flex w-full max-w-3xl flex-col items-center text-center"
         >

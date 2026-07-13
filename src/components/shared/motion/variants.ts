@@ -78,5 +78,7 @@ export const instant: Variants = {
 };
 
 export function motionVariants(reduced: boolean | null, variants: Variants): Variants {
-  return reduced ? instant : variants;
+  // `null` = SSR / not yet known — keep visible variants out of the tree via
+  // `useCanAnimate` + `initial={false}`; only force instant when reduced is true.
+  return reduced === true ? instant : variants;
 }

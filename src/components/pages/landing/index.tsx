@@ -4,16 +4,10 @@ import ClientsMarquee from '@/components/pages/landing/ClientsMarquee';
 import HeroSection from '@/components/pages/landing/HeroSection';
 import HorizontalWedgeTrack from '@/components/pages/landing/HorizontalWedge';
 import LandingCta from '@/components/pages/landing/LandingCta';
+import ProcessSection from '@/components/pages/landing/ProcessSection';
 import SectionSkeleton from '@/components/pages/landing/SectionSkeleton';
+import ServicesSection from '@/components/pages/landing/ServicesSection';
 import { MOCK_WEDGES } from '@/constants/component/wedge-data';
-
-const ServicesSection = dynamic(() => import('@/components/pages/landing/ServicesSection'), {
-  loading: () => <SectionSkeleton variant="tall" className="bg-neutral-50" />,
-});
-
-const ProcessSection = dynamic(() => import('@/components/pages/landing/ProcessSection'), {
-  loading: () => <SectionSkeleton variant="default" className="bg-white" />,
-});
 
 const CaseStudiesSection = dynamic(() => import('@/components/pages/landing/CaseStudies'), {
   loading: () => <SectionSkeleton variant="tall" className="bg-neutral-950" />,
@@ -32,9 +26,7 @@ export default function LandingPage() {
       <HeroSection />
       <ClientsMarquee />
 
-      <Suspense fallback={<SectionSkeleton variant="tall" className="bg-neutral-50" />}>
-        <ServicesSection />
-      </Suspense>
+      <ServicesSection />
 
       <HorizontalWedgeTrack
         sectionTitle="Most software firms write code."
@@ -43,9 +35,7 @@ export default function LandingPage() {
         cards={MOCK_WEDGES}
       />
 
-      <Suspense fallback={<SectionSkeleton variant="default" className="bg-white" />}>
-        <ProcessSection />
-      </Suspense>
+      <ProcessSection />
 
       <Suspense fallback={<SectionSkeleton variant="tall" className="bg-neutral-950" />}>
         <CaseStudiesSection />

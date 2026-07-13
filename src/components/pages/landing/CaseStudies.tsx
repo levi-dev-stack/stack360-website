@@ -3,13 +3,9 @@
 import { motion, useReducedMotion } from 'motion/react';
 import Link from 'next/link';
 import BrandIcon from '@/components/shared/BrandIcon';
-import {
-  fadeUp,
-  motionVariants,
-  staggerContainer,
-  viewport,
-} from '@/components/shared/motion/variants';
+import { fadeUp, motionVariants, staggerContainer } from '@/components/shared/motion/variants';
 import { LANDING_CASE_STUDIES } from '@/constants/component/landing-data';
+import { useMotionVisible } from '@/hooks/use-motion-visible';
 
 function CaseStudyCard({
   study,
@@ -18,13 +14,13 @@ function CaseStudyCard({
   study: (typeof LANDING_CASE_STUDIES)[number];
   index: number;
 }) {
-  const reduced = useReducedMotion();
+  const { ref, visible } = useMotionVisible<HTMLElement>();
 
   return (
     <motion.article
-      initial={reduced ? false : { opacity: 0, y: 24 }}
-      whileInView={reduced ? undefined : { opacity: 1, y: 0 }}
-      viewport={reduced ? undefined : viewport}
+      ref={ref}
+      initial={false}
+      animate={visible ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 }}
       transition={{ duration: 0.5, delay: index * 0.08 }}
       className="group flex flex-col rounded-xl border border-neutral-800 bg-neutral-900 p-lg transition-colors hover:border-neutral-700"
     >
@@ -68,6 +64,7 @@ function CaseStudyCard({
 
 export default function CaseStudiesSection() {
   const reduced = useReducedMotion();
+  const { ref, visible } = useMotionVisible<HTMLDivElement>();
 
   return (
     <section className="site-section relative w-full overflow-hidden bg-neutral-950 py-2xl">
@@ -75,10 +72,10 @@ export default function CaseStudiesSection() {
 
       <div className="site-container relative">
         <motion.div
+          ref={ref}
           variants={motionVariants(reduced, staggerContainer)}
-          initial="hidden"
-          whileInView="show"
-          viewport={reduced ? undefined : viewport}
+          initial={false}
+          animate={visible ? 'show' : 'hidden'}
           className="mb-2xl flex flex-col gap-lg lg:flex-row lg:items-end lg:justify-between"
         >
           <div className="max-w-3xl space-y-md">

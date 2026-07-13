@@ -32,11 +32,16 @@ import {
 import { useState } from 'react';
 import { cn } from '@/styles/tailwind.utils';
 
+/**
+ * Map app slugs → Simple Icons CDN slugs.
+ * Broken/missing CDN brands are remapped (e.g. reactnative → react) or listed in
+ * LOCAL_ONLY_SLUGS so we never request a 404 URL.
+ */
 const SLUG_ALIASES: Record<string, string> = {
-  amazonaws: 'amazonaws',
-  amazonwebservices: 'amazonaws',
   adobe: 'sketch',
   adobeillustrator: 'sketch',
+  // No dedicated React Native glyph on Simple Icons — use React.
+  reactnative: 'react',
   openjdk: 'openjdk',
   rubyonrails: 'rubyonrails',
   vuedotjs: 'vuedotjs',
@@ -59,10 +64,8 @@ const SLUG_ALIASES: Record<string, string> = {
   swift: 'swift',
   laravel: 'laravel',
   instagram: 'instagram',
-  openai: 'openai',
   pytorch: 'pytorch',
   huggingface: 'huggingface',
-  reactnative: 'reactnative',
   kotlin: 'kotlin',
   terraform: 'terraform',
   tensorflow: 'tensorflow',
@@ -72,6 +75,9 @@ const SLUG_ALIASES: Record<string, string> = {
   n8n: 'n8n',
   langchain: 'langchain',
 };
+
+/** Brands removed from / blocked on cdn.simpleicons.org — use Lucide only. */
+const LOCAL_ONLY_SLUGS = new Set(['amazonaws', 'amazonwebservices', 'aws', 'openai', 'chatgpt']);
 
 /** Category / capability icons — always Lucide, never brand logos. */
 const SERVICE_ICONS: Record<string, LucideIcon> = {
@@ -95,6 +101,7 @@ const FALLBACK_ICONS: Record<string, LucideIcon> = {
   ...SERVICE_ICONS,
   amazonaws: CloudCog,
   amazonwebservices: CloudCog,
+  aws: CloudCog,
   docker: CloudCog,
   adobe: Palette,
   adobeillustrator: Palette,
@@ -115,7 +122,7 @@ const FALLBACK_ICONS: Record<string, LucideIcon> = {
   nodedotjs: Code2,
   nextdotjs: Code2,
   react: Code2,
-  reactnative: Smartphone,
+  reactnative: Code2,
   kotlin: Smartphone,
   terraform: CloudCog,
   tensorflow: Brain,
@@ -130,6 +137,7 @@ const FALLBACK_ICONS: Record<string, LucideIcon> = {
   laravel: Code2,
   instagram: Share2,
   openai: Sparkles,
+  chatgpt: Sparkles,
   pytorch: Brain,
   huggingface: Brain,
   langchain: Bot,
@@ -194,12 +202,13 @@ export default function BrandIcon({
   const resolved = resolveSlug(slug);
   const color = VARIANT_COLOR[variant];
   const isServiceIcon = slug in SERVICE_ICONS;
+  const useLocalOnly = LOCAL_ONLY_SLUGS.has(slug) || LOCAL_ONLY_SLUGS.has(resolved);
   const src = color
     ? `https://cdn.simpleicons.org/${resolved}/${color}`
     : `https://cdn.simpleicons.org/${resolved}`;
 
-  // Service/category icons stay generic Lucide. Tech/skill icons prefer Simple Icons CDN.
-  if (isServiceIcon || failed) {
+  // Service icons, known-missing CDN brands, and failed loads → Lucide.
+  if (isServiceIcon || useLocalOnly || failed) {
     return <FallbackIcon slug={slug} size={size} variant={variant} className={className} />;
   }
 

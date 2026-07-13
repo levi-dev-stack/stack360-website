@@ -16,9 +16,13 @@ export default function PageHero({ eyebrow, title, highlight, description }: Pag
   return (
     <section className="site-section border-b border-neutral-200 bg-linear-to-b from-neutral-50 via-neutral-50 to-neutral-100 py-2xl">
       <div className="site-container">
+        {/*
+          initial={false}: hero copy is in the HTML at full opacity for SSR / no-JS / LCP.
+          Stagger entrance is intentionally skipped — visibility beats decoration here.
+        */}
         <motion.div
           variants={motionVariants(reduced, staggerContainer)}
-          initial="hidden"
+          initial={false}
           animate="show"
           className="max-w-3xl space-y-md"
         >
