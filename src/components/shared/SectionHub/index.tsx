@@ -46,7 +46,7 @@ export default function SectionHub({
           className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_80%_55%_at_100%_0%,color-mix(in_srgb,var(--token-primary)_14%,transparent),transparent_58%)]"
         />
         <div className="site-container relative py-2xl">
-          <MotionReveal className="max-w-3xl">
+          <MotionReveal className="max-w-content">
             <p className="font-sans text-sm font-bold tracking-tight text-neutral-900">
               Stack<span className="text-primary">360</span>
               <span className="mx-sm text-neutral-300">/</span>
@@ -56,7 +56,7 @@ export default function SectionHub({
               {title}
               {highlight ? <span className="text-primary"> {highlight}</span> : null}
             </h1>
-            <p className="mt-lg max-w-2xl text-pretty text-base leading-relaxed text-neutral-600">
+            <p className="mt-lg max-w-content text-pretty text-base leading-relaxed text-neutral-600">
               {description}
             </p>
           </MotionReveal>
@@ -65,7 +65,7 @@ export default function SectionHub({
 
       <MotionSection className="py-2xl">
         <div className="site-container">
-          <MotionReveal className="mb-xl max-w-2xl">
+          <MotionReveal className="mb-xl max-w-content">
             <h2 className="text-2xl font-black tracking-tight text-neutral-900">Explore</h2>
             <p className="mt-sm text-sm leading-relaxed text-neutral-600">
               Pick a lane — live pages open immediately; others are still being built to our

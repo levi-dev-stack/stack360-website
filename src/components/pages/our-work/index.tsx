@@ -39,7 +39,7 @@ export default function OurWorkPage() {
             <h1 className="mt-md text-balance text-4xl font-black leading-[1.05] tracking-tight text-neutral-900 md:text-5xl">
               {OUR_WORK_HERO.title} <span className="text-primary">{OUR_WORK_HERO.highlight}</span>
             </h1>
-            <p className="mt-lg max-w-2xl text-pretty text-base leading-relaxed text-neutral-600">
+            <p className="mt-lg text-pretty text-base leading-relaxed text-neutral-600">
               {OUR_WORK_HERO.description}
             </p>
           </MotionReveal>
@@ -53,7 +53,7 @@ export default function OurWorkPage() {
               <h2 className="text-2xl font-black tracking-tight text-neutral-50">
                 Recent outcomes
               </h2>
-              <p className="mt-sm max-w-xl text-sm text-neutral-400">
+              <p className="mt-sm text-sm text-neutral-400">
                 Production systems with metrics clients can defend internally.
               </p>
             </div>
@@ -75,7 +75,7 @@ export default function OurWorkPage() {
 
       <MotionSection className="py-2xl">
         <div className="site-container">
-          <MotionReveal className="mb-xl max-w-2xl">
+          <MotionReveal className="mb-xl max-w-content">
             <h2 className="text-2xl font-black tracking-tight text-neutral-900">
               Explore the archive
             </h2>
