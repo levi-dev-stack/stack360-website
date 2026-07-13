@@ -1,7 +1,7 @@
 'use client';
 
 import { ChevronDown } from 'lucide-react';
-import { AnimatePresence, motion, useReducedMotion } from 'motion/react';
+import { motion, useReducedMotion } from 'motion/react';
 import { useId, useState } from 'react';
 import { EASE_OUT_EXPO } from '@/components/shared/motion/variants';
 import { cn } from '@/styles/tailwind.utils';
@@ -16,6 +16,10 @@ interface FaqAccordionProps {
   items: readonly FaqItem[];
 }
 
+/**
+ * All answers stay in the DOM (CSS collapse) so crawlers and no-JS users
+ * see full FAQ content. Open state only controls visual expansion.
+ */
 export default function FaqAccordion({ items }: FaqAccordionProps) {
   const [openId, setOpenId] = useState<string | null>(items[0]?.id ?? null);
   const baseId = useId();
@@ -49,27 +53,25 @@ export default function FaqAccordion({ items }: FaqAccordionProps) {
                   open && 'border-primary/30 bg-primary/5 text-primary'
                 )}
               >
-                <ChevronDown size={16} />
+                <ChevronDown size={16} aria-hidden />
               </motion.span>
             </button>
 
-            <AnimatePresence initial={false}>
-              {open && (
-                <motion.section
-                  id={panelId}
-                  aria-labelledby={buttonId}
-                  initial={reduced ? false : { height: 0, opacity: 0 }}
-                  animate={{ height: 'auto', opacity: 1 }}
-                  exit={reduced ? undefined : { height: 0, opacity: 0 }}
-                  transition={{ duration: 0.32, ease: EASE_OUT_EXPO }}
-                  className="overflow-hidden"
-                >
-                  <p className="max-w-3xl pt-md pb-sm text-pretty text-sm leading-relaxed text-neutral-600">
-                    {item.answer}
-                  </p>
-                </motion.section>
+            <section
+              id={panelId}
+              aria-labelledby={buttonId}
+              data-open={open ? 'true' : 'false'}
+              className={cn(
+                'faq-panel grid transition-[grid-template-rows] duration-300 ease-out',
+                open ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'
               )}
-            </AnimatePresence>
+            >
+              <div className="overflow-hidden">
+                <p className="max-w-3xl pt-md pb-sm text-pretty text-sm leading-relaxed text-neutral-600">
+                  {item.answer}
+                </p>
+              </div>
+            </section>
           </div>
         );
       })}

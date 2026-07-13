@@ -1,6 +1,6 @@
-import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
 import Script from 'next/script';
+import { seo } from '@/constants/seo';
 import Providers from '@/providers';
 import type { ReactComponentChildren } from '@/types/component';
 import '@/styles/globals.css';
@@ -15,28 +15,7 @@ const geistMono = Geist_Mono({
   subsets: ['latin'],
 });
 
-export const metadata: Metadata = {
-  title: {
-    default: 'Stack360 | Custom Software Architecture Studio',
-    template: '%s | Stack360',
-  },
-  description:
-    'Custom software architecture studio — ERP, CRM, AI, SaaS, cloud, and DevOps for partners and product teams.',
-  metadataBase: new URL('https://www.stack360.co'),
-  openGraph: {
-    type: 'website',
-    siteName: 'Stack360',
-    title: 'Stack360 | Custom Software Architecture Studio',
-    description:
-      'Custom software architecture studio — ERP, CRM, AI, SaaS, cloud, and DevOps for partners and product teams.',
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Stack360 | Custom Software Architecture Studio',
-    description:
-      'Custom software architecture studio — ERP, CRM, AI, SaaS, cloud, and DevOps for partners and product teams.',
-  },
-};
+export const metadata = seo.root;
 
 export default function RootLayout({ children }: Readonly<ReactComponentChildren>) {
   return (

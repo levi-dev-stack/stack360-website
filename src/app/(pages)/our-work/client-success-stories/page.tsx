@@ -1,9 +1,7 @@
 import ClientSuccessStoriesPage from '@/components/pages/our-work/client-success-stories';
+import { seo } from '@/constants/seo';
 
-export const metadata = {
-  title: 'Client Success Stories',
-  description: 'Partners describing the outcomes they saw after launching with Stack360.',
-};
+export const metadata = seo.ourWorkClientSuccessStories;
 
 export default function Page() {
   return <ClientSuccessStoriesPage />;

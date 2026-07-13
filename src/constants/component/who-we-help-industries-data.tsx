@@ -9,14 +9,6 @@ import {
   Truck,
 } from 'lucide-react';
 
-export const INDUSTRIES_META = {
-  title: 'Industry Software Solutions',
-  description:
-    'Future-proof software for Healthcare, FinTech, E-commerce, Logistics, and more. HIPAA and PCI-DSS aligned delivery with proven, measurable outcomes.',
-  keywords:
-    'industry software development, healthcare software, fintech development, ecommerce platform, logistics software, HIPAA compliant software, PCI-DSS development',
-} as const;
-
 export const INDUSTRIES_HERO = {
   eyebrow: 'Who We Help',
   title: 'Future-proofing',

@@ -1,12 +1,7 @@
-import type { Metadata } from 'next';
 import EnterprisesPage from '@/components/pages/who-we-help/enterprises';
-import { ENTERPRISES_META } from '@/constants/component/who-we-help-enterprises-data';
+import { seo } from '@/constants/seo';
 
-export const metadata: Metadata = {
-  title: ENTERPRISES_META.title,
-  description: ENTERPRISES_META.description,
-  keywords: ENTERPRISES_META.keywords,
-};
+export const metadata = seo.whoWeHelpEnterprises;
 
 export default function Page() {
   return <EnterprisesPage />;

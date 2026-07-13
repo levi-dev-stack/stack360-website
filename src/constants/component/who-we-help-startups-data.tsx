@@ -1,13 +1,5 @@
 import { Code2, Gauge, Rocket, Wallet } from 'lucide-react';
 
-export const STARTUPS_META = {
-  title: 'Startup MVP Development',
-  description:
-    'From zero to funded — build investor-ready MVPs in weeks. Scalable architecture, transparent pricing, and agile delivery for startups that need to move fast.',
-  keywords:
-    'startup MVP development, investor-ready software, startup software partner, agile MVP, scalable startup architecture, funded startup development',
-} as const;
-
 export const STARTUPS_HERO = {
   eyebrow: 'Who We Help',
   title: 'From zero to unicorn —',

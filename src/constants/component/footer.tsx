@@ -27,7 +27,9 @@ export const EXPLORE_LINKS = [
   { label: 'What We Build', href: '/what-we-build' },
   { label: 'Who We Help', href: '/who-we-help' },
   { label: 'Case Studies', href: '/our-work/case-studies' },
+  { label: 'FAQs', href: '/our-work/faqs' },
   { label: 'Blog', href: '/our-work/blog' },
+  { label: 'Contact', href: '/contact' },
 ] as const;
 
 export const COMPANY_LINKS = [
@@ -35,6 +37,7 @@ export const COMPANY_LINKS = [
   { label: 'Looking for a Career', href: '/work-with-us/careers', badge: 'Hiring' },
   { label: 'Looking for a software partner', href: '/work-with-us/software-partner' },
   { label: 'Hire talent', href: '/work-with-us/hire' },
+  { label: 'Industries', href: '/who-we-help/industries' },
 ] as const;
 
 export const OFFICES = [

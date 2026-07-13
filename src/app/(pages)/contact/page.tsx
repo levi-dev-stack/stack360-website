@@ -1,10 +1,7 @@
 import ContactPage from '@/components/pages/contact';
+import { seo } from '@/constants/seo';
 
-export const metadata = {
-  title: 'Contact',
-  description:
-    'Talk to Stack360 about your next build — partnerships desk for project inquiries and talent requests.',
-};
+export const metadata = seo.contact;
 
 export default function Page() {
   return <ContactPage />;

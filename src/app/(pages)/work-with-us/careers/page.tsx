@@ -1,10 +1,7 @@
 import CareersPage from '@/components/pages/work-with-us/careers';
+import { seo } from '@/constants/seo';
 
-export const metadata = {
-  title: 'Careers',
-  description:
-    'Open roles, internships, and the Stack360 hiring process — join a studio that ships complex systems with discipline.',
-};
+export const metadata = seo.workWithUsCareers;
 
 export default function Page() {
   return <CareersPage />;

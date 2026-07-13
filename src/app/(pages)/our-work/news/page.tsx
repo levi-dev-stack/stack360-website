@@ -1,9 +1,7 @@
 import NewsPage from '@/components/pages/our-work/news';
+import { seo } from '@/constants/seo';
 
-export const metadata = {
-  title: 'News',
-  description: 'Partnerships, hiring, and campus milestones from the Stack360 studio.',
-};
+export const metadata = seo.ourWorkNews;
 
 export default function Page() {
   return <NewsPage />;

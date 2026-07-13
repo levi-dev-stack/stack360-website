@@ -1,13 +1,5 @@
 import { Cloud, Headphones, Lock, Network, Users } from 'lucide-react';
 
-export const ENTERPRISES_META = {
-  title: 'Enterprise Software Development',
-  description:
-    'Enterprise-grade security with startup agility. SOC 2 and ISO aligned delivery, dedicated teams, legacy integration, and 24/7 support on AWS, Azure, and GCP.',
-  keywords:
-    'enterprise software development, SOC 2 software partner, ISO compliant development, dedicated development team, legacy system integration, enterprise cloud migration',
-} as const;
-
 export const ENTERPRISES_HERO = {
   eyebrow: 'Who We Help',
   title: 'Enterprise-grade security,',

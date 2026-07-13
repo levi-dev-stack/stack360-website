@@ -141,7 +141,7 @@ export default function Hero() {
             variants={motionVariants(reduced, fadeUp)}
             className="text-balance text-4xl font-black leading-[1.08] tracking-tight text-neutral-900 md:text-5xl lg:text-[clamp(3rem,5vw,4rem)]"
           >
-            Build digital products that
+            Build Digital Products that
             <RotatingPhrase reduced={reduced} />
           </motion.h1>
 

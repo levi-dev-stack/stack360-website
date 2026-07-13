@@ -1,10 +1,7 @@
 import HireTalentPage from '@/components/pages/work-with-us/hire';
+import { seo } from '@/constants/seo';
 
-export const metadata = {
-  title: 'Hire Talent',
-  description:
-    'Hire vetted full-time remote software engineers — React, Angular, Node, Python, .NET, Java, and more. Shortlists in 2 days.',
-};
+export const metadata = seo.workWithUsHire;
 
 export default function Page() {
   return <HireTalentPage />;

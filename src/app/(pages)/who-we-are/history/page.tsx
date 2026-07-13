@@ -1,10 +1,7 @@
 import HistoryPage from '@/components/pages/who-we-are/history';
+import { seo } from '@/constants/seo';
 
-export const metadata = {
-  title: 'Our History',
-  description:
-    'From a technical garage to a custom software architecture studio — the Stack360 story.',
-};
+export const metadata = seo.whoWeAreHistory;
 
 export default function Page() {
   return <HistoryPage />;

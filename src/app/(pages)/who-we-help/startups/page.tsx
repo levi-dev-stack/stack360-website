@@ -1,12 +1,7 @@
-import type { Metadata } from 'next';
 import StartupsPage from '@/components/pages/who-we-help/startups';
-import { STARTUPS_META } from '@/constants/component/who-we-help-startups-data';
+import { seo } from '@/constants/seo';
 
-export const metadata: Metadata = {
-  title: STARTUPS_META.title,
-  description: STARTUPS_META.description,
-  keywords: STARTUPS_META.keywords,
-};
+export const metadata = seo.whoWeHelpStartups;
 
 export default function Page() {
   return <StartupsPage />;

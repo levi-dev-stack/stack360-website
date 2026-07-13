@@ -1,12 +1,9 @@
 import Link from 'next/link';
 import PageClosingCta from '@/components/shared/PageClosingCta';
 import PageHero from '@/components/shared/PageHero';
+import { seo } from '@/constants/seo';
 
-export const metadata = {
-  title: 'Terms of Use',
-  description:
-    'Terms governing use of the Stack360 website and engagement with our software architecture services.',
-};
+export const metadata = seo.terms;
 
 export default function TermsPage() {
   return (

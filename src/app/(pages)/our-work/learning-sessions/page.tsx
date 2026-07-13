@@ -1,9 +1,7 @@
 import LearningSessionsPage from '@/components/pages/our-work/learning-sessions';
+import { seo } from '@/constants/seo';
 
-export const metadata = {
-  title: 'Learning Sessions',
-  description: 'Workshops and practice sessions that sharpen how Stack360 ships software.',
-};
+export const metadata = seo.ourWorkLearningSessions;
 
 export default function Page() {
   return <LearningSessionsPage />;

@@ -1,6 +1,8 @@
 import type { MetadataRoute } from 'next';
+import { SITE_URL } from '@/constants/site';
 
-const BASE = 'https://www.stack360.co';
+/** Stable lastModified — avoids false “freshness” on every deploy. */
+const LAST_MODIFIED = new Date('2026-07-13');
 
 const ROUTES = [
   '/',
@@ -43,8 +45,8 @@ const ROUTES = [
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return ROUTES.map((path) => ({
-    url: `${BASE}${path === '/' ? '' : path}`,
-    lastModified: new Date(),
+    url: `${SITE_URL}${path === '/' ? '' : path}`,
+    lastModified: LAST_MODIFIED,
     changeFrequency: path === '/' ? 'weekly' : 'monthly',
     priority: path === '/' ? 1 : path.split('/').length <= 2 ? 0.8 : 0.6,
   }));

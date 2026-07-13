@@ -1,9 +1,7 @@
 import BlogPage from '@/components/pages/our-work/blog';
+import { seo } from '@/constants/seo';
 
-export const metadata = {
-  title: 'Blog',
-  description: 'Studio notes on growth, craft, and building digital systems that last.',
-};
+export const metadata = seo.ourWorkBlog;
 
 export default function Page() {
   return <BlogPage />;

@@ -1,13 +1,5 @@
 import { Cog, Layers, RefreshCw, Workflow } from 'lucide-react';
 
-export const SMES_META = {
-  title: 'SME Digital Transformation',
-  description:
-    'Scale your business with tailored tech — legacy modernization, automation, and custom software without operational disruption. Proven ROI and flexible engagement models.',
-  keywords:
-    'SME software development, digital transformation SME, legacy modernization, business automation, custom software SME, ROI software development',
-} as const;
-
 export const SMES_HERO = {
   eyebrow: 'Who We Help',
   title: 'Scale your business',

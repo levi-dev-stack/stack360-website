@@ -1,6 +1,7 @@
 import { ArrowUpRight } from 'lucide-react';
 import Link from 'next/link';
 import FaqAccordion from '@/components/pages/our-work/shared/FaqAccordion';
+import JsonLd from '@/components/seo/JsonLd';
 import BrandIcon from '@/components/shared/BrandIcon';
 import MotionCard from '@/components/shared/motion/MotionCard';
 import MotionSection from '@/components/shared/motion/MotionSection';
@@ -12,6 +13,7 @@ import {
 import PageClosingCta from '@/components/shared/PageClosingCta';
 import PageHero from '@/components/shared/PageHero';
 import type { CapabilityPageData, CapabilitySlug } from '@/constants/component/what-we-build-data';
+import { breadcrumbJsonLd, faqPageJsonLd } from '@/lib/seo/json-ld';
 
 /** BrandIcon service slugs (short keys in SERVICE_ICONS). */
 const SERVICE_ICON: Record<CapabilitySlug, string> = {
@@ -48,9 +50,26 @@ interface CapabilityPageProps {
 export default function CapabilityPage({ data }: CapabilityPageProps) {
   const iconSlug = SERVICE_ICON[data.slug];
   const [lead, ...rest] = data.capabilities;
+  const pagePath = `/what-we-build/${data.slug}`;
+  const capabilityTitle =
+    data.hero.eyebrow.split('·').pop()?.trim() ??
+    data.slug
+      .split('-')
+      .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
+      .join(' ');
 
   return (
     <div className="flex w-full flex-col">
+      <JsonLd
+        data={[
+          faqPageJsonLd(data.faqs, pagePath),
+          breadcrumbJsonLd([
+            { name: 'Home', path: '/' },
+            { name: 'What We Build', path: '/what-we-build' },
+            { name: capabilityTitle, path: pagePath },
+          ]),
+        ]}
+      />
       <PageHero
         eyebrow={data.hero.eyebrow}
         title={data.hero.title}

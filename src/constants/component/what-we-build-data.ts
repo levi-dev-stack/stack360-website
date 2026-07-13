@@ -29,7 +29,6 @@ export interface CapabilityProjectRef {
 
 export interface CapabilityPageData {
   slug: CapabilitySlug;
-  metadata: { title: string; description: string };
   hero: {
     eyebrow: string;
     title: string;
@@ -108,11 +107,6 @@ const defaultCta = (system: string) =>
 export const CAPABILITY_PAGES: Record<CapabilitySlug, CapabilityPageData> = {
   'web-apps': {
     slug: 'web-apps',
-    metadata: {
-      title: 'Web Apps',
-      description:
-        'Scalable web applications and sites — React, Next.js, Node, and full-stack delivery for partners and product teams.',
-    },
     hero: {
       eyebrow: 'What We Build · Web Apps',
       title: 'Web systems that',
@@ -214,11 +208,6 @@ export const CAPABILITY_PAGES: Record<CapabilitySlug, CapabilityPageData> = {
 
   'mobile-apps': {
     slug: 'mobile-apps',
-    metadata: {
-      title: 'Mobile Apps',
-      description:
-        'Native and cross-platform mobile apps — iOS, Android, React Native, and Flutter — for product teams and software partners.',
-    },
     hero: {
       eyebrow: 'What We Build · Mobile Apps',
       title: 'Mobile products built for',
@@ -315,11 +304,6 @@ export const CAPABILITY_PAGES: Record<CapabilitySlug, CapabilityPageData> = {
 
   devops: {
     slug: 'devops',
-    metadata: {
-      title: 'DevOps',
-      description:
-        'CI/CD, containerization, IaC, and cloud operations that make delivery repeatable for engineering partners and product orgs.',
-    },
     hero: {
       eyebrow: 'What We Build · DevOps',
       title: 'Automate delivery.',
@@ -415,11 +399,6 @@ export const CAPABILITY_PAGES: Record<CapabilitySlug, CapabilityPageData> = {
 
   'ai-solutions': {
     slug: 'ai-solutions',
-    metadata: {
-      title: 'AI Solutions',
-      description:
-        'Custom AI, ML, NLP, and data engineering — models and pipelines that turn operational data into decisions for product and partner teams.',
-    },
     hero: {
       eyebrow: 'What We Build · AI Solutions',
       title: 'AI that serves the',
@@ -520,11 +499,6 @@ export const CAPABILITY_PAGES: Record<CapabilitySlug, CapabilityPageData> = {
 
   erp: {
     slug: 'erp',
-    metadata: {
-      title: 'ERP Solutions',
-      description:
-        'Custom ERP architecture for inventory, finance, HR, and operations — built for SMEs and enterprises that outgrew spreadsheets and bolted-on tools.',
-    },
     hero: {
       eyebrow: 'What We Build · ERP',
       title: 'ERP that matches how',
@@ -609,11 +583,6 @@ export const CAPABILITY_PAGES: Record<CapabilitySlug, CapabilityPageData> = {
 
   crm: {
     slug: 'crm',
-    metadata: {
-      title: 'CRM Solutions',
-      description:
-        'Custom CRM systems for pipeline velocity, account management, and revenue ops — for sales-led teams and software partners.',
-    },
     hero: {
       eyebrow: 'What We Build · CRM',
       title: 'CRM tuned for',
@@ -696,11 +665,6 @@ export const CAPABILITY_PAGES: Record<CapabilitySlug, CapabilityPageData> = {
 
   saas: {
     slug: 'saas',
-    metadata: {
-      title: 'SaaS Platforms',
-      description:
-        'Multi-tenant SaaS architecture — billing, roles, onboarding, and scale — for founders and partners shipping subscription products.',
-    },
     hero: {
       eyebrow: 'What We Build · SaaS',
       title: 'SaaS platforms engineered',
@@ -785,11 +749,6 @@ export const CAPABILITY_PAGES: Record<CapabilitySlug, CapabilityPageData> = {
 
   'custom-software': {
     slug: 'custom-software',
-    metadata: {
-      title: 'Custom Software',
-      description:
-        'Bespoke software systems that remove foundational bottlenecks — for enterprises, SMEs, and partners who need domain-specific architecture.',
-    },
     hero: {
       eyebrow: 'What We Build · Custom Software',
       title: 'Software shaped to',
@@ -873,11 +832,6 @@ export const CAPABILITY_PAGES: Record<CapabilitySlug, CapabilityPageData> = {
 
   cloud: {
     slug: 'cloud',
-    metadata: {
-      title: 'Cloud Architecture',
-      description:
-        'AWS, Azure, and GCP architecture — migration, resilience, and cost-aware design for product teams and software partners.',
-    },
     hero: {
       eyebrow: 'What We Build · Cloud',
       title: 'Cloud architecture that',
@@ -959,11 +913,6 @@ export const CAPABILITY_PAGES: Record<CapabilitySlug, CapabilityPageData> = {
 
   automation: {
     slug: 'automation',
-    metadata: {
-      title: 'Automation',
-      description:
-        'Workflow automation, RPA-style process removal, and integration bots that cut manual ops for SMEs, enterprises, and partners.',
-    },
     hero: {
       eyebrow: 'What We Build · Automation',
       title: 'Remove manual work from',

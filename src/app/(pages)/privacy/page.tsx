@@ -1,12 +1,9 @@
 import Link from 'next/link';
 import PageClosingCta from '@/components/shared/PageClosingCta';
 import PageHero from '@/components/shared/PageHero';
+import { seo } from '@/constants/seo';
 
-export const metadata = {
-  title: 'Privacy Policy',
-  description:
-    'How Stack360 collects and uses contact and inquiry information when you use our website or request talent or project support.',
-};
+export const metadata = seo.privacy;
 
 export default function PrivacyPage() {
   return (
