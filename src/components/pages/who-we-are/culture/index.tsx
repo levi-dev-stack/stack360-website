@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import CultureCollage from '@/components/pages/who-we-are/shared/CultureCollage';
 import PhotoGallery from '@/components/pages/who-we-are/shared/PhotoGallery';
 import MotionCard from '@/components/shared/motion/MotionCard';
 import MotionSection from '@/components/shared/motion/MotionSection';
@@ -6,6 +7,7 @@ import { MotionStagger, MotionStaggerItem } from '@/components/shared/motion/Mot
 import PageClosingCta from '@/components/shared/PageClosingCta';
 import PageHero from '@/components/shared/PageHero';
 import {
+  CULTURE_COLLAGE_PHOTOS,
   CULTURE_CTA,
   CULTURE_FOUNDER,
   CULTURE_GOAL,
@@ -44,10 +46,24 @@ export default function CulturePage() {
         <div className="site-container space-y-xl">
           <MotionStagger className="max-w-3xl space-y-sm">
             <MotionStaggerItem>
-              <span className="block font-mono text-xs font-bold uppercase tracking-widest text-primary">
-                Inside the studio
-              </span>
+              <h2 className="text-2xl font-bold tracking-tight text-neutral-900">
+                Life at Stack360
+              </h2>
             </MotionStaggerItem>
+            <MotionStaggerItem>
+              <p className="text-sm leading-relaxed text-neutral-600">
+                Retreats, studio days, and the people who make the work feel like a team — not a org
+                chart.
+              </p>
+            </MotionStaggerItem>
+          </MotionStagger>
+          <CultureCollage photos={CULTURE_COLLAGE_PHOTOS} />
+        </div>
+      </MotionSection>
+
+      <MotionSection className="py-2xl">
+        <div className="site-container space-y-xl">
+          <MotionStagger className="max-w-3xl space-y-sm">
             <MotionStaggerItem>
               <h2 className="text-2xl font-bold tracking-tight text-neutral-900">
                 Where the work actually happens

@@ -58,6 +58,58 @@ export const CULTURE_OFFICE_PHOTOS = [
   },
 ] as const;
 
+/** PicsArt-style collage — placement is intentionally irregular, not sectioned by name. */
+export const CULTURE_COLLAGE_PHOTOS = [
+  {
+    src: '/assets/culture/tour.JPG',
+    alt: 'Stack360 team on an outdoor retreat holding the company banner',
+    span: 'wide' as const,
+    rotate: '-1' as const,
+  },
+  {
+    src: '/assets/culture/IMG_3329.jpg',
+    alt: 'Two Stack360 teammates in the studio lobby',
+    span: 'tall' as const,
+    rotate: '2' as const,
+  },
+  {
+    src: '/assets/culture/DSC_0144.JPG',
+    alt: 'Stack360 team members posing in the office',
+    span: 'md' as const,
+    rotate: '-2' as const,
+  },
+  {
+    src: '/assets/culture/IMG_5568.jpg',
+    alt: 'Team members collaborating on laptops during a studio session',
+    span: 'tall' as const,
+    rotate: '1' as const,
+  },
+  {
+    src: '/assets/culture/DSC_0208.JPG',
+    alt: 'Large Stack360 team group photo in the office',
+    span: 'lg' as const,
+    rotate: '0' as const,
+  },
+  {
+    src: '/assets/culture/DSC_0062.JPG',
+    alt: 'Stack360 teammates in traditional attire at the office',
+    span: 'md' as const,
+    rotate: '1' as const,
+  },
+  {
+    src: '/assets/culture/IMG_5569.jpg',
+    alt: 'Two Stack360 colleagues sharing a casual moment',
+    span: 'sm' as const,
+    rotate: '-1' as const,
+  },
+  {
+    src: '/assets/culture/DSC_0149.JPG',
+    alt: 'Two Stack360 teammates at a desk in the studio',
+    span: 'wide' as const,
+    rotate: '2' as const,
+  },
+] as const;
+
 export const CULTURE_FOUNDER = {
   name: 'Azmat Rana',
   role: 'CEO & Founder',

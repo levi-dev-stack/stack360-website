@@ -16,6 +16,40 @@ export const NEWS_HERO = {
     'Partnerships, hiring, campus outreach, and milestones from the Stack360 studio in Lahore and beyond.',
 } as const;
 
+/** Named photo sections derived from asset filenames — use these headers on the page. */
+export const NEWS_SECTIONS = [
+  {
+    slug: 'umt-career-fest',
+    title: 'UMT Career Fest',
+    description:
+      'Stack360 at the 12th UMT Mega Career Fest — campus outreach, hiring conversations, and recognition moments with the next generation of builders.',
+    date: '2026-01',
+    images: [
+      {
+        src: '/assets/news/umt-recruitment-drive-1.jpg',
+        alt: 'Stack360 team member at the 12th UMT Mega Career Fest backdrop',
+      },
+      {
+        src: '/assets/news/umt-recruitmentnt-drive.JPG',
+        alt: 'Award presentation at the 12th UMT Mega Career Fest',
+      },
+    ],
+  },
+  {
+    slug: 'uet-career-fest',
+    title: 'UET Career Fest',
+    description:
+      'Stack360 at the 12th UET Mega Career Fest — campus outreach, hiring conversations, and recognition moments with the next generation of builders.',
+    date: '2026-05',
+    images: [
+      {
+        src: '/assets/news/uet-recruitment-drive-1.jpeg',
+        alt: 'Stack360 team speaking with students at a UET recruitment drive booth',
+      },
+    ],
+  },
+] as const;
+
 export const NEWS_ITEMS = [
   {
     slug: 'mou-umt',
@@ -24,26 +58,6 @@ export const NEWS_ITEMS = [
       'Stack360 officially signed an MoU with UMT — an industry–academia partnership to empower future talent and create opportunities for learning, research, and technological advancement.',
     date: '2026-06',
     category: 'Partnership',
-    source: 'LinkedIn',
-    sourceUrl: 'https://www.linkedin.com/company/stack360co',
-  },
-  {
-    slug: 'hiring-sqa',
-    title: 'We are hiring SQA Engineers in DHA Phase-1, Lahore',
-    excerpt:
-      'Open roles: SQA Trainee (0–6 months) and SQA Associate (1 year). Learn from experienced professionals, work with modern testing tools, and grow inside a friendly full-time team. CVs: Careers@teamstack360.co',
-    date: '2026-06',
-    category: 'Careers',
-    source: 'LinkedIn',
-    sourceUrl: 'https://www.linkedin.com/company/stack360co',
-  },
-  {
-    slug: 'uet-job-fair',
-    title: 'Campus collaboration at UET Lahore',
-    excerpt:
-      'Our team connected with students at the University of Engineering and Technology, Lahore — sharing how Stack360 provides end-to-end support to turn potential into real-world impact.',
-    date: '2026-05',
-    category: 'Community',
     source: 'LinkedIn',
     sourceUrl: 'https://www.linkedin.com/company/stack360co',
   },
@@ -56,6 +70,23 @@ export const LEARNING_HERO = {
   description:
     'Internal workshops and public-facing sessions where the team sharpens craft — from agentic coding tools to delivery discipline.',
 } as const;
+
+/** Named photo sections for learning sessions — headers for page content. */
+export const LEARNING_SECTIONS = [
+  // {
+  //   slug: 'agentic-tools-session',
+  //   title: 'Agentic Tools Workshop',
+  //   description:
+  //     'An in-studio session on coding smarter with agentic AI tools — the team focused on real workflow gains, not slide decks.',
+  //   date: '2026-01',
+  //   images: [
+  //     {
+  //       src: '/assets/learning-session/IMG_5601.jpg',
+  //       alt: 'Stack360 engineers attending an internal agentic tools learning session',
+  //     },
+  //   ],
+  // },
+] as const;
 
 export const LEARNING_SESSIONS = [
   {
