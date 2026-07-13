@@ -7,71 +7,189 @@ export const LANDING_STATS = [
 
 export const LANDING_SERVICES = [
   {
-    category: 'Software Development',
+    category: 'Core Ecosystems',
     items: [
       {
-        title: 'Web Development',
-        description:
-          'CMS, eCommerce, and custom web platforms engineered for performance, security, and scale.',
-        icon: 'nextdotjs',
+        title: 'ERP',
+        description: 'Centralized enterprise resource engines designed for scalability.',
+        icon: 'erp',
+        href: '/what-we-build/erp',
+        skills: [
+          { name: 'Ruby on Rails', slug: 'rubyonrails' },
+          { name: '.NET', slug: 'dotnet' },
+          { name: 'PostgreSQL', slug: 'postgresql' },
+          { name: 'Docker', slug: 'docker' },
+        ],
       },
       {
-        title: 'Mobile App Development',
-        description:
-          'Production-grade Android and iOS apps — native and cross-platform — tailored to your product roadmap.',
-        icon: 'flutter',
+        title: 'CRM',
+        description: 'Smarter customer relationship tracking optimized for pipeline velocity.',
+        icon: 'crm',
+        href: '/what-we-build/crm',
+        skills: [
+          { name: 'React', slug: 'react' },
+          { name: 'Node.js', slug: 'nodedotjs' },
+          { name: 'Ruby on Rails', slug: 'rubyonrails' },
+          { name: 'PostgreSQL', slug: 'postgresql' },
+        ],
+      },
+      {
+        title: 'SaaS',
+        description: 'Multi-tenant cloud products engineered for subscription scale.',
+        icon: 'saas',
+        href: '/what-we-build/saas',
+        skills: [
+          { name: 'Next.js', slug: 'nextdotjs' },
+          { name: 'Node.js', slug: 'nodedotjs' },
+          { name: 'Stripe', slug: 'stripe' },
+          { name: 'Docker', slug: 'docker' },
+        ],
+      },
+      {
+        title: 'Custom Software',
+        description: 'Bespoke digital tailoring solving complex foundational bottlenecks.',
+        icon: 'custom',
+        href: '/what-we-build/custom-software',
+        skills: [
+          { name: 'React', slug: 'react' },
+          { name: 'Python', slug: 'python' },
+          { name: 'Ruby on Rails', slug: 'rubyonrails' },
+          { name: 'Docker', slug: 'docker' },
+        ],
+      },
+    ],
+  },
+  {
+    category: 'Platform & Infrastructure',
+    items: [
+      {
+        title: 'Mobile Apps',
+        description: 'Native-grade portable applications built for iOS and Android environments.',
+        icon: 'mobile',
+        href: '/what-we-build/mobile-apps',
+        skills: [
+          { name: 'Flutter', slug: 'flutter' },
+          { name: 'React Native', slug: 'reactnative' },
+          { name: 'Swift', slug: 'swift' },
+          { name: 'Kotlin', slug: 'kotlin' },
+        ],
+      },
+      {
+        title: 'Web Apps',
+        description: 'High-speed, modular web applications built with dynamic architecture.',
+        icon: 'web',
+        href: '/what-we-build/web-apps',
+        skills: [
+          { name: 'React', slug: 'react' },
+          { name: 'Next.js', slug: 'nextdotjs' },
+          { name: 'Vue.js', slug: 'vuedotjs' },
+          { name: 'Angular', slug: 'angular' },
+        ],
+      },
+      {
+        title: 'Cloud',
+        description: 'Resilient serverless distribution structures mapped to modern frameworks.',
+        icon: 'cloud',
+        href: '/what-we-build/cloud',
+        skills: [
+          { name: 'Docker', slug: 'docker' },
+          { name: 'Kubernetes', slug: 'kubernetes' },
+          { name: 'Terraform', slug: 'terraform' },
+          { name: 'AWS', slug: 'amazonaws' },
+        ],
       },
       {
         title: 'DevOps',
+        description: 'Automated CI/CD pipelines keeping code testing stable.',
+        icon: 'devops',
+        href: '/what-we-build/devops',
+        skills: [
+          { name: 'Docker', slug: 'docker' },
+          { name: 'Kubernetes', slug: 'kubernetes' },
+          { name: 'GitHub', slug: 'github' },
+          { name: 'Terraform', slug: 'terraform' },
+        ],
+      },
+      {
+        title: 'Automation',
+        description: 'Scraping manual tasks out of day-to-day work operations.',
+        icon: 'automation',
+        href: '/what-we-build/automation',
+        skills: [
+          { name: 'Python', slug: 'python' },
+          { name: 'Node.js', slug: 'nodedotjs' },
+          { name: 'Zapier', slug: 'zapier' },
+          { name: 'n8n', slug: 'n8n' },
+        ],
+      },
+      {
+        title: 'Staff Augmentation',
         description:
-          'CI/CD pipelines, cloud infrastructure, and observability so releases stay fast and reliable.',
-        icon: 'docker',
+          'Embed vetted engineers into your team fast — scale capacity without long-term hiring risk.',
+        icon: 'staff',
+        href: '/work-with-us/software-partner',
+        skills: [
+          { name: 'React', slug: 'react' },
+          { name: 'Node.js', slug: 'nodedotjs' },
+          { name: 'Python', slug: 'python' },
+          { name: 'Flutter', slug: 'flutter' },
+        ],
       },
     ],
   },
   {
-    category: 'Design & Solutions',
+    category: 'Artificial Intelligence & ML',
     items: [
       {
-        title: 'UI/UX Design',
-        description:
-          'Interfaces that are intuitive, accessible, and conversion-aware — not just visually polished.',
-        icon: 'figma',
+        title: 'AI Solutions',
+        description: 'Custom neural integrations and intelligent automated workflows.',
+        icon: 'ai',
+        href: '/what-we-build/ai-solutions',
+        skills: [
+          { name: 'Python', slug: 'python' },
+          { name: 'PyTorch', slug: 'pytorch' },
+          { name: 'OpenAI', slug: 'openai' },
+          { name: 'TensorFlow', slug: 'tensorflow' },
+        ],
       },
       {
-        title: 'Graphics Designing',
+        title: 'Model Training & Tuning',
         description:
-          'Brand systems, marketing assets, and product visuals aligned with your digital experience.',
-        icon: 'sketch',
+          'Custom model architecture, fine-tuning LLMs, and hyperparameter optimization for domain-specific tasks.',
+        icon: 'training',
+        href: '/what-we-build/ai-solutions',
+        skills: [
+          { name: 'PyTorch', slug: 'pytorch' },
+          { name: 'Hugging Face', slug: 'huggingface' },
+          { name: 'Python', slug: 'python' },
+          { name: 'TensorFlow', slug: 'tensorflow' },
+        ],
       },
       {
-        title: 'Social Media Designing',
+        title: 'AI Integration',
         description:
-          'Feed-ready creatives, story templates, and campaign visuals built for consistency across every channel.',
-        icon: 'instagram',
-      },
-    ],
-  },
-  {
-    category: 'Support',
-    items: [
-      {
-        title: 'QA & Testing',
-        description:
-          'Manual and automated testing with Selenium and rigorous release gates before every ship.',
-        icon: 'selenium',
+          'Embedding intelligent agents, semantic search, and cognitive features seamlessly into existing products.',
+        icon: 'integration',
+        href: '/what-we-build/ai-solutions',
+        skills: [
+          { name: 'OpenAI', slug: 'openai' },
+          { name: 'Python', slug: 'python' },
+          { name: 'LangChain', slug: 'langchain' },
+          { name: 'React', slug: 'react' },
+        ],
       },
       {
-        title: 'Digital Marketing',
+        title: 'MLOps & Pipelines',
         description:
-          'SEO, content, and social strategies that compound traffic and qualified pipeline over time.',
-        icon: 'google',
-      },
-      {
-        title: 'Data Science',
-        description:
-          'Analytics pipelines, ML models, and decision systems that turn raw data into product leverage.',
-        icon: 'python',
+          'Automated data ingestion, continuous training loops, and scalable inference deployment.',
+        icon: 'mlops',
+        href: '/what-we-build/ai-solutions',
+        skills: [
+          { name: 'Docker', slug: 'docker' },
+          { name: 'Kubernetes', slug: 'kubernetes' },
+          { name: 'Hugging Face', slug: 'huggingface' },
+          { name: 'Python', slug: 'python' },
+        ],
       },
     ],
   },
@@ -83,6 +201,8 @@ export const LANDING_TECH_STACK = [
   'nodedotjs',
   'nextdotjs',
   'python',
+  'pytorch',
+  'openai',
   'angular',
   'rubyonrails',
   'dotnet',

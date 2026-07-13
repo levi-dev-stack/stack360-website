@@ -1,29 +1,40 @@
 'use client';
 
 import {
+  Bot,
   Box,
   Brain,
+  CircuitBoard,
+  Cloud,
   CloudCog,
   Code2,
+  ContactRound,
+  Cpu,
   CreditCard,
   Database,
   GitBranch,
+  Globe,
+  Layers,
   Layout,
   LayoutGrid,
   type LucideIcon,
+  Package,
   Palette,
   Server,
   Share2,
   Smartphone,
+  Sparkles,
   TestTube2,
   TrendingUp,
+  Users,
+  Workflow,
 } from 'lucide-react';
 import { useState } from 'react';
 import { cn } from '@/styles/tailwind.utils';
 
 const SLUG_ALIASES: Record<string, string> = {
-  amazonaws: 'kubernetes',
-  amazonwebservices: 'kubernetes',
+  amazonaws: 'amazonaws',
+  amazonwebservices: 'amazonaws',
   adobe: 'sketch',
   adobeillustrator: 'sketch',
   openjdk: 'openjdk',
@@ -48,9 +59,40 @@ const SLUG_ALIASES: Record<string, string> = {
   swift: 'swift',
   laravel: 'laravel',
   instagram: 'instagram',
+  openai: 'openai',
+  pytorch: 'pytorch',
+  huggingface: 'huggingface',
+  reactnative: 'reactnative',
+  kotlin: 'kotlin',
+  terraform: 'terraform',
+  tensorflow: 'tensorflow',
+  kubernetes: 'kubernetes',
+  docker: 'docker',
+  zapier: 'zapier',
+  n8n: 'n8n',
+  langchain: 'langchain',
+};
+
+/** Category / capability icons — always Lucide, never brand logos. */
+const SERVICE_ICONS: Record<string, LucideIcon> = {
+  erp: Layers,
+  crm: ContactRound,
+  ai: Brain,
+  training: Cpu,
+  integration: Bot,
+  mlops: CircuitBoard,
+  saas: Package,
+  custom: Code2,
+  mobile: Smartphone,
+  web: Globe,
+  cloud: Cloud,
+  devops: CloudCog,
+  automation: Workflow,
+  staff: Users,
 };
 
 const FALLBACK_ICONS: Record<string, LucideIcon> = {
+  ...SERVICE_ICONS,
   amazonaws: CloudCog,
   amazonwebservices: CloudCog,
   docker: CloudCog,
@@ -73,6 +115,10 @@ const FALLBACK_ICONS: Record<string, LucideIcon> = {
   nodedotjs: Code2,
   nextdotjs: Code2,
   react: Code2,
+  reactnative: Smartphone,
+  kotlin: Smartphone,
+  terraform: CloudCog,
+  tensorflow: Brain,
   dotnet: Code2,
   flutter: Smartphone,
   figma: Layout,
@@ -83,6 +129,12 @@ const FALLBACK_ICONS: Record<string, LucideIcon> = {
   swift: Smartphone,
   laravel: Code2,
   instagram: Share2,
+  openai: Sparkles,
+  pytorch: Brain,
+  huggingface: Brain,
+  langchain: Bot,
+  zapier: Workflow,
+  n8n: Workflow,
 };
 
 type BrandIconVariant = 'service' | 'tech' | 'stack-dark';
@@ -141,11 +193,13 @@ export default function BrandIcon({
   const [failed, setFailed] = useState(false);
   const resolved = resolveSlug(slug);
   const color = VARIANT_COLOR[variant];
+  const isServiceIcon = slug in SERVICE_ICONS;
   const src = color
     ? `https://cdn.simpleicons.org/${resolved}/${color}`
     : `https://cdn.simpleicons.org/${resolved}`;
 
-  if (failed) {
+  // Service/category icons stay generic Lucide. Tech/skill icons prefer Simple Icons CDN.
+  if (isServiceIcon || failed) {
     return <FallbackIcon slug={slug} size={size} variant={variant} className={className} />;
   }
 
