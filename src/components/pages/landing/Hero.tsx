@@ -134,7 +134,14 @@ export default function Hero() {
             variants={motionVariants(reduced, fadeUp)}
             className="mb-lg font-sans text-2xl font-black tracking-tight text-neutral-950 select-none"
           >
-            Stack<span className="text-primary">360</span>
+            <Image
+              src="/stack360-text.svg"
+              alt=""
+              width={120}
+              height={24}
+              className="h-5 w-auto select-none object-contain"
+              priority
+            />
           </motion.p>
 
           <motion.h1

@@ -5,8 +5,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
 
-/** Icon (32) + gap (8) + "Stack360" wordmark — reserved so hover never shifts layout. */
-const LOGO_SLOT_WIDTH = '8.75rem';
+/** Icon (32) + gap + stack360-text wordmark — reserved so hover never shifts layout. */
+const LOGO_SLOT_WIDTH = '9.25rem';
 
 export default function Stack360Logo() {
   const [isHovered, setIsHovered] = useState(false);
@@ -52,9 +52,14 @@ export default function Stack360Logo() {
         className="absolute top-1/2 left-10 -translate-y-1/2 overflow-hidden whitespace-nowrap"
         aria-hidden={!isHovered}
       >
-        <span className="select-none font-sans text-lg font-bold tracking-tight text-neutral-950">
-          Stack<span className="text-primary">360</span>
-        </span>
+        <Image
+          src="/stack360-text.svg"
+          alt=""
+          width={108}
+          height={20}
+          className="h-5 w-auto select-none object-contain"
+          priority
+        />
       </motion.div>
     </Link>
   );
