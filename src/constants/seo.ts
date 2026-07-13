@@ -284,7 +284,8 @@ export const seo = {
 
   ourWorkBlog: pageMeta({
     title: 'Blog',
-    description: 'Studio notes on growth, craft, and building digital systems that last.',
+    description:
+      'Engineering notes from Stack360 — language features, craft, and how we think about building systems that last.',
     path: '/our-work/blog',
   }),
 

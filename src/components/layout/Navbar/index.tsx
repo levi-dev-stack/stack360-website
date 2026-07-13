@@ -254,33 +254,6 @@ export default function PremiumNavbar() {
                           </div>
                         ))}
                       </motion.div>
-
-                      {item.imagePreview && (
-                        <motion.div
-                          initial={reduced === false ? { opacity: 0, x: 16 } : false}
-                          animate={{ opacity: 1, x: 0 }}
-                          transition={{ duration: 0.4, delay: 0.1, ease: EASE_OUT_EXPO }}
-                          className="flex w-[32%] flex-col justify-between border-l border-neutral-200 bg-neutral-100 p-xl"
-                        >
-                          <div className="space-y-md">
-                            <span className="block font-mono text-[10px] font-bold uppercase tracking-wider text-neutral-500">
-                              Our Vision
-                            </span>
-                            <div className="group relative aspect-16/10 w-full overflow-hidden rounded-md border border-neutral-200 bg-neutral-300">
-                              <Image
-                                src={item.imagePreview.src}
-                                alt={item.imagePreview.alt}
-                                width={600}
-                                height={375}
-                                className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
-                              />
-                            </div>
-                            <p className="pt-xs text-xs leading-relaxed font-medium text-neutral-600">
-                              {item.imagePreview.caption}
-                            </p>
-                          </div>
-                        </motion.div>
-                      )}
                     </motion.div>
                   )}
                 </AnimatePresence>

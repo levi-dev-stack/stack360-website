@@ -1,4 +1,5 @@
 import type { MetadataRoute } from 'next';
+import { getBlogSlugs } from '@/constants/component/blog-posts-data';
 import { SITE_URL } from '@/constants/site';
 
 /** Stable lastModified — avoids false “freshness” on every deploy. */
@@ -30,6 +31,7 @@ const ROUTES = [
   '/our-work/featured-projects',
   '/our-work/client-success-stories',
   '/our-work/blog',
+  ...getBlogSlugs().map((slug) => `/our-work/blog/${slug}`),
   '/our-work/news',
   '/our-work/learning-sessions',
   '/our-work/faqs',
@@ -41,7 +43,7 @@ const ROUTES = [
   '/work-with-us/software-partner',
   '/work-with-us/hire',
   '/work-with-us/careers',
-] as const;
+] as readonly string[];
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return ROUTES.map((path) => ({
