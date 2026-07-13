@@ -1,3 +1,6 @@
+'use client';
+
+import { Briefcase } from 'lucide-react';
 import Link from 'next/link';
 import MotionCard from '@/components/shared/motion/MotionCard';
 import MotionSection from '@/components/shared/motion/MotionSection';
@@ -13,6 +16,8 @@ import {
 } from '@/constants/component/careers-data';
 
 export default function CareersPage() {
+  const hasOpenRoles = CAREERS_OPEN_ROLES && CAREERS_OPEN_ROLES.length > 0;
+
   return (
     <div className="flex w-full flex-col">
       <PageHero
@@ -22,6 +27,7 @@ export default function CareersPage() {
         description={CAREERS_HERO.description}
       />
 
+      {/* Benefits Section */}
       <MotionSection className="py-2xl">
         <div className="site-container">
           <MotionStagger className="mb-xl max-w-3xl space-y-sm">
@@ -61,6 +67,7 @@ export default function CareersPage() {
         </div>
       </MotionSection>
 
+      {/* Open Roles Section */}
       <MotionSection className="border-t border-neutral-200 bg-neutral-100/50 py-2xl">
         <div className="site-container">
           <MotionStagger className="mb-xl flex flex-col gap-md sm:flex-row sm:items-end sm:justify-between">
@@ -74,44 +81,63 @@ export default function CareersPage() {
             </MotionStaggerItem>
             <MotionStaggerItem>
               <span className="font-mono text-[10px] font-bold uppercase tracking-widest text-primary">
-                Hiring
+                {hasOpenRoles ? 'Hiring' : 'Fully Staffed'}
               </span>
             </MotionStaggerItem>
           </MotionStagger>
 
-          <MotionStagger className="space-y-md">
-            {CAREERS_OPEN_ROLES.map((role) => (
-              <MotionStaggerItem key={role.title}>
-                <MotionCard className="group rounded-xl border border-neutral-200 bg-neutral-50 p-lg transition-colors hover:border-primary/30">
-                  <div className="flex flex-col gap-md md:flex-row md:items-center md:justify-between">
-                    <div>
-                      <h3 className="text-lg font-bold text-neutral-900 group-hover:text-primary">
-                        {role.title}
-                      </h3>
-                      <p className="mt-xs text-sm text-neutral-600">
-                        {role.team} · {role.location}
-                      </p>
-                      <p className="mt-xs font-mono text-xs text-neutral-500">{role.stack}</p>
+          {hasOpenRoles ? (
+            <MotionStagger className="space-y-md">
+              {CAREERS_OPEN_ROLES.map((role) => (
+                <MotionStaggerItem key={role.title}>
+                  <MotionCard className="group rounded-xl border border-neutral-200 bg-neutral-50 p-lg transition-colors hover:border-primary/30">
+                    <div className="flex flex-col gap-md md:flex-row md:items-center md:justify-between">
+                      <div>
+                        <h3 className="text-lg font-bold text-neutral-900 group-hover:text-primary">
+                          {role.title}
+                        </h3>
+                        <p className="mt-xs text-sm text-neutral-600">
+                          {role.team} · {role.location}
+                        </p>
+                        <p className="mt-xs font-mono text-xs text-neutral-500">{role.stack}</p>
+                      </div>
+                      <div className="flex items-center gap-md">
+                        <span className="rounded-sm border border-neutral-200 bg-neutral-50 px-sm py-xs font-mono text-[10px] font-bold uppercase tracking-wider text-neutral-500">
+                          {role.type}
+                        </span>
+                        <Link
+                          href="/contact"
+                          className="rounded-sm bg-primary px-lg py-sm text-sm font-bold text-neutral-50 transition-all hover:bg-primary-dark hover:scale-[1.02] active:scale-[0.98]"
+                        >
+                          Apply
+                        </Link>
+                      </div>
                     </div>
-                    <div className="flex items-center gap-md">
-                      <span className="rounded-sm border border-neutral-200 bg-neutral-50 px-sm py-xs font-mono text-[10px] font-bold uppercase tracking-wider text-neutral-500">
-                        {role.type}
-                      </span>
-                      <Link
-                        href="/contact"
-                        className="rounded-sm bg-primary px-lg py-sm text-sm font-bold text-neutral-50 transition-all hover:bg-primary-dark hover:scale-[1.02] active:scale-[0.98]"
-                      >
-                        Apply
-                      </Link>
-                    </div>
-                  </div>
-                </MotionCard>
-              </MotionStaggerItem>
-            ))}
-          </MotionStagger>
+                  </MotionCard>
+                </MotionStaggerItem>
+              ))}
+            </MotionStagger>
+          ) : (
+            /* Clean, beautifully integrated Empty State */
+            <MotionStaggerItem>
+              <div className="flex flex-col p-3 items-center justify-center rounded-2xl border border-dashed border-neutral-300 bg-neutral-50/50 px-lg py-3xl text-center shadow-inner">
+                <div className="mb-md flex h-12 w-12 items-center justify-center rounded-full bg-neutral-100 text-neutral-400">
+                  <Briefcase className="h-6 w-6 stroke-[1.5]" />
+                </div>
+                <h3 className="text-base font-bold text-neutral-900">
+                  No active openings right now
+                </h3>
+                <p className="mt-xs text-sm leading-relaxed text-neutral-500 max-w-content">
+                  We aren&apos;t actively looking for specific roles today, but we love meeting
+                  brilliant operators. Send us an open application.
+                </p>
+              </div>
+            </MotionStaggerItem>
+          )}
         </div>
       </MotionSection>
 
+      {/* Hiring Process Section */}
       <MotionSection className="py-2xl">
         <div className="site-container">
           <MotionStagger className="mb-xl max-w-3xl space-y-sm">
