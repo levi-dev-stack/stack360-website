@@ -68,8 +68,8 @@ export default function SectionHub({
           <MotionReveal className="mb-xl max-w-content">
             <h2 className="text-2xl font-black tracking-tight text-neutral-900">Explore</h2>
             <p className="mt-sm text-sm leading-relaxed text-neutral-600">
-              Pick a lane — live pages open immediately; others are still being built to our
-              standard.
+              Pick a lane — each page covers capabilities, delivery shape, related projects, and
+              FAQs.
             </p>
           </MotionReveal>
           <MotionStagger className="grid grid-cols-1 gap-md sm:grid-cols-2 lg:grid-cols-3">

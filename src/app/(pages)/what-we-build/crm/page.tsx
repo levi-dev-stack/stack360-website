@@ -1,5 +1,13 @@
-import WorkInProgress from '@/components/element/WorkInProgress';
+import CapabilityPage from '@/components/pages/what-we-build/CapabilityPage';
+import { getCapabilityPage } from '@/constants/component/what-we-build-data';
+
+const data = getCapabilityPage('crm');
+
+export const metadata = {
+  title: data.metadata.title,
+  description: data.metadata.description,
+};
 
 export default function Page() {
-  return <WorkInProgress />;
+  return <CapabilityPage data={data} />;
 }

@@ -34,6 +34,7 @@ export const COMPANY_LINKS = [
   { label: 'Who We Are', href: '/who-we-are' },
   { label: 'Looking for a Career', href: '/work-with-us/careers', badge: 'Hiring' },
   { label: 'Looking for a software partner', href: '/work-with-us/software-partner' },
+  { label: 'Hire talent', href: '/work-with-us/hire' },
 ] as const;
 
 export const OFFICES = [

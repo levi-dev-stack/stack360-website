@@ -4,13 +4,16 @@ import { ChevronDown } from 'lucide-react';
 import { AnimatePresence, motion, useReducedMotion } from 'motion/react';
 import { useId, useState } from 'react';
 import { EASE_OUT_EXPO } from '@/components/shared/motion/variants';
-import type { FAQS } from '@/constants/component/our-work-faqs-data';
 import { cn } from '@/styles/tailwind.utils';
 
-type Faq = (typeof FAQS)[number];
+export interface FaqItem {
+  id: string;
+  question: string;
+  answer: string;
+}
 
 interface FaqAccordionProps {
-  items: readonly Faq[];
+  items: readonly FaqItem[];
 }
 
 export default function FaqAccordion({ items }: FaqAccordionProps) {

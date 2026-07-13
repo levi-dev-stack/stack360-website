@@ -227,6 +227,11 @@ export const NAVIGATION_DATA: NavSection[] = [
             desc: 'Review our Feature Projects, Client Success Stories, and Case Studies to initiate contract development pipelines.',
             href: '/work-with-us/software-partner',
           },
+          {
+            title: 'Hire talent',
+            desc: 'Select skills and engagement length — get shortlists of vetted full-time engineers.',
+            href: '/work-with-us/hire',
+          },
         ],
       },
       {

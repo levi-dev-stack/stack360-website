@@ -74,6 +74,9 @@ const SLUG_ALIASES: Record<string, string> = {
   zapier: 'zapier',
   n8n: 'n8n',
   langchain: 'langchain',
+  typescript: 'typescript',
+  tailwindcss: 'tailwindcss',
+  firebase: 'firebase',
 };
 
 /** Brands removed from / blocked on cdn.simpleicons.org — use Lucide only. */
@@ -141,6 +144,9 @@ const FALLBACK_ICONS: Record<string, LucideIcon> = {
   pytorch: Brain,
   huggingface: Brain,
   langchain: Bot,
+  typescript: Code2,
+  tailwindcss: Palette,
+  firebase: Server,
   zapier: Workflow,
   n8n: Workflow,
 };
