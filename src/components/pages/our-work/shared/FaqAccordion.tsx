@@ -36,7 +36,7 @@ export default function FaqAccordion({ items }: FaqAccordionProps) {
               aria-expanded={open}
               aria-controls={panelId}
               onClick={() => setOpenId(open ? null : item.id)}
-              className="flex w-full items-start justify-between gap-md text-left"
+              className="flex w-full items-start justify-between gap-md rounded-sm text-left focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
             >
               <span className="text-base font-bold tracking-tight text-neutral-900">
                 {item.question}

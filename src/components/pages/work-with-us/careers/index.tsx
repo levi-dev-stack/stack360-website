@@ -106,8 +106,8 @@ export default function CareersPage() {
                           {role.type}
                         </span>
                         <Link
-                          href="/contact"
-                          className="rounded-sm bg-primary px-lg py-sm text-sm font-bold text-neutral-50 transition-all hover:bg-primary-dark hover:scale-[1.02] active:scale-[0.98]"
+                          href={`/contact?role=${encodeURIComponent(role.title)}`}
+                          className="rounded-sm bg-primary px-lg py-sm text-sm font-bold text-neutral-50 transition-all hover:bg-primary-dark hover:scale-[1.02] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary active:scale-[0.98]"
                         >
                           Apply
                         </Link>

@@ -2,7 +2,7 @@ import SectionHub from '@/components/shared/SectionHub';
 import { WORK_WITH_US_HUB } from '@/constants/component/section-hubs-data';
 
 export const metadata = {
-  title: 'Work With Us | Stack360',
+  title: 'Work With Us',
   description: 'Engage Stack360 as a software partner or explore careers at the studio.',
 };
 

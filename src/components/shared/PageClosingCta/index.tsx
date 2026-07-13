@@ -38,7 +38,7 @@ export default function PageClosingCta({
       initial={false}
       animate={visible ? { opacity: 1 } : { opacity: 0 }}
       transition={{ duration: 0.5, ease: EASE_OUT_EXPO }}
-      className="site-section border-t border-neutral-200 bg-neutral-950 py-2xl"
+      className="site-section border-t border-neutral-200 bg-neutral-100 py-2xl"
     >
       <div className="site-container flex flex-col items-start justify-between gap-lg md:flex-row md:items-center">
         <motion.div
@@ -49,13 +49,13 @@ export default function PageClosingCta({
         >
           <motion.h2
             variants={motionVariants(reduced, fadeUp)}
-            className="text-balance text-2xl font-bold tracking-tight text-neutral-50"
+            className="text-balance text-2xl font-bold tracking-tight text-neutral-900"
           >
             {title}
           </motion.h2>
           <motion.p
             variants={motionVariants(reduced, fadeUp)}
-            className="text-sm leading-relaxed text-neutral-400"
+            className="text-sm leading-relaxed text-neutral-600"
           >
             {description}
           </motion.p>
@@ -70,7 +70,7 @@ export default function PageClosingCta({
           <motion.div whileHover={reduced ? undefined : { scale: 1.03 }} whileTap={{ scale: 0.97 }}>
             <Link
               href={primary.href}
-              className="inline-block rounded-sm bg-primary px-xl py-md text-sm font-bold text-neutral-50 shadow-md transition-colors hover:bg-primary-dark"
+              className="inline-block rounded-sm bg-primary px-xl py-md text-sm font-bold text-neutral-50 shadow-md transition-colors hover:bg-primary-dark focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
             >
               {primary.label}
             </Link>
@@ -82,7 +82,7 @@ export default function PageClosingCta({
             >
               <Link
                 href={secondary.href}
-                className="inline-block rounded-sm border border-neutral-700 px-xl py-md text-sm font-bold text-neutral-50 transition-colors hover:border-neutral-500"
+                className="inline-block rounded-sm border border-neutral-300 bg-neutral-50 px-xl py-md text-sm font-bold text-neutral-800 transition-colors hover:border-neutral-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
               >
                 {secondary.label}
               </Link>

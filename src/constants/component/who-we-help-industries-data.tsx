@@ -10,7 +10,7 @@ import {
 } from 'lucide-react';
 
 export const INDUSTRIES_META = {
-  title: 'Industry Software Solutions | Stack360',
+  title: 'Industry Software Solutions',
   description:
     'Future-proof software for Healthcare, FinTech, E-commerce, Logistics, and more. HIPAA and PCI-DSS aligned delivery with proven, measurable outcomes.',
   keywords:

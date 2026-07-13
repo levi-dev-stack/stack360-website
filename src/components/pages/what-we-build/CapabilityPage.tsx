@@ -131,20 +131,12 @@ export default function CapabilityPage({ data }: CapabilityPageProps) {
           <MotionStagger className="grid grid-cols-1 gap-md md:grid-cols-3">
             {data.process.map((step, index) => (
               <MotionStaggerItem key={step.title}>
-                <MotionCard className="relative h-full overflow-hidden rounded-xl border border-neutral-200 bg-neutral-50 p-lg shadow-sm">
-                  <span
-                    aria-hidden
-                    className="pointer-events-none absolute -right-1 -top-2 font-mono text-6xl font-black leading-none text-primary/15"
-                  >
-                    {String(index + 1).padStart(2, '0')}
-                  </span>
-                  <p className="relative font-mono text-xs font-bold tracking-widest text-primary">
-                    Step {index + 1}
+                <MotionCard className="h-full rounded-xl border border-neutral-200 bg-neutral-50 p-lg shadow-sm">
+                  <p className="font-mono text-[10px] font-bold uppercase tracking-widest text-neutral-500">
+                    {index === 0 ? 'Start' : index === data.process.length - 1 ? 'Finish' : 'Next'}
                   </p>
-                  <h3 className="relative mt-sm text-lg font-bold text-neutral-900">
-                    {step.title}
-                  </h3>
-                  <p className="relative mt-sm text-sm leading-relaxed text-neutral-600">
+                  <h3 className="mt-sm text-lg font-bold text-neutral-900">{step.title}</h3>
+                  <p className="mt-sm text-sm leading-relaxed text-neutral-600">
                     {step.description}
                   </p>
                 </MotionCard>

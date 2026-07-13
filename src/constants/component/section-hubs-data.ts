@@ -6,6 +6,7 @@ export const WHAT_WE_BUILD_HUB: SectionHubProps = {
   highlight: 'end to end.',
   description:
     'ERP, CRM, AI, SaaS, and the platform layer underneath — one studio accountable for the full stack. Built for software partners and client teams who need durable systems, not slideware.',
+  exploreBlurb: 'Pick a capability — each page covers delivery shape, related projects, and FAQs.',
   chapters: [
     {
       title: 'ERP',
@@ -83,6 +84,7 @@ export const WHO_WE_HELP_HUB: SectionHubProps = {
   highlight: 'and domain.',
   description:
     'From pre-seed MVPs to enterprise migrations — we match delivery shape to the risk profile of the organization.',
+  exploreBlurb: 'Choose the segment that matches your organization.',
   chapters: [
     {
       title: 'Industries',
@@ -123,6 +125,7 @@ export const WHO_WE_ARE_HUB: SectionHubProps = {
   highlight: 'the systems.',
   description:
     'A disciplined engineering team centered on technical integrity — history, culture, and how we actually ship.',
+  exploreBlurb: 'Learn how Stack360 is built — history, culture, and delivery rituals.',
   chapters: [
     {
       title: 'History',
@@ -157,6 +160,7 @@ export const WORK_WITH_US_HUB: SectionHubProps = {
   highlight: 'join the bench.',
   description:
     'Engage Stack360 as your software partner, hire dedicated engineers for your team, or explore open roles if you want to build here.',
+  exploreBlurb: 'Partner, hire talent, or apply — pick the path that fits.',
   chapters: [
     {
       title: 'Software partner',

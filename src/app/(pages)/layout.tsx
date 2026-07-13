@@ -5,8 +5,8 @@ import NoJsSiteNav from '@/components/layout/Navbar/NoJsSiteNav';
 import ChatAssistant from '@/components/shared/ChatAssistant';
 
 export const metadata = {
-  title: 'Stack360 | Custom Software Architecture Studio',
-  description: 'Architecting complex software ecosystems for enterprise scale.',
+  description:
+    'Architecting complex software ecosystems for enterprise scale — ERP, CRM, AI, SaaS, and the platform layer underneath.',
   keywords: 'custom software architecture, software development, ERP, CRM, AI solutions, SaaS',
 };
 

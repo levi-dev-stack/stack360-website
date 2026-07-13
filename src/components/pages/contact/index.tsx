@@ -1,5 +1,6 @@
 import { Mail, Phone } from 'lucide-react';
 import Image from 'next/image';
+import { Suspense } from 'react';
 import ContactForm from '@/components/pages/contact/ContactForm';
 import MotionCard from '@/components/shared/motion/MotionCard';
 import MotionSection from '@/components/shared/motion/MotionSection';
@@ -96,7 +97,9 @@ export default function ContactPage() {
               interactive={false}
               className="rounded-xl border border-neutral-200 bg-neutral-50 p-xl shadow-sm"
             >
-              <ContactForm />
+              <Suspense fallback={<p className="text-sm text-neutral-600">Loading form…</p>}>
+                <ContactForm />
+              </Suspense>
             </MotionCard>
           </MotionReveal>
         </div>

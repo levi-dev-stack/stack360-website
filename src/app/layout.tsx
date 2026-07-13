@@ -17,10 +17,25 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: 'Stack360 | Software Engineering & Consulting',
+    default: 'Stack360 | Custom Software Architecture Studio',
     template: '%s | Stack360',
   },
-  description: 'Architecting complex software ecosystems for enterprise scale.',
+  description:
+    'Custom software architecture studio — ERP, CRM, AI, SaaS, cloud, and DevOps for partners and product teams.',
+  metadataBase: new URL('https://www.stack360.co'),
+  openGraph: {
+    type: 'website',
+    siteName: 'Stack360',
+    title: 'Stack360 | Custom Software Architecture Studio',
+    description:
+      'Custom software architecture studio — ERP, CRM, AI, SaaS, cloud, and DevOps for partners and product teams.',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Stack360 | Custom Software Architecture Studio',
+    description:
+      'Custom software architecture studio — ERP, CRM, AI, SaaS, cloud, and DevOps for partners and product teams.',
+  },
 };
 
 export default function RootLayout({ children }: Readonly<ReactComponentChildren>) {

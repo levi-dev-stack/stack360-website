@@ -1,7 +1,7 @@
 import { Cloud, Headphones, Lock, Network, Users } from 'lucide-react';
 
 export const ENTERPRISES_META = {
-  title: 'Enterprise Software Development | Stack360',
+  title: 'Enterprise Software Development',
   description:
     'Enterprise-grade security with startup agility. SOC 2 and ISO aligned delivery, dedicated teams, legacy integration, and 24/7 support on AWS, Azure, and GCP.',
   keywords:

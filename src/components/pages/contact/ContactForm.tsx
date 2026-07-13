@@ -1,5 +1,6 @@
 'use client';
 
+import { useSearchParams } from 'next/navigation';
 import { type FormEvent, useState } from 'react';
 import { CONTACT_FORM_FIELDS } from '@/constants/component/contact-data';
 
@@ -7,6 +8,8 @@ type Status = 'idle' | 'sent' | 'error';
 
 export default function ContactForm() {
   const [status, setStatus] = useState<Status>('idle');
+  const searchParams = useSearchParams();
+  const role = searchParams.get('role')?.trim() ?? '';
 
   const onSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -23,9 +26,18 @@ export default function ContactForm() {
       return;
     }
 
-    const subject = encodeURIComponent(`Stack360 inquiry from ${name}`);
+    const subject = encodeURIComponent(
+      role ? `Stack360 application: ${role} — ${name}` : `Stack360 inquiry from ${name}`
+    );
     const body = encodeURIComponent(
-      [`Name: ${name}`, `Email: ${email}`, company ? `Company: ${company}` : null, '', message]
+      [
+        `Name: ${name}`,
+        `Email: ${email}`,
+        company ? `Company: ${company}` : null,
+        role ? `Role: ${role}` : null,
+        '',
+        message,
+      ]
         .filter(Boolean)
         .join('\n')
     );
@@ -38,10 +50,13 @@ export default function ContactForm() {
   return (
     <form onSubmit={onSubmit} noValidate>
       <div className="mb-lg space-y-sm">
-        <h2 className="text-2xl font-bold tracking-tight text-neutral-900">Start a conversation</h2>
+        <h2 className="text-2xl font-bold tracking-tight text-neutral-900">
+          {role ? `Apply: ${role}` : 'Start a conversation'}
+        </h2>
         <p className="max-w-3xl text-sm leading-relaxed text-neutral-600">
-          Tell us what you are building. We will follow up with a scoped next step — not a generic
-          brochure.
+          {role
+            ? 'Tell us about your background and why this role fits. We will follow up with next steps.'
+            : 'Tell us what you are building. We will follow up with a scoped next step — not a generic brochure.'}
         </p>
       </div>
 
@@ -65,6 +80,10 @@ export default function ContactForm() {
               name={field.id}
               type={field.type}
               required={field.id !== 'company'}
+              autoComplete={
+                field.id === 'name' ? 'name' : field.id === 'email' ? 'email' : 'organization'
+              }
+              aria-required={field.id !== 'company'}
               placeholder={field.placeholder}
               className="min-h-11 w-full rounded-md border border-neutral-200 bg-neutral-50 px-md py-md text-sm text-neutral-900 outline-none transition-colors placeholder:text-neutral-500 focus-visible:border-primary focus-visible:ring-2 focus-visible:ring-primary/15"
             />
@@ -75,7 +94,7 @@ export default function ContactForm() {
             htmlFor="message"
             className="mb-xs block font-mono text-[10px] font-bold uppercase tracking-wider text-neutral-600"
           >
-            Project brief
+            {role ? 'Cover note' : 'Project brief'}
             <span className="text-primary" aria-hidden>
               {' '}
               *
@@ -86,7 +105,11 @@ export default function ContactForm() {
             name="message"
             rows={5}
             required
-            placeholder="What are you building? Timeline, stack, team size..."
+            placeholder={
+              role
+                ? 'Experience, availability, and why this role…'
+                : 'What are you building? Timeline, stack, team size...'
+            }
             className="w-full resize-y rounded-md border border-neutral-200 bg-neutral-50 px-md py-md text-sm text-neutral-900 outline-none transition-colors placeholder:text-neutral-500 focus-visible:border-primary focus-visible:ring-2 focus-visible:ring-primary/15"
           />
         </div>
@@ -94,7 +117,7 @@ export default function ContactForm() {
 
       {status === 'error' ? (
         <p className="mt-md text-sm font-medium text-danger" role="alert">
-          Name, email, and project brief are required.
+          Name, email, and message are required.
         </p>
       ) : null}
       {status === 'sent' ? (
@@ -115,7 +138,7 @@ export default function ContactForm() {
           type="submit"
           className="min-h-11 shrink-0 rounded-sm bg-primary px-xl py-md text-sm font-bold text-neutral-50 shadow-md transition-all hover:bg-primary-dark focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary active:scale-[0.98]"
         >
-          Send message
+          {role ? 'Submit application' : 'Send message'}
         </button>
       </div>
     </form>

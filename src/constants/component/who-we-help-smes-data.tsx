@@ -1,7 +1,7 @@
 import { Cog, Layers, RefreshCw, Workflow } from 'lucide-react';
 
 export const SMES_META = {
-  title: 'SME Digital Transformation | Stack360',
+  title: 'SME Digital Transformation',
   description:
     'Scale your business with tailored tech — legacy modernization, automation, and custom software without operational disruption. Proven ROI and flexible engagement models.',
   keywords:

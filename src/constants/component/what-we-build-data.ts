@@ -109,7 +109,7 @@ export const CAPABILITY_PAGES: Record<CapabilitySlug, CapabilityPageData> = {
   'web-apps': {
     slug: 'web-apps',
     metadata: {
-      title: 'Web Apps | Stack360',
+      title: 'Web Apps',
       description:
         'Scalable web applications and sites — React, Next.js, Node, and full-stack delivery for partners and product teams.',
     },
@@ -215,7 +215,7 @@ export const CAPABILITY_PAGES: Record<CapabilitySlug, CapabilityPageData> = {
   'mobile-apps': {
     slug: 'mobile-apps',
     metadata: {
-      title: 'Mobile Apps | Stack360',
+      title: 'Mobile Apps',
       description:
         'Native and cross-platform mobile apps — iOS, Android, React Native, and Flutter — for product teams and software partners.',
     },
@@ -316,7 +316,7 @@ export const CAPABILITY_PAGES: Record<CapabilitySlug, CapabilityPageData> = {
   devops: {
     slug: 'devops',
     metadata: {
-      title: 'DevOps | Stack360',
+      title: 'DevOps',
       description:
         'CI/CD, containerization, IaC, and cloud operations that make delivery repeatable for engineering partners and product orgs.',
     },
@@ -416,7 +416,7 @@ export const CAPABILITY_PAGES: Record<CapabilitySlug, CapabilityPageData> = {
   'ai-solutions': {
     slug: 'ai-solutions',
     metadata: {
-      title: 'AI Solutions | Stack360',
+      title: 'AI Solutions',
       description:
         'Custom AI, ML, NLP, and data engineering — models and pipelines that turn operational data into decisions for product and partner teams.',
     },
@@ -521,7 +521,7 @@ export const CAPABILITY_PAGES: Record<CapabilitySlug, CapabilityPageData> = {
   erp: {
     slug: 'erp',
     metadata: {
-      title: 'ERP Solutions | Stack360',
+      title: 'ERP Solutions',
       description:
         'Custom ERP architecture for inventory, finance, HR, and operations — built for SMEs and enterprises that outgrew spreadsheets and bolted-on tools.',
     },
@@ -610,7 +610,7 @@ export const CAPABILITY_PAGES: Record<CapabilitySlug, CapabilityPageData> = {
   crm: {
     slug: 'crm',
     metadata: {
-      title: 'CRM Solutions | Stack360',
+      title: 'CRM Solutions',
       description:
         'Custom CRM systems for pipeline velocity, account management, and revenue ops — for sales-led teams and software partners.',
     },
@@ -697,7 +697,7 @@ export const CAPABILITY_PAGES: Record<CapabilitySlug, CapabilityPageData> = {
   saas: {
     slug: 'saas',
     metadata: {
-      title: 'SaaS Platforms | Stack360',
+      title: 'SaaS Platforms',
       description:
         'Multi-tenant SaaS architecture — billing, roles, onboarding, and scale — for founders and partners shipping subscription products.',
     },
@@ -786,7 +786,7 @@ export const CAPABILITY_PAGES: Record<CapabilitySlug, CapabilityPageData> = {
   'custom-software': {
     slug: 'custom-software',
     metadata: {
-      title: 'Custom Software | Stack360',
+      title: 'Custom Software',
       description:
         'Bespoke software systems that remove foundational bottlenecks — for enterprises, SMEs, and partners who need domain-specific architecture.',
     },
@@ -874,7 +874,7 @@ export const CAPABILITY_PAGES: Record<CapabilitySlug, CapabilityPageData> = {
   cloud: {
     slug: 'cloud',
     metadata: {
-      title: 'Cloud Architecture | Stack360',
+      title: 'Cloud Architecture',
       description:
         'AWS, Azure, and GCP architecture — migration, resilience, and cost-aware design for product teams and software partners.',
     },
@@ -960,7 +960,7 @@ export const CAPABILITY_PAGES: Record<CapabilitySlug, CapabilityPageData> = {
   automation: {
     slug: 'automation',
     metadata: {
-      title: 'Automation | Stack360',
+      title: 'Automation',
       description:
         'Workflow automation, RPA-style process removal, and integration bots that cut manual ops for SMEs, enterprises, and partners.',
     },
