@@ -350,6 +350,6 @@ export const LANDING_CTA = {
   title: 'Struggling to find a trusted tech partner?',
   description:
     'Poor development leads to missed deadlines and frustration. Stack360 delivers scalable, high-performance solutions — on time, every time.',
-  primary: { label: 'Explore Our Services', href: '/what-we-build' },
-  secondary: { label: 'See Our Work', href: '/our-work/case-studies' },
+  secondary: { label: 'Explore Our Services', href: '/what-we-build' },
+  primary: { label: 'See Our Work', href: '/our-work/case-studies' },
 } as const;

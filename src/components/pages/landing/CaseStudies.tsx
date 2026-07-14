@@ -97,7 +97,7 @@ export default function CaseStudiesSection() {
           <motion.div variants={motionVariants(reduced, fadeUp)}>
             <Link
               href="/our-work/case-studies"
-              className="group inline-flex items-center gap-sm rounded-full bg-secondary px-lg py-md text-sm font-bold text-neutral-50 shadow-md transition-colors hover:bg-secondary-light"
+              className="group inline-flex items-center gap-sm rounded-full bg-primary px-lg py-md text-sm font-bold text-neutral-50 shadow-md transition-colors hover:bg-primary-dark"
             >
               Explore all cases
               <span className="flex h-6 w-6 items-center justify-center rounded-full bg-neutral-50/20 transition-transform group-hover:translate-x-0.5">
