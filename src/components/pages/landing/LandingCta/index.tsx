@@ -20,13 +20,13 @@ export default function LandingCta() {
         <div className="flex flex-wrap gap-md">
           <Link
             href={LANDING_CTA.primary.href}
-            className="inline-flex items-center rounded-sm bg-primary px-xl py-md text-sm font-bold text-neutral-50 shadow-md transition-colors hover:bg-primary-dark"
+            className="inline-flex min-w-52 items-center justify-center rounded-sm bg-primary px-xl py-md text-sm font-bold text-neutral-50 shadow-md transition-colors hover:bg-primary-dark"
           >
             {LANDING_CTA.primary.label}
           </Link>
           <Link
             href={LANDING_CTA.secondary.href}
-            className="inline-flex items-center rounded-sm border border-neutral-600 px-xl py-md text-sm font-bold text-neutral-100 transition-colors hover:border-neutral-400"
+            className="inline-flex min-w-52 items-center justify-center rounded-sm border border-neutral-600 px-xl py-md text-sm font-bold text-neutral-100 transition-colors hover:border-neutral-400"
           >
             {LANDING_CTA.secondary.label}
           </Link>

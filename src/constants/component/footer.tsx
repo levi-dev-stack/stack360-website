@@ -34,7 +34,7 @@ export const SERVICE_LINKS: FooterLink[] = [
 ];
 
 export const COMPANY_LINKS: FooterLink[] = [
-  { label: 'About Us', href: '/who-we-are' },
+  { label: 'Who We Are', href: '/who-we-are' },
   { label: 'Our Work', href: '/our-work' },
   { label: 'Hire Developers', href: '/work-with-us/hire' },
   { label: 'Case Studies', href: '/our-work/case-studies' },
