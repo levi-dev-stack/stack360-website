@@ -15,46 +15,45 @@ export const CULTURE_GOAL = {
   ],
 } as const;
 
+/**
+ * Intrinsic `width`/`height` are the real pixel dimensions of each asset. They let the
+ * masonry render every photo uncropped at its natural aspect ratio with zero layout shift.
+ */
 export const CULTURE_OFFICE_PHOTOS = [
   {
     src: '/assets/who-we-are/office/hr-department.png',
     alt: 'Stack360 HR department workspace',
     caption: 'HR & operations',
+    width: 720,
+    height: 720,
   },
   {
     src: '/assets/who-we-are/office/dev-hall.png',
     alt: 'Developers working in the main engineering hall',
     caption: 'Engineering hall',
+    width: 1020,
+    height: 1276,
   },
   {
     src: '/assets/who-we-are/office/dev-hall-way.png',
     alt: 'Development hallway at Stack360 Lahore office',
     caption: 'Dev corridor',
+    width: 1040,
+    height: 644,
   },
   {
     src: '/assets/who-we-are/office/meeting-room.png',
     alt: 'Team meeting room for architecture reviews',
     caption: 'Meeting room',
+    width: 1020,
+    height: 660,
   },
   {
     src: '/assets/who-we-are/office/gaming-area.png',
     alt: 'Recreation and gaming area for team breaks',
     caption: 'Recreation space',
-  },
-  {
-    src: '/assets/who-we-are/office/tour-2.png',
-    alt: 'Office tour showing collaborative workspace',
-    caption: 'Studio tour',
-  },
-  {
-    src: '/assets/who-we-are/office/collision.png',
-    alt: 'Leadership collaboration session',
-    caption: 'Leadership sync',
-  },
-  {
-    src: '/assets/who-we-are/office/collision-haider.png',
-    alt: 'Technical leadership discussion',
-    caption: 'Technical review',
+    width: 1024,
+    height: 660,
   },
 ] as const;
 
@@ -63,50 +62,58 @@ export const CULTURE_COLLAGE_PHOTOS = [
   {
     src: '/assets/culture/tour.JPG',
     alt: 'Stack360 team on an outdoor retreat holding the company banner',
-    span: 'wide' as const,
-    rotate: '-1' as const,
+    caption: 'Team retreat',
+    width: 4928,
+    height: 3264,
   },
   {
     src: '/assets/culture/IMG_3329.jpg',
     alt: 'Two Stack360 teammates in the studio lobby',
-    span: 'tall' as const,
-    rotate: '2' as const,
+    caption: 'In the studio',
+    width: 3024,
+    height: 4032,
   },
   {
     src: '/assets/culture/DSC_0144.JPG',
     alt: 'Stack360 team members posing in the office',
-    span: 'md' as const,
-    rotate: '-2' as const,
+    caption: 'The crew',
+    width: 4928,
+    height: 3264,
   },
   {
     src: '/assets/culture/IMG_5568.jpg',
     alt: 'Team members collaborating on laptops during a studio session',
-    span: 'tall' as const,
-    rotate: '1' as const,
+    caption: 'Studio day',
+    width: 3024,
+    height: 4032,
   },
   {
     src: '/assets/culture/DSC_0208.JPG',
     alt: 'Large Stack360 team group photo in the office',
-    span: 'lg' as const,
-    rotate: '0' as const,
+    caption: 'All hands',
+    width: 4928,
+    height: 3264,
   },
   {
     src: '/assets/culture/DSC_0062.JPG',
     alt: 'Stack360 teammates in traditional attire at the office',
-    span: 'md' as const,
-    rotate: '1' as const,
+    caption: 'Culture day',
+    width: 4928,
+    height: 3264,
   },
   {
     src: '/assets/culture/IMG_5569.jpg',
     alt: 'Two Stack360 colleagues sharing a casual moment',
-    span: 'sm' as const,
-    rotate: '-1' as const,
+    caption: 'Between sessions',
+    width: 3024,
+    height: 4032,
   },
   {
     src: '/assets/culture/DSC_0149.JPG',
     alt: 'Two Stack360 teammates at a desk in the studio',
-    span: 'wide' as const,
-    rotate: '2' as const,
+    caption: 'Heads down',
+    width: 4928,
+    height: 3264,
   },
 ] as const;
 

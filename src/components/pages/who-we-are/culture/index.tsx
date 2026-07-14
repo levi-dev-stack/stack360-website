@@ -1,6 +1,5 @@
 import Image from 'next/image';
-import CultureCollage from '@/components/pages/who-we-are/shared/CultureCollage';
-import PhotoGallery from '@/components/pages/who-we-are/shared/PhotoGallery';
+import MasonryGallery from '@/components/pages/who-we-are/shared/MasonryGallery';
 import MotionCard from '@/components/shared/motion/MotionCard';
 import MotionSection from '@/components/shared/motion/MotionSection';
 import { MotionStagger, MotionStaggerItem } from '@/components/shared/motion/MotionStagger';
@@ -57,7 +56,7 @@ export default function CulturePage() {
               </p>
             </MotionStaggerItem>
           </MotionStagger>
-          <CultureCollage photos={CULTURE_COLLAGE_PHOTOS} />
+          <MasonryGallery photos={CULTURE_COLLAGE_PHOTOS} />
         </div>
       </MotionSection>
 
@@ -76,7 +75,7 @@ export default function CulturePage() {
               </p>
             </MotionStaggerItem>
           </MotionStagger>
-          <PhotoGallery photos={CULTURE_OFFICE_PHOTOS} />
+          <MasonryGallery photos={CULTURE_OFFICE_PHOTOS} />
         </div>
       </MotionSection>
 
