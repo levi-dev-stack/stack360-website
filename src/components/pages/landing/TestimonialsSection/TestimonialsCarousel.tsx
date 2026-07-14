@@ -79,7 +79,7 @@ export default function TestimonialsCarousel() {
   }, [reduced, paused, total]);
 
   return (
-    <section className="site-section relative w-full overflow-hidden bg-neutral-950 py-2xl">
+    <section className="site-section relative w-full overflow-hidden border-t border-neutral-800 bg-linear-to-b from-neutral-black to-neutral-950 py-2xl">
       <div
         aria-hidden
         className="pointer-events-none absolute -right-24 top-0 h-80 w-80 rounded-full bg-primary/10 blur-[80px]"

@@ -54,8 +54,13 @@ function ProcessStep({ step, index }: { step: (typeof LANDING_PROCESS)[number]; 
  */
 export default function ProcessSection() {
   return (
-    <section className="site-section w-full bg-neutral-950 py-2xl">
-      <div className="site-container">
+    <section className="site-section relative w-full overflow-hidden border-t border-neutral-800 bg-linear-to-b from-neutral-800 via-neutral-950 to-neutral-black py-2xl">
+      <div
+        aria-hidden
+        className="pointer-events-none absolute -right-24 top-0 h-96 w-96 rounded-full bg-primary/10 blur-[120px]"
+      />
+
+      <div className="site-container relative">
         <div className="mb-3xl flex flex-col gap-lg md:flex-row md:items-end md:justify-between">
           <div className="max-w-3xl space-y-md">
             <h2 className="text-balance text-3xl font-black tracking-tight text-neutral-50 md:text-4xl">

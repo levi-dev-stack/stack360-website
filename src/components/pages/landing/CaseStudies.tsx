@@ -67,7 +67,7 @@ export default function CaseStudiesSection() {
   const { ref, visible } = useMotionVisible<HTMLDivElement>();
 
   return (
-    <section className="site-section relative w-full overflow-hidden bg-neutral-950 py-2xl">
+    <section className="site-section relative w-full overflow-hidden border-t border-neutral-800 bg-linear-to-b from-neutral-950 to-neutral-black py-2xl">
       <div className="pointer-events-none absolute -left-32 top-0 h-96 w-96 rounded-full bg-secondary/20 blur-[120px]" />
 
       <div className="site-container relative">
