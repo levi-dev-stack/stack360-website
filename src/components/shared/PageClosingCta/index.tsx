@@ -65,24 +65,29 @@ export default function PageClosingCta({
           variants={motionVariants(reduced, slideFromRight)}
           initial={false}
           animate={visible ? 'show' : 'hidden'}
-          className="flex flex-wrap gap-sm"
+          className="flex w-full flex-col gap-sm sm:w-auto sm:flex-row sm:flex-wrap sm:justify-end"
         >
-          <motion.div whileHover={reduced ? undefined : { scale: 1.03 }} whileTap={{ scale: 0.97 }}>
+          <motion.div
+            className="w-full sm:w-auto"
+            whileHover={reduced ? undefined : { scale: 1.03 }}
+            whileTap={{ scale: 0.97 }}
+          >
             <Link
               href={primary.href}
-              className="inline-block rounded-sm bg-primary px-xl py-md text-sm font-bold text-neutral-50 shadow-md transition-colors hover:bg-primary-dark focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+              className="block w-full rounded-sm bg-primary px-xl py-md text-center text-sm font-bold text-neutral-50 shadow-md transition-colors hover:bg-primary-dark focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary sm:w-auto sm:min-w-64"
             >
               {primary.label}
             </Link>
           </motion.div>
           {secondary && (
             <motion.div
+              className="w-full sm:w-auto"
               whileHover={reduced ? undefined : { scale: 1.03 }}
               whileTap={{ scale: 0.97 }}
             >
               <Link
                 href={secondary.href}
-                className="inline-block rounded-sm border border-neutral-300 bg-neutral-50 px-xl py-md text-sm font-bold text-neutral-800 transition-colors hover:border-neutral-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+                className="block w-full rounded-sm border border-neutral-300 bg-neutral-50 px-xl py-md text-center text-sm font-bold text-neutral-800 transition-colors hover:border-neutral-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary sm:w-auto sm:min-w-64"
               >
                 {secondary.label}
               </Link>

@@ -3,10 +3,11 @@ import { Suspense } from 'react';
 import ClientsMarquee from '@/components/pages/landing/ClientsMarquee';
 import HeroSection from '@/components/pages/landing/HeroSection';
 import HorizontalWedgeTrack from '@/components/pages/landing/HorizontalWedge';
-import LandingCta from '@/components/pages/landing/LandingCta';
 import ProcessSection from '@/components/pages/landing/ProcessSection';
 import SectionSkeleton from '@/components/pages/landing/SectionSkeleton';
 import ServicesSection from '@/components/pages/landing/ServicesSection';
+import PageClosingCta from '@/components/shared/PageClosingCta';
+import { LANDING_CTA } from '@/constants/component/landing-data';
 import { MOCK_WEDGES } from '@/constants/component/wedge-data';
 
 const CaseStudiesSection = dynamic(() => import('@/components/pages/landing/CaseStudies'), {
@@ -45,7 +46,12 @@ export default function LandingPage() {
         <TestimonialsSection />
       </Suspense>
 
-      <LandingCta />
+      <PageClosingCta
+        title={LANDING_CTA.title}
+        description={LANDING_CTA.description}
+        primary={LANDING_CTA.primary}
+        secondary={LANDING_CTA.secondary}
+      />
     </div>
   );
 }

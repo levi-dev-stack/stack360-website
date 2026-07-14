@@ -14,6 +14,7 @@ import PageClosingCta from '@/components/shared/PageClosingCta';
 import PageHero from '@/components/shared/PageHero';
 import type { CapabilityPageData, CapabilitySlug } from '@/constants/component/what-we-build-data';
 import { breadcrumbJsonLd, faqPageJsonLd } from '@/lib/seo/json-ld';
+import { capitalize } from '@/utils/string';
 
 /** BrandIcon service slugs (short keys in SERVICE_ICONS). */
 const SERVICE_ICON: Record<CapabilitySlug, string> = {
@@ -188,7 +189,7 @@ export default function CapabilityPage({ data }: CapabilityPageProps) {
                   <span className="inline-flex items-center gap-sm rounded-md border border-neutral-200 bg-neutral-50 px-md py-sm shadow-sm">
                     <BrandIcon slug={slug} size={18} variant="tech" />
                     <span className="text-xs font-semibold text-neutral-800">
-                      {formatTechLabel(slug)}
+                      {capitalize(formatTechLabel(slug))}
                     </span>
                   </span>
                 </MotionStaggerItem>
