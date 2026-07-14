@@ -17,8 +17,8 @@ function ProcessStep({ step, index }: { step: (typeof LANDING_PROCESS)[number]; 
       <div className="relative mb-md flex items-center">
         <div
           className={cn(
-            'z-10 flex h-12 w-12 items-center justify-center rounded-xl border bg-white shadow-sm',
-            'border-neutral-200 text-neutral-500 transition-all duration-300 ease-out',
+            'z-10 flex h-12 w-12 items-center justify-center rounded-xl border bg-neutral-900 shadow-sm',
+            'border-neutral-800 text-neutral-400 transition-all duration-300 ease-out',
             'group-hover:scale-110 group-hover:border-primary/40 group-hover:text-primary group-hover:shadow-md',
             'group-focus-within:scale-110 group-focus-within:border-primary/40 group-focus-within:text-primary',
             'motion-reduce:transition-colors motion-reduce:group-hover:scale-100 motion-reduce:group-focus-within:scale-100'
@@ -27,7 +27,7 @@ function ProcessStep({ step, index }: { step: (typeof LANDING_PROCESS)[number]; 
           <IconComponent className="h-5 w-5 stroke-[1.75]" aria-hidden />
         </div>
 
-        <span className="ml-md font-mono text-[10px] font-bold uppercase tracking-widest text-neutral-400 transition-colors duration-300 group-hover:text-neutral-600">
+        <span className="ml-md font-mono text-[10px] font-bold uppercase tracking-widest text-neutral-500 transition-colors duration-300 group-hover:text-neutral-300">
           Phase 0{index + 1}
         </span>
       </div>
@@ -35,14 +35,14 @@ function ProcessStep({ step, index }: { step: (typeof LANDING_PROCESS)[number]; 
       <div
         className={cn(
           'rounded-2xl border border-transparent p-sm transition-all duration-300 ease-out',
-          'group-hover:border-neutral-200/60 group-hover:bg-white/50',
-          'group-focus-within:border-neutral-200/60 group-focus-within:bg-white/50'
+          'group-hover:border-neutral-800 group-hover:bg-neutral-900/50',
+          'group-focus-within:border-neutral-800 group-focus-within:bg-neutral-900/50'
         )}
       >
-        <h3 className="text-base font-bold tracking-tight text-neutral-900 transition-colors duration-300 group-hover:text-primary">
+        <h3 className="text-base font-bold tracking-tight text-neutral-50 transition-colors duration-300 group-hover:text-primary">
           {step.title}
         </h3>
-        <p className="mt-xs text-sm leading-relaxed text-neutral-600">{step.description}</p>
+        <p className="mt-xs text-sm leading-relaxed text-neutral-400">{step.description}</p>
       </div>
     </li>
   );
@@ -54,15 +54,15 @@ function ProcessStep({ step, index }: { step: (typeof LANDING_PROCESS)[number]; 
  */
 export default function ProcessSection() {
   return (
-    <section className="site-section w-full border-t border-neutral-200 bg-neutral-50 py-2xl">
+    <section className="site-section w-full bg-neutral-950 py-2xl">
       <div className="site-container">
         <div className="mb-3xl flex flex-col gap-lg md:flex-row md:items-end md:justify-between">
           <div className="max-w-3xl space-y-md">
-            <h2 className="text-balance text-3xl font-black tracking-tight text-neutral-900 md:text-4xl">
+            <h2 className="text-balance text-3xl font-black tracking-tight text-neutral-50 md:text-4xl">
               A delivery process built for predictability.
             </h2>
           </div>
-          <p className="max-w-content text-sm leading-relaxed text-neutral-600 md:text-base">
+          <p className="max-w-content text-sm leading-relaxed text-neutral-400 md:text-base">
             No black-box sprints. Every phase has clear outputs, owners, and review gates before we
             move forward.
           </p>
@@ -70,7 +70,7 @@ export default function ProcessSection() {
 
         <ol className="relative grid grid-cols-1 gap-xl sm:grid-cols-2 lg:grid-cols-4">
           <div
-            className="absolute top-[26px] hidden h-[2px] w-full bg-neutral-200/70 lg:block"
+            className="absolute top-[26px] hidden h-[2px] w-full bg-neutral-800 lg:block"
             aria-hidden
           />
 

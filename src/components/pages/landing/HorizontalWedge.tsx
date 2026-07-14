@@ -35,7 +35,7 @@ function WedgeHeading({ sectionTitle, sectionHighlight, sectionSubtitle }: Headi
  */
 function VerticalWedges({ cards, ...heading }: HorizontalWedgeTrackProps) {
   return (
-    <section className="site-section bg-neutral-black py-2xl">
+    <section className="site-section border-t border-neutral-800 bg-neutral-950 py-2xl">
       <div className="site-container space-y-xl">
         <WedgeHeading {...heading} />
         <div className="grid grid-cols-1 gap-lg sm:grid-cols-2 xl:grid-cols-3">
@@ -93,7 +93,7 @@ function PinnedWedges({ cards, ...heading }: HorizontalWedgeTrackProps) {
   }, []);
 
   return (
-    <div ref={targetRef} className="relative h-[180vh] bg-neutral-black">
+    <div ref={targetRef} className="relative h-[180vh] border-t border-neutral-800 bg-neutral-950">
       <div className="sticky top-0 flex h-screen min-h-160 w-full flex-col justify-center overflow-hidden">
         <div className="site-container flex h-full flex-col justify-center gap-[clamp(1.5rem,4vh,2.75rem)]">
           <div className="shrink-0">

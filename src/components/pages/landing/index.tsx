@@ -17,7 +17,7 @@ const CaseStudiesSection = dynamic(() => import('@/components/pages/landing/Case
 const TestimonialsSection = dynamic(
   () => import('@/components/pages/landing/TestimonialsSection'),
   {
-    loading: () => <SectionSkeleton variant="carousel" className="bg-neutral-black" />,
+    loading: () => <SectionSkeleton variant="carousel" className="bg-neutral-950" />,
   }
 );
 
@@ -42,7 +42,7 @@ export default function LandingPage() {
         <CaseStudiesSection />
       </Suspense>
 
-      <Suspense fallback={<SectionSkeleton variant="carousel" className="bg-neutral-black" />}>
+      <Suspense fallback={<SectionSkeleton variant="carousel" className="bg-neutral-950" />}>
         <TestimonialsSection />
       </Suspense>
 
