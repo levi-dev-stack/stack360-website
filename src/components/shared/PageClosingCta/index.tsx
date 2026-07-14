@@ -67,18 +67,6 @@ export default function PageClosingCta({
           animate={visible ? 'show' : 'hidden'}
           className="flex w-full flex-col gap-sm sm:w-auto sm:flex-row sm:flex-wrap sm:justify-end"
         >
-          <motion.div
-            className="w-full sm:w-auto"
-            whileHover={reduced ? undefined : { scale: 1.03 }}
-            whileTap={{ scale: 0.97 }}
-          >
-            <Link
-              href={primary.href}
-              className="block w-full rounded-sm bg-primary px-xl py-md text-center text-sm font-bold text-neutral-50 shadow-md transition-colors hover:bg-primary-dark focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary sm:w-auto sm:min-w-64"
-            >
-              {primary.label}
-            </Link>
-          </motion.div>
           {secondary && (
             <motion.div
               className="w-full sm:w-auto"
@@ -93,6 +81,18 @@ export default function PageClosingCta({
               </Link>
             </motion.div>
           )}
+          <motion.div
+            className="w-full sm:w-auto"
+            whileHover={reduced ? undefined : { scale: 1.03 }}
+            whileTap={{ scale: 0.97 }}
+          >
+            <Link
+              href={primary.href}
+              className="block w-full rounded-sm bg-primary px-xl py-md text-center text-sm font-bold text-neutral-50 shadow-md transition-colors hover:bg-primary-dark focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary sm:w-auto sm:min-w-64"
+            >
+              {primary.label}
+            </Link>
+          </motion.div>
         </motion.div>
       </div>
     </motion.section>
