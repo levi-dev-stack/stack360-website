@@ -6,6 +6,7 @@ import HorizontalWedgeTrack from '@/components/pages/landing/HorizontalWedge';
 import ProcessSection from '@/components/pages/landing/ProcessSection';
 import SectionSkeleton from '@/components/pages/landing/SectionSkeleton';
 import ServicesSection from '@/components/pages/landing/ServicesSection';
+import TrustBadges from '@/components/pages/landing/TrustBadges';
 import PageClosingCta from '@/components/shared/PageClosingCta';
 import { LANDING_CTA } from '@/constants/component/landing-data';
 import { MOCK_WEDGES } from '@/constants/component/wedge-data';
@@ -41,6 +42,8 @@ export default function LandingPage() {
       <Suspense fallback={<SectionSkeleton variant="tall" className="bg-neutral-950" />}>
         <CaseStudiesSection />
       </Suspense>
+
+      <TrustBadges />
 
       <Suspense fallback={<SectionSkeleton variant="carousel" className="bg-neutral-950" />}>
         <TestimonialsSection />
