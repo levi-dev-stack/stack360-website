@@ -72,33 +72,36 @@ export default function HistoryPage() {
       </MotionSection>
 
       <MotionSection className="border-t border-neutral-200 bg-neutral-100/50 py-2xl">
-        <div className="site-container grid grid-cols-1 items-center gap-2xl lg:grid-cols-2">
+        <div className="site-container">
           <MotionReveal>
             <MotionCard
               interactive={false}
-              className="relative aspect-4/3 overflow-hidden rounded-xl border border-neutral-200 shadow-sm"
+              className="grid grid-cols-1 items-center gap-xl rounded-xl border border-neutral-200 bg-neutral-50 p-xl lg:grid-cols-12 lg:gap-2xl"
             >
-              <Image
-                src={HISTORY_VISION.image.src}
-                alt={HISTORY_VISION.image.alt}
-                fill
-                sizes="(max-width: 1024px) 100vw, 50vw"
-                className="object-cover transition-transform duration-700 hover:scale-[1.03]"
-              />
+              <div className="relative aspect-4/5 overflow-hidden rounded-lg border border-neutral-200 lg:col-span-4">
+                <Image
+                  src={HISTORY_VISION.image.src}
+                  alt={HISTORY_VISION.image.alt}
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 33vw"
+                  className="object-cover object-top transition-transform duration-700 hover:scale-[1.03]"
+                />
+              </div>
+
+              <MotionStagger className="space-y-md lg:col-span-8">
+                <MotionStaggerItem>
+                  <h2 className="text-2xl font-bold tracking-tight text-neutral-900">
+                    {HISTORY_VISION.title}
+                  </h2>
+                </MotionStaggerItem>
+                {HISTORY_VISION.paragraphs.map((paragraph) => (
+                  <MotionStaggerItem key={paragraph.slice(0, 40)}>
+                    <p className="text-sm leading-relaxed text-neutral-600">{paragraph}</p>
+                  </MotionStaggerItem>
+                ))}
+              </MotionStagger>
             </MotionCard>
           </MotionReveal>
-          <MotionStagger className="space-y-md">
-            <MotionStaggerItem>
-              <h2 className="text-2xl font-bold tracking-tight text-neutral-900">
-                {HISTORY_VISION.title}
-              </h2>
-            </MotionStaggerItem>
-            {HISTORY_VISION.paragraphs.map((paragraph) => (
-              <MotionStaggerItem key={paragraph.slice(0, 40)}>
-                <p className="text-sm leading-relaxed text-neutral-600">{paragraph}</p>
-              </MotionStaggerItem>
-            ))}
-          </MotionStagger>
         </div>
       </MotionSection>
 

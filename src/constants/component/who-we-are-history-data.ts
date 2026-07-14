@@ -48,8 +48,8 @@ export const HISTORY_VISION = {
     'Our journey forward is marked by a commitment to understanding market needs, driving positive change, and redefining excellence through growth, innovation, and a united team.',
   ],
   image: {
-    src: '/assets/who-we-are/office/dev-hall.png',
-    alt: 'Stack360 engineering team working in the development hall',
+    src: '/assets/who-we-are/leaders/azmat-rana.png',
+    alt: 'Azmat Rana, CEO of Stack360',
   },
 } as const;
 
