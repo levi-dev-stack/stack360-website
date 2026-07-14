@@ -16,7 +16,7 @@ export interface WedgeCardProps {
 
 export function WedgeCard({ number, tagline, title, description, icon, stats }: WedgeCardProps) {
   return (
-    <div className="w-[450px] shrink-0 rounded-xl border border-neutral-800 bg-linear-to-b from-neutral-900 to-neutral-950 p-lg shadow-card flex flex-col justify-between h-[480px] relative overflow-hidden group">
+    <div className="group relative flex h-full min-h-88 w-full flex-col justify-between overflow-hidden rounded-xl border border-neutral-800 bg-linear-to-b from-neutral-900 to-neutral-950 p-lg shadow-card">
       <div className="absolute -top-20 -right-20 h-40 w-40 rounded-full bg-primary/10 blur-3xl transition-opacity duration-500 group-hover:bg-primary/20" />
 
       <div>
