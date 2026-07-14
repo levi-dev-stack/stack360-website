@@ -282,7 +282,23 @@ export const LANDING_CASE_STUDIES = [
   },
 ] as const;
 
-export const LANDING_TESTIMONIALS = [
+export interface Testimonial {
+  quote: string;
+  name: string;
+  role: string;
+  company: string;
+  industry: string;
+  rating: number;
+  /**
+   * Real client photo. Local asset (e.g. '/assets/testimonials/kyle-david.jpg') or a
+   * remote URL (its host must be whitelisted in `next.config.ts` → images.remotePatterns).
+   * Leave undefined when the client hasn't shared a photo — the carousel shows a fallback
+   * user icon instead.
+   */
+  avatar?: string;
+}
+
+export const LANDING_TESTIMONIALS: readonly Testimonial[] = [
   {
     quote:
       'Stack360 built ATC exactly as we envisioned. Their team handled complex HR workflows and real-time updates, significantly improving our internal processes.',
@@ -290,7 +306,6 @@ export const LANDING_TESTIMONIALS = [
     role: 'CEO',
     company: 'ATC',
     industry: 'Operations · United States',
-    avatar: 'https://randomuser.me/api/portraits/men/75.jpg',
     rating: 5,
   },
   {
@@ -300,7 +315,6 @@ export const LANDING_TESTIMONIALS = [
     role: 'CEO',
     company: 'Autobuffy',
     industry: 'eCommerce · United States',
-    avatar: 'https://randomuser.me/api/portraits/men/32.jpg',
     rating: 5,
   },
   {
@@ -310,7 +324,6 @@ export const LANDING_TESTIMONIALS = [
     role: 'CEO',
     company: 'BuffyHub',
     industry: 'Marketplace · United States',
-    avatar: 'https://randomuser.me/api/portraits/men/46.jpg',
     rating: 5,
   },
   {
@@ -320,7 +333,6 @@ export const LANDING_TESTIMONIALS = [
     role: 'CEO',
     company: 'Cercle',
     industry: 'Fashion rental · Global',
-    avatar: 'https://randomuser.me/api/portraits/men/22.jpg',
     rating: 5,
   },
   {
@@ -330,10 +342,9 @@ export const LANDING_TESTIMONIALS = [
     role: 'CEO',
     company: 'Coach Catalyst',
     industry: 'Fitness · United States',
-    avatar: 'https://randomuser.me/api/portraits/men/61.jpg',
     rating: 5,
   },
-] as const;
+];
 
 export const LANDING_CTA = {
   title: 'Struggling to find a trusted tech partner?',

@@ -1,11 +1,53 @@
 'use client';
 
-import { ChevronLeft, ChevronRight, Pause, Play, Quote } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Pause, Play, Quote, UserRound } from 'lucide-react';
 import { AnimatePresence, motion, useReducedMotion } from 'motion/react';
 import Image from 'next/image';
 import { useCallback, useEffect, useState } from 'react';
 import { EASE_OUT_EXPO } from '@/components/shared/motion/variants';
 import { LANDING_TESTIMONIALS } from '@/constants/component/landing-data';
+
+interface TestimonialAvatarProps {
+  src?: string;
+  alt: string;
+}
+
+/** Shows the client photo when available; falls back to a branded user icon otherwise. */
+function TestimonialAvatar({ src, alt }: TestimonialAvatarProps) {
+  const [failed, setFailed] = useState(false);
+  const showImage = Boolean(src) && !failed;
+
+  return (
+    <div className="relative aspect-4/3 md:aspect-auto md:min-h-72">
+      {showImage ? (
+        <>
+          <Image
+            src={src as string}
+            alt={alt}
+            fill
+            sizes="(max-width: 768px) 100vw, 280px"
+            className="object-cover"
+            onError={() => setFailed(true)}
+          />
+          <div
+            aria-hidden
+            className="absolute inset-0 bg-linear-to-t from-neutral-900/60 to-transparent md:bg-linear-to-r"
+          />
+        </>
+      ) : (
+        <div
+          aria-hidden
+          className="absolute inset-0 flex items-center justify-center bg-linear-to-br from-neutral-800 to-neutral-900"
+        >
+          <div className="pointer-events-none absolute inset-0 bg-primary/5" />
+          <span className="relative flex h-20 w-20 items-center justify-center rounded-full border border-neutral-700 bg-neutral-800/80 text-neutral-400 shadow-sm">
+            <UserRound size={34} strokeWidth={1.5} />
+          </span>
+        </div>
+      )}
+    </div>
+  );
+}
 
 export default function TestimonialsCarousel() {
   const reduced = useReducedMotion();
@@ -82,11 +124,7 @@ export default function TestimonialsCarousel() {
           </div>
         </div>
 
-        <div
-          className="relative min-h-[20rem] md:min-h-[18rem]"
-          aria-live="polite"
-          aria-atomic="true"
-        >
+        <div className="relative min-h-80 md:min-h-72" aria-live="polite" aria-atomic="true">
           <AnimatePresence mode="wait" initial={false}>
             <motion.article
               key={active}
@@ -96,19 +134,10 @@ export default function TestimonialsCarousel() {
               transition={{ duration: 0.45, ease: EASE_OUT_EXPO }}
               className="grid grid-cols-1 overflow-hidden rounded-2xl border border-neutral-800 bg-linear-to-br from-neutral-800 to-neutral-900 md:grid-cols-[minmax(12rem,28%)_1fr]"
             >
-              <div className="relative aspect-4/3 md:aspect-auto md:min-h-[18rem]">
-                <Image
-                  src={current.avatar}
-                  alt={`${current.name}, ${current.role} at ${current.company}`}
-                  fill
-                  sizes="(max-width: 768px) 100vw, 280px"
-                  className="object-cover"
-                />
-                <div
-                  aria-hidden
-                  className="absolute inset-0 bg-linear-to-t from-neutral-900/60 to-transparent md:bg-linear-to-r"
-                />
-              </div>
+              <TestimonialAvatar
+                src={current.avatar}
+                alt={`${current.name}, ${current.role} at ${current.company}`}
+              />
 
               <div className="flex flex-col justify-between gap-lg p-lg md:p-xl">
                 <div>
