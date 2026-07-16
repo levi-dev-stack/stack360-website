@@ -66,11 +66,11 @@ export const ASSISTANT_CONTACT: AssistantContactField[] = [
     href: 'tel:+923311111753',
     copyValue: '+923311111753',
   },
-  {
-    label: 'Pakistan · Global Delivery Center',
-    value: '82-G, First Floor, DHA Phase 1, Lahore, Punjab, Pakistan',
-    copyValue: '82-G, First Floor, DHA Phase 1, Lahore, Punjab, Pakistan',
-  },
+  // {
+  //   label: 'Pakistan · Global Delivery Center',
+  //   value: '82-G, First Floor, DHA Phase 1, Lahore, Punjab, Pakistan',
+  //   copyValue: '82-G, First Floor, DHA Phase 1, Lahore, Punjab, Pakistan',
+  // },
   {
     label: 'United Kingdom · Regional Office',
     value: '58 St. Johns Road, Barking, Essex, IG11 7XL, United Kingdom',

@@ -26,12 +26,12 @@ export const HISTORY_MILESTONES = [
     description:
       'From ERP and HR platforms to marketplaces and FinTech, we built systems that survived real users and real load.',
   },
-  {
-    year: 'Global',
-    title: 'Lahore delivery, UK presence',
-    description:
-      'A global delivery center in Pakistan and a regional office in the United Kingdom — follow-the-sun without losing accountability.',
-  },
+  // {
+  //   year: 'Global',
+  //   title: 'Lahore delivery, UK presence',
+  //   description:
+  //     'A global delivery center in Pakistan and a regional office in the United Kingdom — follow-the-sun without losing accountability.',
+  // },
   {
     year: 'Forward',
     title: 'Vision beyond 1,000 builders',

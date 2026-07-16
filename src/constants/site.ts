@@ -17,14 +17,14 @@ export const SITE_SOCIAL = {
 } as const;
 
 export const SITE_OFFICES = [
-  {
-    country: 'Pakistan',
-    role: 'Global Delivery Center',
-    streetAddress: '82-G, First Floor, DHA Phase 1',
-    addressLocality: 'Lahore',
-    addressRegion: 'Punjab',
-    addressCountry: 'PK',
-  },
+  // {
+  //   country: 'Pakistan',
+  //   role: 'Global Delivery Center',
+  //   streetAddress: '82-G, First Floor, DHA Phase 1',
+  //   addressLocality: 'Lahore',
+  //   addressRegion: 'Punjab',
+  //   addressCountry: 'PK',
+  // },
   {
     country: 'United Kingdom',
     role: 'Regional Office',

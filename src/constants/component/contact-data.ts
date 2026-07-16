@@ -29,12 +29,12 @@ export const CONTACT_CHANNELS = [
 ] as const;
 
 export const CONTACT_OFFICES = [
-  {
-    country: 'Pakistan',
-    role: 'Global Delivery Center',
-    flagSrc: 'https://flagcdn.com/pk.svg',
-    address: '82-G, First Floor, DHA Phase 1, Lahore, Punjab, Pakistan',
-  },
+  // {
+  //   country: 'Pakistan',
+  //   role: 'Global Delivery Center',
+  //   flagSrc: 'https://flagcdn.com/pk.svg',
+  //   address: '82-G, First Floor, DHA Phase 1, Lahore, Punjab, Pakistan',
+  // },
   {
     country: 'United Kingdom',
     role: 'Regional Office',

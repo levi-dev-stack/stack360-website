@@ -9,11 +9,11 @@ export const HIRE_HERO = {
 export const HIRE_PROMISE = 'Get shortlists within 2 days. Hire in as fast as 1 week.';
 
 export const HIRE_CONTACT = [
-  {
-    label: 'Pakistan office',
-    value: '82-G, First Floor, DHA Phase 1, Lahore, Pakistan',
-    icon: 'map' as const,
-  },
+  // {
+  //   label: 'Pakistan office',
+  //   value: '82-G, First Floor, DHA Phase 1, Lahore, Pakistan',
+  //   icon: 'map' as const,
+  // },
   {
     label: 'UK office',
     value: '58 St. Johns Road, Barking, Essex, IG11 7XL, United Kingdom',
