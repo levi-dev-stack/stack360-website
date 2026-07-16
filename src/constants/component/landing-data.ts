@@ -18,7 +18,7 @@ export const LANDING_SERVICES = [
           { name: 'Ruby on Rails', slug: 'rubyonrails' },
           { name: '.NET', slug: 'dotnet' },
           { name: 'PostgreSQL', slug: 'postgresql' },
-          { name: 'Docker', slug: 'docker' },
+          { name: 'MySQL', slug: 'mysql' },
         ],
       },
       {
@@ -29,8 +29,8 @@ export const LANDING_SERVICES = [
         skills: [
           { name: 'React', slug: 'react' },
           { name: 'Node.js', slug: 'nodedotjs' },
-          { name: 'Ruby on Rails', slug: 'rubyonrails' },
-          { name: 'PostgreSQL', slug: 'postgresql' },
+          { name: 'Salesforce', slug: 'salesforce' },
+          { name: 'MongoDB', slug: 'mongodb' },
         ],
       },
       {
@@ -40,8 +40,8 @@ export const LANDING_SERVICES = [
         href: '/what-we-build/saas',
         skills: [
           { name: 'Next.js', slug: 'nextdotjs' },
-          { name: 'Node.js', slug: 'nodedotjs' },
-          { name: 'Stripe', slug: 'stripe' },
+          { name: 'GraphQL', slug: 'graphql' },
+          { name: 'Heroku', slug: 'heroku' },
           { name: 'Docker', slug: 'docker' },
         ],
       },
@@ -51,10 +51,10 @@ export const LANDING_SERVICES = [
         icon: 'custom',
         href: '/what-we-build/custom-software',
         skills: [
-          { name: 'React', slug: 'react' },
           { name: 'Python', slug: 'python' },
+          { name: 'Laravel', slug: 'laravel' },
+          { name: 'Java', slug: 'openjdk' },
           { name: 'Ruby on Rails', slug: 'rubyonrails' },
-          { name: 'Docker', slug: 'docker' },
         ],
       },
     ],
@@ -68,10 +68,10 @@ export const LANDING_SERVICES = [
         icon: 'mobile',
         href: '/what-we-build/mobile-apps',
         skills: [
+          { name: 'Swift', slug: 'swift' },
+          { name: 'Android', slug: 'android' },
           { name: 'Flutter', slug: 'flutter' },
           { name: 'React Native', slug: 'reactnative' },
-          { name: 'Swift', slug: 'swift' },
-          { name: 'Kotlin', slug: 'kotlin' },
         ],
       },
       {
@@ -81,9 +81,9 @@ export const LANDING_SERVICES = [
         href: '/what-we-build/web-apps',
         skills: [
           { name: 'React', slug: 'react' },
-          { name: 'Next.js', slug: 'nextdotjs' },
           { name: 'Vue.js', slug: 'vuedotjs' },
           { name: 'Angular', slug: 'angular' },
+          { name: 'Next.js', slug: 'nextdotjs' },
         ],
       },
       {
@@ -92,10 +92,12 @@ export const LANDING_SERVICES = [
         icon: 'cloud',
         href: '/what-we-build/cloud',
         skills: [
-          { name: 'Docker', slug: 'docker' },
-          { name: 'Kubernetes', slug: 'kubernetes' },
-          { name: 'Terraform', slug: 'terraform' },
-          { name: 'AWS', slug: 'amazonaws' },
+          { name: 'Amazon Web Services (AWS)', slug: 'amazonaws' },
+          { name: 'Google Cloud', slug: 'googlecloud' },
+          { name: 'Microsoft Azure', slug: 'microsoftazure' },
+          { name: 'DigitalOcean', slug: 'digitalocean' },
+          { name: 'Cloudflare', slug: 'cloudflare' },
+          { name: 'AWS Lambda', slug: 'awslambda' },
         ],
       },
       {
@@ -104,10 +106,14 @@ export const LANDING_SERVICES = [
         icon: 'devops',
         href: '/what-we-build/devops',
         skills: [
-          { name: 'Docker', slug: 'docker' },
           { name: 'Kubernetes', slug: 'kubernetes' },
-          { name: 'GitHub', slug: 'github' },
-          { name: 'Terraform', slug: 'terraform' },
+          { name: 'Jenkins', slug: 'jenkins' },
+          { name: 'CircleCI', slug: 'circleci' },
+          { name: 'GitLab', slug: 'gitlab' },
+          { name: 'Selenium', slug: 'selenium' },
+          { name: 'Nginx', slug: 'nginx' },
+          { name: 'Vercel', slug: 'vercel' },
+          { name: 'Netlify', slug: 'netlify' },
         ],
       },
       {
@@ -146,10 +152,10 @@ export const LANDING_SERVICES = [
         icon: 'ai',
         href: '/what-we-build/ai-solutions',
         skills: [
-          { name: 'Python', slug: 'python' },
-          { name: 'PyTorch', slug: 'pytorch' },
-          { name: 'OpenAI', slug: 'openai' },
           { name: 'TensorFlow', slug: 'tensorflow' },
+          { name: 'PyTorch', slug: 'pytorch' },
+          { name: 'Keras', slug: 'keras' },
+          { name: 'OpenCV', slug: 'opencv' },
         ],
       },
       {
@@ -159,10 +165,12 @@ export const LANDING_SERVICES = [
         icon: 'training',
         href: '/what-we-build/ai-solutions',
         skills: [
-          { name: 'PyTorch', slug: 'pytorch' },
+          { name: 'Jupyter', slug: 'jupyter' },
+          { name: 'NumPy', slug: 'numpy' },
+          { name: 'Pandas', slug: 'pandas' },
+          { name: 'scikit-learn', slug: 'scikitlearn' },
           { name: 'Hugging Face', slug: 'huggingface' },
-          { name: 'Python', slug: 'python' },
-          { name: 'TensorFlow', slug: 'tensorflow' },
+          { name: 'AMD', slug: 'amd' },
         ],
       },
       {
@@ -172,8 +180,8 @@ export const LANDING_SERVICES = [
         icon: 'integration',
         href: '/what-we-build/ai-solutions',
         skills: [
+          { name: 'FastAPI', slug: 'fastapi' },
           { name: 'OpenAI', slug: 'openai' },
-          { name: 'Python', slug: 'python' },
           { name: 'LangChain', slug: 'langchain' },
           { name: 'React', slug: 'react' },
         ],
@@ -185,9 +193,9 @@ export const LANDING_SERVICES = [
         icon: 'mlops',
         href: '/what-we-build/ai-solutions',
         skills: [
+          { name: 'DVC', slug: 'dvc' },
           { name: 'Docker', slug: 'docker' },
           { name: 'Kubernetes', slug: 'kubernetes' },
-          { name: 'Hugging Face', slug: 'huggingface' },
           { name: 'Python', slug: 'python' },
         ],
       },
