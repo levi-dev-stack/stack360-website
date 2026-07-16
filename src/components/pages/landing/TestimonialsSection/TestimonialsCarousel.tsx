@@ -180,7 +180,7 @@ export default function TestimonialsCarousel() {
         <div className="mt-lg flex justify-center gap-sm">
           {LANDING_TESTIMONIALS.map((item, index) => (
             <button
-              key={item.company}
+              key={item.name}
               type="button"
               onClick={() => goTo(index)}
               aria-label={`Show testimonial from ${item.name}`}
