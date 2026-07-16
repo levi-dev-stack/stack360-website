@@ -9,10 +9,10 @@ export interface FooterOffice {
 }
 
 export const OFFICES: FooterOffice[] = [
-  {
-    label: 'Pakistan Office',
-    lines: ['82-G, First Floor,', 'DHA Phase 1, Lahore Pakistan'],
-  },
+  // {
+  //   label: 'Pakistan Office',
+  //   lines: ['82-G, First Floor,', 'DHA Phase 1, Lahore Pakistan'],
+  // },
   {
     label: 'UK Office',
     lines: ['58 St. Johns Road, Barking,', 'Essex, IG11 7XL United Kingdom'],
@@ -20,7 +20,7 @@ export const OFFICES: FooterOffice[] = [
 ];
 
 export const CONTACT = {
-  phone: { label: '+92 331 11 11 753', href: 'tel:+923311111753' },
+  phone: { label: '+44 7404350490', href: 'tel:+447404350490' },
   email: { label: 'sales@stack360.co', href: 'mailto:sales@stack360.co' },
 } as const;
 
