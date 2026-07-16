@@ -1,5 +1,6 @@
 /** Canonical site origin — used by metadata, sitemap, robots, and JSON-LD. */
-export const SITE_URL = 'https://www.stack360.co';
+// export const SITE_URL = 'https://www.stack360.co';
+export const SITE_URL = 'https://stack360static.netlify.app';
 export const SITE_NAME = 'Stack360';
 /** Page title / brand line from https://www.stack360.co/ */
 export const SITE_TAGLINE = 'Your Reliable Software Development Agency';
