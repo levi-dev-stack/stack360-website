@@ -517,7 +517,7 @@ export default function ChatAssistant() {
   ];
 
   return (
-    <div className="pointer-events-none flex flex-col items-center gap-md">
+    <div className="pointer-events-none flex flex-col items-end gap-md">
       <AnimatePresence>
         {open && (
           <motion.div
@@ -888,52 +888,54 @@ export default function ChatAssistant() {
         )}
       </AnimatePresence>
 
-      <ScrollToTopButton />
+      <div className="flex w-14 flex-col items-center gap-md">
+        <ScrollToTopButton />
 
-      <motion.button
-        type="button"
-        aria-expanded={open}
-        aria-controls={panelId}
-        aria-label={open ? 'Close Stack360 Guide' : 'Open Stack360 Guide'}
-        onClick={() => setOpen((v) => !v)}
-        whileHover={reduced ? undefined : { scale: 1.05 }}
-        whileTap={{ scale: 0.96 }}
-        className="pointer-events-auto flex h-14 w-14 items-center justify-center overflow-hidden rounded-full bg-primary text-neutral-50 shadow-card ring-4 ring-primary/20 transition-colors hover:bg-primary-dark"
-      >
-        <AnimatePresence mode="wait" initial={false}>
-          {open ? (
-            <motion.span
-              key="close"
-              initial={reduced ? false : { opacity: 0, rotate: -40 }}
-              animate={{ opacity: 1, rotate: 0 }}
-              exit={reduced ? undefined : { opacity: 0, rotate: 40 }}
-              transition={{ duration: 0.2 }}
-            >
-              <X size={22} strokeWidth={2.25} />
-            </motion.span>
-          ) : (
-            <motion.span
-              key="open"
-              initial={reduced ? false : { opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={reduced ? undefined : { opacity: 0, scale: 0.8 }}
-              transition={{ duration: 0.2 }}
-              className="relative flex h-7 w-7 items-center justify-center overflow-hidden"
-            >
-              <Image
-                src="/icon.svg"
-                alt=""
-                fill
-                sizes="28px"
-                className="object-contain brightness-0 invert"
-              />
-              <span className="sr-only">
-                <MessageCircle size={22} />
-              </span>
-            </motion.span>
-          )}
-        </AnimatePresence>
-      </motion.button>
+        <motion.button
+          type="button"
+          aria-expanded={open}
+          aria-controls={panelId}
+          aria-label={open ? 'Close Stack360 Guide' : 'Open Stack360 Guide'}
+          onClick={() => setOpen((v) => !v)}
+          whileHover={reduced ? undefined : { scale: 1.05 }}
+          whileTap={{ scale: 0.96 }}
+          className="pointer-events-auto flex h-14 w-14 items-center justify-center overflow-hidden rounded-full bg-primary text-neutral-50 shadow-card transition-colors hover:bg-primary-dark"
+        >
+          <AnimatePresence mode="wait" initial={false}>
+            {open ? (
+              <motion.span
+                key="close"
+                initial={reduced ? false : { opacity: 0, rotate: -40 }}
+                animate={{ opacity: 1, rotate: 0 }}
+                exit={reduced ? undefined : { opacity: 0, rotate: 40 }}
+                transition={{ duration: 0.2 }}
+              >
+                <X size={22} strokeWidth={2.25} />
+              </motion.span>
+            ) : (
+              <motion.span
+                key="open"
+                initial={reduced ? false : { opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={reduced ? undefined : { opacity: 0, scale: 0.8 }}
+                transition={{ duration: 0.2 }}
+                className="relative flex h-7 w-7 items-center justify-center overflow-hidden"
+              >
+                <Image
+                  src="/icon.svg"
+                  alt=""
+                  fill
+                  sizes="28px"
+                  className="object-contain brightness-0 invert"
+                />
+                <span className="sr-only">
+                  <MessageCircle size={22} />
+                </span>
+              </motion.span>
+            )}
+          </AnimatePresence>
+        </motion.button>
+      </div>
     </div>
   );
 }

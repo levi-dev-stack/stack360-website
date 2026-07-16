@@ -8,7 +8,7 @@ function AssistantFabFallback() {
   return (
     <div
       aria-hidden
-      className="pointer-events-auto flex h-14 w-14 items-center justify-center rounded-full bg-primary text-neutral-50 shadow-card ring-4 ring-primary/20"
+      className="pointer-events-auto flex h-14 w-14 items-center justify-center rounded-full bg-primary text-neutral-50 shadow-card"
     >
       <Loader2 size={22} className="animate-spin" />
       <span className="sr-only">Loading Stack360 Guide…</span>
