@@ -1,0 +1,7 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": ["src/app/opengraph-image.tsx"],
+    "ignoreValues": []
+  }
+}
