@@ -152,20 +152,20 @@ export default function CaseStudyDetailView({ study }: CaseStudyDetailProps) {
         </div>
       </MotionSection>
 
-      {/* Results — dark instrumentation field */}
-      <MotionSection className="border-b border-neutral-800 bg-neutral-950 py-2xl">
+      {/* Results */}
+      <MotionSection className="border-b border-neutral-200 bg-neutral-100/50 py-2xl">
         <div className="site-container">
           <MotionReveal className="mb-xl max-w-2xl">
-            <h2 className="text-balance text-2xl font-bold tracking-tight text-neutral-50 md:text-3xl">
+            <h2 className="text-balance text-2xl font-bold tracking-tight text-neutral-900 md:text-3xl">
               Results
             </h2>
           </MotionReveal>
           <MotionStagger className="grid grid-cols-1 gap-md md:grid-cols-2">
             {study.results.map((result) => (
               <MotionStaggerItem key={result}>
-                <div className="flex h-full gap-md rounded-xl border border-neutral-800 bg-neutral-900 p-lg">
+                <div className="flex h-full gap-md rounded-xl border border-neutral-200 bg-neutral-50 p-lg">
                   <Check size={16} aria-hidden className="mt-0.5 shrink-0 text-primary" />
-                  <p className="text-pretty text-sm leading-relaxed text-neutral-300">{result}</p>
+                  <p className="text-pretty text-sm leading-relaxed text-neutral-700">{result}</p>
                 </div>
               </MotionStaggerItem>
             ))}

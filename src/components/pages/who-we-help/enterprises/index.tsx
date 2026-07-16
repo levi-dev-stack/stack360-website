@@ -55,16 +55,16 @@ export default function EnterprisesPage() {
         </div>
       </MotionSection>
 
-      <MotionSection className="border-t border-neutral-200 bg-neutral-950 py-2xl">
+      <MotionSection className="border-t border-neutral-200 bg-neutral-100/50 py-2xl">
         <div className="site-container space-y-2xl">
           <MotionStagger className="max-w-3xl space-y-sm">
             <MotionStaggerItem>
-              <h2 className="text-balance text-2xl font-bold tracking-tight text-neutral-50">
+              <h2 className="text-balance text-2xl font-bold tracking-tight text-neutral-900">
                 Trusted by teams at scale
               </h2>
             </MotionStaggerItem>
             <MotionStaggerItem>
-              <p className="text-sm leading-relaxed text-neutral-400">
+              <p className="text-sm leading-relaxed text-neutral-600">
                 Long-term partnerships with organizations that demand uptime, auditability, and
                 engineering depth across cloud platforms.
               </p>
@@ -73,14 +73,14 @@ export default function EnterprisesPage() {
 
           <MotionStagger className="grid grid-cols-1 gap-2xl lg:grid-cols-2">
             <MotionStaggerItem>
-              <p className="font-mono text-[10px] font-bold uppercase tracking-widest text-neutral-500">
+              <p className="font-mono text-[10px] font-bold uppercase tracking-widest text-primary">
                 Cloud partnerships
               </p>
               <div className="mt-md flex flex-wrap gap-sm">
                 {ENTERPRISES_TRUST.cloudPartners.map((partner) => (
                   <span
                     key={partner}
-                    className="rounded-md border border-neutral-700 bg-neutral-900 px-lg py-sm font-mono text-sm font-bold text-neutral-200"
+                    className="rounded-md border border-neutral-200 bg-neutral-50 px-lg py-sm font-mono text-sm font-bold text-neutral-800"
                   >
                     {partner}
                   </span>
@@ -89,14 +89,14 @@ export default function EnterprisesPage() {
             </MotionStaggerItem>
 
             <MotionStaggerItem>
-              <p className="font-mono text-[10px] font-bold uppercase tracking-widest text-neutral-500">
+              <p className="font-mono text-[10px] font-bold uppercase tracking-widest text-primary">
                 Client programs
               </p>
               <div className="mt-md flex flex-wrap gap-sm">
                 {ENTERPRISES_TRUST.clients.map((client) => (
                   <span
                     key={client}
-                    className="rounded-md border border-neutral-800 bg-neutral-900/50 px-md py-sm text-sm font-semibold text-neutral-300"
+                    className="rounded-md border border-neutral-200 bg-neutral-50 px-md py-sm text-sm font-semibold text-neutral-700"
                   >
                     {client}
                   </span>
@@ -108,10 +108,10 @@ export default function EnterprisesPage() {
           <MotionStaggerItem>
             <MotionCard
               interactive={false}
-              className="rounded-xl border border-neutral-800 bg-neutral-900 p-lg"
+              className="rounded-xl border border-neutral-200 bg-neutral-50 p-lg"
             >
-              <h3 className="text-lg font-bold text-neutral-50">{ENTERPRISES_TRUST.sla.title}</h3>
-              <p className="mt-sm max-w-3xl text-sm leading-relaxed text-neutral-400">
+              <h3 className="text-lg font-bold text-neutral-900">{ENTERPRISES_TRUST.sla.title}</h3>
+              <p className="mt-sm max-w-3xl text-sm leading-relaxed text-neutral-600">
                 {ENTERPRISES_TRUST.sla.description}
               </p>
             </MotionCard>
