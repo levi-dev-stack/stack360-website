@@ -2,6 +2,7 @@ import Link from 'next/link';
 import PageClosingCta from '@/components/shared/PageClosingCta';
 import PageHero from '@/components/shared/PageHero';
 import { seo } from '@/constants/seo';
+import { SITE_EMAIL, SITE_EMAIL_HREF } from '@/constants/site';
 
 export const metadata = seo.terms;
 
@@ -45,8 +46,8 @@ export default function TermsPage() {
             <h2 className="text-lg font-bold text-neutral-900">Contact</h2>
             <p className="text-pretty">
               Questions about these terms:{' '}
-              <a className="font-bold text-primary underline" href="mailto:sales@stack360.co">
-                sales@stack360.co
+              <a className="font-bold text-primary underline" href={SITE_EMAIL_HREF}>
+                {SITE_EMAIL}
               </a>
               . See also our{' '}
               <Link href="/privacy" className="font-bold text-primary underline">

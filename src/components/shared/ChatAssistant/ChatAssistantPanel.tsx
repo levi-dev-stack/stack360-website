@@ -19,6 +19,7 @@ import {
   ASSISTANT_WHO_WE_ARE,
   type AssistantQuickActionId,
 } from '@/constants/component/assistant-data';
+import { SITE_EMAIL, SITE_EMAIL_HREF } from '@/constants/site';
 import { cn } from '@/styles/tailwind.utils';
 import { copyToClipboard } from '@/utils/clipboard';
 
@@ -859,9 +860,9 @@ export default function ChatAssistant() {
                           </div>
                           <CopyableRow
                             label="Sales email"
-                            value="sales@stack360.co"
-                            href="mailto:sales@stack360.co"
-                            copyValue="sales@stack360.co"
+                            value={SITE_EMAIL}
+                            href={SITE_EMAIL_HREF}
+                            copyValue={SITE_EMAIL}
                           />
                         </div>
                       )}

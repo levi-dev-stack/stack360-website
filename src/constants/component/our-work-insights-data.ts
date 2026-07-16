@@ -1,5 +1,7 @@
 /** Our Work insights — blog, news, learning (sourced from LinkedIn company posts). */
 
+import { SITE_SOCIAL } from '@/constants/site';
+
 export const BLOG_HERO = {
   eyebrow: 'Our Work',
   title: 'Engineering &',
@@ -59,7 +61,7 @@ export const NEWS_ITEMS = [
     date: '2026-06',
     category: 'Partnership',
     source: 'LinkedIn',
-    sourceUrl: 'https://www.linkedin.com/company/stack360co',
+    sourceUrl: SITE_SOCIAL.linkedin,
   },
 ] as const;
 
@@ -98,7 +100,7 @@ export const LEARNING_SESSIONS = [
     category: 'Workshop',
     topics: ['Cursor', 'Agentic AI', 'Developer productivity'],
     source: 'LinkedIn',
-    sourceUrl: 'https://www.linkedin.com/company/stack360co',
+    sourceUrl: SITE_SOCIAL.linkedin,
   },
   {
     slug: 'qa-craft-basics',
@@ -109,7 +111,7 @@ export const LEARNING_SESSIONS = [
     category: 'Practice',
     topics: ['QA', 'Selenium', 'Release gates'],
     source: 'LinkedIn',
-    sourceUrl: 'https://www.linkedin.com/company/stack360co',
+    sourceUrl: SITE_SOCIAL.linkedin,
   },
   {
     slug: 'industry-academia-bridge',
@@ -120,6 +122,6 @@ export const LEARNING_SESSIONS = [
     category: 'Talk',
     topics: ['Talent', 'Partnerships', 'Mentorship'],
     source: 'LinkedIn',
-    sourceUrl: 'https://www.linkedin.com/company/stack360co',
+    sourceUrl: SITE_SOCIAL.linkedin,
   },
 ] as const;

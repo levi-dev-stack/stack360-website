@@ -8,6 +8,7 @@ import {
   type HireNeedId,
   type HireSkillId,
 } from '@/constants/component/hire-talent-data';
+import { SITE_EMAIL, SITE_EMAIL_HREF } from '@/constants/site';
 import { cn } from '@/styles/tailwind.utils';
 
 type Status = 'idle' | 'sent' | 'error';
@@ -56,7 +57,7 @@ export default function HireForm() {
         .join('\n')
     );
 
-    window.location.href = `mailto:sales@stack360.co?subject=${subject}&body=${body}`;
+    window.location.href = `${SITE_EMAIL_HREF}?subject=${subject}&body=${body}`;
     setStatus('sent');
     form.reset();
     setSkills([]);
@@ -226,8 +227,8 @@ export default function HireForm() {
       {status === 'sent' ? (
         <output className="mt-md block text-sm font-medium text-neutral-700">
           Your mail client should open with the request drafted. If it does not, email{' '}
-          <a className="font-bold text-primary underline" href="mailto:sales@stack360.co">
-            sales@stack360.co
+          <a className="font-bold text-primary underline" href={SITE_EMAIL_HREF}>
+            {SITE_EMAIL}
           </a>
           .
         </output>

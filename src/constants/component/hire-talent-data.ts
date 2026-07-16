@@ -1,3 +1,5 @@
+import { SITE_EMAIL, SITE_EMAIL_HREF, SITE_PHONE, SITE_PHONE_HREF } from '@/constants/site';
+
 export const HIRE_HERO = {
   eyebrow: 'Work With Us · Hire Talent',
   title: 'Hire reliable developers.',
@@ -21,14 +23,14 @@ export const HIRE_CONTACT = [
   },
   {
     label: 'Phone',
-    value: '+44 7404350490',
-    href: 'tel:+447404350490',
+    value: SITE_PHONE,
+    href: SITE_PHONE_HREF,
     icon: 'phone' as const,
   },
   {
     label: 'Email',
-    value: 'sales@stack360.co',
-    href: 'mailto:sales@stack360.co',
+    value: SITE_EMAIL,
+    href: SITE_EMAIL_HREF,
     icon: 'mail' as const,
   },
 ] as const;

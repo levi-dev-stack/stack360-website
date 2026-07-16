@@ -1,3 +1,5 @@
+import { SITE_EMAIL, SITE_EMAIL_HREF, SITE_PHONE, SITE_PHONE_HREF } from '@/constants/site';
+
 export const CONTACT_HERO = {
   eyebrow: 'Contact',
   title: 'Talk to us about your next build.',
@@ -16,14 +18,14 @@ export const CONTACT_CTA = {
 export const CONTACT_CHANNELS = [
   {
     label: 'Phone',
-    value: '+44 7404350490',
-    href: 'tel:+447404350490',
+    value: SITE_PHONE,
+    href: SITE_PHONE_HREF,
     hint: 'Available 24/7 for project inquiries',
   },
   {
     label: 'Email',
-    value: 'sales@stack360.co',
-    href: 'mailto:sales@stack360.co',
+    value: SITE_EMAIL,
+    href: SITE_EMAIL_HREF,
     hint: 'We reply within one business day',
   },
 ] as const;

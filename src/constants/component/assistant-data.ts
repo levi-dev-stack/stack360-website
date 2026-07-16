@@ -1,3 +1,11 @@
+import {
+  SITE_EMAIL,
+  SITE_EMAIL_HREF,
+  SITE_PHONE,
+  SITE_PHONE_E164,
+  SITE_PHONE_HREF,
+} from '@/constants/site';
+
 export type AssistantQuickActionId =
   | 'what-we-build'
   | 'our-work'
@@ -56,15 +64,15 @@ export const ASSISTANT_QUICK_ACTIONS: AssistantQuickAction[] = [
 export const ASSISTANT_CONTACT: AssistantContactField[] = [
   {
     label: 'Sales',
-    value: 'sales@stack360.co',
-    href: 'mailto:sales@stack360.co',
-    copyValue: 'sales@stack360.co',
+    value: SITE_EMAIL,
+    href: SITE_EMAIL_HREF,
+    copyValue: SITE_EMAIL,
   },
   {
     label: 'Phone',
-    value: '+44 7404350490',
-    href: 'tel:+447404350490',
-    copyValue: '+447404350490',
+    value: SITE_PHONE,
+    href: SITE_PHONE_HREF,
+    copyValue: SITE_PHONE_E164,
   },
   // {
   //   label: 'Pakistan · Global Delivery Center',
@@ -212,8 +220,7 @@ export const ASSISTANT_REPLIES = {
     'Here is how to reach the studio. Tap any row to copy — handy when you are mid-conversation.',
   workWithUsIntro:
     'Work With Us starts with a clear brief. Most qualified inquiries get a scoped next step within 48 hours — not a generic sales deck.',
-  workWithUsCta:
-    'Open the software partner path, or copy sales@stack360.co and send context, constraints, and timeline.',
+  workWithUsCta: `Open the software partner path, or copy ${SITE_EMAIL} and send context, constraints, and timeline.`,
   whoWeAreIntro: ASSISTANT_WHO_WE_ARE.intro,
   followUp: 'Want something else? Choose another path below — I will keep answering.',
   moreProjects: 'Want another category from Our Work? Pick below — or open the main menu.',

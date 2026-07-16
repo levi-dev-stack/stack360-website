@@ -1,3 +1,12 @@
+import type { ReactNode } from 'react';
+import {
+  SITE_EMAIL,
+  SITE_EMAIL_HREF,
+  SITE_PHONE,
+  SITE_PHONE_HREF,
+  SITE_SOCIAL,
+} from '@/constants/site';
+
 export interface FooterLink {
   label: string;
   href: string;
@@ -20,8 +29,8 @@ export const OFFICES: FooterOffice[] = [
 ];
 
 export const CONTACT = {
-  phone: { label: '+44 7404350490', href: 'tel:+447404350490' },
-  email: { label: 'sales@stack360.co', href: 'mailto:sales@stack360.co' },
+  phone: { label: SITE_PHONE, href: SITE_PHONE_HREF },
+  email: { label: SITE_EMAIL, href: SITE_EMAIL_HREF },
 } as const;
 
 export const SERVICE_LINKS: FooterLink[] = [
@@ -40,8 +49,6 @@ export const COMPANY_LINKS: FooterLink[] = [
   { label: 'Case Studies', href: '/our-work/case-studies' },
   { label: 'Contact Us', href: '/contact' },
 ];
-
-import type { ReactNode } from 'react';
 
 export interface SocialLink {
   label: string;
@@ -73,7 +80,7 @@ const LinkedInIcon = (
 );
 
 export const SOCIAL_LINKS: SocialLink[] = [
-  { label: 'Instagram', href: 'https://www.instagram.com/stack360co', icon: InstagramIcon },
-  { label: 'Facebook', href: 'https://www.facebook.com/stack360co', icon: FacebookIcon },
-  { label: 'LinkedIn', href: 'https://www.linkedin.com/company/stack360co', icon: LinkedInIcon },
+  { label: 'Instagram', href: SITE_SOCIAL.instagram, icon: InstagramIcon },
+  { label: 'Facebook', href: SITE_SOCIAL.facebook, icon: FacebookIcon },
+  { label: 'LinkedIn', href: SITE_SOCIAL.linkedin, icon: LinkedInIcon },
 ];

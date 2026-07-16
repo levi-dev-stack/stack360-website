@@ -20,7 +20,13 @@ export function organizationJsonLd(): JsonLd {
     description: SITE_DESCRIPTION,
     email: SITE_EMAIL,
     telephone: SITE_PHONE_E164,
-    sameAs: [SITE_SOCIAL.linkedin, SITE_SOCIAL.github, SITE_SOCIAL.x],
+    sameAs: [
+      SITE_SOCIAL.linkedin,
+      SITE_SOCIAL.github,
+      SITE_SOCIAL.x,
+      SITE_SOCIAL.instagram,
+      SITE_SOCIAL.facebook,
+    ],
     address: SITE_OFFICES.map((office) => ({
       '@type': 'PostalAddress',
       streetAddress: office.streetAddress,
