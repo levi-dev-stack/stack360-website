@@ -41,7 +41,7 @@ export default function CulturePage() {
         </div>
       </MotionSection>
 
-      <MotionSection className="border-t border-neutral-200 bg-neutral-100/50 py-2xl">
+      {/* <MotionSection className="border-t border-neutral-200 bg-neutral-100/50 py-2xl">
         <div className="site-container space-y-xl">
           <MotionStagger className="max-w-3xl space-y-sm">
             <MotionStaggerItem>
@@ -58,9 +58,9 @@ export default function CulturePage() {
           </MotionStagger>
           <MasonryGallery photos={CULTURE_COLLAGE_PHOTOS} />
         </div>
-      </MotionSection>
+      </MotionSection> */}
 
-      <MotionSection className="py-2xl">
+      <MotionSection className="py-2xl border-t border-neutral-200 bg-neutral-100/50">
         <div className="site-container space-y-xl">
           <MotionStagger className="max-w-3xl space-y-sm">
             <MotionStaggerItem>
