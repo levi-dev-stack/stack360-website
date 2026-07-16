@@ -159,16 +159,16 @@ export const NAVIGATION_DATA: NavSection[] = [
             desc: 'Engineering thought pieces covering fullstack architectures.',
             href: '/our-work/blog',
           },
-          {
-            title: 'News',
-            desc: 'Studio announcements, system updates, and scaling milestones.',
-            href: '/our-work/news',
-          },
-          {
-            title: 'Learning Sessions',
-            desc: 'Public documentation reviews and live internal developer recordings.',
-            href: '/our-work/learning-sessions',
-          },
+          // {
+          //   title: 'News',
+          //   desc: 'Studio announcements, system updates, and scaling milestones.',
+          //   href: '/our-work/news',
+          // },
+          // {
+          //   title: 'Learning Sessions',
+          //   desc: 'Public documentation reviews and live internal developer recordings.',
+          //   href: '/our-work/learning-sessions',
+          // },
           {
             title: 'FAQs',
             desc: 'Straightforward answers regarding contracts, handoffs, and sprint setups.',
