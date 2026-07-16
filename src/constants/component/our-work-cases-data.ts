@@ -94,6 +94,7 @@ export const SUCCESS_STORIES_HERO = {
     'Real returns from partners who trusted Stack360 with complex products — from internal ops tools to consumer platforms.',
 } as const;
 
+/** Same shape as `LANDING_TESTIMONIALS` — quote, name, role, company, industry, rating, optional avatar. */
 export const SUCCESS_STORIES = [
   {
     quote:
@@ -102,31 +103,7 @@ export const SUCCESS_STORIES = [
     role: 'CEO',
     company: 'ATC',
     industry: 'Operations · United States',
-    metric: '40% faster coordination',
-    relatedSlug: 'atc',
-    relatedHref: '/our-work/case-studies/atc',
-  },
-  {
-    quote:
-      "Stack360's expert developers transformed our auto parts business with Autobuffy. Their tech solutions solved our search and payment challenges, driving more customer engagement.",
-    name: 'Chetan',
-    role: 'CEO',
-    company: 'Autobuffy',
-    industry: 'eCommerce · United States',
-    metric: '2× speed & traffic',
-    relatedSlug: 'autobuffy',
-    relatedHref: '/our-work/case-studies/autobuffy',
-  },
-  {
-    quote:
-      "Stack360's team streamlined our entire e-commerce operations with BuffyHub. Their efficient development solved our data management challenges, boosting our productivity.",
-    name: 'Chetan',
-    role: 'CEO',
-    company: 'BuffyHub',
-    industry: 'Marketplace · United States',
-    metric: '12+ channels unified',
-    relatedSlug: 'buffyhub',
-    relatedHref: '/our-work/case-studies/buffyhub',
+    rating: 5,
   },
   {
     quote:
@@ -135,9 +112,7 @@ export const SUCCESS_STORIES = [
     role: 'CEO',
     company: 'Cercle',
     industry: 'Fashion rental · Global',
-    metric: '60% fewer manual workflows',
-    relatedSlug: 'cercle',
-    relatedHref: '/our-work/featured-projects#cercle',
+    rating: 5,
   },
   {
     quote:
@@ -146,8 +121,6 @@ export const SUCCESS_STORIES = [
     role: 'CEO',
     company: 'Coach Catalyst',
     industry: 'Fitness · United States',
-    metric: '3× daily active users',
-    relatedSlug: 'coach-catalyst',
-    relatedHref: '/our-work/case-studies/coach-catalyst',
+    rating: 5,
   },
 ] as const;
