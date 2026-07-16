@@ -8,6 +8,7 @@ import {
   SERVICE_LINKS,
   SOCIAL_LINKS,
 } from '@/constants/component/footer';
+import { SITE_NAME } from '@/constants/site';
 import { cn } from '@/styles/tailwind.utils';
 import Stack360Logo from './Navbar/Stack360Logo';
 
@@ -106,7 +107,7 @@ export default function Footer() {
 
         <div className="mt-2xl border-t border-neutral-200 pt-xl">
           <p className="text-center text-sm text-neutral-600">
-            © {currentYear} Stack360. All Rights Reserved
+            © {currentYear} {SITE_NAME}. All Rights Reserved
           </p>
         </div>
       </div>

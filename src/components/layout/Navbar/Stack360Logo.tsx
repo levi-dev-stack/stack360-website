@@ -4,6 +4,7 @@ import { motion, useReducedMotion } from 'motion/react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
+import { SITE_NAME } from '@/constants/site';
 
 /** Icon (32) + gap + stack360-text wordmark — reserved so hover never shifts layout. */
 const LOGO_SLOT_WIDTH = '9.25rem';
@@ -30,7 +31,7 @@ export default function Stack360Logo({ animateWordmark = true }: { animateWordma
       <div className="relative z-10 h-8 w-8 shrink-0 transition-transform duration-200 group-hover:scale-105">
         <Image
           src="/favicon.svg"
-          alt="Stack360 Logo"
+          alt={`${SITE_NAME} Logo`}
           width={32}
           height={32}
           priority

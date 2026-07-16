@@ -1,10 +1,12 @@
 /** Canonical site origin — used by metadata, sitemap, robots, and JSON-LD. */
 export const SITE_URL = 'https://www.stack360.co';
 export const SITE_NAME = 'Stack360';
-export const SITE_TAGLINE = 'Custom Software Architecture Studio';
+/** Page title / brand line from https://www.stack360.co/ */
+export const SITE_TAGLINE = 'Your Reliable Software Development Agency';
 
+/** Meta description aligned with the live Stack360 homepage positioning. */
 export const SITE_DESCRIPTION =
-  'Custom software architecture studio — ERP, CRM, AI, SaaS, cloud, and DevOps for partners and product teams.';
+  'Stack360 provides world-class software development and staff augmentation services. Build faster, scale smarter, and deliver exceptional results with our expert tech talent.';
 
 /** Sales inbox — display value and mailto target. */
 export const SITE_EMAIL = 'sales@stack360.co';
