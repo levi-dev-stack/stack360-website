@@ -3,7 +3,7 @@ import Footer from '@/components/layout/Footer';
 import PremiumNavbar from '@/components/layout/Navbar';
 import NoJsSiteNav from '@/components/layout/Navbar/NoJsSiteNav';
 import JsonLd from '@/components/seo/JsonLd';
-import ChatAssistant from '@/components/shared/ChatAssistant';
+import FloatingActions from '@/components/shared/FloatingActions';
 import { seo } from '@/constants/seo';
 import { organizationJsonLd, websiteJsonLd } from '@/lib/seo/json-ld';
 
@@ -34,7 +34,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       </main>
       <Footer />
       <div className="js-only">
-        <ChatAssistant />
+        <FloatingActions />
       </div>
     </div>
   );

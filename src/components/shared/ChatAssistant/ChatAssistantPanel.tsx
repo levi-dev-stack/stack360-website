@@ -1,11 +1,12 @@
 'use client';
 
-import { Check, ChevronDown, Copy, Loader2, MessageCircle, RotateCcw, X } from 'lucide-react';
+import { Check, Copy, Loader2, MessageCircle, RotateCcw, X } from 'lucide-react';
 import { AnimatePresence, motion, useReducedMotion } from 'motion/react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useCallback, useEffect, useId, useRef, useState } from 'react';
 import { EASE_OUT_EXPO } from '@/components/shared/motion/variants';
+import ScrollToTopButton from '@/components/shared/ScrollToTopButton';
 import {
   ASSISTANT_CONTACT,
   ASSISTANT_META,
@@ -516,7 +517,7 @@ export default function ChatAssistant() {
   ];
 
   return (
-    <div className="pointer-events-none fixed bottom-8 right-8 z-60 flex flex-col items-end gap-md sm:bottom-10 sm:right-10">
+    <div className="pointer-events-none flex flex-col items-center gap-md">
       <AnimatePresence>
         {open && (
           <motion.div
@@ -887,6 +888,8 @@ export default function ChatAssistant() {
         )}
       </AnimatePresence>
 
+      <ScrollToTopButton />
+
       <motion.button
         type="button"
         aria-expanded={open}
@@ -895,7 +898,7 @@ export default function ChatAssistant() {
         onClick={() => setOpen((v) => !v)}
         whileHover={reduced ? undefined : { scale: 1.05 }}
         whileTap={{ scale: 0.96 }}
-        className="pointer-events-auto flex h-14 w-14 items-center justify-center overflow-hidden rounded-full bg-primary text-neutral-50 shadow-card transition-colors hover:bg-primary-dark"
+        className="pointer-events-auto flex h-14 w-14 items-center justify-center overflow-hidden rounded-full bg-primary text-neutral-50 shadow-card ring-4 ring-primary/20 transition-colors hover:bg-primary-dark"
       >
         <AnimatePresence mode="wait" initial={false}>
           {open ? (
@@ -906,7 +909,7 @@ export default function ChatAssistant() {
               exit={reduced ? undefined : { opacity: 0, rotate: 40 }}
               transition={{ duration: 0.2 }}
             >
-              <ChevronDown size={22} />
+              <X size={22} strokeWidth={2.25} />
             </motion.span>
           ) : (
             <motion.span
