@@ -26,7 +26,7 @@ export default function LandingPage() {
   return (
     <div className="flex min-h-[calc(100vh-4.5rem)] w-full flex-col">
       <HeroSection />
-      {/* <ClientsMarquee /> */}
+      <ClientsMarquee />
 
       <ServicesSection />
 
