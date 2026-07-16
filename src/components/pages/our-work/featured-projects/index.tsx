@@ -1,5 +1,6 @@
 import { ArrowUpRight } from 'lucide-react';
 import Link from 'next/link';
+import DomainJumpLinks from '@/components/pages/our-work/featured-projects/DomainJumpLinks';
 import PortfolioProjectCard from '@/components/pages/our-work/shared/PortfolioProjectCard';
 import MotionSection from '@/components/shared/motion/MotionSection';
 import {
@@ -24,23 +25,7 @@ export default function FeaturedProjectsPage() {
       {/* Domain index — quick jump to each grouped section */}
       <MotionSection className="border-b border-neutral-200 py-xl">
         <div className="site-container">
-          <MotionStagger className="flex flex-wrap items-center gap-sm">
-            <MotionStaggerItem>
-              <span className="mr-xs font-mono text-[10px] font-bold uppercase tracking-widest text-neutral-500">
-                Domains
-              </span>
-            </MotionStaggerItem>
-            {PORTFOLIO_GROUPS.map((group) => (
-              <MotionStaggerItem key={group.id}>
-                <a
-                  href={`#${group.id}`}
-                  className="inline-flex items-center rounded-full border border-neutral-200 bg-neutral-50 px-md py-xs text-xs font-semibold text-neutral-700 transition-colors hover:border-primary/40 hover:text-primary"
-                >
-                  {group.category}
-                </a>
-              </MotionStaggerItem>
-            ))}
-          </MotionStagger>
+          <DomainJumpLinks />
         </div>
       </MotionSection>
 
