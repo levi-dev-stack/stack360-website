@@ -47,7 +47,7 @@ export default function Footer() {
       <div className="site-container py-2xl">
         <div className="grid grid-cols-1 gap-2xl sm:grid-cols-2 lg:grid-cols-12 lg:gap-xl">
           <div className="space-y-lg lg:col-span-4">
-            <Stack360Logo />
+            <Stack360Logo animateWordmark={false} />
 
             <div className="space-y-lg">
               {OFFICES.map((office) => (
