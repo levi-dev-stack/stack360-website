@@ -6,7 +6,7 @@ import { MotionStagger, MotionStaggerItem } from '@/components/shared/motion/Mot
 import PageClosingCta from '@/components/shared/PageClosingCta';
 import PageHero from '@/components/shared/PageHero';
 import {
-  CULTURE_COLLAGE_PHOTOS,
+  // CULTURE_COLLAGE_PHOTOS,
   CULTURE_CTA,
   CULTURE_FOUNDER,
   CULTURE_GOAL,

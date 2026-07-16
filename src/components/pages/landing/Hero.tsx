@@ -116,7 +116,7 @@ export default function Hero() {
       />
       <div
         aria-hidden
-        className="pointer-events-none absolute top-[38%] left-1/2 h-[28rem] w-[min(72rem,100vw)] -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary-tint/18 blur-[80px]"
+        className="pointer-events-none absolute top-[38%] left-1/2 h-112 w-[min(72rem,100vw)] -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary-tint/18 blur-[80px]"
         style={{ maskImage: 'linear-gradient(180deg, black 0%, transparent 78%)' }}
       />
 
