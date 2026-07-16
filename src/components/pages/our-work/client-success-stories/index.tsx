@@ -30,7 +30,7 @@ export default function ClientSuccessStoriesPage() {
                 transition={{ duration: 0.5, ease: EASE_OUT_EXPO }}
                 className={cn(
                   'grid grid-cols-1 gap-lg border-t border-neutral-200 pt-2xl lg:grid-cols-12 lg:gap-xl',
-                  flip && 'lg:[direction:rtl] lg:[&>*]:[direction:ltr]'
+                  flip && 'lg:[direction:rtl] lg:*:[direction:ltr]'
                 )}
               >
                 <div className="lg:col-span-4">
