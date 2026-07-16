@@ -8,9 +8,14 @@ import { useState } from 'react';
 /** Icon (32) + gap + stack360-text wordmark — reserved so hover never shifts layout. */
 const LOGO_SLOT_WIDTH = '9.25rem';
 
-export default function Stack360Logo() {
+export default function Stack360Logo({ animateWordmark = true }: { animateWordmark?: boolean }) {
   const [isHovered, setIsHovered] = useState(false);
   const reduced = useReducedMotion();
+
+  // When animation is disabled, always show the wordmark.
+  // When animation is enabled, show it only on hover/focus.
+  const showWordmark = !animateWordmark || isHovered;
+  const shouldAnimate = animateWordmark && !reduced;
 
   return (
     <Link
@@ -36,21 +41,23 @@ export default function Stack360Logo() {
       <motion.div
         initial={false}
         animate={{
-          width: isHovered ? 'auto' : 0,
-          opacity: isHovered ? 1 : 0,
+          opacity: showWordmark ? 1 : 0,
+          scaleX: showWordmark ? 1 : 0,
+          x: showWordmark ? 0 : -8,
         }}
         transition={
-          reduced
-            ? { duration: 0 }
-            : {
+          shouldAnimate
+            ? {
                 type: 'spring',
-                stiffness: 180,
-                damping: 18,
+                stiffness: 220,
+                damping: 22,
                 restDelta: 0.01,
               }
+            : { duration: 0 }
         }
+        style={{ transformOrigin: 'left center' }}
         className="absolute top-1/2 left-10 -translate-y-1/2 overflow-hidden whitespace-nowrap"
-        aria-hidden={!isHovered}
+        aria-hidden={!showWordmark}
       >
         <Image
           src="/stack360-text.svg"
