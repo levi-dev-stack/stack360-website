@@ -16,8 +16,8 @@ export const CONTACT_CTA = {
 export const CONTACT_CHANNELS = [
   {
     label: 'Phone',
-    value: '+92 331 11 11 753',
-    href: 'tel:+923311111753',
+    value: '+44 7404350490',
+    href: 'tel:+447404350490',
     hint: 'Available 24/7 for project inquiries',
   },
   {

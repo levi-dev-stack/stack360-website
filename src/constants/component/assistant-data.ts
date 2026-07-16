@@ -62,9 +62,9 @@ export const ASSISTANT_CONTACT: AssistantContactField[] = [
   },
   {
     label: 'Phone',
-    value: '+92 331 11 11 753',
-    href: 'tel:+923311111753',
-    copyValue: '+923311111753',
+    value: '+44 7404350490',
+    href: 'tel:+447404350490',
+    copyValue: '+447404350490',
   },
   // {
   //   label: 'Pakistan · Global Delivery Center',

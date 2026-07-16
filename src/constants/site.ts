@@ -7,8 +7,8 @@ export const SITE_DESCRIPTION =
   'Custom software architecture studio — ERP, CRM, AI, SaaS, cloud, and DevOps for partners and product teams.';
 
 export const SITE_EMAIL = 'sales@stack360.co';
-export const SITE_PHONE = '+92 331 11 11 753';
-export const SITE_PHONE_E164 = '+923311111753';
+export const SITE_PHONE = '+44 7404350490';
+export const SITE_PHONE_E164 = '+447404350490';
 
 export const SITE_SOCIAL = {
   linkedin: 'https://www.linkedin.com/company/stack360co',

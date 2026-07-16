@@ -21,8 +21,8 @@ export const HIRE_CONTACT = [
   },
   {
     label: 'Phone',
-    value: '+92 331 11 11 753',
-    href: 'tel:+923311111753',
+    value: '+44 7404350490',
+    href: 'tel:+447404350490',
     icon: 'phone' as const,
   },
   {
