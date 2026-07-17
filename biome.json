@@ -8,14 +8,14 @@
   "files": {
     "ignoreUnknown": true,
     "includes": [
-      "**/*",
+      "**/*.ts",
+      "**/*.tsx",
       "!node_modules",
       "!.next",
       "!out",
       "!dist",
       "!build",
       "!coverage",
-      "!**/*.min.js",
       "!next-env.d.ts",
       "!.vscode",
       "!.husky"

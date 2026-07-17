@@ -6,9 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "biome check \"src/**/*.{ts,tsx}\"",
-    "format": "biome format --write \"src/**/*.{ts,tsx}\"",
-    "check": "biome check --write \"src/**/*.{ts,tsx}\"",
+    "lint": "biome check src",
+    "format": "biome format --write src",
+    "check": "biome check --write src",
     "lint-staged": "lint-staged",
     "prepare": "husky"
   },
