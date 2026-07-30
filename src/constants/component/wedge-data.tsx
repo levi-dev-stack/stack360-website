@@ -1,56 +1,69 @@
-import { Globe2, Layers, ShieldAlert, Terminal } from 'lucide-react';
+import { Globe2, Layers, ShieldAlert, Terminal, Workflow } from 'lucide-react';
 
 export const MOCK_WEDGES = [
   {
     number: '01',
-    tagline: 'Wedge One',
-    title: 'AI-First, By Design.',
+    tagline: 'AI-FIRST BY DESIGN',
+    title: 'AI That Creates Real Business Value',
     description:
-      'Agentic systems, RAG architectures, GenAI copilots — already in production. One deployed agent handles 50K+ customer interactions per day across web, app, and SMS.',
+      'We build AI-powered products and integrate intelligent capabilities that automate processes, improve experiences, and support better decisions.',
     icon: <Terminal />,
-    stats: [
-      { value: '50K+', label: 'Daily Ints' },
-      { value: '85%', label: 'Accuracy' },
-      { value: '5K+', label: "Doc's Rad'd" },
+    points: [
+      { primary: 'Smarter Products', secondary: 'AI built into product experiences' },
+      { primary: 'Faster Operations', secondary: 'Intelligent process automation' },
+      { primary: 'Better Decisions', secondary: 'Data-driven business intelligence' },
     ],
   },
   {
     number: '02',
-    tagline: 'Wedge Two',
-    title: 'Built. Not Just Billed.',
+    tagline: 'BUILT. NOT JUST BILLED.',
+    title: 'We Build Products We Believe In',
     description:
-      'We own and license our own products — PACT ERP and QuickHCM — running across F&B, Manufacturing, and 1,000+ HR professionals in the GCC. We pay for production at scale ourselves.',
+      'We have hands-on experience building digital products, giving us practical insight into usability, scalability, performance, and growth.',
     icon: <Layers />,
-    stats: [
-      { value: '3', label: 'Live Products' },
-      { value: '1K+', label: 'HR Pros' },
-      { value: '3', label: 'GCC Markets' },
+    points: [
+      { primary: 'Product Thinking', secondary: 'Strategy beyond technical execution' },
+      { primary: 'Real Experience', secondary: 'Built from practical expertise' },
+      { primary: 'Business Focus', secondary: 'Technology aligned with outcomes' },
     ],
   },
   {
     number: '03',
-    tagline: 'Wedge Three',
-    title: 'Enterprise + Gov Grade.',
+    tagline: 'ENTERPRISE-GRADE ENGINEERING',
+    title: 'Built For Complex Business Needs',
     description:
-      'UAE Fujairah HR Dept, Abu Dhabi Chamber, Regulated FinTech (StcPay, Bank Respublika), Enterprise health (Almoasa Health KSA). We pass procurement.',
+      'We engineer secure, reliable software for businesses that demand performance, scalability, compliance, and long-term stability.',
     icon: <ShieldAlert />,
-    stats: [
-      { value: '15+', label: 'Regulated' },
-      { value: '2', label: 'Gov Clients' },
-      { value: 'ISO', label: '9001-Aligned' },
+    points: [
+      { primary: 'High Performance', secondary: 'Engineered for demanding workloads' },
+      { primary: 'Enterprise Security', secondary: 'Protection built into every layer' },
+      { primary: 'Future Ready', secondary: 'Architecture designed for growth' },
     ],
   },
   {
     number: '04',
-    tagline: 'Wedge Four',
-    title: 'Global Delivery, One Team.',
+    tagline: 'END-TO-END EXPERTISE',
+    title: 'From Idea To Product Growth',
     description:
-      'Lahore engineering hub, UK regional office, and follow-the-sun delivery under one accountable studio. Single roadmap, single PM, single invoice — no handoff chaos.',
+      'We cover strategy, UX, development, cloud, AI, deployment, and optimisation throughout your product lifecycle.',
+    icon: <Workflow />,
+    points: [
+      { primary: 'Product Strategy', secondary: 'From concept to clear roadmap' },
+      { primary: 'Full-Stack Development', secondary: 'Frontend, backend, cloud, and AI' },
+      { primary: 'Continuous Support', secondary: 'Optimisation beyond product launch' },
+    ],
+  },
+  {
+    number: '05',
+    tagline: 'GLOBAL ENGINEERING PARTNER',
+    title: 'Expertise That Works Across Borders',
+    description:
+      'Our experienced teams collaborate with businesses worldwide, providing reliable product development and engineering support across time zones.',
     icon: <Globe2 />,
-    stats: [
-      { value: '2', label: 'Offices' },
-      { value: '24/7', label: 'Coverage' },
-      { value: '1', label: 'Account Team' },
+    points: [
+      { primary: 'Global Collaboration', secondary: 'Seamless communication across locations' },
+      { primary: 'Dedicated Expertise', secondary: 'Specialists aligned with your needs' },
+      { primary: 'Flexible Engagements', secondary: 'Teams that adapt as you grow' },
     ],
   },
 ];

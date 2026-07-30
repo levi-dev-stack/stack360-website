@@ -11,7 +11,8 @@ export const LANDING_SERVICES = [
     items: [
       {
         title: 'ERP',
-        description: 'Centralized enterprise resource engines designed for scalability.',
+        description:
+          'Implement scalable ERP solutions to streamline operations, workflows, resource planning, and business management.',
         icon: 'erp',
         href: '/what-we-build/erp',
         skills: [
@@ -23,7 +24,8 @@ export const LANDING_SERVICES = [
       },
       {
         title: 'CRM',
-        description: 'Smarter customer relationship tracking optimized for pipeline velocity.',
+        description:
+          'Develop powerful CRM solutions to manage customer relationships, sales pipelines, data, and business growth.',
         icon: 'crm',
         href: '/what-we-build/crm',
         skills: [
@@ -35,7 +37,8 @@ export const LANDING_SERVICES = [
       },
       {
         title: 'SaaS',
-        description: 'Multi-tenant cloud products engineered for subscription scale.',
+        description:
+          'Build scalable SaaS products with flexible architecture, seamless experiences, and reliable cloud infrastructure.',
         icon: 'saas',
         href: '/what-we-build/saas',
         skills: [
@@ -47,7 +50,8 @@ export const LANDING_SERVICES = [
       },
       {
         title: 'Custom Software',
-        description: 'Bespoke digital tailoring solving complex foundational bottlenecks.',
+        description:
+          'Develop custom software solutions tailored to unique business processes, challenges, workflows, and requirements.',
         icon: 'custom',
         href: '/what-we-build/custom-software',
         skills: [
@@ -64,7 +68,8 @@ export const LANDING_SERVICES = [
     items: [
       {
         title: 'Mobile Apps',
-        description: 'Native-grade portable applications built for iOS and Android environments.',
+        description:
+          'Build high-performance mobile applications for iOS and Android with seamless user experiences and functionality.',
         icon: 'mobile',
         href: '/what-we-build/mobile-apps',
         skills: [
@@ -76,7 +81,8 @@ export const LANDING_SERVICES = [
       },
       {
         title: 'Web Apps',
-        description: 'High-speed, modular web applications built with dynamic architecture.',
+        description:
+          'Develop scalable web applications delivering secure, responsive, and seamless experiences across multiple devices.',
         icon: 'web',
         href: '/what-we-build/web-apps',
         skills: [
@@ -88,7 +94,8 @@ export const LANDING_SERVICES = [
       },
       {
         title: 'Cloud',
-        description: 'Resilient serverless distribution structures mapped to modern frameworks.',
+        description:
+          'Implement scalable cloud solutions for secure infrastructure, improved performance, flexibility, and business continuity.',
         icon: 'cloud',
         href: '/what-we-build/cloud',
         skills: [
@@ -102,7 +109,8 @@ export const LANDING_SERVICES = [
       },
       {
         title: 'DevOps',
-        description: 'Automated CI/CD pipelines keeping code testing stable.',
+        description:
+          'Implement DevOps solutions to accelerate software development, deployment, automation, reliability, and continuous delivery.',
         icon: 'devops',
         href: '/what-we-build/devops',
         skills: [
@@ -118,7 +126,8 @@ export const LANDING_SERVICES = [
       },
       {
         title: 'Automation',
-        description: 'Scraping manual tasks out of day-to-day work operations.',
+        description:
+          'Develop business process automation solutions that reduce manual work, improve accuracy, productivity, and efficiency.',
         icon: 'automation',
         href: '/what-we-build/automation',
         skills: [
@@ -131,7 +140,7 @@ export const LANDING_SERVICES = [
       {
         title: 'Staff Augmentation',
         description:
-          'Embed vetted engineers into your team fast — scale capacity without long-term hiring risk.',
+          'Strengthen development teams with skilled software engineers, developers, and technical specialists on demand.',
         icon: 'staff',
         href: '/work-with-us/software-partner',
         skills: [
@@ -148,7 +157,8 @@ export const LANDING_SERVICES = [
     items: [
       {
         title: 'AI Solutions',
-        description: 'Custom neural integrations and intelligent automated workflows.',
+        description:
+          'Develop AI solutions that automate processes, enhance UX, improve decisions, & drive growth.',
         icon: 'ai',
         href: '/what-we-build/ai-solutions',
         skills: [
@@ -161,7 +171,7 @@ export const LANDING_SERVICES = [
       {
         title: 'Model Training & Tuning',
         description:
-          'Custom model architecture, fine-tuning LLMs, and hyperparameter optimization for domain-specific tasks.',
+          'Train and fine-tune AI models using specialised data, algorithms, and performance optimisation techniques.',
         icon: 'training',
         href: '/what-we-build/ai-solutions',
         skills: [
@@ -176,7 +186,7 @@ export const LANDING_SERVICES = [
       {
         title: 'AI Integration',
         description:
-          'Embedding intelligent agents, semantic search, and cognitive features seamlessly into existing products.',
+          'Integrate AI technologies into existing software products, applications, workflows, and business systems seamlessly.',
         icon: 'integration',
         href: '/what-we-build/ai-solutions',
         skills: [
@@ -189,7 +199,7 @@ export const LANDING_SERVICES = [
       {
         title: 'MLOps & Pipelines',
         description:
-          'Automated data ingestion, continuous training loops, and scalable inference deployment.',
+          'Build scalable MLOps pipelines for machine learning deployment, monitoring, automation, management, and optimisation.',
         icon: 'mlops',
         href: '/what-we-build/ai-solutions',
         skills: [
@@ -202,6 +212,40 @@ export const LANDING_SERVICES = [
     ],
   },
 ] as const;
+
+export const LANDING_WHY_CHOOSE = {
+  eyebrow: 'Why Businesses Choose Stack360',
+  title: 'Product Development Company',
+  highlight: 'Built Around Your Business',
+  description:
+    'We combine product thinking, engineering expertise, and AI capabilities to build solutions that create lasting business value.',
+  reasons: [
+    {
+      id: 'business-first',
+      title: 'Business-First Approach',
+      description:
+        'We start with your business goals, users, and challenges to build products that solve meaningful problems.',
+    },
+    {
+      id: 'end-to-end',
+      title: 'End-to-End Expertise',
+      description:
+        'From product strategy and UX to development, deployment, and support, we manage the complete product lifecycle.',
+    },
+    {
+      id: 'ai-ready',
+      title: 'AI-Ready Engineering',
+      description:
+        'We integrate practical AI capabilities into products and workflows to create smarter, more efficient business solutions.',
+    },
+    {
+      id: 'built-to-scale',
+      title: 'Built to Scale',
+      description:
+        'Our products use scalable architecture and modern technologies designed to support your growth from launch onward.',
+    },
+  ],
+} as const;
 
 export const LANDING_TECH_STACK = [
   'react',
@@ -225,25 +269,25 @@ export const LANDING_PROCESS = [
     step: '01',
     title: 'Discover',
     description:
-      'We map goals, constraints, and success metrics — then define a scope your stakeholders can sign off on.',
+      'We understand your goals, users, challenges, and requirements to define a clear product vision and development roadmap.',
   },
   {
     step: '02',
-    title: 'Architect',
+    title: 'Design & Architect',
     description:
-      'System design, stack selection, and delivery plan — documented before a single sprint starts.',
+      'We shape user experiences, technical architecture, technology stacks, and product specifications before development begins.',
   },
   {
     step: '03',
-    title: 'Build',
+    title: 'Build & Test',
     description:
-      'Iterative development with QA gates, transparent demos, and weekly velocity you can track.',
+      'Our engineering teams develop your product iteratively, with continuous testing, feedback, quality assurance, and transparent progress.',
   },
   {
     step: '04',
-    title: 'Ship & Scale',
+    title: 'Launch & Scale',
     description:
-      'Production launch, monitoring, and ongoing optimization — with a team that stays accountable.',
+      'We launch, monitor, optimise, and continuously improve your product with ongoing support built around long-term growth.',
   },
 ] as const;
 
@@ -309,7 +353,7 @@ export interface Testimonial {
 export const LANDING_TESTIMONIALS: readonly Testimonial[] = [
   {
     quote:
-      'Stack360 brought enterprise-grade engineering to our build — thoughtful architecture, disciplined delivery, and a team that turns ambitious product requirements into production-ready systems.',
+      'Stack360 brought enterprise-grade engineering to our build with thoughtful architecture, disciplined delivery, and a team that turned ambitious product requirements into production-ready systems.',
     name: 'Cameron Kashani',
     role: 'Data & Analytics Specialist, Strategic Accounts',
     company: 'Google',
@@ -319,7 +363,7 @@ export const LANDING_TESTIMONIALS: readonly Testimonial[] = [
   },
   {
     quote:
-      'Stack360 built the platforms behind our AI automation practice — scalable architecture, clean integrations, and delivery that lets us focus on transforming how businesses adopt intelligent systems.',
+      'Stack360 built the platforms behind our AI automation practice with scalable architecture, clean integrations, and reliable delivery. They gave us the technical foundation to focus on helping businesses adopt intelligent systems.',
     name: 'Daniel Spence',
     role: 'CEO',
     company: 'Cybix AI',
@@ -329,7 +373,7 @@ export const LANDING_TESTIMONIALS: readonly Testimonial[] = [
   },
   {
     quote:
-      'Stack360 built NPTAAS from the ground up — multi-tenant workflows, secure client portals, and the automation our firm needed to run a modern accounting and tax practice at scale.',
+      'Stack360 built NPTAAS from the ground up, including multi-tenant workflows, secure client portals, and the automation we needed to run a modern accounting and tax practice at scale.',
     name: 'Ernest Tomkiewicz',
     role: 'Founder & Certified Public Accountant',
     company: 'NPTAAS',
@@ -338,7 +382,8 @@ export const LANDING_TESTIMONIALS: readonly Testimonial[] = [
     avatar: '/assets/clients/ernest-tomkiewicz.webp',
   },
   {
-    quote: '—',
+    quote:
+      'Working with Stack360 gave us the technical expertise and support we needed to move our product forward. The team was responsive, solutions-focused, and committed to getting things right.',
     name: 'Juan Diaz',
     role: '—',
     company: '—',
@@ -348,7 +393,7 @@ export const LANDING_TESTIMONIALS: readonly Testimonial[] = [
   },
   {
     quote:
-      "Stack360 brought Somer's digital prescribing and pharmacy platform to life — secure, compliant, and built for the speed and trust our patients and clinicians expect.",
+      'Stack360 brought Somrex’s digital prescribing and pharmacy platform to life. The team delivered a secure, compliant solution built around the speed, reliability, and trust our patients and clinicians expect.',
     name: 'Mohammed Jafar',
     role: 'Founder & Superintendent Pharmacist',
     company: 'Somer Pharmacy',
@@ -357,7 +402,8 @@ export const LANDING_TESTIMONIALS: readonly Testimonial[] = [
     avatar: '/assets/clients/mohammad-jafar.webp',
   },
   {
-    quote: '—',
+    quote:
+      'Stack360 took the time to understand what we were trying to build and translated our requirements into a solution that was practical, reliable, and built to grow with the business.',
     name: 'Seamus Ryan',
     role: '—',
     company: '—',
@@ -368,9 +414,9 @@ export const LANDING_TESTIMONIALS: readonly Testimonial[] = [
 ];
 
 export const LANDING_CTA = {
-  title: 'Struggling to find a trusted tech partner?',
+  title: 'Let’s Build Your Next Product',
   description:
-    'Poor development leads to missed deadlines and frustration. Stack360 delivers scalable, high-performance solutions — on time, every time.',
+    'Turn your idea into a scalable digital product with a team that combines product strategy, engineering, AI, and technology.',
   secondary: { label: 'Explore Our Services', href: '/what-we-build' },
   primary: { label: 'See Our Work', href: '/our-work/case-studies' },
 } as const;

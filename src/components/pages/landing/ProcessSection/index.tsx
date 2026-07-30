@@ -64,18 +64,18 @@ export default function ProcessSection() {
         <div className="mb-3xl flex flex-col gap-lg md:flex-row md:items-end md:justify-between">
           <div className="max-w-3xl space-y-md">
             <h2 className="text-balance text-3xl font-black tracking-tight text-neutral-50 md:text-4xl">
-              A delivery process built for predictability.
+              A Product Development Process Built Around Your Goals
             </h2>
           </div>
           <p className="max-w-content text-sm leading-relaxed text-neutral-400 md:text-base">
-            No black-box sprints. Every phase has clear outputs, owners, and review gates before we
-            move forward.
+            From strategy to launch and beyond, our product development process keeps every stage
+            focused, transparent, and aligned with your business goals.
           </p>
         </div>
 
         <ol className="relative grid grid-cols-1 gap-xl sm:grid-cols-2 lg:grid-cols-4">
           <div
-            className="absolute top-[26px] hidden h-[2px] w-full bg-neutral-800 lg:block"
+            className="absolute top-6.5 hidden h-0.5 w-full bg-neutral-800 lg:block"
             aria-hidden
           />
 

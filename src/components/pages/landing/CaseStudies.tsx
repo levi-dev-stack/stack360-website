@@ -83,14 +83,14 @@ export default function CaseStudiesSection() {
               variants={motionVariants(reduced, fadeUp)}
               className="text-balance text-3xl font-black leading-[1.05] tracking-tight text-neutral-50 md:text-4xl"
             >
-              Success stories with measurable outcomes.
+              Real Solutions. Measurable Business Outcomes.
             </motion.h2>
             <motion.p
               variants={motionVariants(reduced, fadeUp)}
               className="text-sm leading-relaxed text-neutral-400"
             >
-              Real platforms shipped for eCommerce, operations, marketplaces, and health — with
-              metrics that survived production.
+              Explore how we help businesses solve complex challenges, improve performance, and
+              create measurable results through technology.
             </motion.p>
           </div>
 

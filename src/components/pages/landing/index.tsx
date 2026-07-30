@@ -7,6 +7,7 @@ import ProcessSection from '@/components/pages/landing/ProcessSection';
 import SectionSkeleton from '@/components/pages/landing/SectionSkeleton';
 import ServicesSection from '@/components/pages/landing/ServicesSection';
 import TrustBadges from '@/components/pages/landing/TrustBadges';
+import WhyChooseSection from '@/components/pages/landing/WhyChooseSection';
 import PageClosingCta from '@/components/shared/PageClosingCta';
 import { LANDING_CTA } from '@/constants/component/landing-data';
 import { MOCK_WEDGES } from '@/constants/component/wedge-data';
@@ -29,11 +30,12 @@ export default function LandingPage() {
       <ClientsMarquee />
 
       <ServicesSection />
+      <WhyChooseSection />
 
       <HorizontalWedgeTrack
         sectionTitle="Most software firms write code."
         sectionHighlight="We engineer outcomes."
-        sectionSubtitle="The category is full of generalists. We compete on wedges almost no one else can credibly claim together."
+        sectionSubtitle="We combine product strategy, engineering expertise, AI capabilities, and business insight to build technology that delivers measurable results."
         cards={MOCK_WEDGES}
       />
 

@@ -58,11 +58,11 @@ export default function ServicesSection() {
       <div className="site-container">
         <div className="mb-2xl max-w-4xl space-y-md">
           <h2 className="text-balance text-3xl font-black tracking-tight text-neutral-900 md:text-4xl">
-            Services engineered for every stage of your product.
+            Build Better Products With The Right Technology And Expertise
           </h2>
           <p className="text-sm leading-relaxed text-neutral-600">
-            ERP, CRM, AI, SaaS, and the platform layer underneath — one studio accountable for the
-            full stack.
+            We combine product strategy, engineering, cloud, automation, and AI to build technology
+            that drives measurable business growth.
           </p>
         </div>
 

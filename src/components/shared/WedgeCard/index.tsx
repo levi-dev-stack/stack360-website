@@ -1,8 +1,8 @@
 'use client';
 
-export interface WedgeStat {
-  value: string;
-  label: string;
+export interface WedgePoint {
+  primary: string;
+  secondary: string;
 }
 
 export interface WedgeCardProps {
@@ -11,47 +11,52 @@ export interface WedgeCardProps {
   title: string;
   description: string;
   icon: React.ReactNode;
-  stats: WedgeStat[];
+  points: WedgePoint[];
 }
 
-export function WedgeCard({ number, tagline, title, description, icon, stats }: WedgeCardProps) {
+export function WedgeCard({ number, tagline, title, description, icon, points }: WedgeCardProps) {
   return (
-    <div className="group relative flex h-full min-h-88 w-full flex-col justify-between overflow-hidden rounded-xl border border-neutral-800 bg-linear-to-b from-neutral-900 to-neutral-950 p-lg shadow-card">
+    <div className="group relative flex h-full min-h-88 w-full flex-col overflow-hidden rounded-xl border border-neutral-800 bg-linear-to-b from-neutral-900 to-neutral-950 p-lg shadow-card">
       <div className="absolute -top-20 -right-20 h-40 w-40 rounded-full bg-primary/10 blur-3xl transition-opacity duration-500 group-hover:bg-primary/20" />
 
-      <div>
+      <div className="relative shrink-0">
         <div className="flex items-center justify-between">
-          <span className="font-mono text-4xl font-black text-primary/30 tracking-tight">
+          <span className="font-mono text-4xl font-black tracking-tight text-primary/30">
             {number}
           </span>
-          <div className="text-primary text-xl transition-transform duration-300 group-hover:scale-110">
+          <div className="text-xl text-primary transition-transform duration-300 group-hover:scale-110">
             {icon}
           </div>
         </div>
 
-        {/* Headline Body Copy */}
         <div className="mt-lg space-y-xs">
-          <span className="block font-mono text-[10px] uppercase tracking-widest text-primary font-bold">
+          <span className="block font-mono text-[10px] font-bold uppercase tracking-widest text-primary">
             {tagline}
           </span>
-          <h3 className="text-xl font-bold tracking-tight text-neutral-50">{title}</h3>
-          <p className="mt-md text-sm leading-relaxed text-neutral-400">{description}</p>
+          <h3 className="text-balance text-xl font-bold tracking-tight text-neutral-50">{title}</h3>
+          <p className="mt-md text-pretty text-sm leading-relaxed text-neutral-400">
+            {description}
+          </p>
         </div>
       </div>
 
-      {/* Dynamic Statistics Footer Block */}
-      {stats.length > 0 && (
-        <div className="grid grid-cols-3 gap-sm pt-md border-t border-neutral-800/60 font-mono">
-          {stats.map((stat, sIdx) => (
-            // biome-ignore lint/suspicious/noArrayIndexKey: <explain later>
-            <div key={sIdx} className="space-y-[2px]">
-              <div className="text-lg font-black text-neutral-100">{stat.value}</div>
-              <div className="text-[9px] uppercase tracking-wider text-neutral-500 font-bold">
-                {stat.label}
+      {points.length > 0 && (
+        <ul className="relative mt-auto flex flex-col gap-0 border-t border-neutral-800/80 pt-md">
+          {points.map((point) => (
+            <li
+              key={point.primary}
+              className="grid grid-cols-[auto_1fr] items-start gap-x-sm gap-y-0.5 border-b border-neutral-800/50 py-sm last:border-b-0 last:pb-0 first:pt-0"
+            >
+              <span aria-hidden className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-primary" />
+              <div className="min-w-0">
+                <p className="text-sm font-bold tracking-tight text-neutral-100">{point.primary}</p>
+                <p className="mt-0.5 text-[11px] leading-snug text-neutral-500">
+                  {point.secondary}
+                </p>
               </div>
-            </div>
+            </li>
           ))}
-        </div>
+        </ul>
       )}
     </div>
   );

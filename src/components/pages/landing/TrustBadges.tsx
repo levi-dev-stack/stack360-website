@@ -54,21 +54,16 @@ export default function TrustBadges() {
           variants={motionVariants(reduced, fadeUp)}
           initial={false}
           animate={visible ? 'show' : 'hidden'}
-          className="max-w-3xl text-center"
+          className="text-center"
         >
           <h2
             id="recognition-heading"
-            className="text-balance text-3xl font-black tracking-tight text-neutral-900 md:text-4xl lg:text-[2.75rem] lg:leading-tight"
+            className="text-balance text-lg font-bold leading-snug tracking-tight text-neutral-800 md:text-xl md:leading-snug"
           >
-            Top-rated on the platforms that{' '}
-            <span className="text-primary">vet software partners.</span>
+            Recognised for delivering reliable software and product development solutions to
+            businesses worldwide
           </h2>
-          <p className="mt-md text-pretty text-base leading-relaxed text-neutral-700 md:text-lg">
-            Independent, verified recognition from Clutch, GoodFirms, Upwork, and Fiverr — not
-            self-awarded seals.
-          </p>
         </motion.div>
-
         <motion.div
           variants={motionVariants(reduced, staggerContainer)}
           initial={false}
