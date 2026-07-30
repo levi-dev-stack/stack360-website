@@ -207,13 +207,16 @@ button {
 
 /*
   Root layout uses selection:bg-primary/20 + selection:text-primary.
-  On orange primary CTAs that already use white type, that combo washes out.
-  Invert selection on buttons and primary link-buttons only.
+  On orange primary surfaces that already use white type, that combo washes out.
+  Invert selection on buttons, primary link-buttons, and solid primary panels
+  (e.g. chat assistant header).
 */
 button::selection,
 button *::selection,
 a.bg-primary::selection,
-a.bg-primary *::selection {
+a.bg-primary *::selection,
+.bg-primary::selection,
+.bg-primary *::selection {
   background-color: var(--token-neutral-950);
   color: var(--token-neutral-50);
 }
