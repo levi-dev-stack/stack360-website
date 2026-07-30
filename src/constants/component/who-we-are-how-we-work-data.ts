@@ -57,7 +57,7 @@ export const HOW_WE_WORK_LEADERS = [
     name: 'M. Awais Aslam',
     role: 'Co-Founder',
     image: {
-      src: '/assets/who-we-are/leaders/awais-aslam.png',
+      src: '/assets/who-we-are/leaders/awais-aslam.webp',
       alt: 'M. Awais Aslam, Co-Founder of Stack360',
     },
   },
@@ -65,7 +65,7 @@ export const HOW_WE_WORK_LEADERS = [
     name: 'Ali Haider',
     role: 'Co-Founder & CTO',
     image: {
-      src: '/assets/who-we-are/leaders/ali-haider.png',
+      src: '/assets/who-we-are/leaders/ali-haider.webp',
       alt: 'Ali Haider, Co-Founder and CTO of Stack360',
     },
   },
@@ -73,7 +73,7 @@ export const HOW_WE_WORK_LEADERS = [
     name: 'Tayyab Zia',
     role: 'Head Software Engineer',
     image: {
-      src: '/assets/who-we-are/leaders/tayyab-zia.png',
+      src: '/assets/who-we-are/leaders/tayyab-zia.webp',
       alt: 'Tayyab Zia, Head Software Engineer at Stack360',
     },
   },

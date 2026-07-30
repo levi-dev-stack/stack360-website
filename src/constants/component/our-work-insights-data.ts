@@ -28,11 +28,11 @@ export const NEWS_SECTIONS = [
     date: '2026-01',
     images: [
       {
-        src: '/assets/news/umt-recruitment-drive-1.jpg',
+        src: '/assets/news/umt-recruitment-drive-1.webp',
         alt: 'Stack360 team member at the 12th UMT Mega Career Fest backdrop',
       },
       {
-        src: '/assets/news/umt-recruitmentnt-drive.JPG',
+        src: '/assets/news/umt-recruitmentnt-drive.webp',
         alt: 'Award presentation at the 12th UMT Mega Career Fest',
       },
     ],
@@ -45,7 +45,7 @@ export const NEWS_SECTIONS = [
     date: '2026-05',
     images: [
       {
-        src: '/assets/news/uet-recruitment-drive-1.jpeg',
+        src: '/assets/news/uet-recruitment-drive-1.webp',
         alt: 'Stack360 team speaking with students at a UET recruitment drive booth',
       },
     ],
@@ -83,7 +83,7 @@ export const LEARNING_SECTIONS = [
   //   date: '2026-01',
   //   images: [
   //     {
-  //       src: '/assets/learning-session/IMG_5601.jpg',
+  //       src: '/assets/learning-session/IMG_5601.webp',
   //       alt: 'Stack360 engineers attending an internal agentic tools learning session',
   //     },
   //   ],

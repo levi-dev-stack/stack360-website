@@ -67,7 +67,7 @@ export const CASE_STUDIES_DETAILS: CaseStudyDetail[] = [
     metricLabel: 'Sales via Buy Now, Pay Later',
     clientRequirement:
       'AutoBuffy, a leading eCommerce store for auto parts, reached out to enhance website functionality and user experience — faster part search across a huge catalog, flexible payment options, stronger technical SEO, higher-availability infrastructure, and real-time inventory synchronization.',
-    image: '/images/case-studies/autobuffy.png',
+    image: '/images/case-studies/autobuffy.webp',
     challenges: [
       {
         challenge:
@@ -219,7 +219,7 @@ export const CASE_STUDIES_DETAILS: CaseStudyDetail[] = [
     metricLabel: 'Migrated + new revenue stream',
     clientRequirement:
       'CoachCatalyst needed its coaching platform modernized — a faster, more intuitive UI, a Stripe Connect marketplace so coaches get paid directly, an integrated community module, a rewritten real-time chat, and a full migration to Vue 3.',
-    image: '/images/case-studies/coach-catalyst.png',
+    image: '/images/case-studies/coach-catalyst.webp',
     challenges: [
       {
         challenge:
@@ -339,7 +339,7 @@ export const CASE_STUDIES_DETAILS: CaseStudyDetail[] = [
     metricLabel: 'HR, invoicing & real-time ops',
     clientRequirement:
       'The client needed their internal management tool restructured — simpler client modules over a cleaner database, automated service-rate and invoice handling, a modern DevExtreme UI, and SQL-optimized analytics for fast dashboards.',
-    image: '/images/case-studies/atc.png',
+    image: '/images/case-studies/atc.webp',
     challenges: [
       {
         challenge:
@@ -462,7 +462,7 @@ export const CASE_STUDIES_DETAILS: CaseStudyDetail[] = [
     metricLabel: 'Amazon · eBay · Walmart synced',
     clientRequirement:
       'BuffyHub needed a unified eCommerce control plane — a scalable system for large volumes of inventory, orders, brands, and vendors, hardened security, seamless multi-marketplace integration, and performance optimization as traffic grew.',
-    image: '/images/case-studies/buffyhub.png',
+    image: '/images/case-studies/buffyhub.webp',
     challenges: [
       {
         challenge:
@@ -585,7 +585,7 @@ export const CASE_STUDIES_DETAILS: CaseStudyDetail[] = [
     metricLabel: 'Fewer manual workflows',
     clientRequirement:
       'Cercle.uk needed a high-end sustainable fashion rental marketplace — lenders listing luxury items for income, renters accessing those items at lower cost, with reliable payments, returns, clothing renewal, and multi-channel sales.',
-    image: '/images/case-studies/cercle.png',
+    image: '/images/case-studies/cercle.webp',
     challenges: [
       {
         challenge:
@@ -715,7 +715,7 @@ export const CASE_STUDIES_DETAILS: CaseStudyDetail[] = [
     metricLabel: 'Global creatives synced',
     clientRequirement:
       'Klingit needed a DesignOps platform for clients, designers, managers, and admins — clear communication, project state tracking, automated onboarding, remote collaboration, and secure handling of brand assets across 40+ creatives.',
-    image: '/images/case-studies/klingit.png',
+    image: '/images/case-studies/klingit.webp',
     challenges: [
       {
         challenge:
@@ -840,7 +840,7 @@ export const CASE_STUDIES_DETAILS: CaseStudyDetail[] = [
     metricLabel: 'Flags · follow · wishlist',
     clientRequirement:
       'Nextflag needed a polished React Native experience — stable onboarding, geolocated flags on a map, search by city, social follow, wishlist, and smoother post-upload flows without crashes.',
-    image: '/images/case-studies/nextflag.png',
+    image: '/images/case-studies/nextflag.webp',
     challenges: [
       {
         challenge:
@@ -950,7 +950,7 @@ export const CASE_STUDIES_DETAILS: CaseStudyDetail[] = [
     metricLabel: 'Absorbs traffic spikes',
     clientRequirement:
       'Truck-4 needed a microservices marketplace for commercial rentals — OTP auth, truck management, secure file uploads, third-party maps/email, compliance tooling, and Kubernetes-ready scale.',
-    image: '/images/case-studies/truck-4.png',
+    image: '/images/case-studies/truck-4.webp',
     challenges: [
       {
         challenge:

@@ -298,7 +298,7 @@ export interface Testimonial {
   industry: string;
   rating: number;
   /**
-   * Real client photo. Local asset (e.g. '/assets/testimonials/kyle-david.jpg') or a
+   * Real client photo. Local asset (e.g. '/assets/testimonials/kyle-david.webp') or a
    * remote URL (its host must be whitelisted in `next.config.ts` → images.remotePatterns).
    * Leave undefined when the client hasn't shared a photo — the carousel shows a fallback
    * user icon instead.
