@@ -1,6 +1,7 @@
 'use client';
 
 import { motion, useReducedMotion } from 'motion/react';
+import Link from 'next/link';
 import { fadeUp, motionVariants, staggerContainer } from '@/components/shared/motion/variants';
 
 interface PageHeroProps {
@@ -8,9 +9,10 @@ interface PageHeroProps {
   title: string;
   highlight?: string;
   description: string;
+  cta?: { label: string; href: string };
 }
 
-export default function PageHero({ eyebrow, title, highlight, description }: PageHeroProps) {
+export default function PageHero({ eyebrow, title, highlight, description, cta }: PageHeroProps) {
   const reduced = useReducedMotion();
 
   return (
@@ -50,6 +52,16 @@ export default function PageHero({ eyebrow, title, highlight, description }: Pag
           >
             {description}
           </motion.p>
+          {cta ? (
+            <motion.div variants={motionVariants(reduced, fadeUp)}>
+              <Link
+                href={cta.href}
+                className="inline-flex min-h-11 items-center justify-center rounded-sm bg-primary px-lg py-sm text-sm font-bold text-neutral-50 transition-colors hover:bg-primary-dark focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+              >
+                {cta.label}
+              </Link>
+            </motion.div>
+          ) : null}
         </motion.div>
       </div>
     </section>

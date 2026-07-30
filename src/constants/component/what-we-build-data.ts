@@ -36,16 +36,30 @@ export interface CapabilityPageData {
     title: string;
     highlight?: string;
     description: string;
+    cta?: { label: string; href: string };
   };
   capabilitiesTitle: string;
   capabilitiesIntro: string;
   capabilities: { title: string; description: string }[];
   processTitle: string;
   processIntro: string;
-  process: { title: string; description: string }[];
+  process: { title: string; description: string; phase?: string }[];
+  /** Optional outcomes section rendered after tech. */
+  benefitsTitle?: string;
+  benefitsIntro?: string;
+  benefits?: { title: string; description: string }[];
   tech: string[];
+  techTitle?: string;
+  techIntro?: string;
   projects: CapabilityProjectRef[];
+  projectsTitle?: string;
+  projectsIntro?: string;
+  projectsCtaLabel?: string;
   faqs: CapabilityFaq[];
+  faqsTitle?: string;
+  faqsIntro?: string;
+  /** When true, renders the shared partner testimonials carousel. */
+  showTestimonials?: boolean;
   cta: {
     title: string;
     description: string;
@@ -78,903 +92,1648 @@ function projectRef(slug: string): CapabilityProjectRef {
   };
 }
 
-const defaultCta = (system: string) =>
-  ({
-    title: `Ready to scope ${system}?`,
-    description:
-      'Share constraints, timeline, and stack preferences. We respond with a concrete next step — not a brochure.',
-    primary: { label: 'Start a conversation', href: '/contact' },
-    secondary: { label: 'Hire talent', href: '/work-with-us/hire' },
-  }) as const;
-
 export const CAPABILITY_PAGES: Record<CapabilitySlug, CapabilityPageData> = {
   'web-apps': {
     slug: 'web-apps',
     hero: {
       eyebrow: 'What We Build · Web Apps',
-      title: 'Web systems that',
-      highlight: 'hold up in production.',
+      title: 'Build Powerful Web Apps For',
+      highlight: 'Growing Businesses',
       description:
-        'We craft tailored websites and web applications that are visually clear, highly functional, and optimized across devices — built for partners who need durable architecture, not throwaway marketing sites.',
+        'We build custom web applications that streamline operations, connect business systems, improve user experiences, and support scalable digital growth.',
+      cta: { label: 'Build Your Web App', href: '/contact' },
     },
-    capabilitiesTitle: 'Web development services',
+    capabilitiesTitle: 'Challenges & Solutions',
     capabilitiesIntro:
-      'From experience design through full-stack delivery and ongoing maintenance — one studio accountable for the surface and the systems behind it.',
+      'Slow websites, poor experiences, limited functionality, and disconnected systems can prevent businesses from converting visitors and scaling online.',
     capabilities: [
       {
-        title: 'Experience design',
+        title: 'Custom Websites Built',
         description:
-          'User-focused interfaces that improve interaction and reduce friction across the customer journey.',
+          'Our custom website development creates flexible digital experiences tailored to your brand, users, workflows, and business objectives.',
       },
       {
-        title: 'Frontend development',
+        title: 'Business Websites',
         description:
-          'Responsive, interactive frontends with React, Next.js, Vue, Angular, and TypeScript — measured for performance.',
+          'We build professional websites that communicate your value clearly, support your goals, and create seamless experiences across devices.',
       },
       {
-        title: 'Backend development',
+        title: 'Ecommerce Experiences',
         description:
-          'Secure APIs and data layers with Node.js, Laravel, Ruby on Rails, and similar stacks your team can own.',
+          'Our ecommerce website development services create secure, scalable online stores with product management, payments, integrations, and customer-focused experiences.',
       },
       {
-        title: 'Full-stack delivery',
+        title: 'Web Applications',
         description:
-          'End-to-end ownership when you need one partner across client, server, and deployment.',
+          'As a web app development company, we build interactive applications that simplify workflows, connect systems, and support complex business requirements.',
       },
       {
-        title: 'E-commerce platforms',
+        title: 'Connected Platforms',
         description:
-          'Custom or platform-backed stores with payment integrations, catalog UX, and inventory workflows.',
-      },
-      {
-        title: 'Maintenance & updates',
-        description:
-          'Ongoing hardening, dependency updates, and performance work so the product stays production-ready.',
+          'Integrate websites with CRMs, ERPs, APIs, payment systems, databases, analytics platforms, and third-party business applications.',
       },
     ],
-    processTitle: 'How we ship web products',
+    processTitle: 'From Concept To Launch',
     processIntro:
-      'Clear roadmap, deliberate build, then launch with support — so partners and client stakeholders stay aligned.',
+      'Our website design and development process connects strategy, UX, engineering, testing, optimisation, and deployment to deliver reliable digital experiences.',
     process: [
       {
-        title: 'Project initiation',
+        phase: 'Discover',
+        title: 'Define Requirements',
         description:
-          'Requirements, audience, and success metrics become a precise roadmap before a line of code ships.',
+          'We understand your audience, business goals, functionality, integrations, content, and technical requirements before development begins.',
       },
       {
-        title: 'Design and build',
+        phase: 'Develop',
+        title: 'Build Experience',
         description:
-          'Interfaces and backends land together so UX and system constraints stay honest with each other.',
+          'Our developers create responsive websites and web applications with scalable architecture, clean code, secure integrations, and performance optimisation.',
       },
       {
-        title: 'Launch & support',
+        phase: 'Launch',
+        title: 'Optimise Performance',
         description:
-          'Controlled release, monitoring, and iteration so the product stays fast and secure after go-live.',
+          'We test functionality, responsiveness, security, and performance before launch, then continue improving your website as requirements evolve.',
       },
     ],
-    tech: ['react', 'nextdotjs', 'vuedotjs', 'angular', 'nodedotjs', 'typescript', 'tailwindcss'],
+    techTitle: 'Technology Behind Our Websites',
+    techIntro:
+      'We use modern frontend, backend, CMS, ecommerce, database, cloud, and API technologies to build scalable websites.',
+    tech: [
+      'react',
+      'nextdotjs',
+      'nodedotjs',
+      'python',
+      'dotnet',
+      'wordpress',
+      'shopify',
+      'postgresql',
+      'mongodb',
+      'amazonaws',
+      'microsoftazure',
+      'google',
+      'graphql',
+    ],
+    benefitsTitle: 'Websites Built For Growth',
+    benefitsIntro:
+      'Our website development services combine performance, usability, scalability, security, and flexibility to support long-term digital growth.',
+    benefits: [
+      {
+        title: 'Better User Experience',
+        description:
+          'Create intuitive, responsive experiences that help visitors navigate your website easily and find the information they need.',
+      },
+      {
+        title: 'Faster Performance',
+        description:
+          'Optimised architecture, code, assets, and infrastructure help websites load faster and deliver smoother experiences across devices.',
+      },
+      {
+        title: 'Flexible Functionality',
+        description:
+          'Custom development allows your website to support unique workflows, features, integrations, and business requirements.',
+      },
+      {
+        title: 'Scalable Architecture',
+        description:
+          'Build websites and web applications that can support growing traffic, content, customers, transactions, and functionality.',
+      },
+      {
+        title: 'Seamless Integrations',
+        description:
+          'Connect your website with business systems, APIs, payment platforms, CRMs, ERPs, analytics tools, and third-party services.',
+      },
+      {
+        title: 'Conversion-Focused Experiences',
+        description:
+          'Combine clear user journeys, intuitive interfaces, strong functionality, and performance to help turn more visitors into customers.',
+      },
+    ],
+    projectsTitle: 'Web Projects In Action',
+    projectsIntro:
+      'Explore how Stack360 builds websites, web applications, and ecommerce platforms that solve business challenges and support measurable digital growth.',
+    projectsCtaLabel: 'View All Case Studies',
     projects: [projectRef('autobuffy'), projectRef('buffyhub'), projectRef('cinekit')],
+    faqsTitle: 'Website Development FAQs',
+    faqsIntro:
+      'Find answers to technical questions about custom websites, web applications, ecommerce platforms, integrations, performance, and scalability.',
     faqs: [
       {
-        id: 'web-tech',
-        question: 'Which technologies do you use for web development?',
+        id: 'web-includes',
+        question: 'What does website development include?',
         answer:
-          'Frontend: HTML5, CSS3, JavaScript, React, Next.js, Vue, Angular, and Tailwind. Backend: Node.js, Laravel, Ruby on Rails, and related services — chosen to match your team’s ownership model.',
+          'Website development can include frontend and backend development, CMS implementation, integrations, ecommerce functionality, databases, APIs, testing, deployment, and ongoing optimisation.',
       },
       {
-        id: 'web-seo',
-        question: 'Will my website be SEO-friendly and mobile responsive?',
+        id: 'web-custom-vs-template',
+        question: 'What is the difference between custom and template-based website development?',
         answer:
-          'Yes. We build responsive layouts and apply technical SEO foundations — structure, performance, and crawlability — as part of delivery, not an afterthought.',
+          'Custom website development creates functionality and experiences around your specific requirements, while templates provide predefined structures with more limited flexibility.',
       },
       {
-        id: 'web-ecom',
-        question: 'Do you develop eCommerce websites?',
+        id: 'web-ecommerce',
+        question: 'Can you develop ecommerce websites?',
         answer:
-          'Absolutely. WooCommerce, Shopify, Magento, or fully custom stacks tailored to catalog complexity and checkout requirements.',
+          'Yes. Our ecommerce website development services support product catalogues, payments, customer accounts, integrations, inventory workflows, and scalable online shopping experiences.',
+      },
+      {
+        id: 'web-integrate',
+        question: 'Can you integrate a website with existing business systems?',
+        answer:
+          'Yes. We integrate websites with CRMs, ERPs, APIs, payment gateways, databases, analytics platforms, SaaS applications, and other business systems.',
       },
       {
         id: 'web-apps',
-        question: 'Can you build web applications and portals?',
+        question: 'Can you develop web applications instead of traditional websites?',
         answer:
-          'Yes — dashboards, SaaS surfaces, and internal portals with authentication, roles, and secure data flows.',
-      },
-      {
-        id: 'web-perf',
-        question: 'How do you ensure fast loading and performance?',
-        answer:
-          'Image optimization, code-splitting, lazy loading, CDN usage, and SSR/SSG where they earn their keep — validated with measurable budgets, not slogans.',
+          'Yes. As a web app development company, we build interactive web applications, customer portals, SaaS platforms, dashboards, internal tools, and complex business applications.',
       },
     ],
-    cta: defaultCta('a web system'),
+    cta: {
+      title: 'Ready To Build A Better Website?',
+      description:
+        'Partner with Stack360 for website development that combines modern technology, scalable architecture, intuitive experiences, and business-focused functionality.',
+      primary: { label: 'Build Your Web App', href: '/contact' },
+      secondary: { label: 'Hire talent', href: '/work-with-us/hire' },
+    },
   },
 
   'mobile-apps': {
     slug: 'mobile-apps',
     hero: {
       eyebrow: 'What We Build · Mobile Apps',
-      title: 'Mobile products built for',
-      highlight: 'store-ready quality.',
+      title: 'Build Custom Mobile Apps That',
+      highlight: 'Drive Growth',
       description:
-        'Expertly crafted iOS, Android, and hybrid applications — user-friendly, efficient, and ready for App Store and Play Store submission with a backend your team can operate.',
+        'We develop custom mobile applications that deliver intuitive experiences, connect business systems, and scale with your users, products, and business goals.',
+      cta: { label: 'Build Your Mobile App', href: '/contact' },
     },
-    capabilitiesTitle: 'Mobile app development',
+    capabilitiesTitle: 'Challenges & Solutions',
     capabilitiesIntro:
-      'Native when the platform demands it; cross-platform when shared velocity wins — with API design and store deployment included.',
+      'Businesses need mobile experiences that perform reliably, engage users, integrate systems, and adapt quickly as customer expectations continue to evolve.',
     capabilities: [
       {
-        title: 'iOS development',
+        title: 'Custom Apps Built',
         description:
-          'Swift-native apps tuned for Apple Human Interface patterns, performance, and App Store compliance.',
+          'We develop custom mobile apps around your users, workflows, features, integrations, and specific business requirements.',
       },
       {
-        title: 'Android development',
+        title: 'Native App Experiences',
         description:
-          'Kotlin-first Android apps focused on smooth interaction across a wide device base.',
+          'We build high-performance mobile applications with platform-specific experiences for Android and iOS users.',
       },
       {
-        title: 'Hybrid & cross-platform',
+        title: 'Cross-Platform Development',
         description:
-          'React Native and Flutter when one codebase should serve both platforms without sacrificing UX.',
+          'Our cross-platform mobile app development services help businesses launch consistent experiences across multiple platforms from one efficient codebase.',
       },
       {
-        title: 'API integration',
+        title: 'Connected Mobile Experiences',
         description:
-          'Secure auth, offline sync, and real-time features wired to Node, Firebase, or Rails backends.',
+          'Integrate mobile applications with APIs, CRMs, ERPs, cloud services, databases, and existing business systems.',
       },
       {
-        title: 'App store deployment',
+        title: 'Scalable App Architecture',
         description:
-          'Submission, compliance checks, and release hygiene for Google Play and the Apple App Store.',
+          'We design flexible architectures that support growing users, transactions, features, integrations, and evolving product requirements.',
       },
     ],
-    processTitle: 'App delivery process',
+    processTitle: 'From Concept To Scale',
     processIntro:
-      'Vision → plan → design → build → test → deploy. Partners get visibility at each gate.',
+      'Our mobile app development process combines product strategy, user experience, engineering, testing, and deployment to create reliable applications.',
     process: [
       {
-        title: 'Initial planning',
+        phase: 'Discover',
+        title: 'Define Requirements',
         description:
-          'Scope, goals, and platform strategy aligned to budget and go-to-market constraints.',
+          'We analyse your users, goals, features, workflows, and technical requirements to establish a focused mobile development roadmap.',
       },
       {
-        title: 'Design and development',
+        phase: 'Develop',
+        title: 'Build Experiences',
         description:
-          'Intuitive UI paired with robust application code and a maintainable module structure.',
+          'Our mobile app developers build intuitive applications with scalable architecture, secure integrations, testing, and performance optimisation.',
       },
       {
-        title: 'Quality assurance',
+        phase: 'Scale',
+        title: 'Optimise Performance',
         description:
-          'Device-matrix testing and bug triage so releases feel stable before customers see them.',
+          'We monitor, improve, and expand your application as users, features, integrations, and business requirements continue growing.',
       },
     ],
-    tech: ['swift', 'kotlin', 'reactnative', 'flutter', 'firebase', 'nodedotjs'],
-    projects: [projectRef('slumber-sprout'), projectRef('coach-catalyst'), projectRef('mi-taller')],
+    techTitle: 'Technology Behind Mobile Apps',
+    techIntro:
+      'We use modern mobile frameworks, cloud platforms, APIs, and development technologies to create secure, scalable applications.',
+    tech: [
+      'swift',
+      'kotlin',
+      'reactnative',
+      'flutter',
+      'nodedotjs',
+      'python',
+      'dotnet',
+      'react',
+      'nextdotjs',
+      'amazonaws',
+      'microsoftazure',
+      'graphql',
+    ],
+    benefitsTitle: 'Mobile Apps Built For Growth',
+    benefitsIntro:
+      'Custom mobile applications give businesses greater control over user experiences, functionality, integrations, performance, and long-term product growth.',
+    benefits: [
+      {
+        title: 'Better User Experiences',
+        description:
+          'Create intuitive mobile experiences tailored to your audience, business model, workflows, and customer expectations.',
+      },
+      {
+        title: 'Higher Engagement',
+        description:
+          'Deliver convenient mobile interactions that help customers access products, services, content, and support wherever they are.',
+      },
+      {
+        title: 'Seamless Integrations',
+        description:
+          'Connect mobile apps with APIs, payment systems, CRMs, ERPs, databases, and cloud platforms for connected experiences.',
+      },
+      {
+        title: 'Scalable Performance',
+        description:
+          'Build mobile applications that support increasing users, transactions, features, and business requirements without compromising performance.',
+      },
+      {
+        title: 'Platform Flexibility',
+        description:
+          'Choose native or cross-platform development based on your product requirements, budget, performance needs, and long-term roadmap.',
+      },
+      {
+        title: 'Faster Innovation',
+        description:
+          'Launch new features and capabilities faster with a flexible application architecture designed around your evolving product strategy.',
+      },
+    ],
+    projectsTitle: 'Mobile Apps In Action',
+    projectsIntro:
+      'Explore how Stack360 builds intuitive mobile experiences that solve business challenges, connect systems, and support scalable digital products.',
+    projectsCtaLabel: 'View All Case Studies',
+    projects: [projectRef('slumber-sprout'), projectRef('nuvana'), projectRef('cashkart')],
+    faqsTitle: 'Mobile App Development FAQs',
+    faqsIntro:
+      'Find answers to technical questions about mobile platforms, development approaches, architecture, integrations, security, and scalability.',
     faqs: [
       {
-        id: 'mobile-native',
-        question: 'Do you build native or cross-platform apps?',
+        id: 'mobile-native-vs-cross',
+        question: 'Should I choose native or cross-platform mobile app development?',
         answer:
-          'Both. Native with Swift and Kotlin when platform depth matters; React Native or Flutter when shared delivery speed is the priority.',
+          'The right approach depends on performance requirements, target platforms, features, budget, and long-term product plans. We recommend the approach that best fits your goals.',
       },
       {
-        id: 'mobile-offline',
-        question: 'Can my app support offline functionality?',
+        id: 'mobile-android-ios',
+        question: 'Can you develop both Android and iOS applications?',
         answer:
-          'Yes. Local storage and sync strategies keep core flows usable without a network, then reconcile when connectivity returns.',
+          'Yes. We develop Android and iOS applications using native technologies such as Kotlin and Swift, as well as cross-platform frameworks when appropriate.',
       },
       {
-        id: 'mobile-security',
-        question: 'How do you ensure app security?',
+        id: 'mobile-flutter-rn',
+        question: 'What is the difference between Flutter and React Native?',
         answer:
-          'Encrypted transport, secure APIs, OAuth2-style auth patterns, and vulnerability testing as part of the release cycle.',
+          "Both support cross-platform development, but they use different technologies and approaches. We select the framework based on your application's requirements, integrations, performance, and development roadmap.",
       },
       {
-        id: 'mobile-stores',
-        question: 'Will you handle deployment to app stores?',
+        id: 'mobile-integrate',
+        question: 'Can you integrate mobile apps with existing business systems?',
         answer:
-          'Yes — full submission support for Play Store and App Store, including compliance and listing optimization.',
+          'Yes. We integrate mobile applications with APIs, CRMs, ERPs, payment gateways, databases, cloud services, and other business platforms.',
       },
       {
-        id: 'mobile-backend',
-        question: 'Can you build and integrate a custom backend?',
+        id: 'mobile-scale-secure',
+        question: 'How do you make mobile applications scalable and secure?',
         answer:
-          'Yes. Scalable backends with Node.js, Firebase, or Ruby on Rails for auth, real-time features, and analytics.',
+          'We use scalable architecture, secure APIs, authentication, encryption, testing, monitoring, performance optimisation, and appropriate cloud infrastructure.',
       },
     ],
-    cta: defaultCta('a mobile product'),
+    cta: {
+      title: 'Ready To Build Your Mobile App?',
+      description:
+        'Partner with Stack360 to create a scalable mobile application that delivers better experiences, connects your systems, and supports business growth.',
+      primary: { label: 'Build Your Mobile App', href: '/contact' },
+      secondary: { label: 'Hire talent', href: '/work-with-us/hire' },
+    },
   },
 
   devops: {
     slug: 'devops',
     hero: {
       eyebrow: 'What We Build · DevOps',
-      title: 'Automate delivery.',
-      highlight: 'Reduce release risk.',
+      title: 'Build Faster With Smarter',
+      highlight: 'DevOps Engineering',
       description:
-        'Maximize team productivity with DevOps that covers assessment, automation, and ongoing management — CI/CD, infrastructure as code, and observability that partners can trust.',
+        'Our DevOps consulting services improve deployment speed, infrastructure reliability, automation, and collaboration across your software development lifecycle.',
+      cta: { label: 'Improve Your DevOps', href: '/contact' },
     },
-    capabilitiesTitle: 'DevOps solutions',
+    capabilitiesTitle: 'Challenges & Solutions',
     capabilitiesIntro:
-      'We close the gap between “works on my machine” and production-grade release cadence.',
+      'Manual deployments, inconsistent environments, infrastructure bottlenecks, and limited monitoring can slow releases and increase operational risks.',
     capabilities: [
       {
-        title: 'DevOps assessment',
+        title: 'Smarter Delivery Pipelines',
         description:
-          'Current-state review of pipelines, environments, and ownership — with a prioritized remediation plan.',
+          'Our DevOps development services streamline development, testing, deployment, and infrastructure management through reliable automated workflows.',
       },
       {
-        title: 'DevOps automation',
+        title: 'Automated Infrastructure',
         description:
-          'Automate build, test, and deploy so releases stay fast without trading away quality gates.',
+          'Implement DevOps automation to provision, configure, monitor, and manage infrastructure with greater consistency and fewer manual processes.',
       },
       {
-        title: 'DevOps management',
+        title: 'Faster Deployments',
         description:
-          'Ongoing ownership of delivery environments: continuous integration, deployment, and operational hygiene.',
+          'Build reliable CI/CD pipelines that help teams release software faster while maintaining quality, security, and deployment consistency.',
       },
       {
-        title: 'CI/CD pipelines',
+        title: 'Reliable Infrastructure',
         description:
-          'GitHub Actions, GitLab CI, Jenkins, and similar — wired to your branching model and compliance needs.',
+          'Design resilient cloud and infrastructure environments that support application availability, performance, scalability, and operational continuity.',
       },
       {
-        title: 'Containers & orchestration',
+        title: 'Continuous Monitoring',
         description:
-          'Docker and Kubernetes setups that keep services isolated, reproducible, and scalable.',
+          'Monitor infrastructure, applications, deployments, and system performance to identify issues early and improve operational visibility.',
       },
     ],
-    processTitle: 'Streamline. Automate. Optimize.',
-    processIntro: 'End-to-end DevOps so development and operations move as one system.',
+    processTitle: 'From Code To Production',
+    processIntro:
+      'Our DevOps consulting approach connects development, infrastructure, automation, security, and monitoring to create efficient software delivery pipelines.',
     process: [
       {
-        title: 'Plan & strategy',
+        phase: 'Assess',
+        title: 'Analyse Infrastructure',
         description:
-          'Assess workflows and define a roadmap that accelerates delivery without ignoring risk.',
+          'We review your architecture, workflows, deployment processes, infrastructure, and operational challenges to identify practical improvement opportunities.',
       },
       {
-        title: 'Automation & deployment',
+        phase: 'Automate',
+        title: 'Build Pipelines',
         description:
-          'CI/CD and infrastructure automation for reliable releases with minimal downtime.',
+          'We implement CI/CD, infrastructure automation, containerisation, testing, and deployment workflows that improve delivery efficiency.',
       },
       {
-        title: 'Monitor & optimize',
+        phase: 'Optimise',
+        title: 'Improve Reliability',
         description:
-          'Continuous monitoring, security feedback, and iterative improvements to reliability.',
+          'We monitor systems, identify bottlenecks, optimise infrastructure, and continuously improve performance, security, and deployment reliability.',
       },
     ],
-    tech: ['docker', 'kubernetes', 'amazonaws', 'github', 'terraform'],
+    techTitle: 'Technology Behind Our DevOps',
+    techIntro:
+      'We use modern cloud, containerisation, infrastructure, automation, monitoring, and CI/CD technologies to improve software delivery.',
+    tech: [
+      'amazonaws',
+      'microsoftazure',
+      'google',
+      'docker',
+      'kubernetes',
+      'github',
+      'gitlab',
+      'jenkins',
+      'terraform',
+      'ansible',
+      'prometheus',
+      'grafana',
+    ],
+    benefitsTitle: 'DevOps Built For Performance',
+    benefitsIntro:
+      'Our DevOps consulting services help teams release faster, automate operations, improve reliability, and create scalable technology environments.',
+    benefits: [
+      {
+        title: 'Faster Delivery',
+        description:
+          'Automated development and deployment workflows reduce manual bottlenecks and help teams release reliable software more frequently.',
+      },
+      {
+        title: 'Greater Automation',
+        description:
+          'DevOps automation reduces repetitive infrastructure and deployment tasks while improving consistency across development and production environments.',
+      },
+      {
+        title: 'Improved Reliability',
+        description:
+          'Continuous monitoring, automated testing, and resilient infrastructure help identify problems earlier and maintain stable application performance.',
+      },
+      {
+        title: 'Better Scalability',
+        description:
+          'Cloud-native infrastructure and automated provisioning make it easier to scale applications and resources as demand changes.',
+      },
+      {
+        title: 'Stronger Collaboration',
+        description:
+          'Connected development and operations workflows improve communication, ownership, visibility, and accountability throughout the software lifecycle.',
+      },
+      {
+        title: 'Reduced Operational Risk',
+        description:
+          'Standardised environments, automated processes, monitoring, and controlled deployments reduce configuration errors and unexpected production issues.',
+      },
+    ],
+    projectsTitle: 'DevOps In Action',
+    projectsIntro:
+      'Explore how Stack360 improves infrastructure, automation, deployment workflows, and operational reliability for growing software products and businesses.',
+    projectsCtaLabel: 'View All Case Studies',
     projects: [projectRef('truck-4'), projectRef('buffyhub'), projectRef('atc')],
+    faqsTitle: 'DevOps Consulting FAQs',
+    faqsIntro:
+      'Find answers to technical questions about DevOps consulting, automation, CI/CD, cloud infrastructure, containers, monitoring, and deployment.',
     faqs: [
       {
         id: 'devops-scope',
-        question: 'What services are included in your DevOps offering?',
+        question: 'What does DevOps consulting include?',
         answer:
-          'CI/CD setup, cloud infrastructure automation, environment configuration, Docker containerization, Kubernetes orchestration, and monitoring.',
+          'DevOps consulting can include infrastructure assessment, CI/CD implementation, cloud optimisation, deployment automation, containerisation, monitoring, security, and operational improvements.',
       },
       {
-        id: 'devops-speed',
-        question: 'How do you improve deployment efficiency?',
+        id: 'devops-automation',
+        question: 'How can DevOps automation improve software delivery?',
         answer:
-          'Automated pipelines with Jenkins, GitLab CI/CD, or GitHub Actions reduce manual error and shorten the path from commit to production.',
+          'DevOps automation reduces manual deployment and infrastructure tasks, improves consistency, accelerates releases, and helps teams detect and resolve issues faster.',
       },
       {
-        id: 'devops-iac',
-        question: 'Do you offer infrastructure automation and management?',
+        id: 'devops-cicd',
+        question: 'Can you build CI/CD pipelines for existing applications?',
         answer:
-          'Yes — Infrastructure as Code with Terraform and Ansible for consistent provisioning across environments.',
+          'Yes. We can design and implement CI/CD pipelines for existing applications, including automated testing, builds, deployments, environment management, and release workflows.',
       },
       {
         id: 'devops-cloud',
-        question: 'Can you assist with cloud platform setup and migration?',
+        question: 'Can you help migrate applications to cloud infrastructure?',
         answer:
-          'We configure AWS, Azure, or GCP and migrate applications, data, and services with controlled cutovers.',
+          'Yes. Our DevOps development services can support cloud migration, infrastructure configuration, containerisation, deployment automation, monitoring, and post-migration optimisation.',
       },
       {
-        id: 'devops-k8s',
-        question: 'Can you help with containerized microservices?',
+        id: 'devops-reliability',
+        question: 'How do you improve DevOps infrastructure reliability?',
         answer:
-          'Yes. Docker-based packaging and Kubernetes management for isolated, scalable, reproducible deployments.',
+          'We combine infrastructure automation, monitoring, testing, deployment controls, scalable architecture, and proactive optimisation to improve reliability and reduce operational risks.',
       },
     ],
-    cta: defaultCta('DevOps delivery'),
+    cta: {
+      title: 'Ready To Modernize Your DevOps Environment?',
+      description:
+        'Partner with Stack360 for DevOps consulting that automates delivery, improves infrastructure reliability, and helps your engineering teams release faster.',
+      primary: { label: 'Improve Your DevOps', href: '/contact' },
+      secondary: { label: 'Hire talent', href: '/work-with-us/hire' },
+    },
   },
 
   'ai-solutions': {
     slug: 'ai-solutions',
     hero: {
       eyebrow: 'What We Build · AI Solutions',
-      title: 'AI that serves the',
-      highlight: 'business system.',
+      title: 'Build Intelligent AI Solutions',
+      highlight: 'For Business Growth',
       description:
-        'Tailored AI and data science solutions that turn raw data into actionable intelligence — predictive models, NLP, recommendation systems, and the data engineering underneath.',
+        'We combine AI consulting, software engineering, and machine learning to build intelligent solutions that automate work and improve business outcomes.',
+      cta: { label: 'Build Your AI Solution', href: '/contact' },
     },
-    capabilitiesTitle: 'AI & data science services',
+    capabilitiesTitle: 'AI Challenges & Solutions',
     capabilitiesIntro:
-      'We design for production use: clean pipelines, validated models, and interfaces your operators can trust.',
+      'Businesses struggle to identify valuable AI opportunities, integrate intelligent systems, and turn emerging technology into measurable business outcomes. We build practical AI solutions that improve operations, integrate securely, and deliver measurable value without unnecessary complexity.',
     capabilities: [
       {
-        title: 'Predictive analytics',
+        title: 'Custom AI Solutions',
         description:
-          'Forecast trends and demand with models grounded in your historical and live data.',
+          'We develop custom AI solutions around your workflows, data, customers, and specific business requirements.',
       },
       {
-        title: 'Machine learning models',
+        title: 'Generative AI Development',
         description:
-          'Custom ML trained and validated for the metrics that matter to your product or ops team.',
+          'Our generative AI development services create intelligent applications for content, research, knowledge retrieval, and business productivity.',
       },
       {
-        title: 'Natural language processing',
+        title: 'AI Agent Development',
         description:
-          'Classification, extraction, and conversational interfaces when language is the interface.',
+          'Our AI agent development services create autonomous systems that understand context, use tools, and execute complex business workflows.',
       },
       {
-        title: 'Big data analytics',
+        title: 'AI Chatbot Development',
         description:
-          'Pipelines and analysis layers that keep large, messy datasets usable for decisions.',
+          'Our AI chatbot development services deliver intelligent conversations that support customers, employees, and business operations across digital channels.',
       },
       {
-        title: 'Recommendation systems',
+        title: 'AI Application Development',
         description:
-          'Personalization engines that improve engagement without opaque black-box hand-waving.',
-      },
-      {
-        title: 'Data engineering',
-        description: 'Ingestion, cleaning, and warehouse/lake design so models have reliable fuel.',
+          'Our AI application development services integrate intelligent capabilities into scalable software, workflows, platforms, and existing business systems.',
       },
     ],
-    processTitle: 'Plan. Build. Improve.',
+    processTitle: 'From Strategy To Scale',
     processIntro:
-      'Discover insight, design the system, then iterate in production — partners stay in the loop on model quality.',
+      'Our AI consulting and development process connects business objectives, data, technology, models, and deployment to create practical AI solutions.',
     process: [
       {
-        title: 'Insight discovery',
+        phase: 'Discover',
+        title: 'Define Opportunities',
         description:
-          'Explore the data landscape to find patterns worth acting on — and dead ends worth skipping.',
+          'Our AI consulting services identify valuable use cases, assess your data, and establish a practical AI development roadmap.',
       },
       {
-        title: 'Solution design',
+        phase: 'Develop',
+        title: 'Build Intelligence',
         description:
-          'Bespoke AI architecture matched to constraints: latency, privacy, cost, and team ownership.',
+          'Our AI software development services integrate models, applications, agents, automation, and secure workflows around your requirements.',
       },
       {
-        title: 'Implementation & iteration',
+        phase: 'Scale',
+        title: 'Optimise Performance',
         description:
-          'Deploy, measure, and refine with validation protocols your stakeholders can audit.',
+          'We monitor AI systems, evaluate models, improve performance, and scale solutions as your business and technology requirements evolve.',
       },
     ],
-    tech: ['python', 'tensorflow', 'pytorch', 'huggingface', 'langchain'],
+    techTitle: 'Technology Behind Our AI Solutions',
+    techIntro:
+      'We use modern AI, machine learning, cloud, language models, APIs, and data technologies to build intelligent applications.',
+    tech: [
+      'openai',
+      'anthropic',
+      'huggingface',
+      'tensorflow',
+      'pytorch',
+      'python',
+      'nodedotjs',
+      'react',
+      'nextdotjs',
+      'postgresql',
+      'mongodb',
+      'amazonaws',
+      'microsoftazure',
+      'google',
+      'graphql',
+    ],
+    benefitsTitle: 'AI Built For Business Impact',
+    benefitsIntro:
+      'Custom AI solutions help businesses automate work, improve decisions, strengthen customer experiences, and create scalable competitive advantages.',
+    benefits: [
+      {
+        title: 'Faster Operations',
+        description:
+          'AI automation reduces repetitive work and helps teams complete complex tasks faster with intelligent systems working alongside employees.',
+      },
+      {
+        title: 'Smarter Decisions',
+        description:
+          'AI-powered analysis transforms business data into actionable insights, recommendations, forecasts, and intelligent reporting for better decisions.',
+      },
+      {
+        title: 'Better Experiences',
+        description:
+          'AI applications, chatbots, and personalised systems help businesses deliver faster, more relevant customer and employee experiences.',
+      },
+      {
+        title: 'Scalable Intelligence',
+        description:
+          'Build AI capabilities that integrate with existing technology and expand alongside your data, users, workflows, and business requirements.',
+      },
+      {
+        title: 'Secure AI Adoption',
+        description:
+          'Our AI security solutions protect applications, models, data, integrations, and access through security-focused architecture and development practices.',
+      },
+      {
+        title: 'Responsible Implementation',
+        description:
+          'AI compliance solutions help businesses establish appropriate controls, governance, monitoring, and safeguards around AI systems and sensitive data.',
+      },
+    ],
+    projectsTitle: 'AI Solutions In Action',
+    projectsIntro:
+      'Explore how Stack360 applies AI, automation, software engineering, and intelligent systems to solve real business challenges.',
+    projectsCtaLabel: 'View All Case Studies',
     projects: [projectRef('moneyball'), projectRef('natif'), projectRef('siterank')],
+    faqsTitle: 'AI Solutions FAQs',
+    faqsIntro:
+      'Find answers to technical questions about AI development, generative AI, agents, chatbots, security, compliance, and deployment.',
     faqs: [
       {
-        id: 'ai-services',
-        question: 'What data science services do you provide?',
+        id: 'ai-types',
+        question: 'What types of custom AI solutions can Stack360 develop?',
         answer:
-          'Analysis, predictive modeling, ML solutions, visualization, data engineering, and business-intelligence dashboards aligned to your goals.',
+          'We develop AI applications, generative AI systems, AI agents, chatbots, automation platforms, recommendation engines, and machine learning solutions.',
       },
       {
-        id: 'ai-tools',
-        question: 'Which tools and technologies do you use?',
+        id: 'ai-integrate',
+        question: 'Can you integrate AI into existing software?',
         answer:
-          'Python (Pandas, NumPy, Scikit-learn, TensorFlow), R, SQL, Power BI, Tableau, Spark, and cloud ML services such as AWS SageMaker or Google Vertex AI.',
+          'Yes. Our AI development services integrate intelligent capabilities into SaaS platforms, CRMs, enterprise software, APIs, workflows, and existing applications.',
       },
       {
-        id: 'ai-quality',
-        question: 'How do you ensure model quality and reliability?',
+        id: 'ai-generative',
+        question: 'What does generative AI development involve?',
         answer:
-          'Train/test splits, cross-validation, A/B testing where appropriate, and ongoing performance tracking for accuracy and bias.',
+          'Generative AI development involves building applications that use language, vision, or multimodal models to generate content, retrieve knowledge, automate tasks, and support users.',
       },
       {
-        id: 'ai-messy',
-        question: 'Can you work with unstructured or messy data?',
+        id: 'ai-security',
+        question: 'How do you secure AI applications and business data?',
         answer:
-          'Yes — cleaning and preprocessing for text, images, logs, and time series, plus integration from APIs, IoT, and cloud storage.',
+          'We apply secure architecture, access controls, data protection, API security, monitoring, and appropriate safeguards throughout AI software development.',
       },
       {
-        id: 'ai-dashboards',
-        question: 'Do you help with dashboarding and real-time analytics?',
+        id: 'ai-agents',
+        question: 'Can you develop AI agents for business automation?',
         answer:
-          'We build interactive dashboards in Power BI, Tableau, or custom web apps so operators can act on live signals.',
+          'Yes. Our AI agent development services create systems that understand context, access information, use tools, interact with APIs, and execute defined workflows.',
       },
     ],
-    cta: defaultCta('an AI system'),
+    cta: {
+      title: 'Ready To Put AI To Work?',
+      description:
+        'Turn practical AI opportunities into secure, scalable solutions that automate workflows, improve experiences, and create measurable business value.',
+      primary: { label: 'Build Your AI Solution', href: '/contact' },
+      secondary: { label: 'Hire talent', href: '/work-with-us/hire' },
+    },
   },
 
   erp: {
     slug: 'erp',
     hero: {
       eyebrow: 'What We Build · ERP',
-      title: 'ERP that matches how',
-      highlight: 'you actually operate.',
+      title: 'Build Enterprise Software That',
+      highlight: 'Drives Business Growth',
       description:
-        'Centralized enterprise resource systems for partners and client orgs that need finance, inventory, HR, and operations in one coherent architecture — not a maze of disconnected apps.',
+        'We develop scalable enterprise software that connects teams, streamlines operations, integrates systems, and supports complex business requirements.',
+      cta: { label: 'Start Your Enterprise Project', href: '/contact' },
     },
-    capabilitiesTitle: 'ERP capabilities',
+    capabilitiesTitle: 'Challenges & Solutions',
     capabilitiesIntro:
-      'We design modules around real workflows, then integrate them so data stays consistent across the business.',
+      'Complex operations, disconnected systems, and outdated software can create inefficiencies, data silos, security risks, and costly delays.',
     capabilities: [
       {
-        title: 'Core resource planning',
+        title: 'Centralised Data',
         description:
-          'Inventory, procurement, and production planning with clear ownership and audit trails.',
+          'Bring business data together through a unified ERP platform that gives teams consistent, accessible information.',
       },
       {
-        title: 'Finance & reporting',
+        title: 'Automate Operations',
         description:
-          'Ledgers, invoicing, and operational reporting that leadership can trust without spreadsheet reconciliation.',
+          'Automate repetitive workflows and business processes to reduce manual work, minimise errors, and improve operational efficiency.',
       },
       {
-        title: 'HR & workforce modules',
+        title: 'Connect Departments',
         description:
-          'People ops, attendance, and role-based access wired into the same system of record.',
+          'Connect finance, sales, inventory, HR, procurement, and operations through integrated ERP workflows and shared business data.',
       },
       {
-        title: 'Integration layer',
+        title: 'Improve Visibility',
         description:
-          'APIs and connectors to CRM, e-commerce, and banking rails — so ERP is the hub, not an island.',
-      },
-      {
-        title: 'Migration & cutover',
-        description:
-          'Legacy extraction, dual-run periods, and staged go-lives that protect day-to-day operations.',
+          'Give decision-makers real-time access to business information, performance insights, and operational data across departments.',
       },
     ],
-    processTitle: 'ERP engagement shape',
+    processTitle: 'From Vision To Enterprise',
     processIntro:
-      'Discovery first — then modular delivery so each release reduces operational risk.',
+      'Our enterprise software development process aligns business goals, technical architecture, user needs, and scalability from planning through deployment.',
     process: [
       {
-        title: 'Process mapping',
+        phase: 'Discover',
+        title: 'Define Requirements',
         description:
-          'Document current systems, pain points, and compliance constraints before choosing modules.',
+          'We analyse your business processes, users, systems, and goals to establish clear requirements and a practical development roadmap.',
       },
       {
-        title: 'Modular build',
+        phase: 'Develop',
+        title: 'Build Software',
         description:
-          'Ship high-value domains first; expand when adoption and data quality prove out.',
+          'Our engineers develop secure enterprise applications using scalable architecture, modern technologies, integrations, automation, and continuous testing.',
       },
       {
-        title: 'Stabilize & train',
+        phase: 'Scale',
+        title: 'Support Growth',
         description:
-          'Harden permissions, reporting, and operator training so the system sticks after launch.',
+          'We deploy, monitor, optimise, and enhance your enterprise software as your business expands and requirements evolve.',
       },
     ],
-    tech: ['nodedotjs', 'postgresql', 'react', 'amazonaws', 'docker'],
+    techTitle: 'Technology For Enterprise Software',
+    techIntro:
+      'We use modern frameworks, cloud platforms, APIs, databases, and secure architectures to build scalable enterprise applications.',
+    tech: [
+      'react',
+      'nextdotjs',
+      'nodedotjs',
+      'python',
+      'dotnet',
+      'postgresql',
+      'mongodb',
+      'amazonaws',
+      'microsoftazure',
+      'graphql',
+      'docker',
+      'kubernetes',
+    ],
+    benefitsTitle: 'Built For Business Impact',
+    benefitsIntro:
+      'Enterprise software should do more than digitise processes. It should improve operations, customer experiences, decision-making, and long-term business growth.',
+    benefits: [
+      {
+        title: 'Greater Efficiency',
+        description:
+          'Automate repetitive workflows and reduce manual processes to help teams accomplish more with fewer operational bottlenecks.',
+      },
+      {
+        title: 'Connected Operations',
+        description:
+          'Unify departments, applications, and data so your teams can collaborate through connected digital workflows.',
+      },
+      {
+        title: 'Better Visibility',
+        description:
+          'Centralise critical business information and give decision-makers clearer insights through real-time dashboards and reporting.',
+      },
+      {
+        title: 'Scalable Growth',
+        description:
+          'Build flexible enterprise applications that adapt to growing users, expanding operations, and evolving business requirements.',
+      },
+      {
+        title: 'Stronger Security',
+        description:
+          'Protect sensitive business information with secure architecture, access controls, integrations, and development practices.',
+      },
+      {
+        title: 'Lower Technology Costs',
+        description:
+          'Replace fragmented systems and manual processes with integrated software that improves efficiency and reduces unnecessary operational overhead.',
+      },
+    ],
+    projectsTitle: 'Related Case Studies',
+    projectsIntro:
+      'Explore how Stack360 builds scalable software, integrates complex systems, and solves challenging business requirements across industries.',
+    projectsCtaLabel: 'View All Case Studies',
     projects: [projectRef('atc'), projectRef('fisar'), projectRef('falcore')],
+    showTestimonials: true,
+    faqsTitle: 'Frequently Asked Questions',
+    faqsIntro:
+      'Find answers to common questions about enterprise software development, architecture, integrations, security, scalability, and implementation.',
     faqs: [
       {
-        id: 'erp-custom',
-        question: 'Do you customize existing ERPs or build from scratch?',
+        id: 'erp-what-is',
+        question: 'What is enterprise software development?',
         answer:
-          'Both. We extend platforms when they fit, and build bespoke cores when your domain rules make off-the-shelf tooling more expensive than owning the architecture.',
+          'Enterprise software development involves building applications and platforms that support complex business processes, large user bases, integrations, data requirements, and organisational workflows.',
       },
       {
-        id: 'erp-migrate',
-        question: 'Can you migrate from spreadsheets or legacy ERPs?',
+        id: 'erp-custom-vs-enterprise',
+        question: 'What is the difference between custom and enterprise software development?',
         answer:
-          'Yes — with staged data migration, validation scripts, and dual-run windows so operations stay online.',
+          'Custom software addresses specific business requirements, while enterprise software typically supports complex workflows, multiple departments, integrations, security requirements, and large-scale operations.',
       },
       {
-        id: 'erp-roles',
-        question: 'How do you handle roles and permissions?',
+        id: 'erp-integrate',
+        question: 'Can you integrate enterprise software with existing systems?',
         answer:
-          'Role-based access designed with your org chart and audit requirements — not a single shared admin account.',
+          'Yes. We integrate enterprise applications with CRMs, ERPs, databases, APIs, cloud platforms, payment systems, and other business software.',
+      },
+      {
+        id: 'erp-scalable',
+        question: 'How do you make enterprise applications scalable?',
+        answer:
+          'We use modular architecture, scalable databases, cloud infrastructure, API-driven design, performance optimisation, monitoring, and security practices to support long-term growth.',
+      },
+      {
+        id: 'erp-mobile',
+        question: 'Can you develop enterprise mobile applications?',
+        answer:
+          'Yes. We develop enterprise mobile applications that connect with existing systems and provide secure access to business workflows, data, and services.',
       },
     ],
-    cta: defaultCta('an ERP'),
+    cta: {
+      title: 'Ready To Build Enterprise Software That Scales?',
+      description:
+        'Partner with Stack360 to develop secure, scalable enterprise software that connects your business and supports long-term growth.',
+      primary: { label: 'Start Your Enterprise Project', href: '/contact' },
+      secondary: { label: 'Hire talent', href: '/work-with-us/hire' },
+    },
   },
 
   crm: {
     slug: 'crm',
     hero: {
       eyebrow: 'What We Build · CRM',
-      title: 'CRM tuned for',
-      highlight: 'pipeline velocity.',
+      title: 'Build CRM Software That',
+      highlight: 'Accelerates Business Growth',
       description:
-        'Customer relationship systems that sales, success, and partner teams actually use — clean pipeline stages, account context, and integrations that keep revenue data honest.',
+        'We develop scalable CRM software that connects customer data, streamlines workflows, automates sales, and helps teams build stronger, lasting customer relationships across every channel and at scale.',
+      cta: { label: 'Build Your CRM', href: '/contact' },
     },
-    capabilitiesTitle: 'CRM capabilities',
+    capabilitiesTitle: 'Challenges & Solutions',
     capabilitiesIntro:
-      'We optimize for adoption: fewer clicks, clearer stages, and data that syncs with the rest of your stack.',
+      'Disconnected data, manual workflows, and limited visibility can slow sales, reduce productivity, and weaken customer relationships.',
     capabilities: [
       {
-        title: 'Pipeline & opportunity tracking',
+        title: 'Centralise Customer Data',
         description:
-          'Stages, forecasts, and ownership rules that match how your revenue team actually sells.',
+          'Centralise customer data across sales, marketing, and support teams for complete visibility and consistent management.',
       },
       {
-        title: 'Account & contact intelligence',
-        description: 'Unified customer history across deals, tickets, and product usage signals.',
+        title: 'Automate Sales Workflows',
+        description:
+          'Automate lead assignments, follow-ups, notifications, and repetitive tasks to improve team productivity.',
       },
       {
-        title: 'Automation & sequences',
+        title: 'Strengthen Customer Relationships',
         description:
-          'Tasking, reminders, and outreach workflows that remove manual follow-up drag.',
+          'Connect customer interactions, preferences, communications, and history to deliver personalised experiences across every touchpoint.',
       },
       {
-        title: 'Integrations',
+        title: 'Improve Sales Visibility',
         description:
-          'Email, calendar, billing, and product analytics connected so CRM stays the source of truth.',
+          'Give sales teams clearer pipelines, actionable insights, and reporting to identify opportunities and close deals.',
       },
       {
-        title: 'Partner / channel portals',
+        title: 'Scale Business Operations',
         description:
-          'Shared visibility for software partners and resellers without exposing the whole internal CRM.',
+          'Build flexible CRM software that adapts to growing teams, customer data, workflows, and evolving requirements.',
       },
     ],
-    processTitle: 'CRM delivery',
-    processIntro: 'Map the revenue motion, then build the system around it.',
+    processTitle: 'From Strategy To Success',
+    processIntro:
+      'Our CRM development process aligns business goals, customer journeys, technical architecture, and scalability throughout every development stage.',
     process: [
       {
-        title: 'Revenue process workshop',
+        phase: 'Discover',
+        title: 'Define Requirements',
         description:
-          'Align sales, success, and leadership on stages, SLAs, and reporting definitions.',
+          'We analyse workflows, users, integrations, and goals to create a focused CRM development roadmap.',
       },
       {
-        title: 'Configure & custom build',
+        phase: 'Develop',
+        title: 'Build CRM',
         description:
-          'Ship the CRM core, then layer automations and integrations that earn their keep.',
+          'Our engineers develop secure CRM software with intuitive interfaces, automation, integrations, analytics, and scalable architecture.',
       },
       {
-        title: 'Adoption & iteration',
+        phase: 'Scale',
+        title: 'Optimise Performance',
         description:
-          'Train teams, measure usage, and refine fields so the CRM does not become shelfware.',
+          'We monitor, improve, and expand your CRM as teams, customer data, workflows, and requirements grow.',
       },
     ],
-    tech: ['react', 'nodedotjs', 'postgresql', 'amazonaws', 'stripe'],
+    techTitle: 'Technology Behind CRM',
+    techIntro:
+      'We use modern frameworks, APIs, databases, cloud infrastructure, and automation technologies to build powerful CRM platforms.',
+    tech: [
+      'react',
+      'nextdotjs',
+      'nodedotjs',
+      'python',
+      'dotnet',
+      'postgresql',
+      'mongodb',
+      'amazonaws',
+      'microsoftazure',
+      'graphql',
+      'docker',
+      'kubernetes',
+    ],
+    benefitsTitle: 'Drive Growth With Smarter CRM',
+    benefitsIntro:
+      'Custom CRM software connects teams, automates operations, and gives your business better tools for customer growth and retention.',
+    benefits: [
+      {
+        title: 'Greater Efficiency',
+        description:
+          'Automate repetitive workflows so teams spend less time managing processes and more time building valuable customer relationships.',
+      },
+      {
+        title: 'Connected Teams',
+        description:
+          'Give sales, marketing, support, and management teams shared access to accurate customer information and connected workflows.',
+      },
+      {
+        title: 'Better Insights',
+        description:
+          'Use customer data and analytics to help teams understand performance, identify opportunities, and make informed decisions.',
+      },
+      {
+        title: 'Personalised Experiences',
+        description:
+          'Use customer history, preferences, and interactions to create relevant experiences that strengthen engagement, retention, and loyalty.',
+      },
+      {
+        title: 'Flexible Workflows',
+        description:
+          'Configure CRM workflows around your processes instead of forcing teams to adapt operations to rigid software.',
+      },
+      {
+        title: 'Scalable Growth',
+        description:
+          'Extend your CRM with features, integrations, users, and automation as your customer base and requirements grow.',
+      },
+    ],
+    projectsTitle: 'CRM Solutions In Action',
+    projectsIntro:
+      'Explore how our software development expertise helps businesses connect data, automate workflows, and create better customer experiences.',
+    projectsCtaLabel: 'View All Case Studies',
     projects: [projectRef('atc'), projectRef('contakti'), projectRef('klingit')],
+    faqsTitle: 'CRM Development FAQs',
+    faqsIntro:
+      'Find answers to technical questions about custom CRM development, integrations, architecture, security, scalability, and implementation.',
     faqs: [
       {
-        id: 'crm-vs-saas',
-        question: 'Should we use Salesforce/HubSpot or a custom CRM?',
+        id: 'crm-integrate',
+        question: 'Can you integrate custom CRM software with existing business systems?',
         answer:
-          'If your motion fits a platform, we implement and integrate it. If your domain logic fights the platform tax, we build a focused CRM that your team will actually open every day.',
+          'Yes. We can integrate CRM platforms with ERP systems, accounting software, marketing platforms, payment gateways, APIs, databases, and third-party applications.',
       },
       {
         id: 'crm-migrate',
-        question: 'Can you migrate from spreadsheets or another CRM?',
+        question: 'How do you migrate customer data from an existing CRM system?',
         answer:
-          'Yes — with field mapping, deduplication, and staged cutover so pipeline history survives the move.',
+          'We plan structured data migration, map existing records, validate data integrity, and securely transfer customer information into the new CRM.',
       },
       {
-        id: 'crm-reporting',
-        question: 'What reporting do you support?',
+        id: 'crm-architecture',
+        question: 'How do you design scalable architecture for custom CRM software?',
         answer:
-          'Pipeline health, conversion by stage, owner performance, and partner-sourced revenue — exported or dashboarded to your preference.',
+          'We use modular architecture, scalable databases, cloud infrastructure, API-driven design, caching, monitoring, and performance optimisation for long-term growth.',
+      },
+      {
+        id: 'crm-workflows',
+        question: 'Can you build automated workflows for sales and customer management?',
+        answer:
+          'Yes. We can automate lead assignment, follow-ups, notifications, approvals, customer communications, task management, reporting, and other CRM workflows.',
+      },
+      {
+        id: 'crm-roles',
+        question: 'Can you develop role-based CRM applications for multiple departments?',
+        answer:
+          'Yes. We develop role-based CRM applications that give sales, marketing, support, management, and other teams access to relevant workflows and information.',
       },
     ],
-    cta: defaultCta('a CRM'),
+    cta: {
+      title: 'Ready To Build A Smarter CRM For Growth?',
+      description:
+        'Partner with Stack360 to develop custom CRM software that connects teams, automates workflows, and strengthens customer relationships.',
+      primary: { label: 'Start Your CRM Project', href: '/contact' },
+      secondary: { label: 'Hire talent', href: '/work-with-us/hire' },
+    },
   },
 
   saas: {
     slug: 'saas',
     hero: {
       eyebrow: 'What We Build · SaaS',
-      title: 'SaaS platforms engineered',
-      highlight: 'for subscription scale.',
+      title: 'Build Scalable SaaS Products That',
+      highlight: 'Drive Growth',
       description:
-        'Multi-tenant products with durable tenancy models, billing, roles, and onboarding — built so founders and software partners can grow without rewriting the core every year.',
+        'Our SaaS development services help businesses launch scalable products, streamline operations, and create reliable software experiences built for recurring growth.',
+      cta: { label: 'Build Your SaaS Product', href: '/contact' },
     },
-    capabilitiesTitle: 'SaaS platform work',
+    capabilitiesTitle: 'Challenges & Solutions',
     capabilitiesIntro:
-      'We treat tenancy, auth, billing, and observability as first-class architecture — not features bolted on later.',
+      'Launching SaaS products requires scalable architecture, reliable infrastructure, intuitive experiences, and technology that supports growing customers and recurring revenue.',
     capabilities: [
       {
-        title: 'Multi-tenant architecture',
+        title: 'Custom SaaS Development',
         description:
-          'Isolation models (shared DB, schema-per-tenant, or hybrid) chosen for cost, compliance, and scale.',
+          'Our custom SaaS development services create flexible products around your business model, users, workflows, integrations, and growth strategy.',
       },
       {
-        title: 'Auth, roles & onboarding',
+        title: 'Scalable SaaS Architecture',
         description:
-          'Invite flows, RBAC, and first-run experiences that reduce time-to-value for new accounts.',
+          'We build SaaS applications with flexible architecture that supports growing users, data, features, integrations, and subscription requirements.',
       },
       {
-        title: 'Billing & entitlements',
+        title: 'Multi-Tenant Experiences',
         description:
-          'Stripe-ready plans, metered usage, and feature gates that stay consistent with your pricing.',
+          'Develop secure multi-tenant SaaS platforms that separate customer data while efficiently sharing infrastructure, features, and application resources.',
       },
       {
-        title: 'Admin & operator consoles',
+        title: 'SaaS Product Development',
         description:
-          'Internal tools for support and ops so your team can manage tenants without engineering tickets.',
+          'Our SaaS product development services turn validated ideas into scalable products with clear roadmaps, intuitive experiences, and reliable technology.',
       },
       {
-        title: 'Growth instrumentation',
+        title: 'AI-Powered SaaS Products',
         description:
-          'Product analytics and lifecycle hooks so product managers can see what ships and what sticks.',
+          'As an AI SaaS development company, we integrate intelligent features, automation, recommendations, and AI-powered workflows into modern SaaS products.',
       },
     ],
-    processTitle: 'From MVP to durable SaaS',
+    processTitle: 'From Idea To Scale',
     processIntro:
-      'Ship a credible first release, then harden tenancy and billing as real customers arrive.',
+      'Our SaaS development process combines product strategy, architecture, design, development, testing, deployment, and continuous optimisation.',
     process: [
       {
-        title: 'Product & tenancy design',
+        phase: 'Discover',
+        title: 'Define Product',
         description:
-          'Clarify ICP, entitlements, and data isolation before scaffolding the application core.',
+          'Our SaaS development agency analyses your market, users, business model, requirements, and goals to create a focused product roadmap.',
       },
       {
-        title: 'MVP build',
+        phase: 'Develop',
+        title: 'Build Platform',
         description:
-          'Core workflows, auth, and billing for early customers — with room to scale the model.',
+          'Our SaaS software development services turn requirements into secure, scalable applications with integrations, automation, analytics, and subscription functionality.',
       },
       {
-        title: 'Scale & harden',
+        phase: 'Scale',
+        title: 'Optimise Growth',
         description:
-          'Performance, observability, and operational tooling as usage and tenant count grow.',
+          'We monitor performance, improve infrastructure, release new capabilities, and scale your SaaS platform as customers and requirements grow.',
       },
     ],
-    tech: ['nextdotjs', 'nodedotjs', 'postgresql', 'stripe', 'amazonaws', 'docker'],
+    techTitle: 'Technology Behind SaaS Products',
+    techIntro:
+      'We use modern cloud, backend, frontend, database, API, and infrastructure technologies to build reliable SaaS applications.',
+    tech: [
+      'react',
+      'nextdotjs',
+      'nodedotjs',
+      'python',
+      'dotnet',
+      'postgresql',
+      'mongodb',
+      'amazonaws',
+      'microsoftazure',
+      'google',
+      'graphql',
+      'docker',
+      'kubernetes',
+    ],
+    benefitsTitle: 'SaaS Built For Growth',
+    benefitsIntro:
+      'Our SaaS development services create products designed for scalability, recurring revenue, operational efficiency, customer retention, and continuous product improvement.',
+    benefits: [
+      {
+        title: 'Faster Market Entry',
+        description:
+          'SaaS MVP development helps validate product ideas quickly while creating a foundation that supports future features and customers.',
+      },
+      {
+        title: 'Flexible Scaling',
+        description:
+          'SaaS platform development supports increasing users, transactions, data volumes, integrations, and functionality without unnecessary architectural limitations.',
+      },
+      {
+        title: 'Recurring Revenue',
+        description:
+          'Build subscription-based products with flexible plans, billing workflows, customer management, usage tracking, and revenue-focused product experiences.',
+      },
+      {
+        title: 'Better Customer Experiences',
+        description:
+          'Create intuitive SaaS applications that simplify complex workflows, improve productivity, and give customers reliable access across devices.',
+      },
+      {
+        title: 'Lower Infrastructure Costs',
+        description:
+          'Cloud-based SaaS architecture helps businesses optimise shared infrastructure while efficiently supporting multiple customers and growing workloads.',
+      },
+      {
+        title: 'Continuous Innovation',
+        description:
+          'SaaS products can evolve continuously through regular releases, feature improvements, integrations, automation, analytics, and customer-driven development.',
+      },
+    ],
+    projectsTitle: 'SaaS Products In Action',
+    projectsIntro:
+      'Explore how Stack360 builds SaaS applications, platforms, and products that solve complex business challenges and support scalable digital growth.',
+    projectsCtaLabel: 'View All Case Studies',
     projects: [projectRef('whistle'), projectRef('one40connect'), projectRef('legal-atoms')],
+    faqsTitle: 'SaaS Development FAQs',
+    faqsIntro:
+      'Find answers to technical questions about SaaS architecture, multi-tenancy, MVP development, scalability, integrations, and product deployment.',
     faqs: [
       {
-        id: 'saas-tenant',
-        question: 'How do you approach multi-tenancy?',
+        id: 'saas-what-is',
+        question: 'What is SaaS application development?',
         answer:
-          'We pick the isolation model from compliance and cost constraints — then encode it in schema, auth, and testing so tenant bleed is structurally hard.',
+          'SaaS application development involves building cloud-based software that customers access online, typically through subscriptions, usage-based pricing, or recurring plans.',
       },
       {
-        id: 'saas-billing',
-        question: 'Can you integrate subscription billing?',
+        id: 'saas-custom-vs-traditional',
+        question: 'How does custom SaaS development differ from traditional software development?',
         answer:
-          'Yes — Stripe and similar processors, with entitlements that stay in sync with plan changes and failed payments.',
+          'Custom SaaS development focuses on cloud delivery, multi-tenancy, recurring subscriptions, scalable infrastructure, continuous releases, and supporting multiple customers through one platform.',
       },
       {
-        id: 'saas-white-label',
-        question: 'Do you support white-label or partner-facing SaaS?',
+        id: 'saas-mvp',
+        question: 'Can you build a SaaS MVP before developing the full product?',
         answer:
-          'We build partner portals and branding layers when channel distribution is part of the go-to-market.',
+          'Yes. Our SaaS MVP development approach focuses on essential functionality, allowing businesses to validate product assumptions before investing in broader development.',
+      },
+      {
+        id: 'saas-multi-tenant',
+        question: 'How do you build scalable multi-tenant SaaS applications?',
+        answer:
+          'We use tenant-aware architecture, secure data isolation, scalable databases, cloud infrastructure, access controls, monitoring, and performance optimisation.',
+      },
+      {
+        id: 'saas-hire',
+        question: 'Can I hire SaaS developers for an existing product?',
+        answer:
+          'Yes. You can hire SaaS developers from Stack360 to extend an existing application, improve architecture, develop features, resolve technical challenges, or support ongoing product development.',
       },
     ],
-    cta: defaultCta('a SaaS product'),
+    cta: {
+      title: 'Ready To Build Your SaaS Product?',
+      description:
+        'Partner with a SaaS development company that builds scalable products, reliable platforms, and flexible software designed around your long-term growth.',
+      primary: { label: 'Start Your SaaS Project', href: '/contact' },
+      secondary: { label: 'Hire talent', href: '/work-with-us/hire' },
+    },
   },
 
   'custom-software': {
     slug: 'custom-software',
     hero: {
       eyebrow: 'What We Build · Custom Software',
-      title: 'Software shaped to',
-      highlight: 'your constraints.',
+      title: 'Build Custom Software',
+      highlight: 'Around Your Business',
       description:
-        'Bespoke systems when off-the-shelf tools force workarounds. We design for your domain rules, integrations, and the teams who will own the codebase after handoff.',
+        'We develop custom software that fits your workflows, connects your systems, solves complex challenges, and scales alongside your business as requirements evolve.',
+      cta: { label: 'Build Custom Software', href: '/contact' },
     },
-    capabilitiesTitle: 'Where custom wins',
+    capabilitiesTitle: 'Challenges & Solutions',
     capabilitiesIntro:
-      'We build when the problem is specific enough that generic products become expensive in time and risk.',
+      'Off-the-shelf software can force teams into rigid workflows, disconnected systems, unnecessary features, and costly workarounds that limit growth. We build custom software around your processes, users, and goals, giving you technology that works the way your business works.',
     capabilities: [
       {
-        title: 'Domain-specific platforms',
+        title: 'Fit Your Workflows',
         description:
-          'Workflows, data models, and permissions that mirror how your industry actually operates.',
+          'Design software around your actual processes instead of changing operations to accommodate limitations within off-the-shelf platforms.',
       },
       {
-        title: 'Internal tools & ops systems',
+        title: 'Connect Your Systems',
         description:
-          'Project, HR, and operations tooling — like ATC — that remove spreadsheet gravity.',
+          'Integrate applications, databases, APIs, third-party platforms, and internal tools to create connected digital operations.',
       },
       {
-        title: 'Integration hubs',
+        title: 'Automate Complex Processes',
         description:
-          'Control planes that unify vendors, inventory, and channels when the business spans many systems.',
+          'Replace repetitive manual tasks with intelligent workflows that improve productivity, reduce errors, and help teams work efficiently.',
       },
       {
-        title: 'Legacy modernization',
+        title: 'Scale With Confidence',
         description:
-          'Incremental replacement of brittle systems with clear strangler patterns and rollback plans.',
+          'Build flexible software architecture that supports increasing users, data, transactions, integrations, and changing business requirements.',
       },
       {
-        title: 'Partner-ready delivery',
+        title: 'Own Your Technology',
         description:
-          'Documentation, environments, and handoff so your engineers or ours can keep shipping.',
+          'Create software tailored to your business without depending on rigid features, unnecessary subscriptions, or limitations from generic platforms.',
       },
     ],
-    processTitle: 'Custom engagement',
-    processIntro: 'Architecture first — then iterative delivery with visible milestones.',
+    processTitle: 'From Idea To Impact',
+    processIntro:
+      'Our custom software development process combines business discovery, technical planning, iterative development, and continuous improvement to deliver reliable products.',
     process: [
       {
-        title: 'Problem framing',
+        phase: 'Discover',
+        title: 'Define Requirements',
         description:
-          'Define the bottleneck, success metrics, and build-vs-buy decision with technical honesty.',
+          'We analyse your workflows, users, challenges, and goals to create clear requirements and a practical development roadmap.',
       },
       {
-        title: 'Architecture & spike',
+        phase: 'Develop',
+        title: 'Build Software',
         description:
-          'Prove risky integrations early; lock the shape of the system before full production build.',
+          'Our engineers develop secure, scalable applications with modern architecture, intuitive experiences, integrations, automation, and continuous testing.',
       },
       {
-        title: 'Iterative delivery',
+        phase: 'Scale',
+        title: 'Improve Performance',
         description:
-          'Ship vertical slices, review with stakeholders, and harden for production ownership.',
+          'We launch, monitor, optimise, and enhance your software as your business grows and new requirements emerge.',
       },
     ],
-    tech: ['rubyonrails', 'react', 'nodedotjs', 'postgresql', 'amazonaws'],
+    techTitle: 'Technology Behind Our Software',
+    techIntro:
+      'We use modern frameworks, cloud platforms, APIs, databases, and development tools to build secure, scalable software applications.',
+    tech: [
+      'react',
+      'nextdotjs',
+      'nodedotjs',
+      'python',
+      'dotnet',
+      'reactnative',
+      'postgresql',
+      'mongodb',
+      'amazonaws',
+      'microsoftazure',
+      'graphql',
+      'docker',
+      'kubernetes',
+    ],
+    benefitsTitle: 'Built For Better Business Outcomes',
+    benefitsIntro:
+      'Custom software gives your business greater control over processes, technology, integrations, user experiences, and future product development.',
+    benefits: [
+      {
+        title: 'Better Business Fit',
+        description:
+          'Build software around your unique workflows, requirements, users, and business processes instead of adapting operations to generic tools.',
+      },
+      {
+        title: 'Higher Productivity',
+        description:
+          'Automate repetitive work and simplify complex processes so your teams can focus on higher-value activities and business growth.',
+      },
+      {
+        title: 'Seamless Integrations',
+        description:
+          'Connect your existing systems, databases, APIs, and third-party applications to create a unified digital environment.',
+      },
+      {
+        title: 'Greater Scalability',
+        description:
+          'Design software architecture that supports growing users, data, transactions, features, and operational requirements without unnecessary limitations.',
+      },
+      {
+        title: 'Enhanced Security',
+        description:
+          "Build security into your application's architecture, access controls, data handling, integrations, and development processes from the start.",
+      },
+      {
+        title: 'Long-Term Flexibility',
+        description:
+          'Extend and customise your software as your business evolves without waiting for generic platforms to introduce the features you need.',
+      },
+    ],
+    projectsTitle: 'Custom Software In Action',
+    projectsIntro:
+      'Explore how Stack360 builds tailored software that solves complex business challenges and creates scalable digital experiences across industries.',
+    projectsCtaLabel: 'View All Case Studies',
     projects: [projectRef('atc'), projectRef('nuvana'), projectRef('cadcam-masters')],
+    faqsTitle: 'Custom Software FAQs',
+    faqsIntro:
+      'Find answers to technical questions about custom software development, architecture, integrations, security, scalability, and implementation.',
     faqs: [
       {
         id: 'custom-when',
-        question: 'When should we choose custom software?',
+        question: 'When should a business choose custom software development?',
         answer:
-          'When domain rules, integrations, or competitive differentiation make SaaS workarounds cost more than owning the system — we help you make that call before writing code.',
+          'Custom software makes sense when existing platforms cannot support your workflows, integrations, scalability requirements, security needs, or specific business processes.',
       },
       {
-        id: 'custom-own',
-        question: 'Who owns the IP and codebase?',
+        id: 'custom-integrate',
+        question: 'Can you integrate custom software with existing systems?',
         answer:
-          'Client-owned IP is the default for build engagements. We document architecture and transfer environments so your team can operate independently.',
+          'Yes. We integrate custom applications with CRMs, ERPs, databases, APIs, payment systems, cloud services, third-party platforms, and internal business tools.',
       },
       {
-        id: 'custom-partner',
-        question: 'Can you work as an extension of our engineering team?',
+        id: 'custom-scalable',
+        question: 'How do you make custom software scalable?',
         answer:
-          'Yes — dedicated pods that match your rituals, or full ownership when you need a complete delivery partner. See Hire Talent for staffing-shaped needs.',
+          'We use modular architecture, scalable databases, cloud infrastructure, API-driven development, performance optimisation, monitoring, and flexible system design.',
+      },
+      {
+        id: 'custom-tech',
+        question: 'What technologies do you use for custom software development?',
+        answer:
+          'We work with technologies including React, Next.js, Node.js, Python, .NET, PostgreSQL, MongoDB, AWS, Azure, Docker, and APIs based on project requirements.',
+      },
+      {
+        id: 'custom-healthcare',
+        question: 'Can you develop custom healthcare software?',
+        answer:
+          'Yes. We can develop healthcare software around specific operational, workflow, integration, security, and user requirements while considering applicable compliance needs.',
       },
     ],
-    cta: defaultCta('a custom system'),
+    cta: {
+      title: 'Ready To Build Software Around Your Business?',
+      description:
+        'Partner with Stack360 to develop secure, scalable custom software that fits your workflows, connects your systems, and supports long-term growth.',
+      primary: { label: 'Build Custom Software', href: '/contact' },
+      secondary: { label: 'Hire talent', href: '/work-with-us/hire' },
+    },
   },
 
   cloud: {
     slug: 'cloud',
     hero: {
       eyebrow: 'What We Build · Cloud',
-      title: 'Cloud architecture that',
-      highlight: 'stays operable.',
+      title: 'Move To Cloud With',
+      highlight: 'Confidence And Scale',
       description:
-        'Resilient cloud distribution for modern applications — landing zones, migrations, and runtime design that partners can operate without tribal knowledge.',
+        'Our cloud migration services modernize infrastructure, improve scalability, strengthen security, and create flexible environments built around your business requirements.',
+      cta: { label: 'Modernize Your Cloud', href: '/contact' },
     },
-    capabilitiesTitle: 'Cloud capabilities',
-    capabilitiesIntro: 'We design for reliability and cost visibility — not cloud spend theater.',
+    capabilitiesTitle: 'Challenges & Solutions',
+    capabilitiesIntro:
+      'Legacy infrastructure, rising costs, security concerns, and complex environments can limit performance, scalability, and business growth.',
     capabilities: [
       {
-        title: 'Landing zones & foundations',
+        title: 'Modern Cloud Infrastructure',
         description:
-          'Accounts, networking, identity, and baseline security so new workloads land cleanly.',
+          'We design flexible cloud environments that improve performance, scalability, security, and operational efficiency across your technology ecosystem.',
       },
       {
-        title: 'Application hosting',
+        title: 'Seamless Cloud Migration',
         description:
-          'Compute, containers, and serverless patterns matched to traffic shape and team skills.',
+          'Our cloud migration services move applications, data, and infrastructure securely while minimising disruption to ongoing business operations.',
       },
       {
-        title: 'Data & storage design',
-        description: 'Databases, object storage, and backup strategies with clear RPO/RTO targets.',
+        title: 'Managed Cloud Operations',
+        description:
+          'Our managed cloud services help monitor, optimise, and maintain cloud environments for better reliability, performance, and cost control.',
       },
       {
-        title: 'Migration & cutover',
+        title: 'Secure Cloud Environments',
         description:
-          'Lift-and-improve migrations with rehearsal, rollback, and measured downtime windows.',
+          'Our cloud security services protect applications, infrastructure, identities, and business data through security-focused architecture and continuous monitoring.',
       },
       {
-        title: 'Cost & observability',
+        title: 'Scalable Cloud Applications',
         description:
-          'Tagging, budgets, and monitoring so spend and incidents are visible to engineering and finance.',
+          'Our cloud application development services create modern applications designed for flexible infrastructure, high availability, performance, and future growth.',
       },
     ],
-    processTitle: 'Cloud engagement',
-    processIntro: 'Assess → design → migrate → operate.',
+    processTitle: 'From Infrastructure To Cloud',
+    processIntro:
+      'Our cloud migration consulting services align business requirements, infrastructure, applications, data, security, and deployment strategies before migration begins.',
     process: [
       {
-        title: 'Cloud assessment',
+        phase: 'Assess',
+        title: 'Analyse Environment',
         description:
-          'Current workloads, risk, and cost drivers mapped before recommending a target architecture.',
+          'We evaluate your infrastructure, applications, dependencies, workloads, data, and business requirements to create a practical migration roadmap.',
       },
       {
-        title: 'Target design',
+        phase: 'Migrate',
+        title: 'Move Systems',
         description:
-          'Reference architecture, IaC plan, and security baseline aligned to your compliance needs.',
+          'We migrate applications, workloads, databases, and infrastructure using controlled processes designed to minimise downtime and operational disruption.',
       },
       {
-        title: 'Migrate & operate',
+        phase: 'Optimise',
+        title: 'Improve Performance',
         description:
-          'Controlled cutovers, then runbooks and monitoring so the environment stays healthy.',
+          'We optimise cloud resources, security, workloads, and infrastructure to improve reliability, efficiency, scalability, and ongoing cloud performance.',
       },
     ],
-    tech: ['amazonaws', 'docker', 'kubernetes', 'terraform', 'github'],
+    techTitle: 'Technology Behind Cloud Services',
+    techIntro:
+      'We use modern cloud platforms, containers, infrastructure automation, databases, monitoring, and security technologies for scalable environments.',
+    tech: [
+      'amazonaws',
+      'microsoftazure',
+      'google',
+      'docker',
+      'kubernetes',
+      'terraform',
+      'ansible',
+      'postgresql',
+      'mongodb',
+      'prometheus',
+      'grafana',
+      'github',
+      'gitlab',
+    ],
+    benefitsTitle: 'Cloud Built For Growth',
+    benefitsIntro:
+      'Our cloud services help businesses modernise infrastructure, improve scalability, strengthen security, and optimise technology costs.',
+    benefits: [
+      {
+        title: 'Flexible Scaling',
+        description:
+          'Cloud infrastructure allows businesses to scale computing, storage, and application resources based on changing workloads and demand.',
+      },
+      {
+        title: 'Improved Reliability',
+        description:
+          'Resilient cloud architecture, monitoring, backups, and automated processes help maintain application availability and reduce operational disruptions.',
+      },
+      {
+        title: 'Better Cost Control',
+        description:
+          'Optimise cloud resources and infrastructure usage to reduce unnecessary spending while maintaining the performance your applications require.',
+      },
+      {
+        title: 'Stronger Security',
+        description:
+          'Managed cloud security services help protect infrastructure, applications, identities, workloads, and sensitive business information.',
+      },
+      {
+        title: 'Faster Innovation',
+        description:
+          'Modern cloud environments give development teams flexible infrastructure for launching applications, testing features, and deploying updates faster.',
+      },
+      {
+        title: 'Simplified Management',
+        description:
+          'Cloud automation and managed services reduce infrastructure complexity, allowing teams to focus more on products and business priorities.',
+      },
+    ],
+    projectsTitle: 'Cloud Solutions In Action',
+    projectsIntro:
+      'Explore how Stack360 modernises infrastructure, migrates workloads, and builds scalable cloud environments that support growing digital products.',
+    projectsCtaLabel: 'View All Case Studies',
     projects: [projectRef('truck-4'), projectRef('autobuffy'), projectRef('whistle')],
+    faqsTitle: 'Cloud Services FAQs',
+    faqsIntro:
+      'Find answers to technical questions about cloud migration, infrastructure, security, application development, managed services, and optimisation.',
     faqs: [
       {
-        id: 'cloud-providers',
-        question: 'Which cloud providers do you support?',
+        id: 'cloud-migration-how',
+        question: 'How do cloud migration services work?',
         answer:
-          'AWS, Azure, and GCP. We pick based on your existing footprint, team skills, and workload needs — not brand preference.',
+          'We assess your infrastructure, applications, workloads, dependencies, and requirements before creating a migration strategy, executing the move, and optimising the resulting cloud environment.',
       },
       {
-        id: 'cloud-lockin',
-        question: 'How do you avoid unnecessary lock-in?',
+        id: 'cloud-migrate-apps',
+        question: 'Can you migrate existing applications to the cloud?',
         answer:
-          'Portable packaging (containers), IaC, and clear service boundaries. We use managed services when the operational win is real — and document exit paths.',
+          'Yes. We can migrate existing applications, databases, workloads, and infrastructure while selecting appropriate cloud architectures based on performance, security, and scalability requirements.',
       },
       {
-        id: 'cloud-cost',
-        question: 'Can you help control cloud spend?',
+        id: 'cloud-managed',
+        question: 'What are managed cloud services?',
         answer:
-          'Yes — rightsizing, reserved capacity where it pays, and visibility so product decisions account for runtime cost.',
+          'Managed cloud services provide ongoing monitoring, maintenance, optimisation, security, infrastructure management, and technical support for cloud environments.',
+      },
+      {
+        id: 'cloud-security',
+        question: 'How do you secure cloud infrastructure?',
+        answer:
+          'We use secure architecture, identity and access controls, encryption, network security, monitoring, vulnerability management, and appropriate security practices based on your environment.',
+      },
+      {
+        id: 'cloud-app-dev',
+        question: 'Can you develop applications specifically for cloud environments?',
+        answer:
+          'Yes. Our cloud application development services create scalable applications designed around cloud infrastructure, APIs, containers, automation, monitoring, and high availability.',
       },
     ],
-    cta: defaultCta('cloud architecture'),
+    cta: {
+      title: 'Ready To Modernize Your Cloud Infrastructure?',
+      description:
+        'Partner with Stack360 for cloud migration and managed services that improve scalability, security, reliability, and long-term technology performance.',
+      primary: { label: 'Modernize Your Cloud', href: '/contact' },
+      secondary: { label: 'Hire talent', href: '/work-with-us/hire' },
+    },
   },
 
   automation: {
     slug: 'automation',
     hero: {
       eyebrow: 'What We Build · Automation',
-      title: 'Remove manual work from',
-      highlight: 'day-to-day operations.',
+      title: 'Automate Business Processes And',
+      highlight: 'Work Smarter',
       description:
-        'Automation that earns its keep — integrations, scheduled jobs, and workflow engines that delete repetitive ops without creating a fragile spaghetti of scripts.',
+        'Our business process automation services eliminate repetitive work, connect systems, streamline workflows, and help teams improve productivity and operational efficiency.',
+      cta: { label: 'Automate Your Processes', href: '/contact' },
     },
-    capabilitiesTitle: 'Automation capabilities',
+    capabilitiesTitle: 'Challenges & Solutions',
     capabilitiesIntro:
-      'We automate measurable bottlenecks: handoffs, data entry, notifications, and cross-system sync.',
+      'Manual processes, repetitive tasks, disconnected systems, and inconsistent workflows can consume valuable time and limit operational efficiency.',
     capabilities: [
       {
-        title: 'Workflow automation',
+        title: 'Smarter Business Workflows',
         description:
-          'Multi-step business processes orchestrated with clear retries, logging, and human checkpoints.',
+          'We automate repetitive business processes around your existing systems, workflows, teams, and operational requirements.',
       },
       {
-        title: 'System integrations',
+        title: 'Automate Repetitive Tasks',
         description:
-          'Connect CRM, ERP, e-commerce, and messaging so data moves without copy-paste.',
+          'Replace manual data entry, notifications, approvals, reporting, and administrative work with reliable automated workflows.',
       },
       {
-        title: 'Ops & rental / logistics flows',
+        title: 'Connect Business Systems',
         description:
-          'Domain automations like Cercle’s rental management — where manual steps previously dominated.',
+          'Integrate CRMs, ERPs, APIs, databases, SaaS platforms, and internal applications to create connected business processes.',
       },
       {
-        title: 'Coaching & client management',
+        title: 'Improve Process Efficiency',
         description:
-          'Automated progress tracking and nutrition-app sync patterns as in Coach Catalyst.',
+          'Identify operational bottlenecks and automate inefficient workflows to reduce delays, errors, and unnecessary manual intervention.',
       },
       {
-        title: 'Monitoring & alerting',
+        title: 'Scale Automated Operations',
         description:
-          'Failure visibility so automations fail loudly — not silently — when upstream systems change.',
+          'Build automation workflows that support growing transaction volumes, teams, customers, and increasingly complex business processes.',
       },
     ],
-    processTitle: 'Automation delivery',
-    processIntro: 'Find the costly manual path, automate the proven path, then observe.',
+    processTitle: 'From Manual To Automated',
+    processIntro:
+      'Our automation process identifies repetitive work, maps workflows, integrates systems, and implements reliable automation around your business operations.',
     process: [
       {
-        title: 'Bottleneck audit',
+        phase: 'Discover',
+        title: 'Map Processes',
         description:
-          'Time, error rate, and handoff cost measured so we automate the right work first.',
+          'We analyse workflows, repetitive tasks, systems, and bottlenecks to identify the best opportunities for business process automation.',
       },
       {
-        title: 'Build & integrate',
+        phase: 'Automate',
+        title: 'Build Workflows',
         description:
-          'Reliable jobs and workflows with auth, idempotency, and rollback where needed.',
+          'We develop automated workflows, system integrations, triggers, notifications, approvals, and intelligent processes around your requirements.',
       },
       {
-        title: 'Observe & expand',
+        phase: 'Optimise',
+        title: 'Improve Efficiency',
         description:
-          'Dashboards and alerts; expand coverage only when the first automations prove stable.',
+          'We monitor automated processes, identify bottlenecks, refine workflows, and expand automation as your operational needs evolve.',
       },
     ],
-    tech: ['nodedotjs', 'python', 'zapier', 'n8n', 'amazonaws', 'redis'],
+    techTitle: 'Technology Behind Automation',
+    techIntro:
+      'We combine APIs, workflow engines, cloud platforms, AI, databases, and integration tools to build reliable automated processes.',
+    tech: [
+      'graphql',
+      'nodedotjs',
+      'python',
+      'dotnet',
+      'n8n',
+      'zapier',
+      'openai',
+      'amazonaws',
+      'microsoftazure',
+      'google',
+      'docker',
+      'kubernetes',
+    ],
+    benefitsTitle: 'Automation Built For Efficiency',
+    benefitsIntro:
+      'Business process automation helps teams reduce manual work, improve accuracy, accelerate operations, and focus resources on higher-value activities.',
+    benefits: [
+      {
+        title: 'Less Manual Work',
+        description:
+          'Automate repetitive administrative tasks so employees can spend more time on strategic, customer-facing, and revenue-generating activities.',
+      },
+      {
+        title: 'Faster Processes',
+        description:
+          'Automated workflows reduce unnecessary delays between tasks, approvals, departments, systems, and business operations.',
+      },
+      {
+        title: 'Fewer Errors',
+        description:
+          'Standardised automated processes reduce human error and improve consistency across repetitive and data-intensive workflows.',
+      },
+      {
+        title: 'Connected Operations',
+        description:
+          'Connect your business applications and systems so information moves automatically between workflows without unnecessary manual intervention.',
+      },
+      {
+        title: 'Better Visibility',
+        description:
+          'Track automated workflows, process performance, bottlenecks, and outcomes to identify opportunities for continuous operational improvement.',
+      },
+      {
+        title: 'Scalable Automation',
+        description:
+          'Expand automation across teams, processes, and systems as transaction volumes and operational requirements continue to grow.',
+      },
+    ],
+    projectsTitle: 'Automation In Action',
+    projectsIntro:
+      'Explore how Stack360 connects systems, automates workflows, and builds intelligent solutions that improve efficiency across business operations.',
+    projectsCtaLabel: 'View All Case Studies',
     projects: [projectRef('cercle'), projectRef('falcore'), projectRef('alertia')],
+    faqsTitle: 'Automation Services FAQs',
+    faqsIntro:
+      'Find answers to technical questions about business process automation, integrations, workflows, AI automation, and automated software testing.',
     faqs: [
       {
-        id: 'auto-tools',
-        question: 'Do you use Zapier/n8n or custom code?',
+        id: 'auto-what-is',
+        question: 'What are business process automation services?',
         answer:
-          'Both. Low-code tools for fast, low-risk workflows; custom services when volume, security, or complexity outgrows the tool.',
+          'Business process automation services use software, integrations, workflows, and intelligent systems to automate repetitive business processes and reduce manual intervention.',
       },
       {
-        id: 'auto-fragile',
-        question: 'How do you keep automations from becoming fragile?',
+        id: 'auto-which-processes',
+        question: 'Which business processes can you automate?',
         answer:
-          'Idempotent handlers, structured logging, alerts on failure, and ownership docs — so changes upstream do not silently break ops.',
+          'We can automate approvals, notifications, data entry, reporting, lead management, customer workflows, document processing, system synchronisation, and other repetitive processes.',
       },
       {
-        id: 'auto-roi',
-        question: 'How do you measure ROI?',
+        id: 'auto-cross-system',
+        question: 'Can you automate workflows across different business systems?',
         answer:
-          'Hours saved, error reduction, and cycle-time improvement against the pre-automation baseline — reported in language finance and ops both accept.',
+          'Yes. We integrate CRMs, ERPs, databases, SaaS platforms, APIs, and internal applications to automate processes across multiple systems.',
+      },
+      {
+        id: 'auto-qa',
+        question: 'Do you provide QA automation services?',
+        answer:
+          'Yes. Where required, we can automate software testing workflows to improve test coverage, consistency, regression testing, and release confidence.',
+      },
+      {
+        id: 'auto-ai',
+        question: 'Can AI be used for business process automation?',
+        answer:
+          'Yes. We can combine AI with traditional automation to handle tasks involving document processing, classification, data extraction, recommendations, content generation, and intelligent decision support.',
       },
     ],
-    cta: defaultCta('automation'),
+    cta: {
+      title: 'Ready To Automate Your Business Processes?',
+      description:
+        'Partner with Stack360 to automate repetitive workflows, connect business systems, reduce operational friction, and create more efficient digital operations.',
+      primary: { label: 'Start Your Automation Project', href: '/contact' },
+      secondary: { label: 'Hire talent', href: '/work-with-us/hire' },
+    },
   },
 };
 

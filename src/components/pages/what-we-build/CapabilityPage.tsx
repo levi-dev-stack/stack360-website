@@ -1,4 +1,5 @@
 import { ArrowUpRight } from 'lucide-react';
+import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import FaqAccordion from '@/components/pages/our-work/shared/FaqAccordion';
 import JsonLd from '@/components/seo/JsonLd';
@@ -16,6 +17,8 @@ import type { CapabilityPageData, CapabilitySlug } from '@/constants/component/w
 import { breadcrumbJsonLd, faqPageJsonLd } from '@/lib/seo/json-ld';
 import { capitalize } from '@/utils/string';
 
+const TestimonialsSection = dynamic(() => import('@/components/pages/landing/TestimonialsSection'));
+
 /** BrandIcon service slugs (short keys in SERVICE_ICONS). */
 const SERVICE_ICON: Record<CapabilitySlug, string> = {
   erp: 'erp',
@@ -30,18 +33,62 @@ const SERVICE_ICON: Record<CapabilitySlug, string> = {
   automation: 'automation',
 };
 
+const TECH_LABELS: Record<string, string> = {
+  react: 'React',
+  nextdotjs: 'Next.js',
+  nodedotjs: 'Node.js',
+  vuedotjs: 'Vue.js',
+  reactnative: 'React Native',
+  flutter: 'Flutter',
+  swift: 'Swift',
+  kotlin: 'Kotlin',
+  python: 'Python',
+  dotnet: '.NET',
+  postgresql: 'PostgreSQL',
+  mongodb: 'MongoDB',
+  amazonaws: 'AWS',
+  microsoftazure: 'Azure',
+  azure: 'Azure',
+  graphql: 'GraphQL',
+  docker: 'Docker',
+  kubernetes: 'Kubernetes',
+  rubyonrails: 'Rails',
+  tailwindcss: 'Tailwind',
+  huggingface: 'Hugging Face',
+  openjdk: 'Java',
+  openai: 'OpenAI',
+  anthropic: 'Anthropic',
+  tensorflow: 'TensorFlow',
+  pytorch: 'PyTorch',
+  google: 'Google Cloud',
+  github: 'GitHub',
+  gitlab: 'GitLab',
+  jenkins: 'Jenkins',
+  terraform: 'Terraform',
+  ansible: 'Ansible',
+  prometheus: 'Prometheus',
+  grafana: 'Grafana',
+  n8n: 'n8n',
+  zapier: 'Zapier',
+  wordpress: 'WordPress',
+  shopify: 'Shopify',
+};
+
 function formatTechLabel(slug: string) {
-  return slug
-    .replace(/dotjs$/i, '.js')
-    .replace(/^amazonaws$/i, 'AWS')
-    .replace(/^reactnative$/i, 'React Native')
-    .replace(/^nextdotjs$/i, 'Next.js')
-    .replace(/^nodedotjs$/i, 'Node.js')
-    .replace(/^vuedotjs$/i, 'Vue.js')
-    .replace(/^rubyonrails$/i, 'Rails')
-    .replace(/^tailwindcss$/i, 'Tailwind')
-    .replace(/^huggingface$/i, 'Hugging Face')
-    .replace(/^openjdk$/i, 'Java');
+  return TECH_LABELS[slug] ?? capitalize(slug.replace(/dotjs$/i, '.js'));
+}
+
+function processPhaseLabel(step: { phase?: string }, index: number, total: number): string {
+  if (step.phase) {
+    return step.phase;
+  }
+  if (index === 0) {
+    return 'Start';
+  }
+  if (index === total - 1) {
+    return 'Finish';
+  }
+  return 'Next';
 }
 
 interface CapabilityPageProps {
@@ -76,6 +123,7 @@ export default function CapabilityPage({ data }: CapabilityPageProps) {
         title={data.hero.title}
         highlight={data.hero.highlight}
         description={data.hero.description}
+        cta={data.hero.cta}
       />
 
       {/* Capabilities — asymmetric: sticky intro + lead feature + grid */}
@@ -153,7 +201,7 @@ export default function CapabilityPage({ data }: CapabilityPageProps) {
               <MotionStaggerItem key={step.title}>
                 <MotionCard className="h-full rounded-xl border border-neutral-200 bg-neutral-50 p-lg shadow-sm">
                   <p className="font-mono text-[10px] font-bold uppercase tracking-widest text-neutral-500">
-                    {index === 0 ? 'Start' : index === data.process.length - 1 ? 'Finish' : 'Next'}
+                    {processPhaseLabel(step, index, data.process.length)}
                   </p>
                   <h3 className="mt-sm text-lg font-bold text-neutral-900">{step.title}</h3>
                   <p className="mt-sm text-sm leading-relaxed text-neutral-600">
@@ -173,12 +221,13 @@ export default function CapabilityPage({ data }: CapabilityPageProps) {
             <MotionStagger className="">
               <MotionStaggerItem>
                 <h2 className="text-balance text-2xl font-bold tracking-tight text-neutral-900">
-                  Tech we ship with
+                  {data.techTitle ?? 'Tech we ship with'}
                 </h2>
               </MotionStaggerItem>
               <MotionStaggerItem>
                 <p className="mt-sm text-sm leading-relaxed text-neutral-600">
-                  Stack choices follow your ownership model — tools we use most in this lane.
+                  {data.techIntro ??
+                    'Stack choices follow your ownership model — tools we use most in this lane.'}
                 </p>
               </MotionStaggerItem>
             </MotionStagger>
@@ -194,7 +243,7 @@ export default function CapabilityPage({ data }: CapabilityPageProps) {
                       fallbackSlug={SERVICE_ICON[data.slug]}
                     />
                     <span className="text-xs font-semibold text-neutral-800">
-                      {capitalize(formatTechLabel(slug))}
+                      {formatTechLabel(slug)}
                     </span>
                   </span>
                 </MotionStaggerItem>
@@ -204,6 +253,41 @@ export default function CapabilityPage({ data }: CapabilityPageProps) {
         </div>
       </MotionSection>
 
+      {/* Benefits — optional outcomes grid */}
+      {data.benefits && data.benefits.length > 0 ? (
+        <MotionSection className="border-b border-neutral-200 py-2xl">
+          <div className="site-container">
+            <MotionStagger className="mb-xl max-w-3xl">
+              <MotionStaggerItem>
+                <h2 className="text-balance text-2xl font-bold tracking-tight text-neutral-900 md:text-3xl">
+                  {data.benefitsTitle}
+                </h2>
+              </MotionStaggerItem>
+              {data.benefitsIntro ? (
+                <MotionStaggerItem>
+                  <p className="mt-sm text-pretty text-sm leading-relaxed text-neutral-600">
+                    {data.benefitsIntro}
+                  </p>
+                </MotionStaggerItem>
+              ) : null}
+            </MotionStagger>
+
+            <MotionStagger className="grid grid-cols-1 gap-md sm:grid-cols-2 lg:grid-cols-3">
+              {data.benefits.map((item) => (
+                <MotionStaggerItem key={item.title}>
+                  <MotionCard className="flex h-full flex-col rounded-lg border border-neutral-200 bg-neutral-50 p-lg transition-colors hover:border-primary/25">
+                    <h3 className="text-base font-bold text-neutral-900">{item.title}</h3>
+                    <p className="mt-sm flex-1 text-sm leading-relaxed text-neutral-600">
+                      {item.description}
+                    </p>
+                  </MotionCard>
+                </MotionStaggerItem>
+              ))}
+            </MotionStagger>
+          </div>
+        </MotionSection>
+      ) : null}
+
       {/* Projects — light instrumentation (no full black field) */}
       <MotionSection className="border-b border-neutral-200 bg-linear-to-b from-neutral-50 to-neutral-100 py-2xl">
         <div className="site-container">
@@ -211,12 +295,13 @@ export default function CapabilityPage({ data }: CapabilityPageProps) {
             <div className="max-w-3xl">
               <MotionStaggerItem>
                 <h2 className="text-balance text-2xl font-bold tracking-tight text-neutral-900 md:text-3xl">
-                  Related projects
+                  {data.projectsTitle ?? 'Related projects'}
                 </h2>
               </MotionStaggerItem>
               <MotionStaggerItem>
                 <p className="mt-sm text-sm leading-relaxed text-neutral-600">
-                  Systems we shipped in this lane — open a case study for depth.
+                  {data.projectsIntro ??
+                    'Systems we shipped in this lane — open a case study for depth.'}
                 </p>
               </MotionStaggerItem>
             </div>
@@ -225,7 +310,7 @@ export default function CapabilityPage({ data }: CapabilityPageProps) {
                 href="/our-work/case-studies"
                 className="inline-flex items-center gap-xs text-sm font-bold text-primary hover:text-primary-dark"
               >
-                All case studies
+                {data.projectsCtaLabel ?? 'All case studies'}
                 <ArrowUpRight size={14} />
               </Link>
             </MotionStaggerItem>
@@ -258,17 +343,20 @@ export default function CapabilityPage({ data }: CapabilityPageProps) {
         </div>
       </MotionSection>
 
+      {data.showTestimonials ? <TestimonialsSection /> : null}
+
       <MotionSection className="py-2xl">
         <div className="site-container max-w-3xl">
           <MotionStagger className="mb-xl">
             <MotionStaggerItem>
               <h2 className="text-balance text-2xl font-bold tracking-tight text-neutral-900">
-                Frequently asked questions
+                {data.faqsTitle ?? 'Frequently asked questions'}
               </h2>
             </MotionStaggerItem>
             <MotionStaggerItem>
               <p className="mt-sm text-sm leading-relaxed text-neutral-600">
-                Straight answers for partners and client buyers scoping this capability.
+                {data.faqsIntro ??
+                  'Straight answers for partners and client buyers scoping this capability.'}
               </p>
             </MotionStaggerItem>
           </MotionStagger>
