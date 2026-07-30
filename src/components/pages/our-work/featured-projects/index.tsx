@@ -23,7 +23,7 @@ export default function FeaturedProjectsPage() {
       <PageHero {...FEATURED_PROJECTS_HERO} />
 
       {/* Domain index — quick jump to each grouped section */}
-      <MotionSection className="border-b border-neutral-200 py-xl">
+      <MotionSection className="border-b border-neutral-300 bg-neutral-50 py-xl">
         <div className="site-container">
           <DomainJumpLinks />
         </div>
