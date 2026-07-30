@@ -38,6 +38,12 @@ export const CONTACT_OFFICES = [
   //   address: '82-G, First Floor, DHA Phase 1, Lahore, Punjab, Pakistan',
   // },
   {
+    country: 'United States',
+    role: 'Stack360 Ai Solutions LLC',
+    flagSrc: 'https://flagcdn.com/us.svg',
+    address: '12828 Willow Centre Dr, Houston, TX 77066, USA',
+  },
+  {
     country: 'United Kingdom',
     role: 'Regional Office',
     flagSrc: 'https://flagcdn.com/gb.svg',
