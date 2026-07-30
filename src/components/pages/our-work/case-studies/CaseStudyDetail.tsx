@@ -1,7 +1,7 @@
 import { ArrowLeft, ArrowUpRight, Check } from 'lucide-react';
+import Image from 'next/image';
 import Link from 'next/link';
 import ChallengeSolutionList from '@/components/pages/our-work/shared/ChallengeSolutionList';
-import EmptyImageState from '@/components/pages/our-work/shared/EmptyImageState';
 import BrandIcon from '@/components/shared/BrandIcon';
 import MotionCard from '@/components/shared/motion/MotionCard';
 import MotionSection from '@/components/shared/motion/MotionSection';
@@ -28,8 +28,6 @@ function Stat({ label, value }: { label: string; value: string }) {
 }
 
 export default function CaseStudyDetailView({ study }: CaseStudyDetailProps) {
-  const galleryThumbs = Math.max(0, study.imageCount - 1);
-
   return (
     <div className="flex w-full flex-col">
       {/* Hero */}
@@ -69,24 +67,21 @@ export default function CaseStudyDetailView({ study }: CaseStudyDetailProps) {
         </div>
       </section>
 
-      {/* Gallery — empty states until real screenshots exist */}
+      {/* Primary mockup */}
       <MotionSection className="border-b border-neutral-200 py-2xl">
         <div className="site-container">
           <MotionReveal>
-            <EmptyImageState label="Primary view" aspect="aspect-[16/8]" />
+            <div className="relative aspect-[16/9] w-full overflow-hidden rounded-xl border border-neutral-200 bg-neutral-100 shadow-sm">
+              <Image
+                src={study.image}
+                alt={`${study.name} product mockup`}
+                fill
+                sizes="(max-width: 1024px) 100vw, 1120px"
+                className="object-contain object-center p-md md:p-lg"
+                priority
+              />
+            </div>
           </MotionReveal>
-          {galleryThumbs > 0 && (
-            <MotionStagger className="mt-md grid grid-cols-2 gap-md sm:grid-cols-3 lg:grid-cols-4">
-              {Array.from({ length: galleryThumbs }).map((_, index) => (
-                <MotionStaggerItem
-                  // biome-ignore lint/suspicious/noArrayIndexKey: fixed-length placeholder grid
-                  key={`thumb-${index}`}
-                >
-                  <EmptyImageState label={`View ${index + 2}`} aspect="aspect-[4/3]" />
-                </MotionStaggerItem>
-              ))}
-            </MotionStagger>
-          )}
         </div>
       </MotionSection>
 

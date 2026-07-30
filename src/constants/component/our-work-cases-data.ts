@@ -72,7 +72,46 @@ export const CASE_STUDIES = [
     description:
       'Cercle is a fashion rental platform promoting sustainability by allowing users to borrow luxury fashion instead of buying — with scalable automation for rental management.',
     stack: ['rubyonrails', 'nextdotjs', 'amazonaws', 'stripe'],
-    href: '/our-work/featured-projects#cercle',
+    href: '/our-work/case-studies/cercle',
+  },
+  {
+    slug: 'klingit',
+    featured: true,
+    tag: 'Creative',
+    title: 'Klingit',
+    subtitle: 'DesignOps for global creatives',
+    metric: '40+',
+    metricLabel: 'Global creatives synced',
+    description:
+      'Klingit is a tech-powered creative services platform that helps brands scale marketing with transparent DesignOps across a global talent pool.',
+    stack: ['vuedotjs', 'rubyonrails', 'postgresql', 'redis', 'stripe'],
+    href: '/our-work/case-studies/klingit',
+  },
+  {
+    slug: 'nextflag',
+    featured: true,
+    tag: 'Social',
+    title: 'Nextflag',
+    subtitle: 'Location flags social app',
+    metric: 'Map-first',
+    metricLabel: 'Flags · follow · wishlist',
+    description:
+      'Nextflag is a social mobile app for creating and sharing personalized location flags — discover places and plan trips from real recommendations.',
+    stack: ['reactnative', 'rubyonrails', 'postgresql', 'graphql'],
+    href: '/our-work/case-studies/nextflag',
+  },
+  {
+    slug: 'truck-4',
+    featured: true,
+    tag: 'Logistics',
+    title: 'Truck-4',
+    subtitle: 'Commercial fleet rentals',
+    metric: 'K8s',
+    metricLabel: 'Absorbs traffic spikes',
+    description:
+      'Truck-4 is a commercial vehicle rental marketplace — find, lease, or purchase trucks with secure auth, uploads, and microservices scale.',
+    stack: ['react', 'nodedotjs', 'mongodb', 'kubernetes', 'docker'],
+    href: '/our-work/case-studies/truck-4',
   },
 ] as const;
 

@@ -35,8 +35,8 @@ export interface CaseStudyDetail {
   metric: string;
   metricLabel: string;
   clientRequirement: string;
-  /** Number of empty gallery slots to render until real screenshots exist. */
-  imageCount: number;
+  /** Primary mockup under /public/images/case-studies. */
+  image: string;
   challenges: ChallengeSolution[];
   features: CaseStudyFeature[];
   results: string[];
@@ -67,7 +67,7 @@ export const CASE_STUDIES_DETAILS: CaseStudyDetail[] = [
     metricLabel: 'Sales via Buy Now, Pay Later',
     clientRequirement:
       'AutoBuffy, a leading eCommerce store for auto parts, reached out to enhance website functionality and user experience — faster part search across a huge catalog, flexible payment options, stronger technical SEO, higher-availability infrastructure, and real-time inventory synchronization.',
-    imageCount: 6,
+    image: '/images/case-studies/autobuffy.png',
     challenges: [
       {
         challenge:
@@ -219,7 +219,7 @@ export const CASE_STUDIES_DETAILS: CaseStudyDetail[] = [
     metricLabel: 'Migrated + new revenue stream',
     clientRequirement:
       'CoachCatalyst needed its coaching platform modernized — a faster, more intuitive UI, a Stripe Connect marketplace so coaches get paid directly, an integrated community module, a rewritten real-time chat, and a full migration to Vue 3.',
-    imageCount: 4,
+    image: '/images/case-studies/coach-catalyst.png',
     challenges: [
       {
         challenge:
@@ -339,7 +339,7 @@ export const CASE_STUDIES_DETAILS: CaseStudyDetail[] = [
     metricLabel: 'HR, invoicing & real-time ops',
     clientRequirement:
       'The client needed their internal management tool restructured — simpler client modules over a cleaner database, automated service-rate and invoice handling, a modern DevExtreme UI, and SQL-optimized analytics for fast dashboards.',
-    imageCount: 4,
+    image: '/images/case-studies/atc.png',
     challenges: [
       {
         challenge:
@@ -462,7 +462,7 @@ export const CASE_STUDIES_DETAILS: CaseStudyDetail[] = [
     metricLabel: 'Amazon · eBay · Walmart synced',
     clientRequirement:
       'BuffyHub needed a unified eCommerce control plane — a scalable system for large volumes of inventory, orders, brands, and vendors, hardened security, seamless multi-marketplace integration, and performance optimization as traffic grew.',
-    imageCount: 6,
+    image: '/images/case-studies/buffyhub.png',
     challenges: [
       {
         challenge:
@@ -566,6 +566,491 @@ export const CASE_STUDIES_DETAILS: CaseStudyDetail[] = [
           { label: 'eBay', slug: 'ebay' },
           { label: 'Walmart', slug: 'walmart' },
           { label: 'Shippo' },
+        ],
+      },
+    ],
+  },
+  {
+    slug: 'cercle',
+    name: 'Cercle',
+    tagline:
+      'A fashion rental platform that lets users rent clothing, shoes, and accessories from lenders — promoting borrow-over-buy sustainability at a fraction of retail cost.',
+    industry: 'Fashion · eCommerce',
+    platform: 'Web',
+    durationHours: '2,112 hrs',
+    members: '2',
+    domain: 'eCommerce · Web Development',
+    domainHref: '/what-we-build/web-apps',
+    metric: '60%',
+    metricLabel: 'Fewer manual workflows',
+    clientRequirement:
+      'Cercle.uk needed a high-end sustainable fashion rental marketplace — lenders listing luxury items for income, renters accessing those items at lower cost, with reliable payments, returns, clothing renewal, and multi-channel sales.',
+    image: '/images/case-studies/cercle.png',
+    challenges: [
+      {
+        challenge:
+          'Slow loads frustrated users, raised bounce rates, and cut engagement and sales.',
+        solution:
+          'We optimized product data handling and image caching, and moved heavy work to Sidekiq so the UI stays responsive.',
+      },
+      {
+        challenge:
+          'Without store credits in the payment module, customers were stuck with cash, cards, or transfers — less flexible checkout and weaker loyalty after refunds.',
+        solution:
+          'We built a wallet / store-credits flow for refunds and cancellations, with encryption, secure tokenization, and regular security reviews.',
+      },
+      {
+        challenge:
+          'Expanding reach meant users expected seamless shopping on social channels as well as the site.',
+        solution:
+          'We integrated Facebook e-commerce APIs so catalogues, inventory, and orders stay in sync between the site and Facebook.',
+      },
+      {
+        challenge:
+          'Renewing worn rental clothes for resale needed a reliable partner for cleaning, repair, and logistics.',
+        solution:
+          'We connected Advanced Clothing Solutions (ACS) so used items ship from the renter, get renewed, and return to inventory.',
+      },
+      {
+        challenge:
+          'Bugs left delivery and payment statuses wrong, causing mismanagement between business and users.',
+        solution:
+          'We fixed Solidus admin configuration and status code paths so delivery and payment states stay accurate.',
+      },
+      {
+        challenge: 'Tight deadlines risked delayed launches and quality cuts.',
+        solution:
+          'We ran agile sprints with smaller iterations and regular checkpoints to protect quality and ship on time.',
+      },
+    ],
+    features: [
+      {
+        title: 'Advanced search & filters',
+        description:
+          'Powerful search with filters, caching, and indexing so renters find the right item quickly.',
+      },
+      {
+        title: 'Rental reminders',
+        description:
+          'Push notifications near rental end so customers return items and route them through ACS renewal.',
+      },
+      {
+        title: 'Admin operations (Solidus)',
+        description:
+          'Admin tools for listings, users, cancel/refund policies, taxation, and shipping.',
+      },
+      {
+        title: 'ACS integration',
+        description:
+          'Clothing renewal pipeline with Advanced Clothing Solutions after each rental cycle.',
+      },
+      {
+        title: 'Order management',
+        description: 'One system consolidating orders across sales channels.',
+      },
+      {
+        title: 'Location-based delivery charges',
+        description:
+          'Checkout calculates delivery from address and basket size, with postal-code and city suggestions as the user types.',
+      },
+    ],
+    results: [
+      'Faster performance cut bounce rates and supported higher sales.',
+      'Ordering and returning used products became a smoother, lower-friction flow.',
+      'Better filtering helped users match preferences and decide faster.',
+      'Admin tools for discount codes and promotions made campaign ops more efficient.',
+      'Stripe plus store credits improved refund UX and kept spend on-platform.',
+    ],
+    tech: [
+      {
+        category: 'Frontend',
+        items: [
+          { label: 'HTML5', slug: 'html5' },
+          { label: 'React', slug: 'react' },
+          { label: 'Next.js', slug: 'nextdotjs' },
+          { label: 'Emotion Styled Components' },
+        ],
+      },
+      {
+        category: 'Backend',
+        items: [{ label: 'Ruby on Rails', slug: 'rubyonrails' }, { label: 'Sidekiq' }],
+      },
+      {
+        category: 'Database',
+        items: [
+          { label: 'PostgreSQL', slug: 'postgresql' },
+          { label: 'Redis', slug: 'redis' },
+        ],
+      },
+      {
+        category: 'Hosting',
+        items: [{ label: 'Heroku', slug: 'heroku' }],
+      },
+      {
+        category: 'Version control',
+        items: [{ label: 'GitHub', slug: 'github' }],
+      },
+      {
+        category: 'Integrations',
+        items: [
+          { label: 'Stripe', slug: 'stripe' },
+          { label: 'SendGrid', slug: 'sendgrid' },
+          { label: 'Trello', slug: 'trello' },
+        ],
+      },
+    ],
+  },
+  {
+    slug: 'klingit',
+    name: 'Klingit',
+    tagline:
+      'A tech-powered creative services platform that helps brands scale marketing with a global pool of creatives — DesignOps, deliverables, and transparent collaboration in one place.',
+    industry: 'Creative · DesignOps',
+    platform: 'Web',
+    durationHours: '1,400 hrs',
+    members: '1',
+    domain: 'CRM · Marketplace',
+    domainHref: '/what-we-build/crm',
+    metric: '40+',
+    metricLabel: 'Global creatives synced',
+    clientRequirement:
+      'Klingit needed a DesignOps platform for clients, designers, managers, and admins — clear communication, project state tracking, automated onboarding, remote collaboration, and secure handling of brand assets across 40+ creatives.',
+    image: '/images/case-studies/klingit.png',
+    challenges: [
+      {
+        challenge:
+          'Communication gaps between clients, designers, managers, and admins delayed projects and created frustration.',
+        solution:
+          'We built a centralized communication hub with real-time updates, one-to-one messaging, and clear assignment tracking.',
+      },
+      {
+        challenge:
+          'Legacy project tools were clunky and manual, making progress hard to see and deadlines easy to miss.',
+        solution:
+          'We shipped project-state tracking, automated workflows, and progress visualization for clearer planning and allocation.',
+      },
+      {
+        challenge:
+          'Onboarding new clients on complex, multi-stakeholder work was slow and expectation-heavy.',
+        solution:
+          'We automated onboarding with instructions, plan templates, and immediate access to the right channels.',
+      },
+      {
+        challenge:
+          'Remote teams struggled with time zones, communication barriers, and fragmented workflows.',
+        solution:
+          'We standardized real-time collaboration tools and recurring virtual syncs so the team stays aligned.',
+      },
+      {
+        challenge: 'Client data and assets needed stronger protection against growing cyber risk.',
+        solution:
+          'We added encryption, access controls, regular updates, and team training on data-protection practices.',
+      },
+      {
+        challenge: 'Mid-project feature requests caused scope creep past budget and timeline.',
+        solution:
+          'We introduced a change-management process with documentation and scope/budget renegotiation when needed.',
+      },
+    ],
+    features: [
+      {
+        title: 'Global talent pool',
+        description: 'Access to 40+ creatives, developers, and managers matched to project needs.',
+      },
+      {
+        title: 'Seamless collaboration',
+        description:
+          'Transparent DesignOps workflows for communication, feedback, and progress tracking.',
+      },
+      {
+        title: 'Multifaceted services',
+        description:
+          'Social graphics, presentations, video, websites, and apps under one delivery model.',
+      },
+      {
+        title: 'Cost-effective solutions',
+        description: 'Transparent, value-driven proposals without hidden pricing surprises.',
+      },
+      {
+        title: 'Scalable services',
+        description: 'Engagements that grow with aspiring brands and expanding companies.',
+      },
+      {
+        title: 'Brand alignment',
+        description: 'Customization that keeps deliverables on-brand with client guidelines.',
+      },
+    ],
+    results: [
+      'Communication and collaboration improved across clients, designers, and admins.',
+      'A shared dashboard cut misalignment and sped day-to-day teamwork.',
+      'Uploads, payments, and brand management streamlined delivery workflows.',
+      'Clear project states and assignment tracking improved workload visibility.',
+      'Self-serve progress views raised client satisfaction and retention.',
+    ],
+    tech: [
+      {
+        category: 'Frontend',
+        items: [{ label: 'Vue 2 & 3', slug: 'vuedotjs' }, { label: 'Vuetify' }],
+      },
+      { category: 'Backend', items: [{ label: 'Ruby on Rails', slug: 'rubyonrails' }] },
+      {
+        category: 'Database',
+        items: [
+          { label: 'PostgreSQL', slug: 'postgresql' },
+          { label: 'Redis', slug: 'redis' },
+        ],
+      },
+      {
+        category: 'Hosting',
+        items: [
+          { label: 'AWS EC2', slug: 'amazonaws' },
+          { label: 'Puma' },
+          { label: 'Nginx', slug: 'nginx' },
+        ],
+      },
+      {
+        category: 'DevOps',
+        items: [
+          { label: 'GitHub', slug: 'github' },
+          { label: 'Git', slug: 'git' },
+        ],
+      },
+      {
+        category: 'Integrations',
+        items: [
+          { label: 'Stripe', slug: 'stripe' },
+          { label: 'Slack', slug: 'slack' },
+          { label: 'Trello', slug: 'trello' },
+        ],
+      },
+    ],
+  },
+  {
+    slug: 'nextflag',
+    name: 'Nextflag',
+    tagline:
+      'A social mobile app for creating and sharing personalized location flags — discover places, follow people, and plan trips from real recommendations.',
+    industry: 'Social · Mobile',
+    platform: 'Mobile App',
+    durationHours: '1,602 hrs',
+    members: '2',
+    domain: 'Mobile Apps',
+    domainHref: '/what-we-build/mobile-apps',
+    metric: 'Map-first',
+    metricLabel: 'Flags · follow · wishlist',
+    clientRequirement:
+      'Nextflag needed a polished React Native experience — stable onboarding, geolocated flags on a map, search by city, social follow, wishlist, and smoother post-upload flows without crashes.',
+    image: '/images/case-studies/nextflag.png',
+    challenges: [
+      {
+        challenge:
+          'Performance lagged; React Native and related packages needed upgrades alongside native pods.',
+        solution:
+          'We upgraded React Native, packages, and pods and tuned the app for smoother runtime performance.',
+      },
+      {
+        challenge: 'Post-upload UI was outdated and buggy, often crashing the app.',
+        solution:
+          'We rewrote the post-upload flow, cleaned inefficient code, and reused idle assets in the new path.',
+      },
+      {
+        challenge:
+          'Users could not reliably find flagged locations — the core product promise broke.',
+        solution:
+          'We added a dedicated map screen with geolocation markers and filters by flag type.',
+      },
+      {
+        challenge: 'A static splash screen slowed startup and wasted asset budget.',
+        solution: 'We replaced it with an animated splash that cut load time and storage size.',
+      },
+      {
+        challenge: 'Weak search made it hard to find flags or wishlist items in a region.',
+        solution:
+          'We shipped an advanced search screen using geolocation data to surface places by city.',
+      },
+      {
+        challenge: 'Onboarding bugs dropped sessions and lost progress mid-flow.',
+        solution: 'We hardened the backend, saved progress per step, and added session resume.',
+      },
+    ],
+    features: [
+      {
+        title: 'Wishlist',
+        description:
+          'Save favorite locations with notes for trip planning using location services.',
+      },
+      {
+        title: 'Follow users’ flags',
+        description: 'Follow other users and see their flags and recommendations as they post.',
+      },
+      {
+        title: 'Flags based on location',
+        description: 'Map view of flag density by region to discover popular destinations.',
+      },
+      {
+        title: 'User suggestions',
+        description: 'Follow recommendations based on content relevancy and overlapping flags.',
+      },
+      {
+        title: 'Social login',
+        description: 'Sign in with Google or Apple for faster, personalized access.',
+      },
+    ],
+    results: [
+      'App performance and stability improved after the React Native upgrade path.',
+      'Map and search made flagged places discoverable again.',
+      'Onboarding completion rose with step saves and session resume.',
+      'Social follow and wishlist deepened engagement around real recommendations.',
+    ],
+    tech: [
+      {
+        category: 'Frontend',
+        items: [
+          { label: 'HTML5', slug: 'html5' },
+          { label: 'CSS3', slug: 'css3' },
+          { label: 'React Native', slug: 'reactnative' },
+          { label: 'UI Kitten' },
+          { label: 'Redux' },
+        ],
+      },
+      {
+        category: 'Backend',
+        items: [
+          { label: 'Ruby on Rails', slug: 'rubyonrails' },
+          { label: 'GraphQL', slug: 'graphql' },
+        ],
+      },
+      { category: 'Database', items: [{ label: 'PostgreSQL', slug: 'postgresql' }] },
+      {
+        category: 'Hosting',
+        items: [{ label: 'Heroku', slug: 'heroku' }],
+      },
+      {
+        category: 'Version control',
+        items: [{ label: 'GitHub', slug: 'github' }],
+      },
+      {
+        category: 'Project management',
+        items: [{ label: 'Trello', slug: 'trello' }],
+      },
+    ],
+  },
+  {
+    slug: 'truck-4',
+    name: 'Truck-4',
+    tagline:
+      'A commercial vehicle rental marketplace — find, lease, or purchase trucks, tractors, and trailers with secure auth, uploads, and microservices scale.',
+    industry: 'Logistics · Fleet rentals',
+    platform: 'Web',
+    durationHours: '1,232 hrs',
+    members: '3',
+    domain: 'Transport & Logistics',
+    domainHref: '/what-we-build/cloud',
+    metric: 'K8s',
+    metricLabel: 'Absorbs traffic spikes',
+    clientRequirement:
+      'Truck-4 needed a microservices marketplace for commercial rentals — OTP auth, truck management, secure file uploads, third-party maps/email, compliance tooling, and Kubernetes-ready scale.',
+    image: '/images/case-studies/truck-4.png',
+    challenges: [
+      {
+        challenge:
+          'Dependent microservices needed reliable communication without tanking response times.',
+        solution: 'We used REST APIs plus async messaging with RabbitMQ between services.',
+      },
+      {
+        challenge: 'Uploaded files risked malware that could crash servers or corrupt data.',
+        solution: 'We scan uploads in real time with ClamAV before they are accepted.',
+      },
+      {
+        challenge: 'The platform had to scale services and data as demand grew.',
+        solution: 'We ran services on Kubernetes for independent deploy and demand-based scaling.',
+      },
+      {
+        challenge: 'Auth had to stay fast and trustworthy when upstream pieces failed.',
+        solution:
+          'We added fallbacks and monitoring so verification stays available during disruptions.',
+      },
+      {
+        challenge: 'Integration testing across many services needed early failure detection.',
+        solution:
+          'We used SonarQube and Azure DevOps CI pipelines to catch issues across the lifecycle.',
+      },
+      {
+        challenge: 'Deploying many services onto Kubernetes clusters was operationally heavy.',
+        solution: 'We automated deploys with Azure DevOps and Helm charts for repeatable releases.',
+      },
+      {
+        challenge: 'Latency and uneven performance missed response-rate targets.',
+        solution: 'We added caching, query optimization, and profiling to remove bottlenecks.',
+      },
+      {
+        challenge: 'Keeping data consistent across services was complex under load.',
+        solution:
+          'We used eventual consistency patterns and distributed transactions where needed.',
+      },
+    ],
+    features: [
+      {
+        title: 'Microservices architecture',
+        description:
+          'Independently deployable services for auth, trucks, uploads, and related domains.',
+      },
+      {
+        title: 'Authentication with Twilio',
+        description: 'OTP verification and access control via Twilio for trusted sign-in.',
+      },
+      {
+        title: 'File scanning with ClamAV',
+        description: 'Malware scanning on uploads before they hit storage or processing.',
+      },
+      {
+        title: 'Third-party integrations',
+        description: 'Google Maps for location/routes and SendGrid for transactional email.',
+      },
+      {
+        title: 'Regulatory compliance management',
+        description:
+          'Tracking for driver qualifications and vehicle inspections with automated alerts.',
+      },
+    ],
+    results: [
+      'Code, security, and process work improved overall platform performance.',
+      'Lower latency and higher reliability improved day-to-day user experience.',
+      'Auth, service isolation, and ClamAV scanning strengthened the security posture.',
+      'Automated deploy and Kubernetes scaling cut ops cost and raised throughput.',
+      'Better UX and trust supported stronger retention in the rental marketplace.',
+    ],
+    tech: [
+      {
+        category: 'Frontend',
+        items: [{ label: 'React', slug: 'react' }],
+      },
+      {
+        category: 'Backend',
+        items: [{ label: 'Node.js', slug: 'nodedotjs' }, { label: 'Express.js' }],
+      },
+      { category: 'Database', items: [{ label: 'MongoDB', slug: 'mongodb' }] },
+      {
+        category: 'Queue & orchestration',
+        items: [
+          { label: 'Docker', slug: 'docker' },
+          { label: 'Kubernetes', slug: 'kubernetes' },
+        ],
+      },
+      {
+        category: 'Security',
+        items: [{ label: 'ClamAV' }, { label: 'SonarQube' }],
+      },
+      {
+        category: 'Authentication',
+        items: [{ label: 'Twilio', slug: 'twilio' }],
+      },
+      {
+        category: 'Integrations',
+        items: [
+          { label: 'Google Maps', slug: 'googlemaps' },
+          { label: 'SendGrid', slug: 'sendgrid' },
+          { label: 'Azure DevOps', slug: 'azuredevops' },
         ],
       },
     ],
