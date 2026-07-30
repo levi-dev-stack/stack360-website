@@ -889,7 +889,7 @@ export default function ChatAssistant() {
         )}
       </AnimatePresence>
 
-      <div className="flex w-14 flex-col items-center gap-md">
+      <div className="flex items-center gap-md">
         <ScrollToTopButton />
 
         <motion.button

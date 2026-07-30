@@ -187,7 +187,12 @@ export default function CapabilityPage({ data }: CapabilityPageProps) {
               {data.tech.map((slug) => (
                 <MotionStaggerItem key={slug}>
                   <span className="inline-flex items-center gap-sm rounded-md border border-neutral-200 bg-neutral-50 px-md py-sm shadow-sm">
-                    <BrandIcon slug={slug} size={18} variant="tech" />
+                    <BrandIcon
+                      slug={slug}
+                      size={18}
+                      variant="tech"
+                      fallbackSlug={SERVICE_ICON[data.slug]}
+                    />
                     <span className="text-xs font-semibold text-neutral-800">
                       {capitalize(formatTechLabel(slug))}
                     </span>

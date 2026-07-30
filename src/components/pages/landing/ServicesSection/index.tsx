@@ -37,7 +37,7 @@ function ServiceRow({ item }: { item: ServiceItem }) {
               key={skill.slug}
               className="inline-flex items-center gap-1.5 rounded-sm border border-neutral-200 bg-white px-sm py-0.5 text-[11px] text-neutral-600 transition-[border-color,background-color,color] duration-300 group-hover:border-primary/20 group-hover:bg-primary/5 group-hover:text-neutral-800"
             >
-              <BrandIcon slug={skill.slug} size={12} variant="tech" />
+              <BrandIcon slug={skill.slug} size={12} variant="tech" fallbackSlug={item.icon} />
               {skill.name}
             </span>
           ))}
