@@ -127,7 +127,7 @@ export default function CaseStudyDetailView({ study }: CaseStudyDetailProps) {
       {/* Key features */}
       <MotionSection className="border-b border-neutral-200 py-2xl">
         <div className="site-container">
-          <MotionReveal className="mb-xl max-w-2xl">
+          <MotionReveal className="mb-xl max-w-content">
             <h2 className="text-balance text-2xl font-bold tracking-tight text-neutral-900 md:text-3xl">
               Key features
             </h2>
@@ -171,9 +171,9 @@ export default function CaseStudyDetailView({ study }: CaseStudyDetailProps) {
       {/* Tech stacks */}
       <MotionSection className="border-b border-neutral-200 py-2xl">
         <div className="site-container">
-          <MotionReveal className="mb-xl max-w-2xl">
-            <h2 className="text-balance text-2xl font-bold tracking-tight text-neutral-900 md:text-3xl">
-              Technology stack
+          <MotionReveal className="mb-xl">
+            <h2 className="text-balance text-2xl font-bold tracking-tight text-neutral-900 md:text-3xl word-nowrap">
+              Technology Stack
             </h2>
           </MotionReveal>
           <MotionStagger className="space-y-lg">
