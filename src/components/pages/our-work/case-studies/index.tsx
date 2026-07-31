@@ -48,7 +48,7 @@ export default function CaseStudiesPage() {
                       {study.tagline}
                     </p>
 
-                    <span className="mt-lg inline-flex items-center gap-xs text-sm font-bold text-primary">
+                    <span className="mt-lg inline-flex items-center gap-xs text-sm font-bold text-primary capitalize">
                       View case study
                       <ArrowUpRight
                         size={15}

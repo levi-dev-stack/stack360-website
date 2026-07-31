@@ -43,11 +43,8 @@ export default function ContactPage() {
             <MotionStagger className="space-y-md">
               {CONTACT_CHANNELS.map((channel) => (
                 <MotionStaggerItem key={channel.label}>
-                  <MotionCard>
-                    <a
-                      href={channel.href}
-                      className="group flex items-start gap-md rounded-lg border border-neutral-200 bg-neutral-50 p-lg transition-colors hover:border-primary/30 hover:bg-primary/5"
-                    >
+                  <MotionCard className="rounded-lg border border-neutral-200 bg-neutral-50 transition-colors hover:border-primary/30 hover:bg-primary/5">
+                    <a href={channel.href} className="group flex items-start gap-md p-lg">
                       <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-md border border-neutral-200 bg-neutral-50 text-primary transition-colors group-hover:border-primary/30">
                         {channel.label === 'Phone' ? <Phone size={18} /> : <Mail size={18} />}
                       </span>

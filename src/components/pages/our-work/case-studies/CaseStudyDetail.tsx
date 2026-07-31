@@ -93,7 +93,7 @@ export default function CaseStudyDetailView({ study }: CaseStudyDetailProps) {
               <Stat label="Timeline" value={study.durationHours} />
               <Stat
                 label="Team size"
-                value={`${study.members} member${Number.parseInt(study.members, 10) !== 1 ? 's' : ''}`}
+                value={`${study.members} Member${Number.parseInt(study.members, 10) !== 1 ? 's' : ''}`}
               />
               <Stat label="Platform" value={study.platform} />
               <Stat label="Industry" value={study.industry} />
