@@ -10,25 +10,21 @@ export async function POST(request: NextRequest) {
 
     const text = generateFormText(formType, reqBody);
 
-    await new Promise((resolve) => setTimeout(resolve, 2000));
+    const response = await fetch(routes.webhook.mattermost, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ text }),
+    });
 
-    console.log('==========================>>>>>>>>>>>>>>>>\n', text);
-
-    // const response = await fetch(routes.webhook.mattermost, {
-    //   method: "POST",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    //   body: JSON.stringify({ text }),
-    // });
-
-    // if (!response.ok) {
-    //   throw new Error(await response.text());
-    // }
+    if (!response.ok) {
+      throw new Error(await response.text());
+    }
 
     return NextResponse.json({ success: true });
   } catch (error) {
-    console.error('|||||||||||||||||||||||||||||', error);
+    console.error(error);
 
     return NextResponse.json(
       {
