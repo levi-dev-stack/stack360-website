@@ -1,52 +1,126 @@
 'use client';
 
+import { AlertCircle, CheckCircle2, X } from 'lucide-react';
 import { useSearchParams } from 'next/navigation';
-import { type FormEvent, useState } from 'react';
+import { type ChangeEvent, type FocusEvent, type FormEvent, useState } from 'react';
 import { CONTACT_FORM_FIELDS } from '@/constants/component/contact-data';
-import { SITE_EMAIL, SITE_EMAIL_HREF } from '@/constants/site';
+import { type ContactFormData, contactSchema } from '@/schema/contact';
 
-type Status = 'idle' | 'sent' | 'error';
+type Status = 'idle' | 'loading' | 'sent' | 'error';
 
 export default function ContactForm() {
   const [status, setStatus] = useState<Status>('idle');
+  const [formValues, setFormValues] = useState<Record<string, string>>({
+    name: '',
+    email: '',
+    company: '',
+    message: '',
+  });
+  const [fieldErrors, setFieldErrors] = useState<Partial<Record<keyof ContactFormData, string>>>(
+    {}
+  );
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+
   const searchParams = useSearchParams();
   const role = searchParams.get('role')?.trim() ?? '';
 
-  const onSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const validateField = (name: keyof ContactFormData, value: string) => {
+    const fieldSchema = contactSchema.shape[name];
+    if (!fieldSchema) {
+      return;
+    }
+
+    const result = fieldSchema.safeParse(value);
+    if (result.success) {
+      setFieldErrors((prev) => {
+        const next = { ...prev };
+        delete next[name];
+        return next;
+      });
+    } else {
+      setFieldErrors((prev) => ({
+        ...prev,
+        [name]: result.error.issues[0]?.message,
+      }));
+    }
+  };
+
+  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    let { name, value } = e.target;
+
+    if (name === 'message') {
+      value = value.replace(/\n{3,}/g, '\n\n');
+    }
+
+    setFormValues((prev) => ({ ...prev, [name]: value }));
+
+    if (fieldErrors[name as keyof ContactFormData]) {
+      validateField(name as keyof ContactFormData, value);
+    }
+  };
+
+  const handleBlur = (e: FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    validateField(name as keyof ContactFormData, value);
+  };
+
+  const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const form = event.currentTarget;
-    const data = new FormData(form);
 
-    const name = String(data.get('name') ?? '').trim();
-    const email = String(data.get('email') ?? '').trim();
-    const company = String(data.get('company') ?? '').trim();
-    const message = String(data.get('message') ?? '').trim();
+    setStatus('loading');
+    setErrorMessage(null);
 
-    if (!name || !email || !message) {
+    const validation = contactSchema.safeParse(formValues);
+
+    if (!validation.success) {
+      const formattedErrors: Partial<Record<keyof ContactFormData, string>> = {};
+
+      validation.error.issues.forEach((issue) => {
+        const path = issue.path[0] as keyof ContactFormData;
+        if (path && !formattedErrors[path]) {
+          formattedErrors[path] = issue.message;
+        }
+      });
+
+      setFieldErrors(formattedErrors);
       setStatus('error');
       return;
     }
 
-    const subject = encodeURIComponent(
-      role ? `Stack360 application: ${role} — ${name}` : `Stack360 inquiry from ${name}`
-    );
-    const body = encodeURIComponent(
-      [
-        `Name: ${name}`,
-        `Email: ${email}`,
-        company ? `Company: ${company}` : null,
-        role ? `Role: ${role}` : null,
-        '',
-        message,
-      ]
-        .filter(Boolean)
-        .join('\n')
-    );
+    const { name, email, company, message } = validation.data;
 
-    window.location.href = `${SITE_EMAIL_HREF}?subject=${subject}&body=${body}`;
-    setStatus('sent');
-    form.reset();
+    try {
+      const response = await fetch('/api/contact/m-webhook', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          formType: 'contact',
+          name,
+          email,
+          company,
+          message,
+        }),
+      });
+
+      const result = await response.json();
+
+      if (!response.ok) {
+        throw new Error(result.error ?? 'Failed to submit form.');
+      }
+
+      setStatus('sent');
+      setFormValues({ name: '', email: '', company: '', message: '' });
+      setFieldErrors({});
+    } catch (error) {
+      console.error(error);
+      setErrorMessage(error instanceof Error ? error.message : 'Something went wrong.');
+      setStatus('error');
+    }
   };
+
+  const isLoading = status === 'loading';
 
   return (
     <form onSubmit={onSubmit} noValidate>
@@ -62,34 +136,56 @@ export default function ContactForm() {
       </div>
 
       <div className="grid grid-cols-1 gap-md sm:grid-cols-2">
-        {CONTACT_FORM_FIELDS.map((field) => (
-          <div key={field.id} className={field.id === 'company' ? 'sm:col-span-2' : undefined}>
-            <label
-              htmlFor={field.id}
-              className="mb-xs block font-mono text-[10px] font-bold uppercase tracking-wider text-neutral-600"
-            >
-              {field.label}
-              {field.id !== 'company' ? (
-                <span className="text-primary" aria-hidden>
-                  {' '}
-                  *
-                </span>
+        {CONTACT_FORM_FIELDS.map((field) => {
+          const error = fieldErrors[field.id as keyof ContactFormData];
+
+          return (
+            <div key={field.id} className={field.id === 'company' ? 'sm:col-span-2' : undefined}>
+              <label
+                htmlFor={field.id}
+                className="mb-xs block font-mono text-[10px] font-bold uppercase tracking-wider text-neutral-600"
+              >
+                {field.label}
+                {field.id !== 'company' ? (
+                  <span className="text-primary" aria-hidden>
+                    {' '}
+                    *
+                  </span>
+                ) : null}
+              </label>
+              <input
+                id={field.id}
+                name={field.id}
+                type={field.type}
+                value={formValues[field.id] ?? ''}
+                disabled={isLoading}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                aria-invalid={!!error}
+                aria-describedby={error ? `${field.id}-error` : undefined}
+                autoComplete={
+                  field.id === 'name' ? 'name' : field.id === 'email' ? 'email' : 'organization'
+                }
+                placeholder={field.placeholder}
+                className={`min-h-11 w-full rounded-md border bg-neutral-50 px-md py-md text-sm text-neutral-900 outline-none transition-colors placeholder:text-neutral-500 focus-visible:ring-2 disabled:opacity-60 ${
+                  error
+                    ? 'border-danger focus-visible:border-danger focus-visible:ring-danger/15'
+                    : 'border-neutral-200 focus-visible:border-primary focus-visible:ring-primary/15'
+                }`}
+              />
+              {error ? (
+                <p
+                  id={`${field.id}-error`}
+                  className="mt-xs text-xs font-medium text-danger"
+                  role="alert"
+                >
+                  {error}
+                </p>
               ) : null}
-            </label>
-            <input
-              id={field.id}
-              name={field.id}
-              type={field.type}
-              required={field.id !== 'company'}
-              autoComplete={
-                field.id === 'name' ? 'name' : field.id === 'email' ? 'email' : 'organization'
-              }
-              aria-required={field.id !== 'company'}
-              placeholder={field.placeholder}
-              className="min-h-11 w-full rounded-md border border-neutral-200 bg-neutral-50 px-md py-md text-sm text-neutral-900 outline-none transition-colors placeholder:text-neutral-500 focus-visible:border-primary focus-visible:ring-2 focus-visible:ring-primary/15"
-            />
-          </div>
-        ))}
+            </div>
+          );
+        })}
+
         <div className="sm:col-span-2">
           <label
             htmlFor="message"
@@ -105,41 +201,81 @@ export default function ContactForm() {
             id="message"
             name="message"
             rows={5}
-            required
+            value={formValues.message ?? ''}
+            disabled={isLoading}
+            onChange={handleChange}
+            onBlur={handleBlur}
+            aria-invalid={!!fieldErrors.message}
+            aria-describedby={fieldErrors.message ? 'message-error' : undefined}
             placeholder={
               role
                 ? 'Experience, availability, and why this role…'
                 : 'What are you building? Timeline, stack, team size...'
             }
-            className="w-full resize-y rounded-md border border-neutral-200 bg-neutral-50 px-md py-md text-sm text-neutral-900 outline-none transition-colors placeholder:text-neutral-500 focus-visible:border-primary focus-visible:ring-2 focus-visible:ring-primary/15"
+            className={`w-full resize-y rounded-md border bg-neutral-50 px-md py-md text-sm text-neutral-900 outline-none transition-colors placeholder:text-neutral-500 focus-visible:ring-2 disabled:opacity-60 ${
+              fieldErrors.message
+                ? 'border-danger focus-visible:border-danger focus-visible:ring-danger/15'
+                : 'border-neutral-200 focus-visible:border-primary focus-visible:ring-primary/15'
+            }`}
           />
+          {fieldErrors.message ? (
+            <p id="message-error" className="mt-xs text-xs font-medium text-danger" role="alert">
+              {fieldErrors.message}
+            </p>
+          ) : null}
         </div>
       </div>
 
-      {status === 'error' ? (
-        <p className="mt-md text-sm font-medium text-danger" role="alert">
-          Name, email, and message are required.
-        </p>
+      {status === 'error' && errorMessage ? (
+        <div
+          role="alert"
+          className="mt-md flex items-center justify-between gap-xs rounded-md border border-danger/20 bg-danger/5 p-sm text-sm font-medium text-danger"
+        >
+          <div className="flex items-center gap-xs">
+            <AlertCircle className="h-4 w-4 shrink-0" />
+            <span>{errorMessage}</span>
+          </div>
+          <button
+            type="button"
+            onClick={() => {
+              setStatus('idle');
+              setErrorMessage(null);
+            }}
+            aria-label="Dismiss error banner"
+            className="rounded-sm p-0.5 opacity-70 transition-opacity hover:opacity-100 focus-visible:outline-2 focus-visible:outline-danger"
+          >
+            <X className="h-4 w-4 shrink-0" />
+          </button>
+        </div>
       ) : null}
+
       {status === 'sent' ? (
-        <output className="mt-md block text-sm font-medium text-neutral-700">
-          Your mail client should open with the message drafted. If it does not, email{' '}
-          <a className="font-bold text-primary underline" href={SITE_EMAIL_HREF}>
-            {SITE_EMAIL}
-          </a>
-          .
+        <output
+          aria-live="polite"
+          className="mt-md flex items-center justify-between gap-xs rounded-md border border-emerald-500/20 bg-emerald-500/10 p-sm text-sm font-medium text-emerald-700"
+        >
+          <div className="flex items-center gap-xs">
+            <CheckCircle2 className="h-4 w-4 shrink-0" />
+            <span>Message sent successfully!</span>
+          </div>
+          <button
+            type="button"
+            onClick={() => setStatus('idle')}
+            aria-label="Dismiss success banner"
+            className="rounded-sm p-0.5 opacity-70 transition-opacity hover:opacity-100 focus-visible:outline-2 focus-visible:outline-emerald-700"
+          >
+            <X className="h-4 w-4 shrink-0" />
+          </button>
         </output>
       ) : null}
 
-      <div className="mt-lg flex flex-col gap-md sm:flex-row sm:items-center sm:justify-between">
-        <p className="max-w-3xl text-xs leading-relaxed text-neutral-600">
-          By submitting, you agree we may contact you about your inquiry. No mailing lists.
-        </p>
+      <div className="mt-lg flex items-center justify-end">
         <button
           type="submit"
-          className="min-h-11 shrink-0 rounded-sm bg-primary px-xl py-md text-sm font-bold text-neutral-50 shadow-md transition-all hover:bg-primary-dark focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary active:scale-[0.98]"
+          disabled={isLoading}
+          className="min-h-11 shrink-0 rounded-md bg-primary px-xl py-md text-sm font-bold text-neutral-50 shadow-md transition-all hover:bg-primary-dark focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-60"
         >
-          {role ? 'Submit application' : 'Send message'}
+          {isLoading ? 'Sending...' : role ? 'Submit application' : 'Send message'}
         </button>
       </div>
     </form>
