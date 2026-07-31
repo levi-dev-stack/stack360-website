@@ -68,21 +68,25 @@ export default function ContactPage() {
 
             <MotionStagger className="grid grid-cols-1 gap-md sm:grid-cols-2">
               {CONTACT_OFFICES.map((office) => (
-                <MotionStaggerItem key={office.country}>
-                  <MotionCard className="rounded-lg border border-neutral-200 bg-neutral-50 p-md">
-                    <div className="flex items-center gap-sm">
-                      <Image
-                        src={office.flagSrc}
-                        alt={`${office.country} flag`}
-                        width={24}
-                        height={16}
-                        className="h-4 w-6 rounded-[2px] border border-neutral-200 object-cover"
-                      />
-                      <span className="font-mono text-[10px] font-bold uppercase tracking-wider text-neutral-600">
-                        {office.role}
-                      </span>
+                <MotionStaggerItem key={office.country} className="h-full">
+                  <MotionCard className="flex h-full flex-col justify-between rounded-lg border border-neutral-200 bg-neutral-50 p-md">
+                    <div>
+                      <div className="flex items-center gap-sm">
+                        <Image
+                          src={office.flagSrc}
+                          alt={`${office.country} flag`}
+                          width={24}
+                          height={16}
+                          className="h-4 w-6 rounded-[2px] border border-neutral-200 object-cover"
+                        />
+                        <span className="font-mono text-[10px] font-bold uppercase tracking-wider text-neutral-600">
+                          {office.role}
+                        </span>
+                      </div>
+                      <p className="mt-sm text-sm font-semibold text-neutral-900">
+                        {office.country}
+                      </p>
                     </div>
-                    <p className="mt-sm text-sm font-semibold text-neutral-900">{office.country}</p>
                     <p className="mt-xs text-xs leading-relaxed text-neutral-600">
                       {office.address}
                     </p>

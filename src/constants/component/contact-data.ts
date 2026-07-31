@@ -39,7 +39,7 @@ export const CONTACT_OFFICES = [
   // },
   {
     country: 'United States',
-    role: 'Stack360 Ai Solutions LLC',
+    role: 'Stack360 AI Solutions',
     flagSrc: 'https://flagcdn.com/us.svg',
     address: '12828 Willow Centre Dr, Houston, TX 77066, USA',
   },
