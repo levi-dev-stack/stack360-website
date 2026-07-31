@@ -169,7 +169,7 @@ export const WORK_WITH_US_HUB: SectionHubProps = {
       cta: 'Become a partner',
     },
     {
-      title: 'Hire talent',
+      title: 'Hire Talent',
       blurb: 'Vetted full-time engineers — select skills and engagement length.',
       href: '/work-with-us/hire',
       cta: 'Hire developers',
