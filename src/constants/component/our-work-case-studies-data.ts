@@ -708,7 +708,7 @@ export const CASE_STUDIES_DETAILS: CaseStudyDetail[] = [
     industry: 'Creative · DesignOps',
     platform: 'Web',
     durationHours: '1,400 hrs',
-    members: '1',
+    members: '2',
     domain: 'CRM · Marketplace',
     domainHref: '/what-we-build/crm',
     metric: '40+',

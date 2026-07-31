@@ -7,152 +7,6 @@ export const LANDING_STATS = [
 
 export const LANDING_SERVICES = [
   {
-    category: 'Core Ecosystems',
-    items: [
-      {
-        title: 'ERP',
-        description:
-          'Implement scalable ERP solutions to streamline operations, workflows, resource planning, and business management.',
-        icon: 'erp',
-        href: '/what-we-build/erp',
-        skills: [
-          { name: 'Ruby on Rails', slug: 'rubyonrails' },
-          { name: '.NET', slug: 'dotnet' },
-          { name: 'PostgreSQL', slug: 'postgresql' },
-          { name: 'MySQL', slug: 'mysql' },
-        ],
-      },
-      {
-        title: 'CRM',
-        description:
-          'Develop powerful CRM solutions to manage customer relationships, sales pipelines, data, and business growth.',
-        icon: 'crm',
-        href: '/what-we-build/crm',
-        skills: [
-          { name: 'React', slug: 'react' },
-          { name: 'Node.js', slug: 'nodedotjs' },
-          { name: 'Salesforce', slug: 'salesforce' },
-          { name: 'MongoDB', slug: 'mongodb' },
-        ],
-      },
-      {
-        title: 'SaaS',
-        description:
-          'Build scalable SaaS products with flexible architecture, seamless experiences, and reliable cloud infrastructure.',
-        icon: 'saas',
-        href: '/what-we-build/saas',
-        skills: [
-          { name: 'Next.js', slug: 'nextdotjs' },
-          { name: 'GraphQL', slug: 'graphql' },
-          { name: 'Heroku', slug: 'heroku' },
-          { name: 'Docker', slug: 'docker' },
-        ],
-      },
-      {
-        title: 'Custom Software',
-        description:
-          'Develop custom software solutions tailored to unique business processes, challenges, workflows, and requirements.',
-        icon: 'custom',
-        href: '/what-we-build/custom-software',
-        skills: [
-          { name: 'Python', slug: 'python' },
-          { name: 'Laravel', slug: 'laravel' },
-          { name: 'Java', slug: 'openjdk' },
-          { name: 'Ruby on Rails', slug: 'rubyonrails' },
-        ],
-      },
-    ],
-  },
-  {
-    category: 'Platform & Infrastructure',
-    items: [
-      {
-        title: 'Mobile Apps',
-        description:
-          'Build high-performance mobile applications for iOS and Android with seamless user experiences and functionality.',
-        icon: 'mobile',
-        href: '/what-we-build/mobile-apps',
-        skills: [
-          { name: 'Swift', slug: 'swift' },
-          { name: 'Android', slug: 'android' },
-          { name: 'Flutter', slug: 'flutter' },
-          { name: 'React Native', slug: 'reactnative' },
-        ],
-      },
-      {
-        title: 'Web Apps',
-        description:
-          'Develop scalable web applications delivering secure, responsive, and seamless experiences across multiple devices.',
-        icon: 'web',
-        href: '/what-we-build/web-apps',
-        skills: [
-          { name: 'React', slug: 'react' },
-          { name: 'Vue.js', slug: 'vuedotjs' },
-          { name: 'Angular', slug: 'angular' },
-          { name: 'Next.js', slug: 'nextdotjs' },
-        ],
-      },
-      {
-        title: 'Cloud',
-        description:
-          'Implement scalable cloud solutions for secure infrastructure, improved performance, flexibility, and business continuity.',
-        icon: 'cloud',
-        href: '/what-we-build/cloud',
-        skills: [
-          { name: 'Amazon Web Services (AWS)', slug: 'amazonaws' },
-          { name: 'Google Cloud', slug: 'googlecloud' },
-          { name: 'Microsoft Azure', slug: 'microsoftazure' },
-          { name: 'DigitalOcean', slug: 'digitalocean' },
-          { name: 'Cloudflare', slug: 'cloudflare' },
-          { name: 'AWS Lambda', slug: 'awslambda' },
-        ],
-      },
-      {
-        title: 'DevOps',
-        description:
-          'Implement DevOps solutions to accelerate software development, deployment, automation, reliability, and continuous delivery.',
-        icon: 'devops',
-        href: '/what-we-build/devops',
-        skills: [
-          { name: 'Kubernetes', slug: 'kubernetes' },
-          { name: 'Jenkins', slug: 'jenkins' },
-          { name: 'CircleCI', slug: 'circleci' },
-          { name: 'GitLab', slug: 'gitlab' },
-          { name: 'Selenium', slug: 'selenium' },
-          { name: 'Nginx', slug: 'nginx' },
-          { name: 'Vercel', slug: 'vercel' },
-          { name: 'Netlify', slug: 'netlify' },
-        ],
-      },
-      {
-        title: 'Automation',
-        description:
-          'Develop business process automation solutions that reduce manual work, improve accuracy, productivity, and efficiency.',
-        icon: 'automation',
-        href: '/what-we-build/automation',
-        skills: [
-          { name: 'Python', slug: 'python' },
-          { name: 'Node.js', slug: 'nodedotjs' },
-          { name: 'Zapier', slug: 'zapier' },
-          { name: 'n8n', slug: 'n8n' },
-        ],
-      },
-      {
-        title: 'Staff Augmentation',
-        description:
-          'Strengthen development teams with skilled software engineers, developers, and technical specialists on demand.',
-        icon: 'staff',
-        href: '/work-with-us/software-partner',
-        skills: [
-          { name: 'React', slug: 'react' },
-          { name: 'Node.js', slug: 'nodedotjs' },
-          { name: 'Python', slug: 'python' },
-          { name: 'Flutter', slug: 'flutter' },
-        ],
-      },
-    ],
-  },
-  {
     category: 'Artificial Intelligence & ML',
     items: [
       {
@@ -207,6 +61,152 @@ export const LANDING_SERVICES = [
           { name: 'Docker', slug: 'docker' },
           { name: 'Kubernetes', slug: 'kubernetes' },
           { name: 'Python', slug: 'python' },
+        ],
+      },
+    ],
+  },
+  {
+    category: 'Platform & Infrastructure',
+    items: [
+      {
+        title: 'Cloud',
+        description:
+          'Implement scalable cloud solutions for secure infrastructure, improved performance, flexibility, and business continuity.',
+        icon: 'cloud',
+        href: '/what-we-build/cloud',
+        skills: [
+          { name: 'Amazon Web Services (AWS)', slug: 'amazonaws' },
+          { name: 'Google Cloud', slug: 'googlecloud' },
+          { name: 'Microsoft Azure', slug: 'microsoftazure' },
+          { name: 'DigitalOcean', slug: 'digitalocean' },
+          { name: 'Cloudflare', slug: 'cloudflare' },
+          { name: 'AWS Lambda', slug: 'awslambda' },
+        ],
+      },
+      {
+        title: 'DevOps',
+        description:
+          'Implement DevOps solutions to accelerate software development, deployment, automation, reliability, and continuous delivery.',
+        icon: 'devops',
+        href: '/what-we-build/devops',
+        skills: [
+          { name: 'Kubernetes', slug: 'kubernetes' },
+          { name: 'Jenkins', slug: 'jenkins' },
+          { name: 'CircleCI', slug: 'circleci' },
+          { name: 'GitLab', slug: 'gitlab' },
+          { name: 'Selenium', slug: 'selenium' },
+          { name: 'Nginx', slug: 'nginx' },
+          { name: 'Vercel', slug: 'vercel' },
+          { name: 'Netlify', slug: 'netlify' },
+        ],
+      },
+      {
+        title: 'Automation',
+        description:
+          'Develop business process automation solutions that reduce manual work, improve accuracy, productivity, and efficiency.',
+        icon: 'automation',
+        href: '/what-we-build/automation',
+        skills: [
+          { name: 'Python', slug: 'python' },
+          { name: 'Node.js', slug: 'nodedotjs' },
+          { name: 'Zapier', slug: 'zapier' },
+          { name: 'n8n', slug: 'n8n' },
+        ],
+      },
+      {
+        title: 'Mobile Apps',
+        description:
+          'Build high-performance mobile applications for iOS and Android with seamless user experiences and functionality.',
+        icon: 'mobile',
+        href: '/what-we-build/mobile-apps',
+        skills: [
+          { name: 'Swift', slug: 'swift' },
+          { name: 'Android', slug: 'android' },
+          { name: 'Flutter', slug: 'flutter' },
+          { name: 'React Native', slug: 'reactnative' },
+        ],
+      },
+      {
+        title: 'Web Apps',
+        description:
+          'Develop scalable web applications delivering secure, responsive, and seamless experiences across multiple devices.',
+        icon: 'web',
+        href: '/what-we-build/web-apps',
+        skills: [
+          { name: 'React', slug: 'react' },
+          { name: 'Vue.js', slug: 'vuedotjs' },
+          { name: 'Angular', slug: 'angular' },
+          { name: 'Next.js', slug: 'nextdotjs' },
+        ],
+      },
+      {
+        title: 'Staff Augmentation',
+        description:
+          'Strengthen development teams with skilled software engineers, developers, and technical specialists on demand.',
+        icon: 'staff',
+        href: '/work-with-us/software-partner',
+        skills: [
+          { name: 'React', slug: 'react' },
+          { name: 'Node.js', slug: 'nodedotjs' },
+          { name: 'Python', slug: 'python' },
+          { name: 'Flutter', slug: 'flutter' },
+        ],
+      },
+    ],
+  },
+  {
+    category: 'Core Ecosystems',
+    items: [
+      {
+        title: 'ERP',
+        description:
+          'Implement scalable ERP solutions to streamline operations, workflows, resource planning, and business management.',
+        icon: 'erp',
+        href: '/what-we-build/erp',
+        skills: [
+          { name: 'Ruby on Rails', slug: 'rubyonrails' },
+          { name: '.NET', slug: 'dotnet' },
+          { name: 'PostgreSQL', slug: 'postgresql' },
+          { name: 'MySQL', slug: 'mysql' },
+        ],
+      },
+      {
+        title: 'CRM',
+        description:
+          'Develop powerful CRM solutions to manage customer relationships, sales pipelines, data, and business growth.',
+        icon: 'crm',
+        href: '/what-we-build/crm',
+        skills: [
+          { name: 'React', slug: 'react' },
+          { name: 'Node.js', slug: 'nodedotjs' },
+          { name: 'Salesforce', slug: 'salesforce' },
+          { name: 'MongoDB', slug: 'mongodb' },
+        ],
+      },
+      {
+        title: 'SaaS',
+        description:
+          'Build scalable SaaS products with flexible architecture, seamless experiences, and reliable cloud infrastructure.',
+        icon: 'saas',
+        href: '/what-we-build/saas',
+        skills: [
+          { name: 'Next.js', slug: 'nextdotjs' },
+          { name: 'GraphQL', slug: 'graphql' },
+          { name: 'Heroku', slug: 'heroku' },
+          { name: 'Docker', slug: 'docker' },
+        ],
+      },
+      {
+        title: 'Custom Software',
+        description:
+          'Develop custom software solutions tailored to unique business processes, challenges, workflows, and requirements.',
+        icon: 'custom',
+        href: '/what-we-build/custom-software',
+        skills: [
+          { name: 'Python', slug: 'python' },
+          { name: 'Laravel', slug: 'laravel' },
+          { name: 'Java', slug: 'openjdk' },
+          { name: 'Ruby on Rails', slug: 'rubyonrails' },
         ],
       },
     ],
