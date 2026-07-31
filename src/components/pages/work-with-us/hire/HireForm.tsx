@@ -207,7 +207,7 @@ export default function HireForm() {
     <form onSubmit={onSubmit} noValidate aria-labelledby={`${formId}-title`}>
       <div className="mb-lg space-y-sm">
         <h2 id={`${formId}-title`} className="text-2xl font-bold tracking-tight text-neutral-900">
-          Hire a developer
+          Let's Build With AI
         </h2>
         <p className="max-w-prose text-sm leading-relaxed text-neutral-600">
           Select skills and engagement length. We follow up with a shortlist — not a generic
@@ -323,7 +323,7 @@ export default function HireForm() {
           </span>
         </legend>
         <p className="mt-xs text-xs text-neutral-600">Select all that apply.</p>
-        <div className="mt-md grid grid-cols-2 gap-sm sm:grid-cols-3 md:grid-cols-4">
+        <div className="mt-md flex flex-wrap gap-sm">
           {HIRE_SKILLS.map((skill) => {
             const selected = skills.includes(skill.id);
             return (
@@ -334,7 +334,7 @@ export default function HireForm() {
                 aria-pressed={selected}
                 onClick={() => toggleSkill(skill.id)}
                 className={cn(
-                  'flex min-h-11 items-center justify-center gap-sm rounded-md border px-sm py-sm text-sm font-semibold transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary disabled:opacity-60',
+                  'flex min-h-11 items-center justify-center gap-sm whitespace-nowrap rounded-md border px-md py-sm text-sm font-semibold transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary disabled:opacity-60',
                   selected
                     ? 'border-primary bg-primary text-neutral-50 shadow-sm'
                     : 'border-neutral-200 bg-neutral-50 text-neutral-800 hover:border-neutral-400'
@@ -345,10 +345,10 @@ export default function HireForm() {
                     slug={skill.iconSlug}
                     size={16}
                     variant="tech"
-                    className={selected ? 'brightness-0 invert' : undefined}
+                    className={cn('shrink-0', selected ? 'brightness-0 invert' : undefined)}
                   />
                 ) : null}
-                {skill.label}
+                <span>{skill.label}</span>
               </button>
             );
           })}

@@ -39,10 +39,12 @@ export const HIRE_SKILLS = [
   { id: 'react', label: 'React', iconSlug: 'react' },
   { id: 'angular', label: 'Angular', iconSlug: 'angular' },
   { id: 'nodejs', label: 'Node.js', iconSlug: 'nodedotjs' },
-  { id: 'ruby', label: 'Ruby', iconSlug: 'rubyonrails' },
   { id: 'dotnet', label: '.NET', iconSlug: 'dotnet' },
   { id: 'python', label: 'Python', iconSlug: 'python' },
-  { id: 'java', label: 'Java', iconSlug: 'openjdk' },
+  { id: 'gen-ai', label: 'Generative AI', iconSlug: 'huggingface' },
+  { id: 'ai-ml', label: 'AI & ML', iconSlug: 'pytorch' },
+  { id: 'ai-agents', label: 'AI Agents', iconSlug: 'langchain' },
+  { id: 'llm-development', label: 'LLM Development', iconSlug: 'huggingface' },
   { id: 'others', label: 'Others', iconSlug: null },
 ] as const;
 
