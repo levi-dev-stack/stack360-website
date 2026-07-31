@@ -13,6 +13,7 @@ import {
   staggerContainer,
 } from '@/components/shared/motion/variants';
 import { NAVIGATION_DATA } from '@/constants/component/navigation';
+import { useResponsive } from '@/hooks/core';
 import { cn } from '@/styles/tailwind.utils';
 import Stack360Logo from './Stack360Logo';
 
@@ -25,6 +26,8 @@ export default function PremiumNavbar() {
   const pathname = usePathname();
   const reduced = useReducedMotion();
   const mobileNavId = useId();
+
+  const { isDesktop } = useResponsive();
 
   const isPathActive = (href?: string) => {
     if (!href) {
@@ -103,7 +106,7 @@ export default function PremiumNavbar() {
       className="js-only relative z-50 w-full border-b border-neutral-200 bg-neutral-50 shadow-xs"
     >
       <div className="site-container flex h-18 items-center justify-between gap-xl lg:gap-2xl">
-        <Stack360Logo />
+        <Stack360Logo animateWordmark={isDesktop} />
 
         <nav
           className="hidden h-full flex-1 items-center justify-center gap-sm md:flex lg:gap-md"
