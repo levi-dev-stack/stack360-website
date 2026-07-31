@@ -10,6 +10,7 @@ export const serverSchema = z.object({
   // NEXT_BE_API_URL: z.url(),
   // NEXT_BE_API_HOST_NAME: z.string().min(1),
   // NEXT_BE_API_PORT: z.coerce.number(),
+  MATTERMOST_WEBHOOK_ID: z.string().min(1),
 });
 
 export const clientSchema = z.object({
