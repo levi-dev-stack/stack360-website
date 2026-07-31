@@ -16,7 +16,7 @@ interface ChallengeSolutionListProps {
 export default function ChallengeSolutionList({ items, className }: ChallengeSolutionListProps) {
   return (
     <ul
-      className={cn('divide-y divide-neutral-200 rounded-lg border border-neutral-200', className)}
+      className={cn('divide-y divide-neutral-200 rounded-lg border border-neutral-300', className)}
     >
       {items.map((item) => (
         <li key={item.challenge} className="grid gap-sm p-lg sm:gap-md">
