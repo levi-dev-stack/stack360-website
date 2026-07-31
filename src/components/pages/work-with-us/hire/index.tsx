@@ -35,7 +35,7 @@ export default function HireTalentPage() {
 
       <MotionSection className="border-b border-neutral-200 py-2xl">
         <div className="site-container grid grid-cols-1 gap-2xl lg:grid-cols-12">
-          <div className="space-y-xl lg:col-span-5">
+          <div className="space-y-xl lg:sticky lg:top-24 lg:col-span-5 lg:self-start">
             <MotionStagger>
               <MotionStaggerItem>
                 <h2 className="text-balance text-2xl font-bold tracking-tight text-neutral-900">
