@@ -3,7 +3,7 @@ import { SITE_EMAIL, SITE_EMAIL_HREF, SITE_PHONE, SITE_PHONE_HREF } from '@/cons
 export const HIRE_HERO = {
   eyebrow: 'Work With Us · Hire Talent',
   title: 'Hire reliable developers.',
-  highlight: 'Close the talent gap.',
+  highlight: 'Close the Talent gap.',
   description:
     'Skip slow hiring cycles. Stack360 connects partners and client teams with vetted, full-time engineers ready to join your workflow and deliver from day one.',
 } as const;
@@ -11,11 +11,11 @@ export const HIRE_HERO = {
 export const HIRE_PROMISE = 'Get shortlists within 2 days. Hire in as fast as 1 week.';
 
 export const HIRE_CONTACT = [
-  // {
-  //   label: 'Pakistan office',
-  //   value: '82-G, First Floor, DHA Phase 1, Lahore, Pakistan',
-  //   icon: 'map' as const,
-  // },
+  {
+    label: 'USA office',
+    value: '12828 Willow Centre Dr, Houston, TX 77066, USA',
+    icon: 'building' as const,
+  },
   {
     label: 'UK office',
     value: '58 St. Johns Road, Barking, Essex, IG11 7XL, United Kingdom',

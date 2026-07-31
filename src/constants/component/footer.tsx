@@ -18,10 +18,10 @@ export interface FooterOffice {
 }
 
 export const OFFICES: FooterOffice[] = [
-  // {
-  //   label: 'Pakistan Office',
-  //   lines: ['82-G, First Floor,', 'DHA Phase 1, Lahore Pakistan'],
-  // },
+  {
+    label: 'USA Office',
+    lines: ['12828 Willow Centre Dr, Houston,', 'TX 77066, USA'],
+  },
   {
     label: 'UK Office',
     lines: ['58 St. Johns Road, Barking,', 'Essex, IG11 7XL United Kingdom'],
