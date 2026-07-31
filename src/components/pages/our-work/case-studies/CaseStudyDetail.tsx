@@ -91,7 +91,10 @@ export default function CaseStudyDetailView({ study }: CaseStudyDetailProps) {
           <MotionReveal className="lg:col-span-5">
             <div className="grid grid-cols-2 divide-x divide-y divide-neutral-200 overflow-hidden rounded-xl border border-neutral-200 [&>*:nth-child(-n+2)]:border-t-0 [&>*:nth-child(odd)]:border-l-0">
               <Stat label="Timeline" value={study.durationHours} />
-              <Stat label="Team size" value={`${study.members} members`} />
+              <Stat
+                label="Team size"
+                value={`${study.members} member${Number.parseInt(study.members, 10) !== 1 ? 's' : ''}`}
+              />
               <Stat label="Platform" value={study.platform} />
               <Stat label="Industry" value={study.industry} />
             </div>
