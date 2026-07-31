@@ -62,7 +62,33 @@ export default function Footer() {
                   </div>
                 </div>
               ))}
+            </div>
+          </div>
 
+          <FooterLinkColumn title="Services" links={SERVICE_LINKS} className="lg:col-span-3" />
+          <FooterLinkColumn title="Company" links={COMPANY_LINKS} className="lg:col-span-2" />
+
+          <div className="space-y-xl lg:col-span-3">
+            <div className="space-y-lg">
+              <h2 className="text-base font-bold tracking-tight text-neutral-900">Follow us</h2>
+              <div className="flex items-center gap-md">
+                {SOCIAL_LINKS.map((social) => (
+                  <a
+                    key={social.label}
+                    href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={social.label}
+                    className="z-1 flex h-10 w-10 items-center justify-center rounded-md border border-neutral-200 bg-neutral-50 text-neutral-900 transition-colors hover:border-primary/30 hover:bg-primary/5 hover:text-primary"
+                  >
+                    {social.icon}
+                  </a>
+                ))}
+              </div>
+            </div>
+
+            <div className="space-y-md border-t border-neutral-200 pt-lg">
+              <h2 className="text-base font-bold tracking-tight text-neutral-900">Contact</h2>
               <a
                 href={CONTACT.phone.href}
                 className="flex items-center gap-sm text-sm text-neutral-700 transition-colors hover:text-primary"
@@ -70,9 +96,6 @@ export default function Footer() {
                 <Phone size={16} className="shrink-0 text-primary" aria-hidden />
                 {CONTACT.phone.label}
               </a>
-            </div>
-
-            <div className="border-t border-neutral-200 pt-lg">
               <a
                 href={CONTACT.email.href}
                 className="flex items-center gap-sm text-sm text-neutral-700 transition-colors hover:text-primary"
@@ -80,27 +103,6 @@ export default function Footer() {
                 <Mail size={16} className="shrink-0 text-primary" aria-hidden />
                 {CONTACT.email.label}
               </a>
-            </div>
-          </div>
-
-          <FooterLinkColumn title="Services" links={SERVICE_LINKS} className="lg:col-span-3" />
-          <FooterLinkColumn title="Company" links={COMPANY_LINKS} className="lg:col-span-2" />
-
-          <div className="space-y-lg lg:col-span-3">
-            <h2 className="text-base font-bold tracking-tight text-neutral-900">Follow us</h2>
-            <div className="flex items-center gap-md">
-              {SOCIAL_LINKS.map((social) => (
-                <a
-                  key={social.label}
-                  href={social.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={social.label}
-                  className="flex h-10 w-10 items-center justify-center rounded-md border border-neutral-200 bg-neutral-50 text-neutral-900 transition-colors hover:border-primary/30 hover:bg-primary/5 hover:text-primary"
-                >
-                  {social.icon}
-                </a>
-              ))}
             </div>
           </div>
         </div>
