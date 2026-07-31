@@ -3,7 +3,7 @@
 import { motion, useReducedMotion } from 'motion/react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { SITE_NAME } from '@/constants/site';
 
 /** Icon (32) + gap + stack360-text wordmark — reserved so hover never shifts layout. */
@@ -11,11 +11,14 @@ const LOGO_SLOT_WIDTH = '9.25rem';
 
 export default function Stack360Logo({ animateWordmark = true }: { animateWordmark?: boolean }) {
   const [isHovered, setIsHovered] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
   const reduced = useReducedMotion();
 
-  // When animation is disabled, always show the wordmark.
-  // When animation is enabled, show it only on hover/focus.
-  const showWordmark = !animateWordmark || isHovered;
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  const showWordmark = !animateWordmark || isHovered || !isMounted;
   const shouldAnimate = animateWordmark && !reduced;
 
   return (

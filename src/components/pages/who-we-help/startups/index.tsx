@@ -76,18 +76,21 @@ export default function StartupsPage() {
 
       <MotionSection className="border-t border-neutral-200 bg-neutral-100/50 py-2xl">
         <div className="site-container grid grid-cols-1 gap-2xl lg:grid-cols-2">
-          <MotionStagger>
-            <MotionStaggerItem>
-              <h2 className="text-balance text-2xl font-bold tracking-tight text-neutral-900">
-                {STARTUPS_PARTNERSHIPS.title}
-              </h2>
-            </MotionStaggerItem>
-            <MotionStaggerItem>
-              <p className="mt-md text-sm leading-relaxed text-neutral-600">
-                {STARTUPS_PARTNERSHIPS.description}
-              </p>
-            </MotionStaggerItem>
-          </MotionStagger>
+          <div className="lg:sticky lg:top-24 lg:self-start">
+            <MotionStagger>
+              <MotionStaggerItem>
+                <h2 className="text-balance text-2xl font-bold tracking-tight text-neutral-900">
+                  {STARTUPS_PARTNERSHIPS.title}
+                </h2>
+              </MotionStaggerItem>
+              <MotionStaggerItem>
+                <p className="mt-md text-sm leading-relaxed text-neutral-600">
+                  {STARTUPS_PARTNERSHIPS.description}
+                </p>
+              </MotionStaggerItem>
+            </MotionStagger>
+          </div>
+
           <MotionStagger className="space-y-sm">
             {STARTUPS_PARTNERSHIPS.partners.map((item) => (
               <MotionStaggerItem key={item}>

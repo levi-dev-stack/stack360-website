@@ -205,15 +205,16 @@ export default function Hero() {
 
           <motion.div
             variants={motionVariants(reduced, fadeUp)}
-            className="mt-xl flex flex-col items-center gap-md sm:flex-row"
+            className="mt-xl flex w-full flex-col items-center justify-center gap-md sm:w-auto sm:flex-row"
           >
             <motion.div
               whileHover={reduced ? undefined : { scale: 1.03 }}
               whileTap={reduced ? undefined : { scale: 0.97 }}
+              className="w-full sm:w-auto"
             >
               <Link
                 href="/work-with-us/software-partner"
-                className="inline-flex min-h-11 items-center rounded-sm bg-primary px-xl py-md text-sm font-bold text-neutral-50 shadow-md transition-colors hover:bg-primary-dark focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+                className="inline-flex min-h-11 w-full items-center justify-center rounded-sm bg-primary px-xl py-md text-sm font-bold text-neutral-50 shadow-md transition-colors hover:bg-primary-dark focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary sm:w-auto"
               >
                 Start Your Project
               </Link>
@@ -221,10 +222,11 @@ export default function Hero() {
             <motion.div
               whileHover={reduced ? undefined : { scale: 1.03 }}
               whileTap={reduced ? undefined : { scale: 0.97 }}
+              className="w-full sm:w-auto"
             >
               <Link
-                href="/our-work"
-                className="inline-flex min-h-11 items-center rounded-sm border border-neutral-300 bg-neutral-50 px-xl py-md text-sm font-bold text-neutral-800 transition-colors hover:border-neutral-500 hover:text-neutral-900 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+                href="/our-work/featured-projects"
+                className="inline-flex min-h-11 w-full items-center justify-center rounded-sm border border-neutral-300 bg-neutral-50 px-xl py-md text-sm font-bold text-neutral-800 transition-colors hover:border-neutral-500 hover:text-neutral-900 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary sm:w-auto"
               >
                 View Our Work
               </Link>

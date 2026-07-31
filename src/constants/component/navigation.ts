@@ -228,7 +228,7 @@ export const NAVIGATION_DATA: NavSection[] = [
             href: '/work-with-us/software-partner',
           },
           {
-            title: 'Hire talent',
+            title: 'Hire Talent',
             desc: 'Select skills and engagement length — get shortlists of vetted full-time engineers.',
             href: '/work-with-us/hire',
           },

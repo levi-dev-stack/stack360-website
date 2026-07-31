@@ -91,7 +91,10 @@ export default function CaseStudyDetailView({ study }: CaseStudyDetailProps) {
           <MotionReveal className="lg:col-span-5">
             <div className="grid grid-cols-2 divide-x divide-y divide-neutral-200 overflow-hidden rounded-xl border border-neutral-200 [&>*:nth-child(-n+2)]:border-t-0 [&>*:nth-child(odd)]:border-l-0">
               <Stat label="Timeline" value={study.durationHours} />
-              <Stat label="Team size" value={`${study.members} members`} />
+              <Stat
+                label="Team size"
+                value={`${study.members} Member${Number.parseInt(study.members, 10) !== 1 ? 's' : ''}`}
+              />
               <Stat label="Platform" value={study.platform} />
               <Stat label="Industry" value={study.industry} />
             </div>
@@ -127,7 +130,7 @@ export default function CaseStudyDetailView({ study }: CaseStudyDetailProps) {
       {/* Key features */}
       <MotionSection className="border-b border-neutral-200 py-2xl">
         <div className="site-container">
-          <MotionReveal className="mb-xl max-w-2xl">
+          <MotionReveal className="mb-xl max-w-content">
             <h2 className="text-balance text-2xl font-bold tracking-tight text-neutral-900 md:text-3xl">
               Key features
             </h2>
@@ -171,9 +174,9 @@ export default function CaseStudyDetailView({ study }: CaseStudyDetailProps) {
       {/* Tech stacks */}
       <MotionSection className="border-b border-neutral-200 py-2xl">
         <div className="site-container">
-          <MotionReveal className="mb-xl max-w-2xl">
-            <h2 className="text-balance text-2xl font-bold tracking-tight text-neutral-900 md:text-3xl">
-              Technology stack
+          <MotionReveal className="mb-xl">
+            <h2 className="text-balance text-2xl font-bold tracking-tight text-neutral-900 md:text-3xl word-nowrap">
+              Technology Stack
             </h2>
           </MotionReveal>
           <MotionStagger className="space-y-lg">

@@ -1,7 +1,7 @@
 'use client';
 
 import { ChevronLeft, ChevronRight, Pause, Play, Quote, UserRound } from 'lucide-react';
-import { AnimatePresence, motion, useReducedMotion } from 'motion/react';
+import { AnimatePresence, motion, type PanInfo, useReducedMotion } from 'motion/react';
 import Image from 'next/image';
 import { useCallback, useEffect, useState } from 'react';
 import { EASE_OUT_EXPO } from '@/components/shared/motion/variants';
@@ -18,7 +18,7 @@ function TestimonialAvatar({ src, alt }: TestimonialAvatarProps) {
   const showImage = Boolean(src) && !failed;
 
   return (
-    <div className="relative aspect-4/3 md:aspect-auto md:min-h-72">
+    <div className="relative aspect-4/3 h-full min-h-56 md:aspect-auto md:min-h-0">
       {showImage ? (
         <>
           <Image
@@ -66,6 +66,18 @@ export default function TestimonialsCarousel() {
   const next = useCallback(() => goTo(active + 1), [active, goTo]);
   const prev = useCallback(() => goTo(active - 1), [active, goTo]);
 
+  // Handle swipe gestures
+  const handleDragEnd = (_: unknown, info: PanInfo) => {
+    const swipeThreshold = 50;
+    const velocityThreshold = 200;
+
+    if (info.offset.x < -swipeThreshold || info.velocity.x < -velocityThreshold) {
+      next();
+    } else if (info.offset.x > swipeThreshold || info.velocity.x > velocityThreshold) {
+      prev();
+    }
+  };
+
   useEffect(() => {
     if (reduced || paused) {
       return;
@@ -93,7 +105,7 @@ export default function TestimonialsCarousel() {
             </h2>
           </div>
 
-          <div className="flex items-center gap-sm sm:shrink-0">
+          <div className="hidden md:flex items-center gap-sm sm:shrink-0">
             {!reduced && (
               <button
                 type="button"
@@ -124,22 +136,49 @@ export default function TestimonialsCarousel() {
           </div>
         </div>
 
-        <div className="relative min-h-80 md:min-h-72" aria-live="polite" aria-atomic="true">
+        {/* Outer fixed height frame */}
+        <div
+          className="relative h-[520px] w-full sm:h-[480px] md:h-[360px]"
+          aria-live="polite"
+          aria-atomic="true"
+        >
+          {/* Mobile Overlay Directional Controls */}
+          <button
+            type="button"
+            onClick={prev}
+            aria-label="Previous testimonial"
+            className="absolute left-2 top-1/2 z-20 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-neutral-700/80 bg-neutral-900/80 text-neutral-200 shadow-lg backdrop-blur-xs transition-transform active:scale-95 sm:hidden"
+          >
+            <ChevronLeft size={20} />
+          </button>
+          <button
+            type="button"
+            onClick={next}
+            aria-label="Next testimonial"
+            className="absolute right-2 top-1/2 z-20 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-neutral-700/80 bg-neutral-900/80 text-neutral-200 shadow-lg backdrop-blur-xs transition-transform active:scale-95 sm:hidden"
+          >
+            <ChevronRight size={20} />
+          </button>
+
           <AnimatePresence mode="wait" initial={false}>
             <motion.article
               key={active}
+              drag="x"
+              dragConstraints={{ left: 0, right: 0 }}
+              dragElastic={0.15}
+              onDragEnd={handleDragEnd}
               initial={reduced ? false : { opacity: 0, x: 24 }}
               animate={{ opacity: 1, x: 0 }}
               exit={reduced ? undefined : { opacity: 0, x: -24 }}
               transition={{ duration: 0.45, ease: EASE_OUT_EXPO }}
-              className="grid grid-cols-1 overflow-hidden rounded-2xl border border-neutral-800 bg-linear-to-br from-neutral-800 to-neutral-900 md:grid-cols-[minmax(12rem,28%)_1fr]"
+              className="absolute inset-0 grid h-full w-full touch-pan-y select-none grid-cols-1 overflow-hidden rounded-2xl border border-neutral-800 bg-linear-to-br from-neutral-800 to-neutral-900 md:grid-cols-[minmax(12rem,28%)_1fr]"
             >
               <TestimonialAvatar
                 src={current.avatar}
                 alt={`${current.name}, ${current.role} at ${current.company}`}
               />
 
-              <div className="flex flex-col justify-between gap-lg p-lg md:p-xl">
+              <div className="flex h-full flex-col justify-between gap-md overflow-y-auto p-lg md:p-xl">
                 <div>
                   <Quote
                     size={28}
@@ -148,7 +187,7 @@ export default function TestimonialsCarousel() {
                     strokeWidth={0}
                     aria-hidden
                   />
-                  <blockquote className="max-w-3xl text-pretty text-lg font-medium leading-relaxed text-neutral-100 md:text-2xl">
+                  <blockquote className="max-w-3xl text-pretty text-base font-medium leading-relaxed text-neutral-100 sm:text-lg md:text-xl lg:text-2xl">
                     &ldquo;{current.quote}&rdquo;
                   </blockquote>
                 </div>
@@ -156,11 +195,13 @@ export default function TestimonialsCarousel() {
                 <div className="flex flex-col gap-md sm:flex-row sm:items-end sm:justify-between">
                   <div>
                     <p className="text-sm font-bold text-neutral-50">
-                      {current.name} · {current.role}
+                      {[current.name, current.role].filter(Boolean).join(' · ')}
                     </p>
-                    <p className="mt-xs text-sm text-neutral-400">
-                      {current.company} · {current.industry}
-                    </p>
+                    {[current.company, current.industry].some(Boolean) && (
+                      <p className="mt-xs text-sm text-neutral-400">
+                        {[current.company, current.industry].filter(Boolean).join(' · ')}
+                      </p>
+                    )}
                   </div>
 
                   <div className="text-left sm:text-right">

@@ -43,13 +43,15 @@ export default function ContactPage() {
             <MotionStagger className="space-y-md">
               {CONTACT_CHANNELS.map((channel) => (
                 <MotionStaggerItem key={channel.label}>
-                  <MotionCard>
+                  <MotionCard className="rounded-lg border border-neutral-200 bg-neutral-50 transition-colors hover:border-primary/30 hover:bg-primary/5">
                     <a
                       href={channel.href}
-                      className="group flex items-start gap-md rounded-lg border border-neutral-200 bg-neutral-50 p-lg transition-colors hover:border-primary/30 hover:bg-primary/5"
+                      target={channel.target ?? '_blank'}
+                      rel={channel.rel ?? 'noopener noreferrer'}
+                      className="group flex items-start gap-md p-lg"
                     >
                       <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-md border border-neutral-200 bg-neutral-50 text-primary transition-colors group-hover:border-primary/30">
-                        {channel.label === 'Phone' ? <Phone size={18} /> : <Mail size={18} />}
+                        {channel.type === 'phone' ? <Phone size={18} /> : <Mail size={18} />}
                       </span>
                       <span>
                         <span className="block font-mono text-[10px] font-bold uppercase tracking-widest text-neutral-600">
@@ -68,21 +70,25 @@ export default function ContactPage() {
 
             <MotionStagger className="grid grid-cols-1 gap-md sm:grid-cols-2">
               {CONTACT_OFFICES.map((office) => (
-                <MotionStaggerItem key={office.country}>
-                  <MotionCard className="rounded-lg border border-neutral-200 bg-neutral-50 p-md">
-                    <div className="flex items-center gap-sm">
-                      <Image
-                        src={office.flagSrc}
-                        alt={`${office.country} flag`}
-                        width={24}
-                        height={16}
-                        className="h-4 w-6 rounded-[2px] border border-neutral-200 object-cover"
-                      />
-                      <span className="font-mono text-[10px] font-bold uppercase tracking-wider text-neutral-600">
-                        {office.role}
-                      </span>
+                <MotionStaggerItem key={office.country} className="h-full">
+                  <MotionCard className="flex h-full flex-col justify-between rounded-lg border border-neutral-200 bg-neutral-50 p-md">
+                    <div>
+                      <div className="flex items-center gap-sm">
+                        <Image
+                          src={office.flagSrc}
+                          alt={`${office.country} flag`}
+                          width={24}
+                          height={16}
+                          className="h-4 w-6 rounded-[2px] border border-neutral-200 object-cover"
+                        />
+                        <span className="font-mono text-[10px] font-bold uppercase tracking-wider text-neutral-600">
+                          {office.role}
+                        </span>
+                      </div>
+                      <p className="mt-sm text-sm font-semibold text-neutral-900">
+                        {office.country}
+                      </p>
                     </div>
-                    <p className="mt-sm text-sm font-semibold text-neutral-900">{office.country}</p>
                     <p className="mt-xs text-xs leading-relaxed text-neutral-600">
                       {office.address}
                     </p>
