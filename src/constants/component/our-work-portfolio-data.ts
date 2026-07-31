@@ -43,6 +43,420 @@ export const FEATURED_PROJECTS_HERO = {
 
 export const PORTFOLIO_GROUPS: PortfolioGroup[] = [
   {
+    id: 'ai',
+    category: 'AI',
+    domain: 'AI / ML',
+    blurb:
+      'Retrieval-grounded assistants and analytics engines that turn specialized, fast-moving data into trustworthy answers.',
+    capability: { label: 'AI Solutions', href: '/what-we-build/ai-solutions' },
+    projects: [
+      {
+        slug: 'moneyball',
+        name: 'Money Ball',
+        industry: 'AI Analytics Chatbot',
+        duration: '3 months',
+        requirement:
+          'An AI-driven NFL statistical query engine letting fans and analysts fetch real-time player and team metrics conversationally.',
+        challenges: [
+          {
+            challenge:
+              'General LLMs frequently hallucinate on specialized, rapidly updating sports stats.',
+            solution:
+              'Engineered a custom Retrieval-Augmented Generation (RAG) framework forcing the LLM to query live sports databases before responding.',
+          },
+        ],
+        features: [
+          'Interactive RAG conversational chatbot interface.',
+          'Real-time NFL team performance analysis engine.',
+          'Dockerized microservices for fast analytics ingestion.',
+        ],
+        result:
+          'Created an immersive sports-data tool providing immediate, verified football analytics in a friendly chat frame.',
+        stack: ['nodedotjs', 'django', 'postgresql', 'redis', 'docker'],
+        metric: 'RAG',
+        metricLabel: 'Zero-hallucination stats',
+      },
+    ],
+  },
+  {
+    id: 'compliance',
+    category: 'Compliance & GDPR',
+    domain: 'Automation',
+    blurb:
+      'Audit-ready systems that automate rule checks, certification tracking, and reporting so organizations stay continuously compliant.',
+    capability: { label: 'Automation', href: '/what-we-build/automation' },
+    projects: [
+      {
+        slug: 'fisar',
+        name: 'Fisar',
+        industry: 'GDPR Compliance Management',
+        duration: '12 months',
+        requirement:
+          'A specialized tool for school Data Protection Officers to track and execute sensitive Subject Access Requests (SARs).',
+        challenges: [
+          {
+            challenge:
+              'Pulling disparate, sensitive student info securely from school MSI networks without exposing unauthorized files.',
+            solution:
+              'Developed strict, heavily audited query pipelines hooked into MSI APIs with precise field masking.',
+          },
+        ],
+        features: [
+          'Automated regulatory SAR reporting engine.',
+          'Role-based compliance accountability dashboard.',
+          'Secure student-records extraction portal.',
+        ],
+        result:
+          'Guaranteed accountability for sensitive data handling, keeping educational clients aligned with active European GDPR rules.',
+        stack: ['nodedotjs', 'django', 'postgresql', 'redis', 'docker', 'amazonaws'],
+        metric: 'SAR',
+        metricLabel: 'Audited data pipelines',
+      },
+      {
+        slug: 'falcore',
+        name: 'Falcore',
+        industry: 'Compliance Management',
+        duration: '6 months',
+        requirement:
+          'A unified corporate compliance environment centralizing documentation, automating safety checks, and tracking standings.',
+        challenges: [
+          {
+            challenge:
+              'Keeping large organizations prepared for unexpected manual financial or safety audit collections.',
+            solution:
+              'Created a background validation engine that flags outdated records, logs audit histories, and alerts teams immediately.',
+          },
+        ],
+        features: [
+          'Automated corporate rule-check scheduling.',
+          'Immutable, chronologically tracked audit log.',
+          'Global regulatory alerts powered by Celery.',
+        ],
+        result:
+          'Eliminated manual compliance gaps, keeping corporate entities structurally organized and constantly audit-ready.',
+        stack: ['nodedotjs', 'django', 'postgresql', 'redis', 'docker'],
+        metric: 'Audit-ready',
+        metricLabel: 'Automated rule checks',
+      },
+      {
+        slug: 'alertia',
+        name: 'Alertia',
+        industry: 'Workforce Compliance & Security',
+        duration: '4 months',
+        requirement:
+          'An operational tool to maintain safety-certification files, schedule shifts, and track active guard patrols live.',
+        challenges: [
+          {
+            challenge:
+              'Guards working shifts with expired physical licenses expose firms to major regulatory fines.',
+            solution:
+              'Deployed a continuous scanning algorithm cross-checking work assignments against document expiration lists.',
+          },
+        ],
+        features: [
+          'Real-time guard shift scheduling layout.',
+          'Document validation with automated renewal alerts.',
+          'Live operational visibility map dashboard.',
+        ],
+        result:
+          'Secured operational visibility, cutting credential-check oversight issues for defense and security companies.',
+        stack: ['nextdotjs', 'django', 'postgresql', 'celery', 'amazonaws'],
+        metric: 'Live',
+        metricLabel: 'Guard patrol tracking',
+      },
+      {
+        slug: 'nptass',
+        name: 'NPTASS',
+        industry: 'Automated Auditing & Compliance',
+        duration: '6 months',
+        requirement:
+          'Automate the entire client-review lifecycle — auditor scheduling, compliance-point logging, and final report generation.',
+        challenges: [
+          {
+            challenge:
+              'Human calculation errors during complex manual audit scoring often skew reports.',
+            solution:
+              'Structured a standardized Node.js evaluation engine that auto-generates reports with zero calculation deviation.',
+          },
+        ],
+        features: [
+          'Comprehensive corporate audit-scoring panel.',
+          'Secure, role-based user access controls.',
+          'Dual-database architecture — PostgreSQL & MongoDB via Prisma.',
+        ],
+        result:
+          'Shortened multi-week review lifecycles to days while maintaining airtight data precision across divisions.',
+        stack: ['nextdotjs', 'nodedotjs', 'postgresql', 'mongodb', 'prisma', 'redis'],
+        metric: 'Days',
+        metricLabel: 'Down from weeks',
+      },
+    ],
+  },
+  {
+    id: 'healthcare',
+    category: 'Healthcare',
+    domain: 'Custom Software',
+    blurb:
+      'HIPAA-aware clinical, pediatric, and consumer-health products where privacy and reliability are non-negotiable.',
+    capability: { label: 'Custom Software', href: '/what-we-build/custom-software' },
+    projects: [
+      {
+        slug: 'nuvana',
+        name: 'Nuvana',
+        industry: 'Chronic Care Healthcare Management',
+        duration: '8 months',
+        requirement:
+          'A medical-provider portal to organize chronic-care tracking, automate monthly Medicare billing, and manage patient interactions.',
+        challenges: [
+          {
+            challenge:
+              'Adhering to hyper-strict HIPAA patient-privacy rules during data transactions.',
+            solution:
+              'Applied end-to-end token validation with JWT combined with encrypted storage parameters within AWS instances.',
+          },
+        ],
+        features: [
+          'Continuous patient interaction tracking grid.',
+          'Automated medical billing generation framework.',
+          'Real-time clinical metrics reporting dashboards.',
+        ],
+        result:
+          'Boosted processing speed for clinic staff while lowering billing errors and preserving vital patient-care metrics.',
+        stack: ['vuedotjs', 'dotnet', 'postgresql', 'redis', 'docker'],
+        metric: 'HIPAA',
+        metricLabel: 'Chronic-care billing',
+      },
+      {
+        slug: 'slumber-sprout',
+        name: 'Slumber & Sprout',
+        industry: 'Pediatric Healthcare App',
+        duration: '4 months',
+        requirement:
+          'A native iOS app giving parents custom child sleep-tracking logs, tailored routines, and sleep-training tools.',
+        challenges: [
+          {
+            challenge:
+              'Coordinating immediate mobile sleep-notification prompts when schedules change.',
+            solution:
+              'Built optimized background workers using Sidekiq and Redis on a Rails backend to push calculations smoothly.',
+          },
+        ],
+        features: [
+          'Personalized infant sleep-routine generation.',
+          'Native iOS trackers in Swift and Objective-C.',
+          'Dynamic parental-guidance reference library.',
+        ],
+        result:
+          'Helped parents establish healthy infant sleep milestones through an accessible, highly reactive mobile environment.',
+        stack: ['rubyonrails', 'swift', 'postgresql', 'redis'],
+        metric: 'iOS',
+        metricLabel: 'Native sleep tracking',
+      },
+      {
+        slug: 'microhealth',
+        name: 'Microhealth',
+        industry: 'Consumer Healthcare Transparency',
+        duration: '12 months',
+        requirement:
+          'A transparent web app supplying patients with understandable healthcare price quotes and wellness tools.',
+        challenges: [
+          {
+            challenge:
+              'Making complex, confusing medical insurance deductible data understandable for the average person.',
+            solution:
+              'Modeled an intuitive Vue frontend distilling complex pricing metrics into clear, step-by-step graphical tables.',
+          },
+        ],
+        features: [
+          'Interactive cost-transparency calculation matrix.',
+          'Patient health and wellness tracking repository.',
+          'High-availability hosting on AWS EC2.',
+        ],
+        result:
+          'Demystified medical costs, giving consumers accurate tools to actively lower treatment expenses.',
+        stack: ['vuedotjs', 'rubyonrails', 'mysql', 'amazonaws'],
+        metric: 'Clear',
+        metricLabel: 'Medical price transparency',
+      },
+    ],
+  },
+  {
+    id: 'saas',
+    category: 'SaaS',
+    domain: 'SaaS Platforms',
+    blurb:
+      'Multi-tenant products with durable billing, scheduling, and streaming architecture built to grow without a yearly rewrite.',
+    capability: { label: 'SaaS', href: '/what-we-build/saas' },
+    projects: [
+      {
+        slug: 'whistle',
+        name: 'Whistle It',
+        industry: 'SaaS Virtual Meetings',
+        duration: '8 months',
+        requirement:
+          'An ultra-secure team collaboration and video conferencing platform as an alternative to Zoom and Google Meet.',
+        challenges: [
+          {
+            challenge:
+              'Minimizing server cost while supporting high-bandwidth audio/video streams for concurrent meetings.',
+            solution:
+              'Deployed a distributed serverless paradigm on top of the open-source BigBlueButton conferencing engine.',
+          },
+        ],
+        features: [
+          'HD real-time video/audio room routing.',
+          'GraphQL data streaming for low-overhead UI.',
+          'Persistent secure corporate text-chat.',
+        ],
+        result:
+          'Delivered an enterprise collaboration app that lets remote teams meet securely with lower infrastructure overhead.',
+        stack: ['vuedotjs', 'graphql', 'firebase', 'googlecloud'],
+        metric: 'HD',
+        metricLabel: 'Serverless meeting rooms',
+      },
+      {
+        slug: 'one40connect',
+        name: 'One40Connect',
+        industry: 'SaaS Business Communication',
+        duration: '24 months',
+        requirement:
+          'An enterprise business-texting SaaS for direct, scheduled, delayed, and mass promotional text alerts.',
+        challenges: [
+          {
+            challenge:
+              'Large queue bottlenecks when executing promotional SMS campaigns of millions of rows concurrently.',
+            solution:
+              'Implemented the Hangfire scheduling engine inside .NET Core to parse time-delayed broadcast batches over Azure.',
+          },
+        ],
+        features: [
+          'Flexible message scheduling grid — Instant, Delayed, Recurring.',
+          'Live SMS conversation tracking via SignalR.',
+          'Deep carrier integration with the Skyetel API.',
+        ],
+        result:
+          'Elevated commercial communication, boasting ultra-high text-delivery rates for marketing networks.',
+        stack: ['angular', 'dotnet', 'mysql', 'microsoftazure'],
+        metric: 'Millions',
+        metricLabel: 'SMS rows per campaign',
+      },
+      {
+        slug: 'natif',
+        name: 'Natif.ai',
+        industry: 'SaaS Document Automation',
+        duration: '8 months',
+        requirement:
+          'An intelligent document-processing backend automating parsing via OCR, HTR, preprocessing, and field extraction.',
+        challenges: [
+          {
+            challenge:
+              'Parsing low-quality photos or handwritten notes accurately without systematic processing timeouts.',
+            solution:
+              'Optimized Django workers to queue incoming files into isolation zones for text refinement and extraction.',
+          },
+        ],
+        features: [
+          'Advanced ICR/HTR and OCR pipelines.',
+          'Document structure classification engine.',
+          'Interactive API playground documented with Swagger.',
+        ],
+        result:
+          'Minimized manual documentation workflows, saving users hundreds of data-entry hours.',
+        stack: ['vuedotjs', 'django', 'postgresql', 'amazonaws'],
+        metric: 'OCR+HTR',
+        metricLabel: 'Automated extraction',
+      },
+      {
+        slug: 'legal-atoms',
+        name: 'Legal Atoms',
+        industry: 'SaaS Legal-Tech',
+        duration: '4 months',
+        requirement:
+          'A simplified citizen application to prepare and electronically file structured court cases — restraining orders, civil and family disputes.',
+        challenges: [
+          {
+            challenge:
+              'Guiding non-legal users through intimidating, strict government paperwork formats accurately.',
+            solution:
+              'Built a conditional step-by-step interview UI that formats plain-text answers into exact court-ready schemas.',
+          },
+        ],
+        features: [
+          'Guided court-document e-filing questionnaires.',
+          'Asynchronous document generation via Sidekiq.',
+          'Automated court updates delivered via SendGrid.',
+        ],
+        result:
+          'Democratized access to standard legal representation, letting users confidently complete complex case setup securely.',
+        stack: ['angular', 'rubyonrails', 'redis', 'stripe', 'amazonaws'],
+        metric: 'Court-ready',
+        metricLabel: 'Guided e-filing',
+      },
+      {
+        slug: 'aiode',
+        name: 'Aiode',
+        industry: 'SaaS AI Music',
+        duration: '5 months',
+        requirement:
+          'A web platform letting producers and artists compose music using AI-generated virtual musicians.',
+        challenges: [
+          {
+            challenge:
+              'Synchronizing interactive audio-player tracks with AI-engine generation prompts fluidly over the web.',
+            solution:
+              'Selected Next.js for client-side speed alongside Firebase to feed real-time structural audio asset paths.',
+          },
+        ],
+        features: [
+          'Virtual AI-musician composer control board.',
+          'Dynamic, interactive multi-track playback.',
+          'Seamless cloud audio exporting.',
+        ],
+        result:
+          'Opened a collaborative audio environment for creators to write original compositions with machine-learning assistance.',
+        stack: ['nextdotjs', 'firebase', 'amazonaws'],
+        metric: 'AI',
+        metricLabel: 'Virtual musicians',
+      },
+    ],
+  },
+  {
+    id: 'logistics',
+    category: 'Transport & Logistics',
+    domain: 'Cloud & DevOps',
+    blurb:
+      'Marketplace and fleet platforms engineered on microservices to absorb enterprise traffic spikes without slowdowns.',
+    capability: { label: 'Cloud', href: '/what-we-build/cloud' },
+    projects: [
+      {
+        slug: 'truck-4',
+        name: 'Truck-4',
+        industry: 'Commercial Fleet Rentals & Logistics',
+        duration: '7 months',
+        requirement:
+          'A secure commercial rental marketplace to find, lease, or purchase freight trucks, tractors, and trailers locally.',
+        challenges: [
+          {
+            challenge:
+              'Handling massive enterprise traffic spikes and multi-step vehicle paperwork validation without slowdowns.',
+            solution:
+              'Designed a microservices network using Kubernetes and RabbitMQ to balance high workloads across processing lines.',
+          },
+        ],
+        features: [
+          'Geographic truck search by City, State, or Zip.',
+          'Instant phone verification via Twilio OTP.',
+          'Anti-malware document uploads protected via ClamAV.',
+        ],
+        result:
+          'Scaled a robust commercial marketplace matching rental fleets with shipping logistics networks efficiently.',
+        stack: ['react', 'nodedotjs', 'mongodb', 'rabbitmq', 'kubernetes', 'microsoftazure'],
+        metric: 'K8s',
+        metricLabel: 'Absorbs traffic spikes',
+      },
+    ],
+  },
+  {
     id: 'ecommerce',
     category: 'eCommerce',
     domain: 'Web Development',
@@ -381,420 +795,6 @@ export const PORTFOLIO_GROUPS: PortfolioGroup[] = [
         stack: ['react', 'django', 'postgresql', 'celery', 'docker'],
         metric: 'Live',
         metricLabel: 'Repair status to owners',
-      },
-    ],
-  },
-  {
-    id: 'saas',
-    category: 'SaaS',
-    domain: 'SaaS Platforms',
-    blurb:
-      'Multi-tenant products with durable billing, scheduling, and streaming architecture built to grow without a yearly rewrite.',
-    capability: { label: 'SaaS', href: '/what-we-build/saas' },
-    projects: [
-      {
-        slug: 'whistle',
-        name: 'Whistle It',
-        industry: 'SaaS Virtual Meetings',
-        duration: '8 months',
-        requirement:
-          'An ultra-secure team collaboration and video conferencing platform as an alternative to Zoom and Google Meet.',
-        challenges: [
-          {
-            challenge:
-              'Minimizing server cost while supporting high-bandwidth audio/video streams for concurrent meetings.',
-            solution:
-              'Deployed a distributed serverless paradigm on top of the open-source BigBlueButton conferencing engine.',
-          },
-        ],
-        features: [
-          'HD real-time video/audio room routing.',
-          'GraphQL data streaming for low-overhead UI.',
-          'Persistent secure corporate text-chat.',
-        ],
-        result:
-          'Delivered an enterprise collaboration app that lets remote teams meet securely with lower infrastructure overhead.',
-        stack: ['vuedotjs', 'graphql', 'firebase', 'googlecloud'],
-        metric: 'HD',
-        metricLabel: 'Serverless meeting rooms',
-      },
-      {
-        slug: 'one40connect',
-        name: 'One40Connect',
-        industry: 'SaaS Business Communication',
-        duration: '24 months',
-        requirement:
-          'An enterprise business-texting SaaS for direct, scheduled, delayed, and mass promotional text alerts.',
-        challenges: [
-          {
-            challenge:
-              'Large queue bottlenecks when executing promotional SMS campaigns of millions of rows concurrently.',
-            solution:
-              'Implemented the Hangfire scheduling engine inside .NET Core to parse time-delayed broadcast batches over Azure.',
-          },
-        ],
-        features: [
-          'Flexible message scheduling grid — Instant, Delayed, Recurring.',
-          'Live SMS conversation tracking via SignalR.',
-          'Deep carrier integration with the Skyetel API.',
-        ],
-        result:
-          'Elevated commercial communication, boasting ultra-high text-delivery rates for marketing networks.',
-        stack: ['angular', 'dotnet', 'mysql', 'microsoftazure'],
-        metric: 'Millions',
-        metricLabel: 'SMS rows per campaign',
-      },
-      {
-        slug: 'natif',
-        name: 'Natif.ai',
-        industry: 'SaaS Document Automation',
-        duration: '8 months',
-        requirement:
-          'An intelligent document-processing backend automating parsing via OCR, HTR, preprocessing, and field extraction.',
-        challenges: [
-          {
-            challenge:
-              'Parsing low-quality photos or handwritten notes accurately without systematic processing timeouts.',
-            solution:
-              'Optimized Django workers to queue incoming files into isolation zones for text refinement and extraction.',
-          },
-        ],
-        features: [
-          'Advanced ICR/HTR and OCR pipelines.',
-          'Document structure classification engine.',
-          'Interactive API playground documented with Swagger.',
-        ],
-        result:
-          'Minimized manual documentation workflows, saving users hundreds of data-entry hours.',
-        stack: ['vuedotjs', 'django', 'postgresql', 'amazonaws'],
-        metric: 'OCR+HTR',
-        metricLabel: 'Automated extraction',
-      },
-      {
-        slug: 'legal-atoms',
-        name: 'Legal Atoms',
-        industry: 'SaaS Legal-Tech',
-        duration: '4 months',
-        requirement:
-          'A simplified citizen application to prepare and electronically file structured court cases — restraining orders, civil and family disputes.',
-        challenges: [
-          {
-            challenge:
-              'Guiding non-legal users through intimidating, strict government paperwork formats accurately.',
-            solution:
-              'Built a conditional step-by-step interview UI that formats plain-text answers into exact court-ready schemas.',
-          },
-        ],
-        features: [
-          'Guided court-document e-filing questionnaires.',
-          'Asynchronous document generation via Sidekiq.',
-          'Automated court updates delivered via SendGrid.',
-        ],
-        result:
-          'Democratized access to standard legal representation, letting users confidently complete complex case setup securely.',
-        stack: ['angular', 'rubyonrails', 'redis', 'stripe', 'amazonaws'],
-        metric: 'Court-ready',
-        metricLabel: 'Guided e-filing',
-      },
-      {
-        slug: 'aiode',
-        name: 'Aiode',
-        industry: 'SaaS AI Music',
-        duration: '5 months',
-        requirement:
-          'A web platform letting producers and artists compose music using AI-generated virtual musicians.',
-        challenges: [
-          {
-            challenge:
-              'Synchronizing interactive audio-player tracks with AI-engine generation prompts fluidly over the web.',
-            solution:
-              'Selected Next.js for client-side speed alongside Firebase to feed real-time structural audio asset paths.',
-          },
-        ],
-        features: [
-          'Virtual AI-musician composer control board.',
-          'Dynamic, interactive multi-track playback.',
-          'Seamless cloud audio exporting.',
-        ],
-        result:
-          'Opened a collaborative audio environment for creators to write original compositions with machine-learning assistance.',
-        stack: ['nextdotjs', 'firebase', 'amazonaws'],
-        metric: 'AI',
-        metricLabel: 'Virtual musicians',
-      },
-    ],
-  },
-  {
-    id: 'ai',
-    category: 'AI',
-    domain: 'AI / ML',
-    blurb:
-      'Retrieval-grounded assistants and analytics engines that turn specialized, fast-moving data into trustworthy answers.',
-    capability: { label: 'AI Solutions', href: '/what-we-build/ai-solutions' },
-    projects: [
-      {
-        slug: 'moneyball',
-        name: 'Money Ball',
-        industry: 'AI Analytics Chatbot',
-        duration: '3 months',
-        requirement:
-          'An AI-driven NFL statistical query engine letting fans and analysts fetch real-time player and team metrics conversationally.',
-        challenges: [
-          {
-            challenge:
-              'General LLMs frequently hallucinate on specialized, rapidly updating sports stats.',
-            solution:
-              'Engineered a custom Retrieval-Augmented Generation (RAG) framework forcing the LLM to query live sports databases before responding.',
-          },
-        ],
-        features: [
-          'Interactive RAG conversational chatbot interface.',
-          'Real-time NFL team performance analysis engine.',
-          'Dockerized microservices for fast analytics ingestion.',
-        ],
-        result:
-          'Created an immersive sports-data tool providing immediate, verified football analytics in a friendly chat frame.',
-        stack: ['nodedotjs', 'django', 'postgresql', 'redis', 'docker'],
-        metric: 'RAG',
-        metricLabel: 'Zero-hallucination stats',
-      },
-    ],
-  },
-  {
-    id: 'healthcare',
-    category: 'Healthcare',
-    domain: 'Custom Software',
-    blurb:
-      'HIPAA-aware clinical, pediatric, and consumer-health products where privacy and reliability are non-negotiable.',
-    capability: { label: 'Custom Software', href: '/what-we-build/custom-software' },
-    projects: [
-      {
-        slug: 'nuvana',
-        name: 'Nuvana',
-        industry: 'Chronic Care Healthcare Management',
-        duration: '8 months',
-        requirement:
-          'A medical-provider portal to organize chronic-care tracking, automate monthly Medicare billing, and manage patient interactions.',
-        challenges: [
-          {
-            challenge:
-              'Adhering to hyper-strict HIPAA patient-privacy rules during data transactions.',
-            solution:
-              'Applied end-to-end token validation with JWT combined with encrypted storage parameters within AWS instances.',
-          },
-        ],
-        features: [
-          'Continuous patient interaction tracking grid.',
-          'Automated medical billing generation framework.',
-          'Real-time clinical metrics reporting dashboards.',
-        ],
-        result:
-          'Boosted processing speed for clinic staff while lowering billing errors and preserving vital patient-care metrics.',
-        stack: ['vuedotjs', 'dotnet', 'postgresql', 'redis', 'docker'],
-        metric: 'HIPAA',
-        metricLabel: 'Chronic-care billing',
-      },
-      {
-        slug: 'slumber-sprout',
-        name: 'Slumber & Sprout',
-        industry: 'Pediatric Healthcare App',
-        duration: '4 months',
-        requirement:
-          'A native iOS app giving parents custom child sleep-tracking logs, tailored routines, and sleep-training tools.',
-        challenges: [
-          {
-            challenge:
-              'Coordinating immediate mobile sleep-notification prompts when schedules change.',
-            solution:
-              'Built optimized background workers using Sidekiq and Redis on a Rails backend to push calculations smoothly.',
-          },
-        ],
-        features: [
-          'Personalized infant sleep-routine generation.',
-          'Native iOS trackers in Swift and Objective-C.',
-          'Dynamic parental-guidance reference library.',
-        ],
-        result:
-          'Helped parents establish healthy infant sleep milestones through an accessible, highly reactive mobile environment.',
-        stack: ['rubyonrails', 'swift', 'postgresql', 'redis'],
-        metric: 'iOS',
-        metricLabel: 'Native sleep tracking',
-      },
-      {
-        slug: 'microhealth',
-        name: 'Microhealth',
-        industry: 'Consumer Healthcare Transparency',
-        duration: '12 months',
-        requirement:
-          'A transparent web app supplying patients with understandable healthcare price quotes and wellness tools.',
-        challenges: [
-          {
-            challenge:
-              'Making complex, confusing medical insurance deductible data understandable for the average person.',
-            solution:
-              'Modeled an intuitive Vue frontend distilling complex pricing metrics into clear, step-by-step graphical tables.',
-          },
-        ],
-        features: [
-          'Interactive cost-transparency calculation matrix.',
-          'Patient health and wellness tracking repository.',
-          'High-availability hosting on AWS EC2.',
-        ],
-        result:
-          'Demystified medical costs, giving consumers accurate tools to actively lower treatment expenses.',
-        stack: ['vuedotjs', 'rubyonrails', 'mysql', 'amazonaws'],
-        metric: 'Clear',
-        metricLabel: 'Medical price transparency',
-      },
-    ],
-  },
-  {
-    id: 'compliance',
-    category: 'Compliance & GDPR',
-    domain: 'Automation',
-    blurb:
-      'Audit-ready systems that automate rule checks, certification tracking, and reporting so organizations stay continuously compliant.',
-    capability: { label: 'Automation', href: '/what-we-build/automation' },
-    projects: [
-      {
-        slug: 'fisar',
-        name: 'Fisar',
-        industry: 'GDPR Compliance Management',
-        duration: '12 months',
-        requirement:
-          'A specialized tool for school Data Protection Officers to track and execute sensitive Subject Access Requests (SARs).',
-        challenges: [
-          {
-            challenge:
-              'Pulling disparate, sensitive student info securely from school MSI networks without exposing unauthorized files.',
-            solution:
-              'Developed strict, heavily audited query pipelines hooked into MSI APIs with precise field masking.',
-          },
-        ],
-        features: [
-          'Automated regulatory SAR reporting engine.',
-          'Role-based compliance accountability dashboard.',
-          'Secure student-records extraction portal.',
-        ],
-        result:
-          'Guaranteed accountability for sensitive data handling, keeping educational clients aligned with active European GDPR rules.',
-        stack: ['nodedotjs', 'django', 'postgresql', 'redis', 'docker', 'amazonaws'],
-        metric: 'SAR',
-        metricLabel: 'Audited data pipelines',
-      },
-      {
-        slug: 'falcore',
-        name: 'Falcore',
-        industry: 'Compliance Management',
-        duration: '6 months',
-        requirement:
-          'A unified corporate compliance environment centralizing documentation, automating safety checks, and tracking standings.',
-        challenges: [
-          {
-            challenge:
-              'Keeping large organizations prepared for unexpected manual financial or safety audit collections.',
-            solution:
-              'Created a background validation engine that flags outdated records, logs audit histories, and alerts teams immediately.',
-          },
-        ],
-        features: [
-          'Automated corporate rule-check scheduling.',
-          'Immutable, chronologically tracked audit log.',
-          'Global regulatory alerts powered by Celery.',
-        ],
-        result:
-          'Eliminated manual compliance gaps, keeping corporate entities structurally organized and constantly audit-ready.',
-        stack: ['nodedotjs', 'django', 'postgresql', 'redis', 'docker'],
-        metric: 'Audit-ready',
-        metricLabel: 'Automated rule checks',
-      },
-      {
-        slug: 'alertia',
-        name: 'Alertia',
-        industry: 'Workforce Compliance & Security',
-        duration: '4 months',
-        requirement:
-          'An operational tool to maintain safety-certification files, schedule shifts, and track active guard patrols live.',
-        challenges: [
-          {
-            challenge:
-              'Guards working shifts with expired physical licenses expose firms to major regulatory fines.',
-            solution:
-              'Deployed a continuous scanning algorithm cross-checking work assignments against document expiration lists.',
-          },
-        ],
-        features: [
-          'Real-time guard shift scheduling layout.',
-          'Document validation with automated renewal alerts.',
-          'Live operational visibility map dashboard.',
-        ],
-        result:
-          'Secured operational visibility, cutting credential-check oversight issues for defense and security companies.',
-        stack: ['nextdotjs', 'django', 'postgresql', 'celery', 'amazonaws'],
-        metric: 'Live',
-        metricLabel: 'Guard patrol tracking',
-      },
-      {
-        slug: 'nptass',
-        name: 'NPTASS',
-        industry: 'Automated Auditing & Compliance',
-        duration: '6 months',
-        requirement:
-          'Automate the entire client-review lifecycle — auditor scheduling, compliance-point logging, and final report generation.',
-        challenges: [
-          {
-            challenge:
-              'Human calculation errors during complex manual audit scoring often skew reports.',
-            solution:
-              'Structured a standardized Node.js evaluation engine that auto-generates reports with zero calculation deviation.',
-          },
-        ],
-        features: [
-          'Comprehensive corporate audit-scoring panel.',
-          'Secure, role-based user access controls.',
-          'Dual-database architecture — PostgreSQL & MongoDB via Prisma.',
-        ],
-        result:
-          'Shortened multi-week review lifecycles to days while maintaining airtight data precision across divisions.',
-        stack: ['nextdotjs', 'nodedotjs', 'postgresql', 'mongodb', 'prisma', 'redis'],
-        metric: 'Days',
-        metricLabel: 'Down from weeks',
-      },
-    ],
-  },
-  {
-    id: 'logistics',
-    category: 'Transport & Logistics',
-    domain: 'Cloud & DevOps',
-    blurb:
-      'Marketplace and fleet platforms engineered on microservices to absorb enterprise traffic spikes without slowdowns.',
-    capability: { label: 'Cloud', href: '/what-we-build/cloud' },
-    projects: [
-      {
-        slug: 'truck-4',
-        name: 'Truck-4',
-        industry: 'Commercial Fleet Rentals & Logistics',
-        duration: '7 months',
-        requirement:
-          'A secure commercial rental marketplace to find, lease, or purchase freight trucks, tractors, and trailers locally.',
-        challenges: [
-          {
-            challenge:
-              'Handling massive enterprise traffic spikes and multi-step vehicle paperwork validation without slowdowns.',
-            solution:
-              'Designed a microservices network using Kubernetes and RabbitMQ to balance high workloads across processing lines.',
-          },
-        ],
-        features: [
-          'Geographic truck search by City, State, or Zip.',
-          'Instant phone verification via Twilio OTP.',
-          'Anti-malware document uploads protected via ClamAV.',
-        ],
-        result:
-          'Scaled a robust commercial marketplace matching rental fleets with shipping logistics networks efficiently.',
-        stack: ['react', 'nodedotjs', 'mongodb', 'rabbitmq', 'kubernetes', 'microsoftazure'],
-        metric: 'K8s',
-        metricLabel: 'Absorbs traffic spikes',
       },
     ],
   },
