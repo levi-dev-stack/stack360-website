@@ -36,7 +36,15 @@ function CaseStudyCard({
         </div>
       </div>
 
-      <h3 className="text-lg font-bold tracking-tight text-neutral-50">{study.title}</h3>
+      <h3 className="text-lg font-bold tracking-tight text-neutral-50">
+        <Link
+          href={`/our-work/case-studies/${study.slug}`}
+          className="inline-block transition-colors hover:text-primary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+        >
+          {study.title}
+        </Link>
+      </h3>
+
       <p className="mt-sm flex-1 text-sm leading-relaxed text-neutral-400">{study.description}</p>
 
       <div className="mt-lg flex items-center justify-between border-t border-neutral-800 pt-md">
@@ -51,11 +59,15 @@ function CaseStudyCard({
             </span>
           ))}
         </div>
+
         <Link
-          href="/our-work/case-studies"
-          className="text-xs font-bold text-neutral-400 transition-colors group-hover:text-primary"
+          href={`/our-work/case-studies/${study.slug}`}
+          className="group/link flex items-center gap-xs text-xs font-bold text-neutral-400 transition-colors hover:text-primary"
         >
-          View case →
+          View case
+          <span className="transition-transform duration-200 group-hover/link:translate-x-1">
+            →
+          </span>
         </Link>
       </div>
     </motion.article>
