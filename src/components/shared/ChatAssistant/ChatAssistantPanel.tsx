@@ -4,11 +4,11 @@ import { Check, Copy, Loader2, MessageCircle, RotateCcw, X } from 'lucide-react'
 import { AnimatePresence, motion, useReducedMotion } from 'motion/react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { useCallback, useEffect, useId, useRef, useState } from 'react';
 import { EASE_OUT_EXPO } from '@/components/shared/motion/variants';
 import ScrollToTopButton from '@/components/shared/ScrollToTopButton';
 import {
-  ASSISTANT_CONTACT,
   ASSISTANT_META,
   ASSISTANT_PROJECT_CATEGORIES,
   ASSISTANT_PROJECTS,
@@ -19,6 +19,7 @@ import {
   ASSISTANT_WHO_WE_ARE,
   type AssistantQuickActionId,
 } from '@/constants/component/assistant-data';
+import { CONTACT_CHANNELS } from '@/constants/component/contact-data';
 import { SITE_EMAIL, SITE_EMAIL_HREF } from '@/constants/site';
 import { cn } from '@/styles/tailwind.utils';
 import { copyToClipboard } from '@/utils/clipboard';
@@ -186,6 +187,7 @@ const INITIAL_MESSAGES: ChatMessage[] = [
 
 export default function ChatAssistant() {
   const reduced = useReducedMotion();
+  const router = useRouter();
   const panelId = useId();
   const listRef = useRef<HTMLDivElement>(null);
   const abortRef = useRef<AbortController | null>(null);
@@ -198,7 +200,12 @@ export default function ChatAssistant() {
   const [resetting, setResetting] = useState(false);
   const [visitedProjects, setVisitedProjects] = useState<string[]>([]);
   const [visitedServices, setVisitedServices] = useState<string[]>([]);
+  const [showWhatsAppOptions, setShowWhatsAppOptions] = useState(false);
   const [messages, setMessages] = useState<ChatMessage[]>(INITIAL_MESSAGES);
+
+  const whatsappChannels = CONTACT_CHANNELS.filter((channel) =>
+    channel.label.toLowerCase().includes('whatsapp')
+  );
 
   const scrollToEnd = useCallback(() => {
     const el = listRef.current;
@@ -685,9 +692,46 @@ export default function ChatAssistant() {
 
                       {message.kind === 'contact' && (
                         <div className="space-y-sm rounded-xl border border-neutral-200 bg-white p-sm">
-                          {ASSISTANT_CONTACT.map((field) => (
-                            <CopyableRow key={field.label} {...field} />
-                          ))}
+                          <button
+                            type="button"
+                            onClick={() => {
+                              setPendingAction('contact-inquiry');
+                              router.push('/contact?source=chat-assistant&redirect=redirecting');
+                            }}
+                            disabled={busy}
+                            className="inline-flex w-full items-center justify-center rounded-md bg-primary px-sm py-sm text-xs font-bold text-neutral-50 transition-colors hover:bg-primary-dark disabled:pointer-events-none disabled:opacity-60"
+                          >
+                            Send inquiry
+                          </button>
+
+                          <button
+                            type="button"
+                            onClick={() => setShowWhatsAppOptions((prev) => !prev)}
+                            disabled={busy}
+                            className="inline-flex w-full items-center justify-center rounded-md border border-neutral-300 bg-neutral-50 px-sm py-sm text-xs font-bold text-neutral-800 transition-colors hover:border-primary/40 hover:text-primary disabled:pointer-events-none disabled:opacity-60"
+                          >
+                            Send WhatsApp message
+                          </button>
+
+                          {showWhatsAppOptions && (
+                            <div className="space-y-xs">
+                              {whatsappChannels.map((channel) => (
+                                <button
+                                  key={channel.label}
+                                  type="button"
+                                  onClick={() => {
+                                    window.open(channel.href, '_blank', 'noopener,noreferrer');
+                                  }}
+                                  className="inline-flex w-full items-center justify-between rounded-md border border-neutral-200 bg-neutral-50 px-sm py-sm text-left text-xs font-semibold text-neutral-800 transition-colors hover:border-primary/40 hover:text-primary"
+                                >
+                                  <span>{channel.label}</span>
+                                  <span className="font-mono text-[10px] uppercase tracking-wider text-neutral-500">
+                                    Open
+                                  </span>
+                                </button>
+                              ))}
+                            </div>
+                          )}
                         </div>
                       )}
 

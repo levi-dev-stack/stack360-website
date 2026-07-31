@@ -1,8 +1,8 @@
 'use client';
 
 import { AlertCircle, CheckCircle2, X } from 'lucide-react';
-import { useSearchParams } from 'next/navigation';
-import { type ChangeEvent, type FocusEvent, type FormEvent, useState } from 'react';
+import { useRouter, useSearchParams } from 'next/navigation';
+import { type ChangeEvent, type FocusEvent, type FormEvent, useEffect, useState } from 'react';
 import { CONTACT_FORM_FIELDS } from '@/constants/component/contact-data';
 import { type ContactFormData, contactSchema } from '@/schema/contact';
 
@@ -16,6 +16,7 @@ export default function ContactForm() {
     company: '',
     message: '',
   });
+  const router = useRouter();
   const [fieldErrors, setFieldErrors] = useState<Partial<Record<keyof ContactFormData, string>>>(
     {}
   );
@@ -23,6 +24,20 @@ export default function ContactForm() {
 
   const searchParams = useSearchParams();
   const role = searchParams.get('role')?.trim() ?? '';
+  const source = searchParams.get('source')?.trim() ?? '';
+  const redirectState = searchParams.get('redirect')?.trim().toLowerCase() ?? '';
+
+  useEffect(() => {
+    if (source !== 'chat-assistant' || redirectState !== 'redirecting') {
+      return;
+    }
+
+    const timer = window.setTimeout(() => {
+      router.replace('/contact?source=chat-assistant&redirect=redirected');
+    }, 350);
+
+    return () => window.clearTimeout(timer);
+  }, [redirectState, router, source]);
 
   const validateField = (name: keyof ContactFormData, value: string) => {
     const fieldSchema = contactSchema.shape[name];
@@ -124,6 +139,18 @@ export default function ContactForm() {
 
   return (
     <form onSubmit={onSubmit} noValidate>
+      {source === 'chat-assistant' && (
+        <div className="mb-lg rounded-md border border-primary/20 bg-primary/5 px-md py-sm">
+          <p className="font-mono text-[10px] font-bold uppercase tracking-wider text-primary">
+            {redirectState === 'redirecting'
+              ? 'Redirecting…'
+              : redirectState === 'redirected'
+                ? 'Redirected from Stack360 Guide'
+                : 'Redirected from Stack360 Guide'}
+          </p>
+        </div>
+      )}
+
       <div className="mb-lg space-y-sm">
         <h2 className="text-2xl font-bold tracking-tight text-neutral-900">
           {role ? `Apply: ${role}` : 'Start a conversation'}
