@@ -1,4 +1,4 @@
-import { SITE_EMAIL, SITE_EMAIL_HREF, SITE_PHONE, SITE_PHONE_HREF } from '@/constants/site';
+import { SITE_EMAIL, SITE_EMAIL_HREF, SITE_PHONE, SITE_PHONE_USA } from '@/constants/site';
 
 export const CONTACT_HERO = {
   eyebrow: 'Contact',
@@ -17,16 +17,31 @@ export const CONTACT_CTA = {
 
 export const CONTACT_CHANNELS = [
   {
-    label: 'Phone',
+    type: 'phone',
+    label: 'WhatsApp (UK)',
     value: SITE_PHONE,
-    href: SITE_PHONE_HREF,
+    href: `https://wa.me/${SITE_PHONE.replace(/[^0-9]/g, '')}`,
     hint: 'Available 24/7 for project inquiries',
+    target: '_blank',
+    rel: 'noopener noreferrer',
   },
   {
+    type: 'phone',
+    label: 'WhatsApp (US)',
+    value: SITE_PHONE_USA,
+    href: `https://wa.me/${SITE_PHONE_USA.replace(/[^0-9]/g, '')}`,
+    hint: 'Available 24/7 for project inquiries',
+    target: '_blank',
+    rel: 'noopener noreferrer',
+  },
+  {
+    type: 'email',
     label: 'Email',
     value: SITE_EMAIL,
     href: SITE_EMAIL_HREF,
     hint: 'We reply within one business day',
+    target: '_self',
+    rel: undefined,
   },
 ] as const;
 
@@ -39,7 +54,7 @@ export const CONTACT_OFFICES = [
   // },
   {
     country: 'United States',
-    role: 'Stack360 AI Solutions',
+    role: 'Headquarter',
     flagSrc: 'https://flagcdn.com/us.svg',
     address: '12828 Willow Centre Dr, Houston, TX 77066, USA',
   },
