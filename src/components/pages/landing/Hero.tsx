@@ -225,7 +225,7 @@ export default function Hero() {
               className="w-full sm:w-auto"
             >
               <Link
-                href="/our-work"
+                href="/our-work/featured-projects"
                 className="inline-flex min-h-11 w-full items-center justify-center rounded-sm border border-neutral-300 bg-neutral-50 px-xl py-md text-sm font-bold text-neutral-800 transition-colors hover:border-neutral-500 hover:text-neutral-900 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary sm:w-auto"
               >
                 View Our Work
