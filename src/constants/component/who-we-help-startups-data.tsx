@@ -37,7 +37,7 @@ export const STARTUPS_HIGHLIGHTS = [
 
 export const STARTUPS_METRICS = [
   { value: '50+', label: 'Startups funded after MVP delivery' },
-  { value: '6–8 wk', label: 'Typical MVP timeline' },
+  { value: '6-8 wk', label: 'Typical MVP timeline' },
   { value: '95%', label: 'Founder retention rate' },
 ] as const;
 
