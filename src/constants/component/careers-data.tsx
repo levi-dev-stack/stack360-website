@@ -1,4 +1,5 @@
 import { Globe2, Laptop, TrendingUp, Users } from 'lucide-react';
+import type { CareerRole } from '@/types/career';
 
 export const CAREERS_HERO = {
   eyebrow: 'Work With Us',
@@ -33,36 +34,7 @@ export const CAREERS_BENEFITS = [
   },
 ] as const;
 
-export const CAREERS_OPEN_ROLES = [
-  {
-    title: 'Senior Full Stack Engineer',
-    team: 'Product Engineering',
-    location: 'Lahore / Remote',
-    type: 'Full-time',
-    stack: 'React, Node.js, PostgreSQL',
-  },
-  {
-    title: 'Mobile Engineer',
-    team: 'Platform',
-    location: 'Lahore / Hybrid',
-    type: 'Full-time',
-    stack: 'React Native, Flutter',
-  },
-  {
-    title: 'DevOps Engineer',
-    team: 'Infrastructure',
-    location: 'Remote',
-    type: 'Full-time',
-    stack: 'AWS, Kubernetes, CI/CD',
-  },
-  {
-    title: 'QA Automation Engineer',
-    team: 'Quality',
-    location: 'Lahore',
-    type: 'Full-time',
-    stack: 'Selenium, API testing',
-  },
-] as const;
+export const CAREERS_OPEN_ROLES: CareerRole[] = [] as const;
 
 export const CAREERS_PROCESS = [
   {
