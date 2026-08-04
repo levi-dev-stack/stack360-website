@@ -73,7 +73,7 @@ export default async function OpenGraphImage() {
           position: 'relative',
         }}
       >
-        {/* biome-ignore lint/performance/noImgElement: next/og ImageResponse requires native <img> */}
+        {/* biome-ignore lint/performance/noImgElement: next/og ImageResponse requires native <Image from next/image> */}
         <img
           src={iconSrc}
           width={112}
@@ -85,7 +85,7 @@ export default async function OpenGraphImage() {
           }}
         />
 
-        {/* biome-ignore lint/performance/noImgElement: next/og ImageResponse requires native <img> */}
+        {/* biome-ignore lint/performance/noImgElement: next/og ImageResponse requires native <You cannot dot into a client module from a server component> */}
         <img
           src={wordmarkSrc}
           width={420}
