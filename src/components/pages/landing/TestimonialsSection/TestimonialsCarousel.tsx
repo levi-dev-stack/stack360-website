@@ -12,13 +12,26 @@ interface TestimonialAvatarProps {
   alt: string;
 }
 
-/** Shows the client photo when available; falls back to a branded user icon otherwise. */
 function TestimonialAvatar({ src, alt }: TestimonialAvatarProps) {
+  const [loading, setLoading] = useState(true);
   const [failed, setFailed] = useState(false);
+
+  useEffect(() => {
+    setLoading(true);
+    setFailed(false);
+  }, []);
+
   const showImage = Boolean(src) && !failed;
 
   return (
-    <div className="relative aspect-4/3 h-full min-h-56 md:aspect-auto md:min-h-0">
+    <div className="relative aspect-4/3 h-full min-h-56 overflow-hidden bg-neutral-900 md:aspect-auto md:min-h-0">
+      {/* Tailwind Skeleton Loader */}
+      {loading && showImage && (
+        <div className="absolute inset-0 z-10 flex animate-pulse items-center justify-center bg-neutral-800">
+          <div className="h-12 w-12 rounded-full bg-neutral-700/60" />
+        </div>
+      )}
+
       {showImage ? (
         <>
           <Image
@@ -26,8 +39,14 @@ function TestimonialAvatar({ src, alt }: TestimonialAvatarProps) {
             alt={alt}
             fill
             sizes="(max-width: 768px) 100vw, 280px"
-            className="object-cover"
-            onError={() => setFailed(true)}
+            className={`object-cover transition-opacity duration-300 ${
+              loading ? 'opacity-0' : 'opacity-100'
+            }`}
+            onLoad={() => setLoading(false)}
+            onError={() => {
+              setLoading(false);
+              setFailed(true);
+            }}
           />
           <div
             aria-hidden
@@ -174,6 +193,7 @@ export default function TestimonialsCarousel() {
               className="absolute inset-0 grid h-full w-full touch-pan-y select-none grid-cols-1 overflow-hidden rounded-2xl border border-neutral-800 bg-linear-to-br from-neutral-800 to-neutral-900 md:grid-cols-[minmax(12rem,28%)_1fr]"
             >
               <TestimonialAvatar
+                key={current.avatar ?? current.name}
                 src={current.avatar}
                 alt={`${current.name}, ${current.role} at ${current.company}`}
               />
