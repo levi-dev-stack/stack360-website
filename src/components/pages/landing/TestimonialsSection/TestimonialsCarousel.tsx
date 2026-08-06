@@ -157,7 +157,7 @@ export default function TestimonialsCarousel() {
 
         {/* Outer fixed height frame */}
         <div
-          className="relative h-[520px] w-full sm:h-[480px] md:h-[360px]"
+          className="relative h-130 w-full sm:h-120 md:h-90"
           aria-live="polite"
           aria-atomic="true"
         >
