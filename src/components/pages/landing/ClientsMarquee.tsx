@@ -13,7 +13,14 @@ import {
   Share2,
   ShoppingCart,
 } from 'lucide-react';
-import { motion, useReducedMotion } from 'motion/react';
+import {
+  motion,
+  useAnimationFrame,
+  useMotionValue,
+  useReducedMotion,
+  useTransform,
+} from 'motion/react';
+import { useRef, useState } from 'react';
 
 interface Industry {
   name: string;
@@ -34,8 +41,40 @@ const INDUSTRIES: Industry[] = [
 ];
 
 export default function ClientsMarquee() {
+  const [isHovered, setIsHovered] = useState(false);
   const track = [...INDUSTRIES, ...INDUSTRIES];
   const reduced = useReducedMotion();
+
+  // Track absolute horizontal offset in pixels
+  const baseTranslation = useMotionValue(0);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  // Speed factor (lower value = slower movement)
+  const speed = 0.8;
+
+  useAnimationFrame((_, delta) => {
+    // Skip updating translation if user prefers reduced motion or container is hovered
+    if (reduced || isHovered || !containerRef.current) {
+      return;
+    }
+
+    // Half of the content width represents one full loop cycle
+    const halfWidth = containerRef.current.scrollWidth / 2;
+    if (halfWidth === 0) {
+      return;
+    }
+
+    let newX = baseTranslation.get() - speed * (delta / 16.66);
+
+    // Seamless loop wrap-around
+    if (newX <= -halfWidth) {
+      newX += halfWidth;
+    }
+
+    baseTranslation.set(newX);
+  });
+
+  const xTransform = useTransform(baseTranslation, (v) => `${v}px`);
 
   return (
     <section
@@ -52,7 +91,12 @@ export default function ClientsMarquee() {
           </p>
         </div>
 
-        <div className="relative flex min-w-0 flex-1 items-center overflow-hidden">
+        {/* biome-ignore lint/a11y/noStaticElementInteractions: Mouse enter/leave used solely to pause marquee animation on hover */}
+        <div
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
+          className="relative flex min-w-0 flex-1 items-center overflow-hidden"
+        >
           <div
             aria-hidden
             className="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 bg-linear-to-l from-neutral-100 to-transparent"
@@ -65,10 +109,10 @@ export default function ClientsMarquee() {
           </ul>
 
           <motion.div
+            ref={containerRef}
             aria-hidden
             className="flex w-max items-center gap-xl py-md pl-lg pr-lg sm:gap-2xl sm:pl-xl"
-            animate={reduced ? undefined : { x: ['0%', '-50%'] }}
-            transition={reduced ? undefined : { duration: 28, repeat: Infinity, ease: 'linear' }}
+            style={{ x: xTransform }}
           >
             {track.map((industry, index) => {
               const Icon = industry.icon;
