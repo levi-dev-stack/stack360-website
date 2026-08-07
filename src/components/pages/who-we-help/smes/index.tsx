@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import MotionCard from '@/components/shared/motion/MotionCard';
 import MotionSection from '@/components/shared/motion/MotionSection';
 import { MotionStagger, MotionStaggerItem } from '@/components/shared/motion/MotionStagger';
@@ -126,30 +125,6 @@ export default function SmesPage() {
               </MotionStaggerItem>
             ))}
           </MotionStagger>
-        </div>
-      </MotionSection>
-
-      <MotionSection className="border-t border-neutral-200 py-xl">
-        <div className="site-container">
-          <MotionStaggerItem>
-            <p className="text-sm text-neutral-600">
-              Just getting started? See our{' '}
-              <Link
-                href="/who-we-help/startups"
-                className="font-bold text-primary hover:text-primary-dark"
-              >
-                startup MVP program
-              </Link>{' '}
-              or{' '}
-              <Link
-                href="/who-we-help/industries"
-                className="font-bold text-primary hover:text-primary-dark"
-              >
-                industry-specific delivery
-              </Link>
-              .
-            </p>
-          </MotionStaggerItem>
         </div>
       </MotionSection>
 

@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import MotionCard from '@/components/shared/motion/MotionCard';
 import MotionSection from '@/components/shared/motion/MotionSection';
 import { MotionStagger, MotionStaggerItem } from '@/components/shared/motion/MotionStagger';
@@ -115,30 +114,6 @@ export default function EnterprisesPage() {
                 {ENTERPRISES_TRUST.sla.description}
               </p>
             </MotionCard>
-          </MotionStaggerItem>
-        </div>
-      </MotionSection>
-
-      <MotionSection className="border-t border-neutral-200 py-xl">
-        <div className="site-container">
-          <MotionStaggerItem>
-            <p className="text-sm text-neutral-600">
-              Need sector-specific compliance? Explore{' '}
-              <Link
-                href="/who-we-help/industries"
-                className="font-bold text-primary hover:text-primary-dark"
-              >
-                industry solutions
-              </Link>{' '}
-              or compare{' '}
-              <Link
-                href="/who-we-help/smes"
-                className="font-bold text-primary hover:text-primary-dark"
-              >
-                SME engagement models
-              </Link>
-              .
-            </p>
           </MotionStaggerItem>
         </div>
       </MotionSection>
