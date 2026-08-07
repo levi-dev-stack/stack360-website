@@ -24,7 +24,7 @@ function TestimonialAvatar({ src, alt }: TestimonialAvatarProps) {
   const showImage = Boolean(src) && !failed;
 
   return (
-    <div className="relative aspect-4/3 h-full min-h-56 overflow-hidden bg-neutral-900 md:aspect-auto md:min-h-0">
+    <div className="relative aspect-4/3 h-full min-h-56 overflow-hidden bg-linear-to-b from-neutral-100 to-neutral-200 md:aspect-auto md:min-h-0">
       {/* Tailwind Skeleton Loader */}
       {loading && showImage && (
         <div className="absolute inset-0 z-10 flex animate-pulse items-center justify-center bg-neutral-800">
@@ -56,10 +56,10 @@ function TestimonialAvatar({ src, alt }: TestimonialAvatarProps) {
       ) : (
         <div
           aria-hidden
-          className="absolute inset-0 flex items-center justify-center bg-linear-to-br from-neutral-800 to-neutral-900"
+          className="absolute inset-0 flex items-center justify-center bg-linear-to-br from-neutral-100 to-neutral-200"
         >
           <div className="pointer-events-none absolute inset-0 bg-primary/5" />
-          <span className="relative flex h-20 w-20 items-center justify-center rounded-full border border-neutral-700 bg-neutral-800/80 text-neutral-400 shadow-sm">
+          <span className="relative flex h-20 w-20 items-center justify-center rounded-full border border-neutral-300 bg-neutral-100/80 text-neutral-400 shadow-sm">
             <UserRound size={34} strokeWidth={1.5} />
           </span>
         </div>
@@ -110,7 +110,7 @@ export default function TestimonialsCarousel() {
   }, [reduced, paused, total]);
 
   return (
-    <section className="site-section relative w-full overflow-hidden border-t border-neutral-800 bg-linear-to-b from-neutral-black to-neutral-950 py-2xl">
+    <section className="site-section relative w-full overflow-hidden border-t border-neutral-200 bg-linear-to-b from-neutral-100 to-neutral-200 py-2xl">
       <div
         aria-hidden
         className="pointer-events-none absolute -right-24 top-0 h-80 w-80 rounded-full bg-primary/10 blur-[80px]"
@@ -119,7 +119,7 @@ export default function TestimonialsCarousel() {
       <div className="site-container relative">
         <div className="mb-xl flex flex-col gap-lg sm:flex-row sm:items-end sm:justify-between">
           <div className="max-w-3xl space-y-md">
-            <h2 className="text-balance text-3xl font-black tracking-tight text-neutral-50 md:text-4xl">
+            <h2 className="text-balance text-3xl font-black tracking-tight text-neutral-900 md:text-4xl">
               What our partners <span className="font-medium italic text-primary">say.</span>
             </h2>
           </div>
@@ -131,7 +131,7 @@ export default function TestimonialsCarousel() {
                 onClick={() => setPaused((value) => !value)}
                 aria-label={paused ? 'Play testimonials' : 'Pause testimonials'}
                 aria-pressed={paused}
-                className="flex h-11 w-11 items-center justify-center rounded-full border border-neutral-700 text-neutral-300 transition-colors hover:border-primary/40 hover:text-primary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+                className="flex h-11 w-11 items-center justify-center rounded-full border border-neutral-300 text-neutral-600 transition-colors hover:border-primary/40 hover:text-primary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
               >
                 {paused ? <Play size={16} aria-hidden /> : <Pause size={16} aria-hidden />}
               </button>
@@ -140,7 +140,7 @@ export default function TestimonialsCarousel() {
               type="button"
               onClick={prev}
               aria-label="Previous testimonial"
-              className="flex h-11 w-11 items-center justify-center rounded-full border border-neutral-700 text-neutral-300 transition-colors hover:border-primary/40 hover:text-primary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+              className="flex h-11 w-11 items-center justify-center rounded-full border border-neutral-300 text-neutral-600 transition-colors hover:border-primary/40 hover:text-primary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
             >
               <ChevronLeft size={18} />
             </button>
@@ -148,7 +148,7 @@ export default function TestimonialsCarousel() {
               type="button"
               onClick={next}
               aria-label="Next testimonial"
-              className="flex h-11 w-11 items-center justify-center rounded-full border border-neutral-700 text-neutral-300 transition-colors hover:border-primary/40 hover:text-primary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+              className="flex h-11 w-11 items-center justify-center rounded-full border border-neutral-300 text-neutral-600 transition-colors hover:border-primary/40 hover:text-primary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
             >
               <ChevronRight size={18} />
             </button>
@@ -166,7 +166,7 @@ export default function TestimonialsCarousel() {
             type="button"
             onClick={prev}
             aria-label="Previous testimonial"
-            className="absolute left-2 top-1/2 z-20 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-neutral-700/80 bg-neutral-900/80 text-neutral-200 shadow-lg backdrop-blur-xs transition-transform active:scale-95 sm:hidden"
+            className="absolute left-2 top-1/2 z-20 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-neutral-300/80 bg-neutral-100/80 text-neutral-800 shadow-lg backdrop-blur-xs transition-transform active:scale-95 sm:hidden"
           >
             <ChevronLeft size={20} />
           </button>
@@ -174,7 +174,7 @@ export default function TestimonialsCarousel() {
             type="button"
             onClick={next}
             aria-label="Next testimonial"
-            className="absolute right-2 top-1/2 z-20 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-neutral-700/80 bg-neutral-900/80 text-neutral-200 shadow-lg backdrop-blur-xs transition-transform active:scale-95 sm:hidden"
+            className="absolute right-2 top-1/2 z-20 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-neutral-300/80 bg-neutral-100/80 text-neutral-800 shadow-lg backdrop-blur-xs transition-transform active:scale-95 sm:hidden"
           >
             <ChevronRight size={20} />
           </button>
@@ -190,7 +190,7 @@ export default function TestimonialsCarousel() {
               animate={{ opacity: 1, x: 0 }}
               exit={reduced ? undefined : { opacity: 0, x: -24 }}
               transition={{ duration: 0.45, ease: EASE_OUT_EXPO }}
-              className="absolute inset-0 grid h-full w-full touch-pan-y select-none grid-cols-1 overflow-hidden rounded-2xl border border-neutral-800 bg-linear-to-br from-neutral-800 to-neutral-900 md:grid-cols-[minmax(12rem,28%)_1fr]"
+              className="absolute inset-0 grid h-full w-full touch-pan-y select-none grid-cols-1 overflow-hidden rounded-2xl border border-neutral-200 bg-linear-to-br from-neutral-100 to-neutral-200 md:grid-cols-[minmax(12rem,28%)_1fr]"
             >
               <TestimonialAvatar
                 key={current.avatar ?? current.name}
@@ -207,18 +207,18 @@ export default function TestimonialsCarousel() {
                     strokeWidth={0}
                     aria-hidden
                   />
-                  <blockquote className="max-w-3xl text-pretty text-base font-medium leading-relaxed text-neutral-100 sm:text-lg md:text-xl lg:text-2xl">
+                  <blockquote className="max-w-3xl text-pretty text-base font-medium leading-relaxed text-neutral-900 sm:text-lg md:text-xl lg:text-2xl">
                     &ldquo;{current.quote}&rdquo;
                   </blockquote>
                 </div>
 
                 <div className="flex flex-col gap-md sm:flex-row sm:items-end sm:justify-between">
                   <div>
-                    <p className="text-sm font-bold text-neutral-50">
+                    <p className="text-sm font-bold text-neutral-900">
                       {[current.name, current.role].filter(Boolean).join(' · ')}
                     </p>
                     {[current.company, current.industry].some(Boolean) && (
-                      <p className="mt-xs text-sm text-neutral-400">
+                      <p className="mt-xs text-sm text-neutral-600">
                         {[current.company, current.industry].filter(Boolean).join(' · ')}
                       </p>
                     )}
@@ -228,7 +228,7 @@ export default function TestimonialsCarousel() {
                     <p className="text-sm tracking-tight text-primary" aria-hidden>
                       {'★'.repeat(current.rating)}
                     </p>
-                    <p className="font-mono text-xs font-bold text-neutral-400">
+                    <p className="font-mono text-xs font-bold text-neutral-600">
                       {current.rating}.0 / 5.0
                     </p>
                   </div>
