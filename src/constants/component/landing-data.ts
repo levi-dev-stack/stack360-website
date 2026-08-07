@@ -47,7 +47,9 @@ export const LANDING_SERVICES = [
           { name: 'FastAPI', slug: 'fastapi' },
           { name: 'OpenAI', slug: 'openai' },
           { name: 'LangChain', slug: 'langchain' },
-          { name: 'React', slug: 'react' },
+          { name: 'ReAct (Reasoning and Acting)', slug: 'langgraph' },
+          { name: 'Ollama', slug: 'ollama' },
+          { name: 'Pydantic AI', slug: 'pydantic' },
         ],
       },
       {
