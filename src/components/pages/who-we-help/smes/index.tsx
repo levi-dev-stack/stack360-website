@@ -95,7 +95,7 @@ export default function SmesPage() {
             {SMES_ENGAGEMENT.map((item) => (
               <MotionStaggerItem key={item.model}>
                 <MotionCard className="rounded-xl border border-neutral-200 bg-neutral-50 p-lg">
-                  <h3 className="font-mono text-sm font-bold text-primary">{item.model}</h3>
+                  <h3 className="text-base font-bold text-neutral-900">{item.model}</h3>
                   <p className="mt-sm text-sm leading-relaxed text-neutral-600">{item.detail}</p>
                 </MotionCard>
               </MotionStaggerItem>
