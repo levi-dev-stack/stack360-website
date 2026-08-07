@@ -51,7 +51,7 @@ export default function BlogList({ posts }: BlogListProps) {
         >
           <Link
             href={`/our-work/blog/${post.slug}`}
-            className="grid grid-cols-1 gap-md rounded-md p-lg transition-all focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 sm:grid-cols-12 sm:gap-lg group-hover:bg-gradient-to-r group-hover:from-neutral-100/80 group-hover:via-neutral-50 group-hover:to-transparent"
+            className="grid grid-cols-1 gap-md rounded-md p-lg transition-all focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 sm:grid-cols-12 sm:gap-lg group-hover:bg-linear-to-r group-hover:from-neutral-100/80 group-hover:via-neutral-50 group-hover:to-transparent"
           >
             <div className="space-y-sm sm:col-span-3">
               <p className="font-mono text-[10px] font-bold uppercase tracking-widest text-neutral-900 transition-colors group-hover:text-primary">
