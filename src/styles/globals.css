@@ -73,7 +73,7 @@
   --token-shadow-card: 0 4px 24px rgb(0 0 0 / 0.25);
 
   /* Layout */
-  --token-container: 80rem;
+  --token-container: 90rem;
   --site-gutter: var(--token-space-lg);
   --site-gutter-lg: var(--token-space-2xl);
 }
