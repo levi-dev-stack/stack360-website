@@ -62,7 +62,7 @@ export default function Footer() {
       <div className="site-container py-2xl">
         <div className="grid grid-cols-1 gap-2xl sm:grid-cols-2 lg:grid-cols-12 lg:gap-xl">
           {/* Left Column: Brand, Office Addresses & Local Phone Numbers */}
-          <div className="space-y-lg lg:col-span-5">
+          <div className="space-y-lg lg:col-span-4">
             <Stack360Logo animateWordmark={false} />
 
             <div className="space-y-xl">
@@ -136,7 +136,7 @@ export default function Footer() {
           </div>
 
           <FooterLinkColumn title="Services" links={SERVICE_LINKS} className="lg:col-span-3" />
-          <FooterLinkColumn title="Company" links={COMPANY_LINKS} className="lg:col-span-2" />
+          <FooterLinkColumn title="Company" links={COMPANY_LINKS} className="lg:col-span-3" />
 
           {/* Right Column: Social Links & Email */}
           <div className="space-y-xl lg:col-span-2">

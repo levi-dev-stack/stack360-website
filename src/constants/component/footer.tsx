@@ -34,11 +34,11 @@ export const CONTACT = {
 } as const;
 
 export const SERVICE_LINKS: FooterLink[] = [
-  { label: 'Web Development', href: '/what-we-build/web-apps' },
-  { label: 'Mobile App Development', href: '/what-we-build/mobile-apps' },
-  { label: 'DevOps', href: '/what-we-build/devops' },
   { label: 'AI Solutions', href: '/what-we-build/ai-solutions' },
+  { label: 'DevOps', href: '/what-we-build/devops' },
   { label: 'Cloud', href: '/what-we-build/cloud' },
+  { label: 'Mobile App Development', href: '/what-we-build/mobile-apps' },
+  { label: 'Web Development', href: '/what-we-build/web-apps' },
   { label: 'Custom Software', href: '/what-we-build/custom-software' },
 ];
 
