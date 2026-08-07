@@ -65,6 +65,32 @@ export const LANDING_SERVICES = [
           { name: 'Python', slug: 'python' },
         ],
       },
+      {
+        title: 'Generative AI & LLMs',
+        description:
+          'Build custom LLM agents, retrieval-augmented generation (RAG) systems, and domain-specific generative interfaces.',
+        icon: 'ai',
+        href: '/what-we-build/ai-solutions',
+        skills: [
+          { name: 'LangChain', slug: 'langchain' },
+          { name: 'LlamaIndex', slug: 'llamaindex' },
+          { name: 'Pinecone', slug: 'pinecone' },
+          { name: 'Python', slug: 'python' },
+        ],
+      },
+      {
+        title: 'Data Engineering',
+        description:
+          'Build automated data pipelines, warehouses, and ETL flows to power analytics and enterprise intelligence.',
+        icon: 'mlops',
+        href: '/what-we-build/ai-solutions',
+        skills: [
+          { name: 'Apache Spark', slug: 'apachespark' },
+          { name: 'Snowflake', slug: 'snowflake' },
+          { name: 'PostgreSQL', slug: 'postgresql' },
+          { name: 'Python', slug: 'python' },
+        ],
+      },
     ],
   },
   {
@@ -209,6 +235,27 @@ export const LANDING_SERVICES = [
           { name: 'Laravel', slug: 'laravel' },
           { name: 'Java', slug: 'openjdk' },
           { name: 'Ruby on Rails', slug: 'rubyonrails' },
+        ],
+      },
+      {
+        title: 'API & Microservices',
+        description:
+          'Design and deploy robust REST and GraphQL microservices that integrate enterprise platforms efficiently.',
+        icon: 'integration',
+        href: '/what-we-build/custom-software',
+        skills: [
+          { name: 'NestJS', slug: 'nestjs' },
+          { name: 'Django', slug: 'django' },
+          { name: 'FastAPI', slug: 'fastapi' },
+          { name: 'Node.js', slug: 'nodedotjs' },
+          { name: 'GraphQL', slug: 'graphql' },
+          { name: 'REST API', slug: 'openapiinitiative' },
+          { name: 'PostgreSQL', slug: 'postgresql' },
+          { name: 'Redis', slug: 'redis' },
+          { name: 'RabbitMQ', slug: 'rabbitmq' },
+          { name: 'Apache Kafka', slug: 'apachekafka' },
+          { name: 'gRPC', slug: 'grpc' },
+          { name: 'Docker', slug: 'docker' },
         ],
       },
     ],
