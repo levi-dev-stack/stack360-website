@@ -187,8 +187,8 @@ export default function Hero() {
                   />
                 </span>
               ))}
-              <span className="-ml-2 flex h-7 items-center rounded-full border-2 border-neutral-50 bg-neutral-900 px-xs text-[9px] font-bold text-neutral-50">
-                +500
+              <span className="-ml-2 z-1 flex h-7 w-7 items-center justify-center rounded-full border-2 border-neutral-50 bg-neutral-900 text-[8px] font-bold text-neutral-50">
+                500+
               </span>
             </div>
             <div className="flex items-center gap-xs" role="img" aria-label="5.0 out of 5 stars">
