@@ -3,7 +3,7 @@ import { getBlogSlugs } from '@/constants/component/blog-posts-data';
 import { SITE_URL } from '@/constants/site';
 
 /** Stable lastModified — avoids false “freshness” on every deploy. */
-const LAST_MODIFIED = new Date('2026-07-13');
+const LAST_MODIFIED = new Date('2026-08-10');
 
 const ROUTES = [
   '/',
