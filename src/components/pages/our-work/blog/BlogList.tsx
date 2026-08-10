@@ -50,20 +50,20 @@ export default function BlogList({ posts }: BlogListProps) {
           className="group"
         >
           <Link
-            href={`/our-work/blog/${post.slug}`}
-            className="grid grid-cols-1 gap-md rounded-sm py-xl text-neutral-700 outline-none transition-colors focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 sm:grid-cols-12 sm:gap-lg hover:text-neutral-900"
+            href={`/blog/${post.slug}`}
+            className="grid grid-cols-1 gap-md rounded-md p-lg transition-all focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 sm:grid-cols-12 sm:gap-lg group-hover:bg-linear-to-r group-hover:from-neutral-100/80 group-hover:via-neutral-50 group-hover:to-transparent"
           >
             <div className="space-y-sm sm:col-span-3">
-              <p className="font-mono text-[10px] font-bold uppercase tracking-widest text-primary">
+              <p className="font-mono text-[10px] font-bold uppercase tracking-widest text-neutral-900 transition-colors group-hover:text-primary">
                 {post.category}
               </p>
-              <p className="font-mono text-xs text-neutral-500">{formatDate(post.date)}</p>
+              <p className="font-mono text-xs text-neutral-900">{formatDate(post.date)}</p>
               <ul className="flex flex-wrap gap-sm pt-xs">
-                <li className="inline-flex items-center gap-1 font-mono text-[10px] font-bold uppercase tracking-wider text-neutral-500">
+                <li className="inline-flex items-center gap-1 font-mono text-[10px] font-bold uppercase tracking-wider text-neutral-900">
                   <Clock size={10} aria-hidden />
                   {post.readTime}
                 </li>
-                <li className="inline-flex items-center gap-1 font-mono text-[10px] font-bold uppercase tracking-wider text-neutral-500">
+                <li className="inline-flex items-center gap-1 font-mono text-[10px] font-bold uppercase tracking-wider text-neutral-900">
                   <ListOrdered size={10} aria-hidden />
                   {post.sections.length} sections
                 </li>
@@ -79,10 +79,10 @@ export default function BlogList({ posts }: BlogListProps) {
                   <ArrowRight size={18} aria-hidden />
                 </span>
               </div>
-              <p className="mt-sm max-w-3xl text-pretty text-sm leading-relaxed text-neutral-600">
+              <p className="mt-sm max-w-3xl text-pretty text-sm leading-relaxed text-neutral-900">
                 {post.excerpt}
               </p>
-              <span className="mt-md inline-flex items-center gap-xs text-xs font-bold text-primary">
+              <span className="mt-md inline-flex items-center gap-xs text-xs font-bold text-neutral-900 transition-colors group-hover:text-primary">
                 <BookOpen size={12} aria-hidden />
                 Read article
               </span>

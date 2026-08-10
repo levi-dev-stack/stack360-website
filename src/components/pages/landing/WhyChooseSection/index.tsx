@@ -9,10 +9,6 @@ const REASON_ICONS: Record<(typeof LANDING_WHY_CHOOSE.reasons)[number]['id'], Lu
   'built-to-scale': TrendingUp,
 };
 
-/**
- * Server Component — why-choose markup in first HTML paint.
- * Hover / focus affordances are pure CSS so the section works with JS off.
- */
 export default function WhyChooseSection() {
   const { eyebrow, title, highlight, description, reasons } = LANDING_WHY_CHOOSE;
 
@@ -46,22 +42,23 @@ export default function WhyChooseSection() {
           </p>
         </header>
 
-        <ul className="divide-y divide-neutral-200 border-y border-neutral-200">
+        <div className="grid grid-cols-1 gap-lg md:grid-cols-2 lg:grid-cols-4">
           {reasons.map((reason) => {
             const Icon = REASON_ICONS[reason.id];
 
             return (
-              <li key={reason.id}>
-                <div
-                  className={cn(
-                    'group flex gap-md py-lg transition-[background-color] duration-300 md:gap-lg md:py-xl',
-                    'hover:bg-white/80',
-                    'motion-reduce:transition-none'
-                  )}
-                >
+              <div
+                key={reason.id}
+                className={cn(
+                  'group flex flex-col justify-between rounded-xl border border-neutral-200 bg-neutral-50 p-lg transition-colors duration-300',
+                  'hover:border-primary/25 hover:bg-white',
+                  'motion-reduce:transition-none'
+                )}
+              >
+                <div>
                   <span
                     className={cn(
-                      'mt-0.5 flex h-10 w-10 shrink-0 items-center justify-center rounded-md border border-neutral-200 bg-white text-primary shadow-sm',
+                      'mb-md flex h-10 w-10 items-center justify-center rounded-md border border-neutral-200 bg-white text-primary shadow-xs',
                       'transition-[border-color,background-color,transform] duration-300',
                       'group-hover:scale-105 group-hover:border-primary/40 group-hover:bg-primary/5',
                       'motion-reduce:group-hover:scale-100'
@@ -70,19 +67,18 @@ export default function WhyChooseSection() {
                     <Icon className="h-5 w-5 stroke-[1.75]" aria-hidden />
                   </span>
 
-                  <div className="min-w-0 space-y-xs">
-                    <h3 className="text-base font-bold tracking-tight text-neutral-900 transition-colors duration-300 group-hover:text-primary">
-                      {reason.title}
-                    </h3>
-                    <p className="text-pretty text-sm leading-relaxed text-neutral-600">
-                      {reason.description}
-                    </p>
-                  </div>
+                  <h3 className="text-base font-bold tracking-tight text-neutral-900 transition-colors duration-300 group-hover:text-primary">
+                    {reason.title}
+                  </h3>
+
+                  <p className="mt-sm text-pretty text-sm leading-relaxed text-neutral-600">
+                    {reason.description}
+                  </p>
                 </div>
-              </li>
+              </div>
             );
           })}
-        </ul>
+        </div>
       </div>
     </section>
   );

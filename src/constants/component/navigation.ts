@@ -157,7 +157,7 @@ export const NAVIGATION_DATA: NavSection[] = [
           {
             title: 'Blog',
             desc: 'Engineering thought pieces covering fullstack architectures.',
-            href: '/our-work/blog',
+            href: '/blog',
           },
           // {
           //   title: 'News',

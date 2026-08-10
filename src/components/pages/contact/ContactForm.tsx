@@ -214,26 +214,33 @@ export default function ContactForm() {
         })}
 
         <div className="sm:col-span-2">
-          <label
-            htmlFor="message"
-            className="mb-xs block font-mono text-[10px] font-bold uppercase tracking-wider text-neutral-600"
-          >
-            {role ? 'Cover note' : 'Project brief'}
-            <span className="text-primary" aria-hidden>
-              {' '}
-              *
+          <div className="mb-xs flex items-center justify-between">
+            <label
+              htmlFor="message"
+              className="block font-mono text-[10px] font-bold uppercase tracking-wider text-neutral-600"
+            >
+              {role ? 'Cover note' : 'Project brief'}
+              <span className="text-primary" aria-hidden>
+                {' '}
+                *
+              </span>
+            </label>
+            <span className="font-mono text-[10px] text-neutral-500">
+              Min 10 – Max 500 characters
             </span>
-          </label>
+          </div>
+
           <textarea
             id="message"
             name="message"
             rows={5}
+            maxLength={500}
             value={formValues.message ?? ''}
             disabled={isLoading}
             onChange={handleChange}
             onBlur={handleBlur}
             aria-invalid={!!fieldErrors.message}
-            aria-describedby={fieldErrors.message ? 'message-error' : undefined}
+            aria-describedby={fieldErrors.message ? 'message-error' : 'message-counter'}
             placeholder={
               role
                 ? 'Experience, availability, and why this role…'
@@ -245,12 +252,38 @@ export default function ContactForm() {
                 : 'border-neutral-200 focus-visible:border-primary focus-visible:ring-primary/15'
             }`}
           />
-          {fieldErrors.message ? (
-            <p id="message-error" className="mt-xs text-xs font-medium text-danger" role="alert">
-              {fieldErrors.message}
-            </p>
-          ) : null}
+
+          <div className="mt-xs flex items-center justify-between gap-sm">
+            <div>
+              {fieldErrors.message ? (
+                <p id="message-error" className="text-xs font-medium text-danger" role="alert">
+                  {fieldErrors.message}
+                </p>
+              ) : null}
+            </div>
+
+            <span
+              id="message-counter"
+              className={`ml-auto font-mono text-xs ${
+                (formValues.message?.length ?? 0) > 480
+                  ? 'font-bold text-danger'
+                  : 'text-neutral-500'
+              }`}
+            >
+              {formValues.message?.length ?? 0}/500
+            </span>
+          </div>
         </div>
+      </div>
+
+      <div className="mt-lg flex items-center justify-end">
+        <button
+          type="submit"
+          disabled={isLoading}
+          className="min-h-11 shrink-0 rounded-md bg-primary px-xl py-md text-sm font-bold text-neutral-50 shadow-md transition-all hover:bg-primary-dark focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-60"
+        >
+          {isLoading ? 'Sending...' : role ? 'Submit application' : 'Send message'}
+        </button>
       </div>
 
       {status === 'error' && errorMessage ? (
@@ -295,16 +328,6 @@ export default function ContactForm() {
           </button>
         </output>
       ) : null}
-
-      <div className="mt-lg flex items-center justify-end">
-        <button
-          type="submit"
-          disabled={isLoading}
-          className="min-h-11 shrink-0 rounded-md bg-primary px-xl py-md text-sm font-bold text-neutral-50 shadow-md transition-all hover:bg-primary-dark focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-60"
-        >
-          {isLoading ? 'Sending...' : role ? 'Submit application' : 'Send message'}
-        </button>
-      </div>
     </form>
   );
 }

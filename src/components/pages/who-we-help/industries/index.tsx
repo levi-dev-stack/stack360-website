@@ -75,39 +75,6 @@ export default function IndustriesPage() {
         </div>
       </MotionSection>
 
-      <MotionSection className="border-t border-neutral-200 py-xl">
-        <div className="site-container">
-          <MotionStagger>
-            <MotionStaggerItem>
-              <p className="text-sm text-neutral-600">
-                Also exploring{' '}
-                <Link
-                  href="/who-we-help/startups"
-                  className="font-bold text-primary hover:text-primary-dark"
-                >
-                  startups
-                </Link>
-                ,{' '}
-                <Link
-                  href="/who-we-help/smes"
-                  className="font-bold text-primary hover:text-primary-dark"
-                >
-                  SMEs
-                </Link>
-                , or{' '}
-                <Link
-                  href="/who-we-help/enterprises"
-                  className="font-bold text-primary hover:text-primary-dark"
-                >
-                  enterprise programs
-                </Link>
-                ?
-              </p>
-            </MotionStaggerItem>
-          </MotionStagger>
-        </div>
-      </MotionSection>
-
       <PageClosingCta {...INDUSTRIES_CTA} />
     </div>
   );

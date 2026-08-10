@@ -30,7 +30,7 @@ export const OUR_WORK_CHAPTERS = [
   {
     title: 'Blog',
     blurb: 'Studio notes on growth, craft, and building for the long term.',
-    href: '/our-work/blog',
+    href: '/blog',
     cta: 'Read blog',
     tone: 'light' as const,
   },
@@ -63,4 +63,12 @@ export const OUR_WORK_CTA = {
     'Partner with a studio that ships production systems — and stays accountable after launch.',
   primary: { label: 'Talk to us', href: '/contact' },
   secondary: { label: 'Case studies', href: '/our-work/case-studies' },
+} as const;
+
+export const OUR_WORK_CTA_CS = {
+  title: 'Ready to build the next success story?',
+  description:
+    'Partner with a studio that ships production systems — and stays accountable after launch.',
+  primary: { label: 'Talk to us', href: '/contact' },
+  secondary: { label: 'View Feature Project', href: '/our-work/featured-projects' },
 } as const;

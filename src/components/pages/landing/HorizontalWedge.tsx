@@ -18,13 +18,13 @@ type HeadingProps = Omit<HorizontalWedgeTrackProps, 'cards'>;
 function WedgeHeading({ sectionTitle, sectionHighlight, sectionSubtitle }: HeadingProps) {
   return (
     <div className="w-full space-y-sm">
-      <h2 className="max-w-3xl text-balance text-3xl font-black leading-tight tracking-tight text-neutral-50 md:text-4xl lg:text-5xl">
+      <h2 className="max-w-3xl text-balance text-3xl font-black leading-tight tracking-tight text-neutral-900 md:text-4xl lg:text-5xl">
         {sectionTitle}{' '}
-        <span className="font-medium italic text-primary underline decoration-neutral-800 decoration-2 underline-offset-4">
+        <span className="font-medium italic text-primary underline decoration-primary/20 decoration-2 underline-offset-4">
           {sectionHighlight}
         </span>
       </h2>
-      <p className="max-w-4xl text-sm leading-relaxed text-neutral-400">{sectionSubtitle}</p>
+      <p className="max-w-4xl text-sm leading-relaxed text-neutral-600">{sectionSubtitle}</p>
     </div>
   );
 }
@@ -35,7 +35,7 @@ function WedgeHeading({ sectionTitle, sectionHighlight, sectionSubtitle }: Headi
  */
 function VerticalWedges({ cards, ...heading }: HorizontalWedgeTrackProps) {
   return (
-    <section className="site-section border-t border-neutral-800 bg-neutral-950 py-2xl">
+    <section className="site-section border-t border-neutral-200 bg-linear-to-b from-neutral-50 via-neutral-100/60 to-neutral-50 py-2xl">
       <div className="site-container space-y-xl">
         <WedgeHeading {...heading} />
         <div className="grid grid-cols-1 gap-lg sm:grid-cols-2 xl:grid-cols-3">
@@ -93,7 +93,10 @@ function PinnedWedges({ cards, ...heading }: HorizontalWedgeTrackProps) {
   }, []);
 
   return (
-    <div ref={targetRef} className="relative h-[180vh] border-t border-neutral-800 bg-neutral-950">
+    <div
+      ref={targetRef}
+      className="relative h-[180vh] border-t border-neutral-200 bg-linear-to-b from-neutral-50 via-primary/5 to-neutral-100/60"
+    >
       <div className="sticky top-0 flex h-screen min-h-160 w-full flex-col justify-center overflow-hidden">
         <div className="site-container flex h-full flex-col justify-center gap-[clamp(1.5rem,4vh,2.75rem)]">
           <div className="shrink-0">

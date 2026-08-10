@@ -418,7 +418,7 @@ export const seo = {
     title: 'Blog',
     description:
       'Engineering notes from Stack360 — language features, craft, and how we think about building systems that last.',
-    path: '/our-work/blog',
+    path: '/blog',
   }),
 
   ourWorkNews: pageMeta({

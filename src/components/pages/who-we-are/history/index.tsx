@@ -45,8 +45,9 @@ export default function HistoryPage() {
 
       <MotionSection className="py-2xl">
         <div className="site-container grid grid-cols-1 gap-2xl lg:grid-cols-12">
-          <MotionReveal className="lg:col-span-5">
+          <MotionReveal className="self-start lg:sticky lg:top-24 lg:col-span-5">
             <h2 className="text-2xl font-bold tracking-tight text-neutral-900">Our journey</h2>
+
             <p className="mt-md max-w-3xl text-sm leading-relaxed text-neutral-600">
               From a focused engineering studio to a global delivery partner — built on shipped
               products, retained clients, and teams that stay accountable after launch.
@@ -60,7 +61,9 @@ export default function HistoryPage() {
                   <span className="font-mono text-[10px] font-bold uppercase tracking-widest text-primary">
                     {milestone.year}
                   </span>
+
                   <h3 className="mt-sm text-lg font-bold text-neutral-900">{milestone.title}</h3>
+
                   <p className="mt-sm text-sm leading-relaxed text-neutral-600">
                     {milestone.description}
                   </p>

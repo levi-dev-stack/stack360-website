@@ -3,13 +3,11 @@ import { getBlogSlugs } from '@/constants/component/blog-posts-data';
 import { SITE_URL } from '@/constants/site';
 
 /** Stable lastModified — avoids false “freshness” on every deploy. */
-const LAST_MODIFIED = new Date('2026-07-13');
+const LAST_MODIFIED = new Date('2026-08-10');
 
 const ROUTES = [
   '/',
   '/contact',
-  '/terms',
-  '/privacy',
   '/what-we-build',
   '/what-we-build/erp',
   '/what-we-build/crm',
@@ -30,10 +28,8 @@ const ROUTES = [
   '/our-work/case-studies',
   '/our-work/featured-projects',
   '/our-work/client-success-stories',
-  '/our-work/blog',
-  ...getBlogSlugs().map((slug) => `/our-work/blog/${slug}`),
-  '/our-work/news',
-  '/our-work/learning-sessions',
+  '/blog',
+  ...getBlogSlugs().map((slug) => `/blog/${slug}`),
   '/our-work/faqs',
   '/who-we-are',
   '/who-we-are/history',

@@ -9,7 +9,7 @@ import {
   CASE_STUDIES_DETAILS,
   CASE_STUDIES_DETAILS_HERO,
 } from '@/constants/component/our-work-case-studies-data';
-import { OUR_WORK_CTA } from '@/constants/component/our-work-data';
+import { OUR_WORK_CTA_CS } from '@/constants/component/our-work-data';
 
 export default function CaseStudiesPage() {
   return (
@@ -63,7 +63,7 @@ export default function CaseStudiesPage() {
         </div>
       </MotionSection>
 
-      <PageClosingCta {...OUR_WORK_CTA} />
+      <PageClosingCta {...OUR_WORK_CTA_CS} />
     </div>
   );
 }

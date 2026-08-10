@@ -73,7 +73,7 @@
   --token-shadow-card: 0 4px 24px rgb(0 0 0 / 0.25);
 
   /* Layout */
-  --token-container: 80rem;
+  --token-container: 90rem;
   --site-gutter: var(--token-space-lg);
   --site-gutter-lg: var(--token-space-2xl);
 }
@@ -265,4 +265,17 @@ html:not(.js) .js-only {
 /* FAQ: expand all answers when JS is off so content stays readable without interaction */
 html:not(.js) .faq-panel {
   grid-template-rows: 1fr !important;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee 28s linear infinite;
 }

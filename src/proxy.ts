@@ -1,7 +1,36 @@
 import { type NextRequest, NextResponse } from 'next/server';
+import { RATE_LIMIT_MAX_REQUESTS, RATE_LIMIT_WINDOW } from './constants/rate-limit';
+import { getClientIp } from './lib/client-ip';
+import { rateLimit } from './lib/rate-limit';
 
 export async function proxy(req: NextRequest) {
-  console.log('URL:->', req.url);
+  const { pathname } = req.nextUrl;
+
+  const result = rateLimit(req, {
+    windowMs: RATE_LIMIT_WINDOW,
+    maxRequests: RATE_LIMIT_MAX_REQUESTS,
+  });
+
+  if (!result.success) {
+    const ip = getClientIp(req);
+    console.warn(
+      `Rate limit exceeded | IP: ${ip} | Route: ${pathname} | Retry After: ${result.retryAfter}s`
+    );
+    return NextResponse.json(
+      {
+        success: false,
+        error: 'Too many requests. Please try again later.',
+        pathname,
+      },
+      {
+        status: 429,
+        headers: {
+          'Retry-After': String(result.retryAfter),
+        },
+      }
+    );
+  }
+
   return NextResponse.next();
 }
 

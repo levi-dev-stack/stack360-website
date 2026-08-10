@@ -9,14 +9,10 @@ import {
 } from '@/components/shared/motion/MotionStagger';
 import PageClosingCta from '@/components/shared/PageClosingCta';
 import PageHero from '@/components/shared/PageHero';
-import {
-  HIRE_CONTACT,
-  HIRE_CTA,
-  HIRE_HERO,
-  HIRE_PROMISE,
-} from '@/constants/component/hire-talent-data';
+import { HIRE_CTA, HIRE_HERO, HIRE_PROMISE } from '@/constants/component/hire-talent-data';
+import ContactChannel from '../../contact/ContactChannel';
 
-const CONTACT_ICONS = {
+const _CONTACT_ICONS = {
   map: MapPin,
   phone: Phone,
   mail: Mail,
@@ -56,38 +52,7 @@ export default function HireTalentPage() {
               </MotionStaggerItem>
             </MotionStagger>
 
-            <MotionStagger className="space-y-md">
-              {HIRE_CONTACT.map((item) => {
-                const Icon = CONTACT_ICONS[item.icon];
-                const href = 'href' in item ? item.href : undefined;
-                const body = href ? (
-                  <a
-                    href={href}
-                    className="text-sm leading-relaxed text-neutral-900 hover:text-primary"
-                  >
-                    {item.value}
-                  </a>
-                ) : (
-                  <p className="text-sm leading-relaxed text-neutral-800">{item.value}</p>
-                );
-
-                return (
-                  <MotionStaggerItem key={item.label}>
-                    <div className="flex gap-md">
-                      <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-md border border-primary/20 bg-primary/5 text-primary">
-                        <Icon size={16} aria-hidden />
-                      </span>
-                      <div>
-                        <p className="font-mono text-[10px] font-bold uppercase tracking-widest text-neutral-500">
-                          {item.label}
-                        </p>
-                        {body}
-                      </div>
-                    </div>
-                  </MotionStaggerItem>
-                );
-              })}
-            </MotionStagger>
+            <ContactChannel />
           </div>
 
           <MotionReveal className="lg:col-span-7">

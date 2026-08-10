@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import MotionCard from '@/components/shared/motion/MotionCard';
 import MotionSection from '@/components/shared/motion/MotionSection';
 import { MotionStagger, MotionStaggerItem } from '@/components/shared/motion/MotionStagger';
@@ -124,30 +123,6 @@ export default function StartupsPage() {
               </MotionStaggerItem>
             ))}
           </MotionStagger>
-        </div>
-      </MotionSection>
-
-      <MotionSection className="border-t border-neutral-200 py-xl">
-        <div className="site-container">
-          <MotionStaggerItem>
-            <p className="text-sm text-neutral-600">
-              Scaling past seed? See how we support{' '}
-              <Link
-                href="/who-we-help/smes"
-                className="font-bold text-primary hover:text-primary-dark"
-              >
-                SMEs
-              </Link>{' '}
-              and{' '}
-              <Link
-                href="/who-we-help/enterprises"
-                className="font-bold text-primary hover:text-primary-dark"
-              >
-                enterprise teams
-              </Link>
-              .
-            </p>
-          </MotionStaggerItem>
         </div>
       </MotionSection>
 

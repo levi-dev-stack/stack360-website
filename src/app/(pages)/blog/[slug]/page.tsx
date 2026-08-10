@@ -24,7 +24,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   return pageMeta({
     title: post.title,
     description: post.excerpt,
-    path: `/our-work/blog/${post.slug}`,
+    path: `/blog/${post.slug}`,
     keywords: [post.category, 'Stack360 blog', ...post.sections.map((s) => s.heading)],
   });
 }
