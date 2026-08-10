@@ -1,11 +1,16 @@
+import dynamic from 'next/dynamic';
 import BlueprintGrid from '@/components/layout/BlueprintGrid';
 import Footer from '@/components/layout/Footer';
-import PremiumNavbar from '@/components/layout/Navbar';
+import NavbarSkeleton from '@/components/layout/Navbar/NavbarSkeleton';
 import NoJsSiteNav from '@/components/layout/Navbar/NoJsSiteNav';
 import JsonLd from '@/components/seo/JsonLd';
 import FloatingActions from '@/components/shared/FloatingActions';
 import { seo } from '@/constants/seo';
 import { organizationJsonLd, websiteJsonLd } from '@/lib/seo/json-ld';
+
+const PremiumNavbar = dynamic(() => import('@/components/layout/Navbar'), {
+  loading: () => <NavbarSkeleton />,
+});
 
 export const metadata = seo.pages;
 
