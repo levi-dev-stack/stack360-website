@@ -39,7 +39,7 @@ export default function BlogArticle({ post }: BlogArticleProps) {
           >
             <motion.div variants={motionVariants(reduced, fadeUp)}>
               <Link
-                href="/our-work/blog"
+                href="/blog"
                 className="inline-flex items-center gap-xs text-xs font-bold text-neutral-600 transition-colors hover:text-primary"
               >
                 <ArrowLeft size={14} aria-hidden />

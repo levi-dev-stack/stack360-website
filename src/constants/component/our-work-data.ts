@@ -30,7 +30,7 @@ export const OUR_WORK_CHAPTERS = [
   {
     title: 'Blog',
     blurb: 'Studio notes on growth, craft, and building for the long term.',
-    href: '/our-work/blog',
+    href: '/blog',
     cta: 'Read blog',
     tone: 'light' as const,
   },
