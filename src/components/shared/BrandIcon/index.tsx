@@ -82,11 +82,13 @@ export default function BrandIcon({
     );
   }
 
+  const alt = src.split('/')[3] || '';
+
   return (
     // biome-ignore lint/performance/noImgElement: external brand SVG with onError fallback
     <img
       src={src}
-      alt=""
+      alt={alt}
       width={size}
       height={size}
       className={cn('object-contain', className)}
