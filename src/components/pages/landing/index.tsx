@@ -1,7 +1,7 @@
 import dynamic from 'next/dynamic';
 import { Suspense } from 'react';
+import HeroSectionLoading from '@/components/layout/Loading/HeroSectionLoading';
 import ClientsMarquee from '@/components/pages/landing/ClientsMarquee';
-import HeroSection from '@/components/pages/landing/HeroSection';
 import HorizontalWedgeTrack from '@/components/pages/landing/HorizontalWedge';
 import ProcessSection from '@/components/pages/landing/ProcessSection';
 import SectionSkeleton from '@/components/pages/landing/SectionSkeleton';
@@ -11,6 +11,10 @@ import WhyChooseSection from '@/components/pages/landing/WhyChooseSection';
 import PageClosingCta from '@/components/shared/PageClosingCta';
 import { LANDING_CTA } from '@/constants/component/landing-data';
 import { MOCK_WEDGES } from '@/constants/component/wedge-data';
+
+const HeroSection = dynamic(() => import('@/components/pages/landing/HeroSection'), {
+  loading: () => <HeroSectionLoading />,
+});
 
 const CaseStudiesSection = dynamic(() => import('@/components/pages/landing/CaseStudies'), {
   loading: () => <SectionSkeleton variant="tall" className="bg-neutral-950" />,
@@ -26,7 +30,9 @@ const TestimonialsSection = dynamic(
 export default function LandingPage() {
   return (
     <div className="flex min-h-[calc(100vh-4.5rem)] w-full flex-col">
-      <HeroSection />
+      <Suspense fallback={<HeroSectionLoading />}>
+        <HeroSection />
+      </Suspense>
       <ClientsMarquee />
 
       <ServicesSection />

@@ -1,4 +1,5 @@
 import dynamic from 'next/dynamic';
+import { Suspense } from 'react';
 import BlueprintGrid from '@/components/layout/BlueprintGrid';
 import Footer from '@/components/layout/Footer';
 import NavbarSkeleton from '@/components/layout/Navbar/NavbarSkeleton';
@@ -27,7 +28,9 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       <BlueprintGrid />
 
       <div className="sticky top-0 z-50 w-full">
-        <PremiumNavbar />
+        <Suspense fallback={<NavbarSkeleton />}>
+          <PremiumNavbar />
+        </Suspense>
         {/* Only parsed/shown when JS is disabled — never visible with scripting on */}
         <noscript>
           <NoJsSiteNav />

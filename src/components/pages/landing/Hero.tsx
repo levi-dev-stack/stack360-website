@@ -5,6 +5,7 @@ import { AnimatePresence, motion, useReducedMotion, type Variants } from 'motion
 import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
+import HexagonPattern from '@/components/layout/Background/hexagon-pattern';
 import { EASE_OUT_EXPO, motionVariants } from '@/components/shared/motion/variants';
 import { useCanAnimate } from '@/hooks/use-can-animate';
 
@@ -31,6 +32,26 @@ const TEAM_AVATARS = [
     alt: 'Stack360 client partner',
   },
 ] as const;
+
+const ACTIVE_HEXAGONS: [number, number][] = [
+  [-3, -1],
+  [-2, 1],
+  [-1, -2],
+  [0, 2],
+  [1, -1],
+  [1, 3],
+  [2, -2],
+  [2, 1],
+  [3, 0],
+  [4, -2],
+  [4, 2],
+  [5, -1],
+  [-4, 2],
+  [-2, -3],
+  [0, -3],
+  [3, -3],
+  [5, 3],
+];
 
 const stagger: Variants = {
   hidden: {},
@@ -62,7 +83,6 @@ function RotatingPhrase({ reduced }: { reduced: boolean | null }) {
 
   const phrase = ROTATING_PHRASES[index];
 
-  // Static first phrase for SSR / no-JS — animated rotator is progressive enhancement.
   if (!canAnimate) {
     return <span className="mt-sm block text-primary">{ROTATING_PHRASES[0]}</span>;
   }
@@ -94,43 +114,55 @@ function RotatingPhrase({ reduced }: { reduced: boolean | null }) {
 
 export default function Hero() {
   const reduced = useReducedMotion();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    const t = setTimeout(() => setMounted(true), 300);
+    return () => clearTimeout(t);
+  }, []);
 
   return (
     <section className="site-section relative flex w-full flex-1 items-center justify-center overflow-hidden py-2xl">
-      <div
+      <div aria-hidden className="pointer-events-none absolute inset-0 bg-neutral-100/60" />
+
+      <motion.div
         aria-hidden
-        className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,var(--token-neutral-50)_0%,var(--token-neutral-50)_28%,color-mix(in_srgb,var(--token-neutral-100)_42%,var(--token-neutral-50))_62%,var(--token-neutral-100)_100%)]"
-      />
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_88%_52%_at_50%_0%,color-mix(in_srgb,var(--token-primary)_13%,transparent),transparent_72%)]"
-      />
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_38%_34%_at_88%_72%,color-mix(in_srgb,var(--token-secondary)_6%,transparent),transparent_68%)]"
-      />
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 opacity-[0.28]"
-        style={{
-          backgroundImage: `
-            linear-gradient(to right, color-mix(in srgb, var(--token-neutral-900) 4%, transparent) 1px, transparent 1px),
-            linear-gradient(to bottom, color-mix(in srgb, var(--token-neutral-900) 4%, transparent) 1px, transparent 1px)
-          `,
-          backgroundSize: '32px 32px',
-          maskImage: 'linear-gradient(180deg, black 0%, black 45%, transparent 88%)',
-        }}
-      />
-      <div
-        aria-hidden
-        className="pointer-events-none absolute top-[38%] left-1/2 h-112 w-[min(72rem,100vw)] -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary-tint/18 blur-[80px]"
-        style={{ maskImage: 'linear-gradient(180deg, black 0%, transparent 78%)' }}
+        animate={
+          reduced
+            ? {}
+            : {
+                scale: [1, 1.15, 1],
+                opacity: [0.4, 0.6, 0.4],
+              }
+        }
+        transition={{ duration: 12, repeat: Infinity, ease: 'easeInOut' }}
+        className="pointer-events-none absolute left-1/2 top-1/2 h-[45rem] w-[45rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-radial from-primary/20 via-primary/5 to-transparent blur-[120px]"
       />
 
+      {mounted && (
+        <motion.div
+          aria-hidden
+          animate={reduced ? {} : { x: [0, -10, 0, 10, 0], y: [0, 8, -8, 0] }}
+          transition={{ duration: 22, repeat: Infinity, ease: 'easeInOut' }}
+          className="pointer-events-none absolute inset-0"
+          style={{
+            maskImage: 'radial-gradient(ellipse at center, black 40%, transparent 85%)',
+            WebkitMaskImage: 'radial-gradient(ellipse at center, black 40%, transparent 85%)',
+            opacity: 0,
+            animation: 'hexFadeIn 1.5s ease-out 0s forwards',
+          }}
+        >
+          <HexagonPattern
+            radius={38}
+            gap={4}
+            direction="horizontal"
+            hexagons={ACTIVE_HEXAGONS}
+            className="stroke-neutral-900/10"
+          />
+        </motion.div>
+      )}
+
       <div className="site-container relative flex min-h-[calc(100vh-150px)] w-full items-center justify-center">
-        {/*
-          initial={false}: LCP / SEO content is fully visible in SSR HTML and with JS disabled.
-        */}
         <motion.div
           variants={motionVariants(reduced, stagger)}
           initial={false}
@@ -169,14 +201,14 @@ export default function Hero() {
 
           <motion.div
             variants={motionVariants(reduced, fadeUp)}
-            className="mt-xl flex flex-wrap items-center justify-center gap-md rounded-md border border-neutral-200 bg-neutral-50 px-md py-sm shadow-sm"
+            className="mt-xl flex flex-wrap items-center justify-center gap-md rounded-md border border-neutral-300/80 bg-neutral-50/90 px-md py-sm shadow-sm backdrop-blur-md"
           >
             <div className="flex items-center">
               {TEAM_AVATARS.map((avatar, index) => (
                 <span
                   key={avatar.src}
                   style={{ marginLeft: index === 0 ? 0 : -8 }}
-                  className="relative inline-block h-7 w-7 overflow-hidden rounded-full border-2 border-neutral-50"
+                  className="relative inline-block h-7 w-7 overflow-hidden rounded-full border-2 border-neutral-50 shadow-xs"
                 >
                   <Image
                     src={avatar.src}
@@ -187,7 +219,7 @@ export default function Hero() {
                   />
                 </span>
               ))}
-              <span className="-ml-2 z-1 flex h-7 w-7 items-center justify-center rounded-full border-2 border-neutral-50 bg-neutral-900 text-[8px] font-bold text-neutral-50">
+              <span className="-ml-2 z-1 flex h-7 w-7 items-center justify-center rounded-full border-2 border-neutral-50 bg-neutral-900 text-[8px] font-bold text-neutral-50 shadow-xs">
                 500+
               </span>
             </div>
@@ -226,7 +258,7 @@ export default function Hero() {
             >
               <Link
                 href="/our-work/featured-projects"
-                className="inline-flex min-h-11 w-full items-center justify-center rounded-sm border border-neutral-300 bg-neutral-50 px-xl py-md text-sm font-bold text-neutral-800 transition-colors hover:border-neutral-500 hover:text-neutral-900 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary sm:w-auto"
+                className="inline-flex min-h-11 w-full items-center justify-center rounded-sm border border-neutral-300 bg-neutral-50/90 px-xl py-md text-sm font-bold text-neutral-800 transition-colors hover:border-neutral-500 hover:text-neutral-900 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary backdrop-blur-xs sm:w-auto"
               >
                 View Our Work
               </Link>
