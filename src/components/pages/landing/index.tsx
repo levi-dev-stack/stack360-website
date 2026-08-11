@@ -13,7 +13,7 @@ import { LANDING_CTA } from '@/constants/component/landing-data';
 import { MOCK_WEDGES } from '@/constants/component/wedge-data';
 
 const HeroSection = dynamic(() => import('@/components/pages/landing/HeroSection'), {
-  loading: () => <HeroSectionLoading />,
+  loading: () => <HeroSectionLoading hideNavbar={true} />,
 });
 
 const CaseStudiesSection = dynamic(() => import('@/components/pages/landing/CaseStudies'), {
@@ -30,7 +30,7 @@ const TestimonialsSection = dynamic(
 export default function LandingPage() {
   return (
     <div className="flex min-h-[calc(100vh-4.5rem)] w-full flex-col">
-      <Suspense fallback={<HeroSectionLoading />}>
+      <Suspense fallback={<HeroSectionLoading hideNavbar={true} />}>
         <HeroSection />
       </Suspense>
       <ClientsMarquee />
