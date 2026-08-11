@@ -1,4 +1,3 @@
-// footer.tsx
 import { Mail, MapPin, Phone } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -17,7 +16,7 @@ import {
   SITE_PHONE_E164,
   SITE_PHONE_E164_2,
   SITE_PHONE_USA,
-} from '@/constants/site'; // Adjust import path if needed
+} from '@/constants/site';
 import { cn } from '@/styles/tailwind.utils';
 import Stack360Logo from './Navbar/Stack360Logo';
 
@@ -31,9 +30,9 @@ function FooterLinkColumn({
   className?: string;
 }) {
   return (
-    <div className={cn('space-y-lg', className)}>
+    <div className={cn('md:space-y-lg space-y-xs', className)}>
       <h2 className="text-base font-bold tracking-tight text-neutral-900">{title}</h2>
-      <ul className="space-y-md">
+      <ul className="md:space-y-md space-y-sm">
         {links.map((link) => (
           <li key={link.href}>
             <Link
@@ -52,7 +51,6 @@ function FooterLinkColumn({
 export default function Footer() {
   const currentYear = new Date().getFullYear();
 
-  // Clean numbers for tel/wa URLs
   const waUk1 = SITE_PHONE_E164.replace(/[^0-9]/g, '');
   const waUk2 = SITE_PHONE_E164_2.replace(/[^0-9]/g, '');
   const waUsa = SITE_PHONE_USA.replace(/[^0-9]/g, '');
@@ -61,7 +59,6 @@ export default function Footer() {
     <footer className="site-section border-t-2 border-primary bg-neutral-50">
       <div className="site-container py-2xl">
         <div className="grid grid-cols-1 gap-2xl sm:grid-cols-2 lg:grid-cols-12 lg:gap-xl">
-          {/* Left Column: Brand, Office Addresses & Local Phone Numbers */}
           <div className="space-y-lg lg:col-span-4">
             <Stack360Logo animateWordmark={false} />
 
@@ -80,7 +77,7 @@ export default function Footer() {
                         alt={`${office.label} flag`}
                         width={20}
                         height={14}
-                        className="h-3.5 w-5 rounded-[2px] object-cover shadow-xs"
+                        className="h-3.5 w-5 rounded-xs object-cover shadow-xs"
                       />
                       <p className="font-bold text-neutral-900 text-sm ml-1">{office.label}:</p>
                     </div>
@@ -94,7 +91,6 @@ export default function Footer() {
                       </div>
                     </div>
 
-                    {/* Country-Specific Direct Numbers */}
                     <div className="pl-6 pt-xs space-y-1">
                       {isUSA ? (
                         <a
@@ -138,9 +134,8 @@ export default function Footer() {
           <FooterLinkColumn title="Services" links={SERVICE_LINKS} className="lg:col-span-3" />
           <FooterLinkColumn title="Company" links={COMPANY_LINKS} className="lg:col-span-3" />
 
-          {/* Right Column: Social Links & Email */}
           <div className="space-y-xl lg:col-span-2">
-            <div className="space-y-lg">
+            <div className="md:space-y-lg space-y-sm">
               <h2 className="text-base font-bold tracking-tight text-neutral-900">Follow us</h2>
               <div className="flex items-center gap-md">
                 {SOCIAL_LINKS.map((social) => (
@@ -158,7 +153,7 @@ export default function Footer() {
               </div>
             </div>
 
-            <div className="space-y-md border-t border-neutral-200 pt-lg">
+            <div className="md:space-y-md space-y-xs border-t border-neutral-200 pt-lg">
               <h2 className="text-base font-bold tracking-tight text-neutral-900">Email</h2>
               <a
                 href={CONTACT.email.href}
