@@ -136,7 +136,7 @@ export default function Hero() {
               }
         }
         transition={{ duration: 12, repeat: Infinity, ease: 'easeInOut' }}
-        className="pointer-events-none absolute left-1/2 top-1/2 h-[45rem] w-[45rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-radial from-primary/20 via-primary/5 to-transparent blur-[120px]"
+        className="pointer-events-none absolute left-1/2 top-1/2 h-180 w-180 -translate-x-1/2 -translate-y-1/2 rounded-full bg-radial from-primary/20 via-primary/5 to-transparent blur-[120px]"
       />
 
       {mounted && (
