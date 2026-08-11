@@ -4,14 +4,16 @@ import NavbarSkeleton from '../Navbar/NavbarSkeleton';
 
 export default function HeroSectionLoading({ hideNavbar = false }: { hideNavbar?: boolean }) {
   return (
-    <div className="relative min-h-screen bg-neutral-50">
-      <BlueprintGrid />
+    <div
+      className={`relative bg-neutral-50 ${hideNavbar ? 'min-h-[calc(100vh-4.5rem)]' : 'min-h-screen'}`}
+    >
+      {hideNavbar ? null : <BlueprintGrid />}
 
       <Activity mode={hideNavbar ? 'hidden' : 'visible'}>
         <NavbarSkeleton />
       </Activity>
 
-      <main className="relative z-10 flex min-h-[calc(100vh-4.5rem)] w-full flex-col items-center justify-center overflow-hidden py-2xl">
+      <div className="relative z-10 flex min-h-[calc(100vh-4.5rem)] w-full flex-col items-center justify-center overflow-hidden py-2xl">
         <div
           aria-hidden
           className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_60%_50%_at_50%_40%,color-mix(in_srgb,var(--token-primary)_12%,transparent),transparent_70%)]"
@@ -39,7 +41,7 @@ export default function HeroSectionLoading({ hideNavbar = false }: { hideNavbar?
             <div className="h-12 w-36 animate-pulse rounded-md border border-neutral-200 bg-white" />
           </div>
         </div>
-      </main>
+      </div>
     </div>
   );
 }
