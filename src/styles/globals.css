@@ -279,3 +279,8 @@ html:not(.js) .faq-panel {
 .animate-marquee {
   animation: marquee 28s linear infinite;
 }
+
+@keyframes hexFadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
