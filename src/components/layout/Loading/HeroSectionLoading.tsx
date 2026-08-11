@@ -1,27 +1,30 @@
+import { Activity } from 'react';
 import BlueprintGrid from '../BlueprintGrid';
 
-export default function HeroSectionLoading() {
+export default function HeroSectionLoading({ hideNavbar = false }: { hideNavbar?: boolean }) {
   return (
     <div className="relative min-h-screen bg-neutral-50">
       <BlueprintGrid />
 
-      <div className="sticky top-0 z-50 w-full border-b border-neutral-200 bg-neutral-50/90 backdrop-blur-md">
-        <div className="site-container flex h-18 items-center justify-between gap-xl lg:gap-2xl">
-          <div className="h-8 w-36 animate-pulse rounded-md bg-neutral-200/80" />
+      <Activity mode={hideNavbar ? 'hidden' : 'visible'}>
+        <div className="sticky top-0 z-50 w-full border-b border-neutral-200 bg-neutral-50/90 backdrop-blur-md">
+          <div className="site-container flex h-18 items-center justify-between gap-xl lg:gap-2xl">
+            <div className="h-8 w-36 animate-pulse rounded-md bg-neutral-200/80" />
 
-          <div className="hidden h-full flex-1 items-center justify-center gap-md md:flex">
-            <div className="h-4 w-16 animate-pulse rounded-md bg-neutral-200/70" />
-            <div className="h-4 w-20 animate-pulse rounded-md bg-neutral-200/70" />
-            <div className="h-4 w-24 animate-pulse rounded-md bg-neutral-200/70" />
-            <div className="h-4 w-16 animate-pulse rounded-md bg-neutral-200/70" />
-          </div>
+            <div className="hidden h-full flex-1 items-center justify-center gap-md md:flex">
+              <div className="h-4 w-16 animate-pulse rounded-md bg-neutral-200/70" />
+              <div className="h-4 w-20 animate-pulse rounded-md bg-neutral-200/70" />
+              <div className="h-4 w-24 animate-pulse rounded-md bg-neutral-200/70" />
+              <div className="h-4 w-16 animate-pulse rounded-md bg-neutral-200/70" />
+            </div>
 
-          <div className="flex shrink-0 items-center">
-            <div className="hidden h-11 w-28 animate-pulse rounded-sm bg-neutral-200/80 sm:block" />
-            <div className="h-11 w-11 animate-pulse rounded-sm bg-neutral-200/80 md:hidden" />
+            <div className="flex shrink-0 items-center">
+              <div className="hidden h-11 w-28 animate-pulse rounded-sm bg-neutral-200/80 sm:block" />
+              <div className="h-11 w-11 animate-pulse rounded-sm bg-neutral-200/80 md:hidden" />
+            </div>
           </div>
         </div>
-      </div>
+      </Activity>
 
       <main className="relative z-10 flex min-h-[calc(100vh-4.5rem)] w-full flex-col items-center justify-center overflow-hidden py-2xl">
         <div
