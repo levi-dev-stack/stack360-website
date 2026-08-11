@@ -246,6 +246,10 @@ a.bg-primary *::selection,
     display: none !important;
   }
 
+  .initial-load-gate {
+    display: none !important;
+  }
+
   main [style*='opacity'],
   header [style*='opacity'],
   footer [style*='opacity'],
