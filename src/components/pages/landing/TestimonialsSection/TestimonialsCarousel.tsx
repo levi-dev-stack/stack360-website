@@ -1,6 +1,6 @@
 'use client';
 
-import { ChevronLeft, ChevronRight, Pause, Play, Quote, UserRound } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Pause, Play, Quote, Star, UserRound } from 'lucide-react';
 import { AnimatePresence, motion, type PanInfo, useReducedMotion } from 'motion/react';
 import Image from 'next/image';
 import { useCallback, useEffect, useState } from 'react';
@@ -155,13 +155,11 @@ export default function TestimonialsCarousel() {
           </div>
         </div>
 
-        {/* Outer fixed height frame */}
         <div
           className="relative h-130 w-full sm:h-120 md:h-90"
           aria-live="polite"
           aria-atomic="true"
         >
-          {/* Mobile Overlay Directional Controls */}
           <button
             type="button"
             onClick={prev}
@@ -190,49 +188,56 @@ export default function TestimonialsCarousel() {
               animate={{ opacity: 1, x: 0 }}
               exit={reduced ? undefined : { opacity: 0, x: -24 }}
               transition={{ duration: 0.45, ease: EASE_OUT_EXPO }}
-              className="absolute inset-0 grid h-full w-full touch-pan-y select-none grid-cols-1 overflow-hidden rounded-2xl border border-neutral-200 bg-linear-to-br from-neutral-100 to-neutral-200 md:grid-cols-[minmax(12rem,28%)_1fr]"
+              className="absolute inset-0 flex h-full w-full touch-pan-y select-none flex-col justify-between overflow-hidden rounded-2xl border border-neutral-200/80 bg-white p-xl shadow-xl shadow-neutral-900/5 md:p-2xl"
             >
-              <TestimonialAvatar
-                key={current.avatar ?? current.name}
-                src={current.avatar}
-                alt={`${current.name}, ${current.role} at ${current.company}`}
-              />
-
-              <div className="flex h-full flex-col justify-between gap-md overflow-y-auto p-lg md:p-xl">
+              <div className="flex items-start justify-between gap-md">
                 <div>
-                  <Quote
-                    size={28}
-                    className="mb-md text-primary"
-                    fill="currentColor"
-                    strokeWidth={0}
-                    aria-hidden
+                  <h3 className="text-xl font-extrabold text-neutral-900 md:text-2xl">
+                    {current.name}
+                  </h3>
+                  {[current.role, current.company].some(Boolean) && (
+                    <p className="mt-xs text-sm font-medium text-neutral-500 md:text-base">
+                      {[current.role, current.company].filter(Boolean).join(' ')}
+                    </p>
+                  )}
+                </div>
+
+                <div
+                  className="flex items-center gap-1 text-amber-400"
+                  role="img"
+                  aria-label={`${current.rating} out of 5 stars`}
+                >
+                  {(['a', 'b', 'c', 'd', 'e'] as const).slice(0, current.rating || 5).map((id) => (
+                    <Star
+                      key={id}
+                      size={20}
+                      className="fill-amber-400 text-amber-400"
+                      aria-hidden
+                    />
+                  ))}
+                </div>
+              </div>
+
+              <blockquote className="my-lg text-base font-normal leading-relaxed text-neutral-800 md:text-lg">
+                {current.quote}
+              </blockquote>
+
+              <div className="flex items-end justify-between pt-md">
+                <div className="relative size-14 overflow-hidden rounded-full border border-neutral-100 shadow-sm md:size-16">
+                  <TestimonialAvatar
+                    key={current.avatar ?? current.name}
+                    src={current.avatar}
+                    alt={`${current.name}`}
                   />
-                  <blockquote className="max-w-3xl text-pretty text-base font-medium leading-relaxed text-neutral-900 sm:text-lg md:text-xl lg:text-2xl">
-                    &ldquo;{current.quote}&rdquo;
-                  </blockquote>
                 </div>
 
-                <div className="flex flex-col gap-md sm:flex-row sm:items-end sm:justify-between">
-                  <div>
-                    <p className="text-sm font-bold text-neutral-900">
-                      {[current.name, current.role].filter(Boolean).join(' · ')}
-                    </p>
-                    {[current.company, current.industry].some(Boolean) && (
-                      <p className="mt-xs text-sm text-neutral-600">
-                        {[current.company, current.industry].filter(Boolean).join(' · ')}
-                      </p>
-                    )}
-                  </div>
-
-                  <div className="text-left sm:text-right">
-                    <p className="text-sm tracking-tight text-primary" aria-hidden>
-                      {'★'.repeat(current.rating)}
-                    </p>
-                    <p className="font-mono text-xs font-bold text-neutral-600">
-                      {current.rating}.0 / 5.0
-                    </p>
-                  </div>
-                </div>
+                <Quote
+                  size={64}
+                  className="rotate-180 text-neutral-200/80"
+                  fill="currentColor"
+                  strokeWidth={0}
+                  aria-hidden
+                />
               </div>
             </motion.article>
           </AnimatePresence>
@@ -249,9 +254,7 @@ export default function TestimonialsCarousel() {
               className="flex h-11 w-11 items-center justify-center"
             >
               <span
-                className={`block h-2 rounded-full transition-all ${
-                  index === active ? 'w-8 bg-primary' : 'w-2 bg-neutral-700 hover:bg-neutral-500'
-                }`}
+                className={`block h-2 rounded-full transition-all ${index === active ? 'w-8 bg-primary' : 'w-2 bg-neutral-700 hover:bg-neutral-500'}`}
               />
             </button>
           ))}
