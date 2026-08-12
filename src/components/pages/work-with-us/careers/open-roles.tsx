@@ -2,7 +2,7 @@
 
 import { ArrowUpRight, Briefcase, ChevronRight } from 'lucide-react';
 import Link from 'next/link';
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { DropdownOptions, SearchInputField } from '@/components/core';
 import { MotionSection, MotionStagger, MotionStaggerItem } from '@/components/shared/motion';
 import MotionCard from '@/components/shared/motion/MotionCard';
@@ -30,6 +30,8 @@ function allowedOrEmpty<T extends string>(value: string, allowed: readonly T[]):
 
 const OpenRoles = () => {
   const { getParam, setParams } = useQueryParams({ method: 'replace' });
+  const hasSanitizedUrl = useRef(false);
+  const skipInitialSearchSync = useRef(true);
 
   const searchFromUrl = getParam(QUERY_KEYS.search);
   const rawJobType = getParam(QUERY_KEYS.jobType);
@@ -49,14 +51,10 @@ const OpenRoles = () => {
   }, [searchFromUrl]);
 
   useEffect(() => {
-    const id = window.setTimeout(() => {
-      setParams({ [QUERY_KEYS.search]: searchTerm });
-    }, 300);
+    if (hasSanitizedUrl.current) {
+      return;
+    }
 
-    return () => window.clearTimeout(id);
-  }, [searchTerm, setParams]);
-
-  useEffect(() => {
     const invalid: Record<string, string> = {};
 
     if (rawJobType && !selectedJobType) {
@@ -72,9 +70,13 @@ const OpenRoles = () => {
       invalid[QUERY_KEYS.designation] = '';
     }
 
-    if (Object.keys(invalid).length > 0) {
-      setParams(invalid);
+    if (Object.keys(invalid).length === 0) {
+      hasSanitizedUrl.current = true;
+      return;
     }
+
+    hasSanitizedUrl.current = true;
+    setParams(invalid);
   }, [
     rawDepartment,
     rawDesignation,
@@ -86,6 +88,19 @@ const OpenRoles = () => {
     selectedMode,
     setParams,
   ]);
+
+  useEffect(() => {
+    if (skipInitialSearchSync.current) {
+      skipInitialSearchSync.current = false;
+      return;
+    }
+
+    const id = window.setTimeout(() => {
+      setParams({ [QUERY_KEYS.search]: searchTerm });
+    }, 300);
+
+    return () => window.clearTimeout(id);
+  }, [searchTerm, setParams]);
 
   const filteredRoles = useMemo(() => {
     if (!CAREERS_OPEN_ROLES) {
@@ -173,14 +188,14 @@ const OpenRoles = () => {
             {filteredRoles.map((role) => (
               <MotionStaggerItem key={role.id}>
                 <Link href={`/careers/${role.id}`} className="block">
-                  <MotionCard className="group rounded-xl border border-neutral-200/80 bg-neutral-50 p-lg transition-all duration-200 hover:-translate-y-0.5 hover:border-primary/40 hover:bg-white hover:shadow-md hover:shadow-primary/5">
+                  <MotionCard className="group rounded-xl border border-neutral-200/80 bg-neutral-50 p-lg transition-all duration-200 hover:border-primary/40 hover:bg-white">
                     <div className="flex flex-col gap-md md:flex-row md:items-center md:justify-between">
                       <div className="space-y-1">
                         <div className="flex items-center gap-xs">
                           <h3 className="text-lg font-bold text-neutral-900 transition-colors group-hover:text-primary">
                             {role.title}
                           </h3>
-                          <ArrowUpRight className="size-4 text-primary opacity-0 transition-all duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:opacity-100" />
+                          <ArrowUpRight className="size-4 text-primary opacity-0 transition-all duration-200" />
                         </div>
                         <p className="text-sm font-medium text-neutral-600">
                           {[role.department, role.location].filter(Boolean).join(' · ')}

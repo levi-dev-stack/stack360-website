@@ -1,4 +1,3 @@
-import { Activity } from 'react';
 import BlueprintGrid from '../BlueprintGrid';
 import NavbarSkeleton from '../Navbar/NavbarSkeleton';
 
@@ -9,9 +8,7 @@ export default function HeroSectionLoading({ hideNavbar = false }: { hideNavbar?
     >
       {hideNavbar ? null : <BlueprintGrid />}
 
-      <Activity mode={hideNavbar ? 'hidden' : 'visible'}>
-        <NavbarSkeleton />
-      </Activity>
+      {hideNavbar ? null : <NavbarSkeleton />}
 
       <div className="relative z-10 flex min-h-[calc(100vh-4.5rem)] w-full flex-col items-center justify-center overflow-hidden py-2xl">
         <div

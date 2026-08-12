@@ -1,5 +1,3 @@
-import { Activity } from 'react';
-
 export default function GeneralLoadingScreen({ hideBody = false }: { hideBody?: boolean }) {
   return (
     <div className="relative w-full overflow-hidden py-2xl">
@@ -22,7 +20,7 @@ export default function GeneralLoadingScreen({ hideBody = false }: { hideBody?: 
           </div>
         </div>
 
-        <Activity mode={hideBody ? 'hidden' : 'visible'}>
+        {hideBody ? null : (
           <div className="grid grid-cols-1 gap-lg sm:grid-cols-2 lg:grid-cols-3">
             {Array.from({ length: 6 }).map((_, idx) => (
               <div
@@ -53,7 +51,7 @@ export default function GeneralLoadingScreen({ hideBody = false }: { hideBody?: 
               </div>
             ))}
           </div>
-        </Activity>
+        )}
       </div>
     </div>
   );
