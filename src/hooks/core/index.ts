@@ -5,6 +5,7 @@ export * from './use-dom-event';
 export * from './use-localstorage';
 export * from './use-modal-toggle';
 export * from './use-online-status';
+export * from './use-query-params';
 export * from './use-responsive';
 export * from './use-screen-size';
 export * from './use-sequence-delay';
