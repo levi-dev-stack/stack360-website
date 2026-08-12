@@ -121,8 +121,8 @@ const DotField = memo(
 
       function doResize() {
         const rect = canvas?.parentElement?.getBoundingClientRect();
-        const w = rect.width;
-        const h = rect.height;
+        const w = rect?.width ?? 0;
+        const h = rect?.height ?? 0;
 
         canvas!.width = w * dpr;
         canvas!.height = h * dpr;
@@ -133,8 +133,8 @@ const DotField = memo(
         sizeRef.current = {
           w,
           h,
-          offsetX: rect.left + window.scrollX,
-          offsetY: rect.top + window.scrollY,
+          offsetX: rect?.left + window.scrollX,
+          offsetY: rect?.top + window.scrollY,
         };
 
         buildDots(w, h);
@@ -210,9 +210,9 @@ const DotField = memo(
         ctx?.clearRect(0, 0, w, h);
 
         const grad = ctx?.createLinearGradient(0, 0, w, h);
-        grad.addColorStop(0, p.gradientFrom as string);
-        grad.addColorStop(1, p.gradientTo as string);
-        ctx!.fillStyle = grad;
+        grad?.addColorStop(0, p.gradientFrom as string);
+        grad?.addColorStop(1, p.gradientTo as string);
+        ctx!.fillStyle = grad!;
 
         const cr = p.cursorRadius as number;
         const crSq = cr * cr;
