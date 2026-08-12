@@ -44,11 +44,21 @@ const OpenRoles = () => {
   const selectedDept = allowedOrEmpty(rawDepartment, Object.values(Department));
   const selectedDesignation = allowedOrEmpty(rawDesignation, Object.values(Designation));
 
-  const [searchTerm, setSearchTerm] = useState(searchFromUrl);
+  const [searchInput, setSearchInput] = useState(searchFromUrl);
+  const [debouncedSearch, setDebouncedSearch] = useState(searchFromUrl);
 
   useEffect(() => {
-    setSearchTerm(searchFromUrl);
+    setSearchInput(searchFromUrl);
+    setDebouncedSearch(searchFromUrl);
   }, [searchFromUrl]);
+
+  useEffect(() => {
+    const id = window.setTimeout(() => {
+      setDebouncedSearch(searchInput);
+    }, 300);
+
+    return () => window.clearTimeout(id);
+  }, [searchInput]);
 
   useEffect(() => {
     if (hasSanitizedUrl.current) {
@@ -95,12 +105,8 @@ const OpenRoles = () => {
       return;
     }
 
-    const id = window.setTimeout(() => {
-      setParams({ [QUERY_KEYS.search]: searchTerm });
-    }, 300);
-
-    return () => window.clearTimeout(id);
-  }, [searchTerm, setParams]);
+    setParams({ [QUERY_KEYS.search]: debouncedSearch });
+  }, [debouncedSearch, setParams]);
 
   const filteredRoles = useMemo(() => {
     if (!CAREERS_OPEN_ROLES) {
@@ -108,7 +114,7 @@ const OpenRoles = () => {
     }
 
     return (CAREERS_OPEN_ROLES as Job[]).filter((role) => {
-      const query = searchTerm.toLowerCase();
+      const query = debouncedSearch.toLowerCase();
       const matchesSearch =
         !query ||
         role.title.toLowerCase().includes(query) ||
@@ -122,7 +128,7 @@ const OpenRoles = () => {
 
       return matchesSearch && matchesType && matchesMode && matchesDept && matchesDesig;
     });
-  }, [searchTerm, selectedJobType, selectedMode, selectedDept, selectedDesignation]);
+  }, [debouncedSearch, selectedJobType, selectedMode, selectedDept, selectedDesignation]);
 
   const hasRoles = filteredRoles.length > 0;
 
@@ -149,8 +155,8 @@ const OpenRoles = () => {
 
         <MotionStaggerItem className="mb-md">
           <SearchInputField
-            value={searchTerm}
-            onChange={setSearchTerm}
+            value={searchInput}
+            onChange={setSearchInput}
             placeholder="Search by title, skill, or keyword..."
             label="Search open roles"
           />
