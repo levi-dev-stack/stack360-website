@@ -32,7 +32,7 @@ export const formatEnumLabel = (value: string) => {
 
 export const SEARCH_INPUT_MAX_LENGTH = 30;
 
-const SEARCH_INPUT_ALLOWED_PATTERN = /[^a-zA-Z0-9\s]/g;
+const SEARCH_INPUT_ALLOWED_PATTERN = /[^a-zA-Z\s]/g;
 
 export const stripSearchInputSpecialChars = (value: string) =>
   value.replace(SEARCH_INPUT_ALLOWED_PATTERN, '');
