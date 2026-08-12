@@ -5,7 +5,7 @@ import { AnimatePresence, motion, useReducedMotion, type Variants } from 'motion
 import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
-import HexagonPattern from '@/components/layout/Background/hexagon-pattern';
+import DotField from '@/components/layout/Background/dot-field';
 import { EASE_OUT_EXPO, motionVariants } from '@/components/shared/motion/variants';
 import { useCanAnimate } from '@/hooks/use-can-animate';
 
@@ -32,26 +32,6 @@ const TEAM_AVATARS = [
     alt: 'Stack360 client partner',
   },
 ] as const;
-
-const ACTIVE_HEXAGONS: [number, number][] = [
-  [-3, -1],
-  [-2, 1],
-  [-1, -2],
-  [0, 2],
-  [1, -1],
-  [1, 3],
-  [2, -2],
-  [2, 1],
-  [3, 0],
-  [4, -2],
-  [4, 2],
-  [5, -1],
-  [-4, 2],
-  [-2, -3],
-  [0, -3],
-  [3, -3],
-  [5, 3],
-];
 
 const stagger: Variants = {
   hidden: {},
@@ -139,28 +119,30 @@ export default function Hero() {
         className="pointer-events-none absolute left-1/2 top-1/2 h-180 w-180 -translate-x-1/2 -translate-y-1/2 rounded-full bg-radial from-primary/20 via-primary/5 to-transparent blur-[120px]"
       />
 
-      {mounted && (
-        <motion.div
+      {mounted && !reduced ? (
+        <div
           aria-hidden
-          animate={reduced ? {} : { x: [0, -10, 0, 10, 0], y: [0, 8, -8, 0] }}
-          transition={{ duration: 22, repeat: Infinity, ease: 'easeInOut' }}
           className="pointer-events-none absolute inset-0"
           style={{
-            maskImage: 'radial-gradient(ellipse at center, black 40%, transparent 85%)',
-            WebkitMaskImage: 'radial-gradient(ellipse at center, black 40%, transparent 85%)',
+            maskImage: 'radial-gradient(ellipse at center, black 35%, transparent 80%)',
+            WebkitMaskImage: 'radial-gradient(ellipse at center, black 35%, transparent 80%)',
             opacity: 0,
             animation: 'hexFadeIn 1.5s ease-out 0s forwards',
           }}
         >
-          <HexagonPattern
-            radius={38}
-            gap={4}
-            direction="horizontal"
-            hexagons={ACTIVE_HEXAGONS}
-            className="stroke-neutral-900/10"
+          <DotField
+            className="h-full w-full"
+            dotRadius={12}
+            dotSpacing={20}
+            cursorRadius={420}
+            bulgeStrength={48}
+            glowRadius={140}
+            gradientFrom="color-mix(in srgb, var(--token-primary) 26%, transparent)"
+            gradientTo="color-mix(in srgb, var(--token-neutral-900) 8%, transparent)"
+            glowColor="color-mix(in srgb, var(--token-primary) 40%, transparent)"
           />
-        </motion.div>
-      )}
+        </div>
+      ) : null}
 
       <div className="site-container relative flex min-h-[calc(100vh-150px)] w-full items-center justify-center">
         <motion.div
