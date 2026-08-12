@@ -29,7 +29,7 @@ function TestimonialAvatar({ src, alt }: TestimonialAvatarProps) {
   const showImage = Boolean(src) && !failed;
 
   return (
-    <div className="relative h-full w-full overflow-hidden bg-gradient-to-b from-neutral-100 to-neutral-200">
+    <div className="relative h-full w-full overflow-hidden bg-linear-to-b from-neutral-100 to-neutral-200">
       {loading && showImage && (
         <div className="absolute inset-0 z-10 flex animate-pulse items-center justify-center bg-neutral-800">
           <div className="h-8 w-8 rounded-full bg-neutral-700/60 md:h-12 md:w-12" />
@@ -54,13 +54,13 @@ function TestimonialAvatar({ src, alt }: TestimonialAvatarProps) {
           />
           <div
             aria-hidden
-            className="absolute inset-0 bg-gradient-to-t from-neutral-900/40 to-transparent"
+            className="absolute inset-0 bg-linear-to-t from-neutral-900/40 to-transparent"
           />
         </>
       ) : (
         <div
           aria-hidden
-          className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-neutral-100 to-neutral-200"
+          className="absolute inset-0 flex items-center justify-center bg-linear-to-br from-neutral-100 to-neutral-200"
         >
           <div className="pointer-events-none absolute inset-0 bg-primary/5" />
           <span className="relative flex h-full w-full items-center justify-center text-neutral-400">
@@ -140,7 +140,7 @@ export default function TestimonialsCarousel() {
   }, [reduced, paused, next]);
 
   return (
-    <section className="site-section relative w-full overflow-hidden border-t border-neutral-200 bg-gradient-to-b from-neutral-100 to-neutral-200 py-xl sm:py-2xl">
+    <section className="site-section relative w-full overflow-hidden border-t border-neutral-200 bg-linear-to-b from-neutral-100 to-neutral-200 py-xl sm:py-2xl">
       <div
         aria-hidden
         className="pointer-events-none absolute -right-24 top-0 h-64 w-64 rounded-full bg-primary/10 blur-[80px] sm:h-80 sm:w-80"
