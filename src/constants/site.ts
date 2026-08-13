@@ -14,7 +14,7 @@ export const SITE_EMAIL = 'sales@stack360.co';
 export const SITE_EMAIL_HREF = `mailto:${SITE_EMAIL}` as const;
 
 /** UK phone — display, E.164, and tel: link. */
-export const SITE_PHONE = '+44 7404350490';
+export const SITE_PHONE = '+44 7404 350490';
 export const SITE_PHONE_USA = '+1 (713) 539 8717';
 export const SITE_PHONE_2 = '+44 7460 333169';
 export const SITE_PHONE_E164 = '+447404350490';
