@@ -14,7 +14,7 @@ export default function OpenRolesHeader() {
         </h2>
       </div>
       <span className="rounded-full border border-primary/20 bg-primary/10 px-md py-xs font-mono text-[10px] font-bold uppercase tracking-widest text-primary">
-        {roleCount ? `${roleCount} Open Roles` : 'Fully Staffed'}
+        {roleCount ? `${roleCount} Open Role${roleCount > 1 ? 's' : ''}` : 'Fully Staffed'}
       </span>
     </header>
   );
