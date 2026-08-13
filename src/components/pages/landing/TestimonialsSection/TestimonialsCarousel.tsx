@@ -192,113 +192,116 @@ export default function TestimonialsCarousel() {
 
         {/* Carousel Container */}
         <div className="relative w-full" aria-live="polite" aria-atomic="true">
-          {/* Mobile Overlay Navigation Arrows */}
-          <button
-            type="button"
-            onClick={prev}
-            aria-label="Previous testimonial"
-            className="absolute -left-2 top-1/2 z-30 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full border border-neutral-200 bg-white/90 text-neutral-800 shadow-md backdrop-blur-xs transition-transform active:scale-95 sm:hidden"
-          >
-            <ChevronLeft className="size-5" />
-          </button>
-          <button
-            type="button"
-            onClick={next}
-            aria-label="Next testimonial"
-            className="absolute -right-2 top-1/2 z-30 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full border border-neutral-200 bg-white/90 text-neutral-800 shadow-md backdrop-blur-xs transition-transform active:scale-95 sm:hidden"
-          >
-            <ChevronRight className="size-5" />
-          </button>
-
-          {/* Invisible sizing placeholder based on the longest quote in the array */}
-          <div
-            aria-hidden="true"
-            className="pointer-events-none invisible flex w-full flex-col gap-md p-md px-lg sm:p-xl md:p-2xl"
-          >
-            <div className="flex shrink-0 items-center justify-between gap-md">
-              <div className="flex items-center gap-sm">
-                <div className="size-12 sm:size-14 md:size-16" />
-                <div>
-                  <div className="h-6 w-32" />
-                  <div className="mt-1 h-4 w-24" />
-                </div>
-              </div>
-              <div className="h-5 w-24" />
-            </div>
-            <blockquote className="text-pretty text-sm font-normal leading-relaxed text-neutral-800 sm:text-base md:text-lg">
-              &ldquo;{longestTestimonial.quote}&rdquo;
-            </blockquote>
-          </div>
-
-          {/* Active Animated Slide */}
-          <AnimatePresence mode="wait" initial={false} custom={direction}>
-            <motion.article
-              key={active}
-              custom={direction}
-              variants={reduced ? undefined : slideVariants}
-              initial="enter"
-              animate="center"
-              exit="exit"
-              transition={{ duration: 0.35, ease: 'easeOut' }}
-              drag="x"
-              dragConstraints={{ left: 0, right: 0 }}
-              dragElastic={0.15}
-              onDragEnd={handleDragEnd}
-              className="absolute left-1/2 top-0 flex h-full -translate-x-1/2 touch-pan-y select-none flex-col justify-between gap-md overflow-hidden rounded-2xl border border-neutral-200/80 bg-white p-md px-lg shadow-xl shadow-neutral-900/5 sm:p-xl md:p-2xl"
-              style={{ width: 'calc(100% - 15rem)' }}
+          <div className="relative mx-auto w-full md:w-[calc(100%-15rem)]">
+            {/* Mobile overlay arrows sit on the card, not in a reserved gutter */}
+            <button
+              type="button"
+              onClick={prev}
+              aria-label="Previous testimonial"
+              className="absolute left-2 top-1/2 z-30 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-neutral-200 bg-white/95 text-neutral-800 shadow-md backdrop-blur-xs transition-transform active:scale-95 sm:hidden"
             >
-              {/* Background Quote Accent */}
-              <Quote
-                className="pointer-events-none absolute right-4 top-4 size-16 text-neutral-100 sm:right-6 sm:top-6 sm:size-24 md:size-28"
-                fill="currentColor"
-                strokeWidth={0}
-                aria-hidden
-              />
+              <ChevronLeft className="size-5" />
+            </button>
+            <button
+              type="button"
+              onClick={next}
+              aria-label="Next testimonial"
+              className="absolute right-2 top-1/2 z-30 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-neutral-200 bg-white/95 text-neutral-800 shadow-md backdrop-blur-xs transition-transform active:scale-95 sm:hidden"
+            >
+              <ChevronRight className="size-5" />
+            </button>
 
-              {/* Card Header */}
-              <div className="relative z-10 flex shrink-0 flex-col gap-xs sm:flex-row sm:items-center sm:justify-between sm:gap-md">
+            {/* Invisible sizing placeholder — same width/padding as the visible card */}
+            <div
+              aria-hidden="true"
+              className="pointer-events-none invisible flex w-full flex-col gap-md px-12 py-md sm:p-xl md:p-2xl"
+            >
+              <div className="flex shrink-0 flex-col gap-xs sm:flex-row sm:items-center sm:justify-between sm:gap-md">
                 <div className="flex items-center gap-sm">
-                  <div className="relative size-12 shrink-0 overflow-hidden rounded-full border border-neutral-100 shadow-xs sm:size-14 md:size-16">
-                    <TestimonialAvatar
-                      key={current.avatar ?? current.name}
-                      src={current.avatar}
-                      alt={current.name}
-                    />
-                  </div>
-
-                  <div className="min-w-0 flex-1">
-                    <h3 className="truncate text-base font-extrabold text-neutral-900 sm:text-lg md:text-xl">
-                      {current.name}
-                    </h3>
-                    {[current.role, current.company].some(Boolean) && (
-                      <p className="mt-0.5 truncate text-xs font-medium text-neutral-500 sm:text-sm">
-                        {[current.role, current.company].filter(Boolean).join(' · ')}
-                      </p>
-                    )}
+                  <div className="size-12 sm:size-14 md:size-16" />
+                  <div>
+                    <div className="h-6 w-32" />
+                    <div className="mt-1 h-4 w-24" />
                   </div>
                 </div>
-
-                <div
-                  className="flex items-center gap-0.5 text-amber-400"
-                  role="img"
-                  aria-label={`${current.rating} out of 5 stars`}
-                >
-                  {(['a', 'b', 'c', 'd', 'e'] as const).slice(0, current.rating || 5).map((id) => (
-                    <Star
-                      key={id}
-                      className="size-4 fill-amber-400 text-amber-400 sm:size-5"
-                      aria-hidden
-                    />
-                  ))}
-                </div>
+                <div className="h-5 w-24" />
               </div>
-
-              {/* Quote Content */}
-              <blockquote className="relative z-10 text-pretty text-sm font-normal leading-relaxed text-neutral-800 sm:text-base md:text-lg">
-                &ldquo;{current.quote}&rdquo;
+              <blockquote className="text-pretty text-sm font-normal leading-relaxed text-neutral-800 sm:text-base md:text-lg">
+                &ldquo;{longestTestimonial.quote}&rdquo;
               </blockquote>
-            </motion.article>
-          </AnimatePresence>
+            </div>
+
+            {/* Active Animated Slide */}
+            <AnimatePresence mode="wait" initial={false} custom={direction}>
+              <motion.article
+                key={active}
+                custom={direction}
+                variants={reduced ? undefined : slideVariants}
+                initial="enter"
+                animate="center"
+                exit="exit"
+                transition={{ duration: 0.35, ease: 'easeOut' }}
+                drag="x"
+                dragConstraints={{ left: 0, right: 0 }}
+                dragElastic={0.15}
+                onDragEnd={handleDragEnd}
+                className="absolute inset-0 flex h-full w-full touch-pan-y select-none flex-col justify-between gap-md overflow-hidden rounded-2xl border border-neutral-200/80 bg-white px-12 py-md shadow-xl shadow-neutral-900/5 sm:p-xl md:p-2xl"
+              >
+                {/* Background Quote Accent */}
+                <Quote
+                  className="pointer-events-none absolute right-4 top-4 size-16 text-neutral-100 sm:right-6 sm:top-6 sm:size-24 md:size-28"
+                  fill="currentColor"
+                  strokeWidth={0}
+                  aria-hidden
+                />
+
+                {/* Card Header */}
+                <div className="relative z-10 flex shrink-0 flex-col gap-xs sm:flex-row sm:items-center sm:justify-between sm:gap-md">
+                  <div className="flex items-center gap-sm">
+                    <div className="relative size-12 shrink-0 overflow-hidden rounded-full border border-neutral-100 shadow-xs sm:size-14 md:size-16">
+                      <TestimonialAvatar
+                        key={current.avatar ?? current.name}
+                        src={current.avatar}
+                        alt={current.name}
+                      />
+                    </div>
+
+                    <div className="min-w-0 flex-1">
+                      <h3 className="truncate text-base font-extrabold text-neutral-900 sm:text-lg md:text-xl">
+                        {current.name}
+                      </h3>
+                      {[current.role, current.company].some(Boolean) && (
+                        <p className="mt-0.5 truncate text-xs font-medium text-neutral-500 sm:text-sm">
+                          {[current.role, current.company].filter(Boolean).join(' · ')}
+                        </p>
+                      )}
+                    </div>
+                  </div>
+
+                  <div
+                    className="flex items-center gap-0.5 text-amber-400"
+                    role="img"
+                    aria-label={`${current.rating} out of 5 stars`}
+                  >
+                    {(['a', 'b', 'c', 'd', 'e'] as const)
+                      .slice(0, current.rating || 5)
+                      .map((id) => (
+                        <Star
+                          key={id}
+                          className="size-4 fill-amber-400 text-amber-400 sm:size-5"
+                          aria-hidden
+                        />
+                      ))}
+                  </div>
+                </div>
+
+                {/* Quote Content */}
+                <blockquote className="relative z-10 text-pretty text-sm font-normal leading-relaxed text-neutral-800 sm:text-base md:text-lg">
+                  &ldquo;{current.quote}&rdquo;
+                </blockquote>
+              </motion.article>
+            </AnimatePresence>
+          </div>
         </div>
 
         {/* Pagination Dots */}
