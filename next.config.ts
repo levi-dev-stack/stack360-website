@@ -38,6 +38,16 @@ const nextConfig: NextConfig = {
         destination: '/contact',
         permanent: true,
       },
+      {
+        source: '/our-work/news',
+        destination: '/',
+        permanent: true,
+      },
+      {
+        source: '/our-work/learning-sessions',
+        destination: '/',
+        permanent: true,
+      },
 
       // Services
       {

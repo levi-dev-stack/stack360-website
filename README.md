@@ -157,7 +157,7 @@ The public site lives under the `(pages)` route group. Top-level sections:
 | What We Build | `/what-we-build` | + capability sub-pages (ai-solutions, saas, erp, crm, cloud, devops, mobile-apps, web-apps, custom-software, automation) |
 | Who We Help | `/who-we-help` | startups, smes, enterprises, industries |
 | Who We Are | `/who-we-are` | history, culture, how-we-work |
-| Our Work | `/our-work` | case-studies, featured-projects, client-success-stories, blog, news, faqs, learning-sessions |
+| Our Work | `/our-work` | case-studies, featured-projects, client-success-stories, blog, faqs |
 | Work With Us | `/work-with-us` | hire, careers, software-partner |
 | Contact | `/contact` | |
 | Legal | `/privacy`, `/terms` | |
