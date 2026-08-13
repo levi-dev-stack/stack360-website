@@ -29,6 +29,8 @@ export default function PremiumNavbar() {
 
   const { isDesktop } = useResponsive();
 
+  const isContactActive = pathname === '/contact' || pathname.startsWith('/contact/');
+
   const isPathActive = (href?: string) => {
     if (!href) {
       return false;
@@ -272,9 +274,18 @@ export default function PremiumNavbar() {
           >
             <Link
               href="/contact"
-              className="inline-flex min-h-11 items-center rounded-sm border border-transparent bg-primary px-lg py-sm text-sm font-bold text-neutral-50 shadow-sm transition-all hover:bg-primary-dark focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+              aria-current={isContactActive ? 'page' : undefined}
+              className={cn(
+                'inline-flex min-h-11 items-center gap-2 rounded-sm border px-lg py-sm text-sm font-bold shadow-sm transition-all focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary',
+                isContactActive
+                  ? 'border-primary bg-primary-dark text-neutral-50 ring-2 ring-primary/30 ring-offset-1'
+                  : 'border-transparent bg-primary text-neutral-50 hover:bg-primary-dark'
+              )}
             >
-              Contact Us
+              {isContactActive && (
+                <span className="h-2 w-2 rounded-full bg-neutral-50 animate-pulse" />
+              )}
+              <span>Contact Us</span>
             </Link>
           </motion.div>
 
@@ -412,9 +423,18 @@ export default function PremiumNavbar() {
               <Link
                 href="/contact"
                 onClick={closeMobile}
-                className="mt-md flex min-h-11 items-center justify-center rounded-sm bg-primary px-lg text-sm font-bold text-neutral-50"
+                aria-current={isContactActive ? 'page' : undefined}
+                className={cn(
+                  'mt-md flex min-h-11 items-center justify-center gap-2 rounded-sm text-sm font-bold transition-all',
+                  isContactActive
+                    ? 'border border-primary bg-primary-dark text-neutral-50 ring-2 ring-primary/30 ring-offset-1'
+                    : 'bg-primary text-neutral-50'
+                )}
               >
-                Contact Us
+                {isContactActive && (
+                  <span className="h-2 w-2 rounded-full bg-neutral-50 animate-pulse" />
+                )}
+                <span>Contact Us</span>
               </Link>
             </div>
           </motion.nav>

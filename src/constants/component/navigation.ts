@@ -27,16 +27,6 @@ export const NAVIGATION_DATA: NavSection[] = [
         title: 'Core Ecosystems',
         items: [
           {
-            title: 'ERP',
-            desc: 'Centralized enterprise resource engines designed for scalability.',
-            href: '/what-we-build/erp',
-          },
-          {
-            title: 'CRM',
-            desc: 'Smarter customer relationship tracking optimized for pipeline velocity.',
-            href: '/what-we-build/crm',
-          },
-          {
             title: 'AI Solutions',
             desc: 'Custom neural integrations and intelligent automated workflows.',
             href: '/what-we-build/ai-solutions',
@@ -45,6 +35,16 @@ export const NAVIGATION_DATA: NavSection[] = [
             title: 'SaaS',
             desc: 'Multi-tenant cloud products engineered for subscription scale.',
             href: '/what-we-build/saas',
+          },
+          {
+            title: 'ERP',
+            desc: 'Centralized enterprise resource engines designed for scalability.',
+            href: '/what-we-build/erp',
+          },
+          {
+            title: 'CRM',
+            desc: 'Smarter customer relationship tracking optimized for pipeline velocity.',
+            href: '/what-we-build/crm',
           },
           {
             title: 'Custom Software',
@@ -56,16 +56,6 @@ export const NAVIGATION_DATA: NavSection[] = [
       {
         title: 'Platform & Infrastructure',
         items: [
-          {
-            title: 'Mobile Apps',
-            desc: 'Native-grade portable applications built for iOS and Android environments.',
-            href: '/what-we-build/mobile-apps',
-          },
-          {
-            title: 'Web Apps',
-            desc: 'High-speed, modular web applications built with dynamic architecture.',
-            href: '/what-we-build/web-apps',
-          },
           {
             title: 'Cloud',
             desc: 'Resilient serverless distribution structures mapped to modern frameworks.',
@@ -80,6 +70,16 @@ export const NAVIGATION_DATA: NavSection[] = [
             title: 'Automation',
             desc: 'Scraping manual tasks out of day-to-day work operations.',
             href: '/what-we-build/automation',
+          },
+          {
+            title: 'Mobile Apps',
+            desc: 'Native-grade portable applications built for iOS and Android environments.',
+            href: '/what-we-build/mobile-apps',
+          },
+          {
+            title: 'Web Apps',
+            desc: 'High-speed, modular web applications built with dynamic architecture.',
+            href: '/what-we-build/web-apps',
           },
         ],
       },
@@ -96,6 +96,7 @@ export const NAVIGATION_DATA: NavSection[] = [
     },
     columns: [
       {
+        title: 'Target Segments',
         items: [
           {
             title: 'Industries',
@@ -159,16 +160,6 @@ export const NAVIGATION_DATA: NavSection[] = [
             desc: 'Engineering thought pieces covering fullstack architectures.',
             href: '/blog',
           },
-          // {
-          //   title: 'News',
-          //   desc: 'Studio announcements, system updates, and scaling milestones.',
-          //   href: '/our-work/news',
-          // },
-          // {
-          //   title: 'Learning Sessions',
-          //   desc: 'Public documentation reviews and live internal developer recordings.',
-          //   href: '/our-work/learning-sessions',
-          // },
           {
             title: 'FAQs',
             desc: 'Straightforward answers regarding contracts, handoffs, and sprint setups.',
@@ -189,6 +180,7 @@ export const NAVIGATION_DATA: NavSection[] = [
     },
     columns: [
       {
+        title: 'Company Overview',
         items: [
           {
             title: 'History',
