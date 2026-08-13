@@ -244,7 +244,8 @@ export default function TestimonialsCarousel() {
               dragConstraints={{ left: 0, right: 0 }}
               dragElastic={0.15}
               onDragEnd={handleDragEnd}
-              className="absolute inset-0 flex w-full touch-pan-y select-none flex-col justify-between gap-md overflow-hidden rounded-2xl border border-neutral-200/80 bg-white p-md px-lg shadow-xl shadow-neutral-900/5 sm:p-xl md:p-2xl"
+              className="absolute left-1/2 top-0 flex h-full -translate-x-1/2 touch-pan-y select-none flex-col justify-between gap-md overflow-hidden rounded-2xl border border-neutral-200/80 bg-white p-md px-lg shadow-xl shadow-neutral-900/5 sm:p-xl md:p-2xl"
+              style={{ width: 'calc(100% - 15rem)' }}
             >
               {/* Background Quote Accent */}
               <Quote
