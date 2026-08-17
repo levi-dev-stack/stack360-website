@@ -126,7 +126,7 @@ export default function Hero() {
         style={{ maskImage: 'linear-gradient(180deg, black 0%, transparent 78%)' }}
       />
 
-      <div className="site-container relative flex min-h-[calc(100vh-150px)] w-full items-center justify-center">
+      <div className="site-container relative flex min-h-[calc(100vh-230px)] md:min-h-[calc(100vh-150px)] w-full items-center justify-center">
         <motion.div
           variants={motionVariants(reduced, stagger)}
           initial={false}
