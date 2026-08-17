@@ -1,8 +1,8 @@
-import { CAREERS_OPEN_ROLES } from '@/constants/component/careers-data';
+interface OpenRolesHeaderProps {
+  roleCount: number;
+}
 
-export default function OpenRolesHeader() {
-  const roleCount = CAREERS_OPEN_ROLES?.length ?? 0;
-
+export default function OpenRolesHeader({ roleCount }: OpenRolesHeaderProps) {
   return (
     <header className="mb-lg flex flex-col gap-md sm:flex-row sm:items-end sm:justify-between">
       <div className="max-w-3xl space-y-xs">
@@ -14,7 +14,7 @@ export default function OpenRolesHeader() {
         </h2>
       </div>
       <span className="rounded-full border border-primary/20 bg-primary/10 px-md py-xs font-mono text-[10px] font-bold uppercase tracking-widest text-primary">
-        {roleCount ? `${roleCount} Open Role${roleCount > 1 ? 's' : ''}` : 'Fully Staffed'}
+        {roleCount} Open Role{roleCount === 1 ? '' : 's'}
       </span>
     </header>
   );

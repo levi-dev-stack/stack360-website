@@ -110,8 +110,10 @@ export function useOpenRolesFilters() {
     setParams({ [OPEN_ROLES_QUERY_KEYS.search]: debouncedSearch });
   }, [debouncedSearch, setParams]);
 
+  const totalRoleCount = CAREERS_OPEN_ROLES?.length ?? 0;
+
   const filteredRoles = useMemo(() => {
-    if (!CAREERS_OPEN_ROLES) {
+    if (!CAREERS_OPEN_ROLES?.length) {
       return [];
     }
 
@@ -190,6 +192,7 @@ export function useOpenRolesFilters() {
     selectedDept,
     selectedDesignation,
     filteredRoles,
+    totalRoleCount,
     hasActiveFilters,
     isTableLoading,
     clearFilters,
