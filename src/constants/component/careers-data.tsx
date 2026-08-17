@@ -1,10 +1,4 @@
 import { Globe2, Laptop, TrendingUp, Users } from 'lucide-react';
-import {
-  Department,
-  Designation,
-  JobType,
-  WorkMode,
-} from '@/components/pages/work-with-us/careers/enums';
 
 export const CAREERS_HERO = {
   eyebrow: 'Work With Us',
@@ -39,48 +33,7 @@ export const CAREERS_BENEFITS = [
   },
 ] as const;
 
-export const CAREERS_OPEN_ROLES = [
-  {
-    id: '1',
-    title: 'Associate Software Engineer - MERN',
-    postedAgo: 'Posted 1 day ago',
-    mode: WorkMode.ONSITE,
-    location: 'Lahore, Punjab, Pakistan',
-    department: Department.ENGINEERING,
-    designation: Designation.ASSOCIATE_ENGINEER,
-    jobType: JobType.FULL_TIME,
-  },
-  {
-    id: '2',
-    title: 'Associate Team Lead - Data Engineer',
-    postedAgo: 'Posted 2 days ago',
-    mode: WorkMode.REMOTE,
-    location: 'Lahore, Punjab, Pakistan',
-    department: Department.DATA_AND_AI,
-    designation: Designation.TEAM_LEAD,
-    jobType: JobType.FULL_TIME,
-  },
-  {
-    id: '3',
-    title: 'People Success Executive',
-    postedAgo: 'Posted 7 days ago',
-    mode: WorkMode.HYBRID,
-    location: 'Lahore, Punjab, Pakistan',
-    department: Department.HUMAN_RESOURCES,
-    designation: Designation.EXECUTIVE,
-    jobType: JobType.FULL_TIME,
-  },
-  {
-    id: '4',
-    title: 'Senior AI Engineer',
-    postedAgo: 'Posted 7 days ago',
-    mode: WorkMode.ONSITE,
-    location: 'Lahore, Pakistan',
-    department: Department.DATA_AND_AI,
-    designation: Designation.SENIOR_ENGINEER,
-    jobType: JobType.FULL_TIME,
-  },
-];
+export const CAREERS_OPEN_ROLES = [];
 
 export const CAREERS_PROCESS = [
   {
