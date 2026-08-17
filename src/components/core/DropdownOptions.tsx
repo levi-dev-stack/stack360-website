@@ -18,6 +18,7 @@ interface DropdownOptionsProps {
   allOptionLabel?: string;
   className?: string;
   id?: string;
+  disabled?: boolean;
 }
 
 export default function DropdownOptions({
@@ -28,6 +29,7 @@ export default function DropdownOptions({
   allOptionLabel,
   className,
   id,
+  disabled = false,
 }: DropdownOptionsProps) {
   const generatedId = useId();
   const selectId = id ?? generatedId;
@@ -87,6 +89,9 @@ export default function DropdownOptions({
   };
 
   const handleTriggerKeyDown = (event: KeyboardEvent<HTMLButtonElement>) => {
+    if (disabled) {
+      return;
+    }
     if (event.key === 'ArrowDown' || event.key === 'ArrowUp' || event.key === 'Enter') {
       event.preventDefault();
       setIsOpen(true);
@@ -147,7 +152,7 @@ export default function DropdownOptions({
     );
 
   return (
-    <div ref={containerRef} className={cn('relative', className)}>
+    <div ref={containerRef} className={cn('relative', className, disabled && 'opacity-60')}>
       <label htmlFor={selectId} className="sr-only">
         {label}
       </label>
@@ -155,14 +160,19 @@ export default function DropdownOptions({
         ref={triggerRef}
         type="button"
         id={selectId}
+        disabled={disabled}
         aria-haspopup="listbox"
         aria-expanded={isOpen}
         aria-controls={listboxId}
-        onClick={() => setIsOpen((open) => !open)}
+        onClick={() => !disabled && setIsOpen((open) => !open)}
         onKeyDown={handleTriggerKeyDown}
         className={cn(
-          'flex w-full min-h-12 cursor-pointer items-center rounded-lg border border-neutral-200 bg-neutral-50 py-3.5 pl-md pr-10 text-left text-sm font-semibold shadow-xs outline-none transition-colors duration-200 hover:border-neutral-300 hover:bg-white focus-visible:border-primary focus-visible:bg-white focus-visible:ring-1 focus-visible:ring-primary',
-          hasSelection ? 'text-neutral-900' : 'text-neutral-600'
+          'flex w-full min-h-12 items-center rounded-lg border border-neutral-200 bg-neutral-50 py-3.5 pl-md pr-10 text-left text-sm font-semibold shadow-xs outline-none transition-colors duration-200 hover:border-neutral-300 hover:bg-white focus-visible:border-primary focus-visible:bg-white focus-visible:ring-1 focus-visible:ring-primary disabled:cursor-not-allowed disabled:bg-neutral-100 disabled:text-neutral-400 disabled:border-neutral-200 disabled:hover:bg-neutral-100 disabled:hover:border-neutral-200',
+          disabled
+            ? 'cursor-not-allowed text-neutral-400'
+            : hasSelection
+              ? 'text-neutral-900'
+              : 'text-neutral-600'
         )}
       >
         <span className="truncate">{displayLabel}</span>

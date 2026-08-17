@@ -18,6 +18,7 @@ interface OpenRolesFilterBarProps {
   onWorkModeChange: (value: string) => void;
   onDepartmentChange: (value: string) => void;
   onDesignationChange: (value: string) => void;
+  disabled?: boolean;
 }
 
 export default function OpenRolesFilterBar({
@@ -29,6 +30,7 @@ export default function OpenRolesFilterBar({
   onWorkModeChange,
   onDepartmentChange,
   onDesignationChange,
+  disabled = false,
 }: OpenRolesFilterBarProps) {
   return (
     <MotionStaggerItem className="mb-4.5 grid grid-cols-2 gap-xs sm:grid-cols-4 sm:gap-sm">
@@ -37,24 +39,28 @@ export default function OpenRolesFilterBar({
         value={selectedJobType}
         onChange={onJobTypeChange}
         options={JOB_TYPE_OPTIONS}
+        disabled={disabled}
       />
       <DropdownOptions
         label="Work Mode"
         value={selectedMode}
         onChange={onWorkModeChange}
         options={WORK_MODE_OPTIONS}
+        disabled={disabled}
       />
       <DropdownOptions
         label="Department"
         value={selectedDept}
         onChange={onDepartmentChange}
         options={DEPARTMENT_OPTIONS}
+        disabled={disabled}
       />
       <DropdownOptions
         label="Designation"
         value={selectedDesignation}
         onChange={onDesignationChange}
         options={DESIGNATION_OPTIONS}
+        disabled={disabled}
       />
     </MotionStaggerItem>
   );

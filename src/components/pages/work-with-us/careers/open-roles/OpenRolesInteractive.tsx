@@ -24,6 +24,8 @@ export default function OpenRolesInteractive() {
     setDesignation,
   } = useOpenRolesFilters();
 
+  const isSearchDisabled = filteredRoles.length === 0 && !hasActiveFilters;
+
   return (
     <MotionStagger>
       <OpenRolesSearchBar
@@ -31,6 +33,7 @@ export default function OpenRolesInteractive() {
         onSearchChange={setSearchInput}
         onClearFilters={clearFilters}
         hasActiveFilters={hasActiveFilters}
+        disabled={isSearchDisabled}
       />
       <OpenRolesFilterBar
         selectedJobType={selectedJobType}
@@ -41,6 +44,7 @@ export default function OpenRolesInteractive() {
         onWorkModeChange={setWorkMode}
         onDepartmentChange={setDepartment}
         onDesignationChange={setDesignation}
+        disabled={isSearchDisabled}
       />
       <OpenRolesResultsTable
         roles={filteredRoles}
