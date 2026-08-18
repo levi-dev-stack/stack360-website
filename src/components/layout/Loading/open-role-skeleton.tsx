@@ -5,22 +5,25 @@ export function OpenRolesTableSkeleton() {
   return (
     <div className="animate-pulse overflow-hidden rounded-xl border border-neutral-200/80 bg-white shadow-sm">
       <div className="overflow-x-auto">
-        <table className="w-full min-w-[760px] table-fixed border-collapse text-left">
+        <table className="w-full min-w-[860px] table-fixed border-collapse text-left">
           <thead>
             <tr className="border-b border-neutral-200 bg-neutral-100/70">
               <th className="px-xl py-md first:pl-xl" scope="col">
                 <div className="h-3 w-10 rounded bg-neutral-200" />
               </th>
-              <th className="hidden px-xl py-md sm:table-cell" scope="col">
-                <div className="h-3 w-20 rounded bg-neutral-200" />
+              <th className="px-xl py-md" scope="col">
+                <div className="h-3 w-10 rounded bg-neutral-200" />
               </th>
               <th className="hidden px-xl py-md md:table-cell" scope="col">
                 <div className="h-3 w-16 rounded bg-neutral-200" />
               </th>
-              <th className="px-xl py-md" scope="col">
-                <div className="h-3 w-10 rounded bg-neutral-200" />
+              <th className="hidden px-xl py-md sm:table-cell" scope="col">
+                <div className="h-3 w-20 rounded bg-neutral-200" />
               </th>
               <th className="hidden px-xl py-md sm:table-cell" scope="col">
+                <div className="h-3 w-16 rounded bg-neutral-200" />
+              </th>
+              <th className="hidden px-xl py-md lg:table-cell" scope="col">
                 <div className="h-3 w-12 rounded bg-neutral-200" />
               </th>
               <th className="px-xl py-md last:pr-xl" scope="col">
@@ -37,16 +40,19 @@ export function OpenRolesTableSkeleton() {
                     <div className="h-3 w-2/5 rounded-md bg-neutral-200/70 sm:hidden" />
                   </div>
                 </td>
-                <td className="hidden px-xl py-lg sm:table-cell">
-                  <div className="h-4 w-24 rounded-md bg-neutral-200/80" />
-                </td>
-                <td className="hidden px-xl py-lg md:table-cell">
-                  <div className="h-4 w-36 rounded-md bg-neutral-200/80" />
-                </td>
                 <td className="px-xl py-lg">
                   <div className="h-6 w-20 rounded-full bg-neutral-200/80" />
                 </td>
+                <td className="hidden px-xl py-lg md:table-cell">
+                  <div className="h-4 w-20 rounded-md bg-neutral-200/80" />
+                </td>
                 <td className="hidden px-xl py-lg sm:table-cell">
+                  <div className="h-4 w-24 rounded-md bg-neutral-200/80" />
+                </td>
+                <td className="hidden px-xl py-lg sm:table-cell">
+                  <div className="h-4 w-28 rounded-md bg-neutral-200/80" />
+                </td>
+                <td className="hidden px-xl py-lg lg:table-cell">
                   <div className="h-3 w-24 rounded-md bg-neutral-200/70" />
                 </td>
                 <td className="px-xl py-lg last:pr-xl">

@@ -1,20 +1,20 @@
 'use client';
 
 import { useEffect, useMemo, useRef, useState } from 'react';
-import { CAREERS_OPEN_ROLES } from '@/constants/component/careers-data';
 import { useQueryParams } from '@/hooks/core';
 import { allowedOrEmpty } from '@/utils/array';
 import { sanitizeSearchInput } from '@/utils/string';
-import { Department, Designation, JobType, WorkMode } from '../enums';
-import type { Job } from '../type';
 import {
   OPEN_ROLES_FILTER_LOAD_MS,
   OPEN_ROLES_QUERY_KEYS,
   OPEN_ROLES_SEARCH_DEBOUNCE_MS,
   OPEN_ROLES_TABLE_LOAD_MS,
 } from './constants';
+import { toOpenRole } from './open-roles-mappers';
+import { useOpenRolesCatalog } from './open-roles-provider';
 
 export function useOpenRolesFilters() {
+  const { filters, jobs } = useOpenRolesCatalog();
   const { getParam, setParams } = useQueryParams({ method: 'replace' });
   const hasSanitizedUrl = useRef(false);
   const skipInitialSearchSync = useRef(true);
@@ -23,6 +23,21 @@ export function useOpenRolesFilters() {
   const [isTableReady, setIsTableReady] = useState(false);
   const [isFilterPending, setIsFilterPending] = useState(false);
 
+  const jobTypeIds = useMemo(
+    () => filters.data?.jobTypes?.map((item) => item.id) ?? [],
+    [filters.data?.jobTypes]
+  );
+  const workModes = useMemo(() => filters.data?.workModes ?? [], [filters.data?.workModes]);
+  const departmentIds = useMemo(
+    () => filters.data?.departments?.map((item) => item.id) ?? [],
+    [filters.data?.departments]
+  );
+  const designationIds = useMemo(
+    () =>
+      filters.data?.departments?.flatMap((dept) => dept.designations.map((item) => item.id)) ?? [],
+    [filters.data?.departments]
+  );
+
   const rawSearchFromUrl = getParam(OPEN_ROLES_QUERY_KEYS.search);
   const searchFromUrl = sanitizeSearchInput(rawSearchFromUrl);
   const rawJobType = getParam(OPEN_ROLES_QUERY_KEYS.jobType);
@@ -30,10 +45,10 @@ export function useOpenRolesFilters() {
   const rawDepartment = getParam(OPEN_ROLES_QUERY_KEYS.department);
   const rawDesignation = getParam(OPEN_ROLES_QUERY_KEYS.designation);
 
-  const selectedJobType = allowedOrEmpty(rawJobType, Object.values(JobType));
-  const selectedMode = allowedOrEmpty(rawWorkMode, Object.values(WorkMode));
-  const selectedDept = allowedOrEmpty(rawDepartment, Object.values(Department));
-  const selectedDesignation = allowedOrEmpty(rawDesignation, Object.values(Designation));
+  const selectedJobType = allowedOrEmpty(rawJobType, jobTypeIds);
+  const selectedMode = allowedOrEmpty(rawWorkMode, workModes);
+  const selectedDept = allowedOrEmpty(rawDepartment, departmentIds);
+  const selectedDesignation = allowedOrEmpty(rawDesignation, designationIds);
 
   const [searchInput, setSearchInput] = useState(searchFromUrl);
   const [debouncedSearch, setDebouncedSearch] = useState(searchFromUrl);
@@ -57,7 +72,7 @@ export function useOpenRolesFilters() {
   }, [searchInput]);
 
   useEffect(() => {
-    if (hasSanitizedUrl.current) {
+    if (hasSanitizedUrl.current || !filters.data) {
       return;
     }
 
@@ -88,6 +103,7 @@ export function useOpenRolesFilters() {
     hasSanitizedUrl.current = true;
     setParams(invalid);
   }, [
+    filters.data,
     rawDepartment,
     rawDesignation,
     rawJobType,
@@ -110,29 +126,45 @@ export function useOpenRolesFilters() {
     setParams({ [OPEN_ROLES_QUERY_KEYS.search]: debouncedSearch });
   }, [debouncedSearch, setParams]);
 
-  const totalRoleCount = CAREERS_OPEN_ROLES?.length ?? 0;
+  const catalogJobs = jobs.data;
+  const totalRoleCount = catalogJobs.length;
 
   const filteredRoles = useMemo(() => {
-    if (!CAREERS_OPEN_ROLES?.length) {
+    if (!catalogJobs.length) {
       return [];
     }
 
-    return (CAREERS_OPEN_ROLES as Job[]).filter((role) => {
-      const query = debouncedSearch.toLowerCase();
-      const matchesSearch =
-        !query ||
-        role.title.toLowerCase().includes(query) ||
-        role.location.toLowerCase().includes(query) ||
-        role.department.toLowerCase().includes(query);
+    const query = debouncedSearch.toLowerCase();
 
-      const matchesType = !selectedJobType || role.jobType === selectedJobType;
-      const matchesMode = !selectedMode || role.mode === selectedMode;
-      const matchesDept = !selectedDept || role.department === selectedDept;
-      const matchesDesig = !selectedDesignation || role.designation === selectedDesignation;
+    return catalogJobs
+      .filter((role) => {
+        const display = toOpenRole(role, filters.data);
+        const matchesSearch =
+          !query ||
+          display.title.toLowerCase().includes(query) ||
+          display.department.toLowerCase().includes(query) ||
+          display.designation.toLowerCase().includes(query) ||
+          display.jobType.toLowerCase().includes(query) ||
+          display.mode.toLowerCase().includes(query) ||
+          role.referenceNumber?.toLowerCase().includes(query);
 
-      return matchesSearch && matchesType && matchesMode && matchesDept && matchesDesig;
-    });
-  }, [debouncedSearch, selectedJobType, selectedMode, selectedDept, selectedDesignation]);
+        const matchesType = !selectedJobType || role.jobTypeId === selectedJobType;
+        const matchesMode = !selectedMode || role.modeType === selectedMode;
+        const matchesDept = !selectedDept || role.departmentId === selectedDept;
+        const matchesDesig = !selectedDesignation || role.designationId === selectedDesignation;
+
+        return matchesSearch && matchesType && matchesMode && matchesDept && matchesDesig;
+      })
+      .map((role) => toOpenRole(role, filters.data));
+  }, [
+    catalogJobs,
+    debouncedSearch,
+    filters.data,
+    selectedDesignation,
+    selectedDept,
+    selectedJobType,
+    selectedMode,
+  ]);
 
   const hasActiveFilters = Boolean(
     searchInput ||
@@ -184,6 +216,22 @@ export function useOpenRolesFilters() {
     });
   };
 
+  const setDepartment = (value: string) => {
+    const designationStillValid =
+      !selectedDesignation ||
+      !value ||
+      Boolean(
+        filters.data?.departments
+          ?.find((dept) => dept.id === value)
+          ?.designations.some((item) => item.id === selectedDesignation)
+      );
+
+    setParams({
+      [OPEN_ROLES_QUERY_KEYS.department]: value,
+      ...(designationStillValid ? {} : { [OPEN_ROLES_QUERY_KEYS.designation]: '' }),
+    });
+  };
+
   return {
     searchInput,
     setSearchInput,
@@ -198,7 +246,7 @@ export function useOpenRolesFilters() {
     clearFilters,
     setJobType: (value: string) => setParams({ [OPEN_ROLES_QUERY_KEYS.jobType]: value }),
     setWorkMode: (value: string) => setParams({ [OPEN_ROLES_QUERY_KEYS.workMode]: value }),
-    setDepartment: (value: string) => setParams({ [OPEN_ROLES_QUERY_KEYS.department]: value }),
+    setDepartment,
     setDesignation: (value: string) => setParams({ [OPEN_ROLES_QUERY_KEYS.designation]: value }),
   };
 }
