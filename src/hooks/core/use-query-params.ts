@@ -1,6 +1,6 @@
 'use client';
 
-import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+import { usePathname, useSearchParams } from 'next/navigation';
 import { useCallback, useEffect, useRef, useState } from 'react';
 
 export type QueryParamMethod = 'replace' | 'push';
@@ -13,47 +13,37 @@ function readParam(query: string, key: string) {
   return new URLSearchParams(query).get(key)?.trim() ?? '';
 }
 
+function locationQuery() {
+  if (typeof window === 'undefined') {
+    return '';
+  }
+
+  return window.location.search.startsWith('?')
+    ? window.location.search.slice(1)
+    : window.location.search;
+}
+
 export function useQueryParams({ method = 'replace' }: UseQueryParamsOptions = {}) {
-  const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const routerQuery = searchParams.toString();
-  const routerQueryRef = useRef(routerQuery);
-  const snapshotRef = useRef(routerQuery);
-  const pendingRef = useRef<{ expected: string; seen: string } | null>(null);
-  const [_queryVersion, setQueryVersion] = useState(0);
-
-  routerQueryRef.current = routerQuery;
+  const [query, setQuery] = useState(routerQuery);
+  const queryRef = useRef(query);
 
   useEffect(() => {
-    const pending = pendingRef.current;
-
-    if (pending) {
-      if (routerQuery === pending.expected) {
-        pendingRef.current = null;
-        return;
-      }
-
-      if (routerQuery === pending.seen) {
-        return;
-      }
-
-      pendingRef.current = null;
-    }
-
-    if (snapshotRef.current === routerQuery) {
+    if (routerQuery === queryRef.current || locationQuery() === queryRef.current) {
       return;
     }
 
-    snapshotRef.current = routerQuery;
-    setQueryVersion((version) => version + 1);
+    queryRef.current = routerQuery;
+    setQuery(routerQuery);
   }, [routerQuery]);
 
-  const getParam = useCallback((key: string) => readParam(snapshotRef.current, key), []);
+  const getParam = useCallback((key: string) => readParam(query, key), [query]);
 
   const setParams = useCallback(
     (updates: Record<string, string | null | undefined>, overrideMethod?: QueryParamMethod) => {
-      const next = new URLSearchParams(snapshotRef.current);
+      const next = new URLSearchParams(queryRef.current);
       let changed = false;
 
       for (const [key, value] of Object.entries(updates)) {
@@ -78,22 +68,21 @@ export function useQueryParams({ method = 'replace' }: UseQueryParamsOptions = {
         return;
       }
 
-      const query = next.toString();
-      pendingRef.current = { expected: query, seen: routerQueryRef.current };
-      snapshotRef.current = query;
-      setQueryVersion((version) => version + 1);
+      const nextQuery = next.toString();
+      queryRef.current = nextQuery;
+      setQuery(nextQuery);
 
-      const href = query ? `${pathname}?${query}` : pathname;
+      const href = nextQuery ? `${pathname}?${nextQuery}` : pathname;
       const navigation = overrideMethod ?? method;
 
       if (navigation === 'push') {
-        router.push(href, { scroll: false });
+        window.history.pushState(null, '', href);
         return;
       }
 
-      router.replace(href, { scroll: false });
+      window.history.replaceState(null, '', href);
     },
-    [method, pathname, router]
+    [method, pathname]
   );
 
   return { getParam, setParams, searchParams };
