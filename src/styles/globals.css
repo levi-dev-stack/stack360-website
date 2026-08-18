@@ -246,6 +246,10 @@ a.bg-primary *::selection,
     display: none !important;
   }
 
+  .initial-load-gate {
+    display: none !important;
+  }
+
   main [style*='opacity'],
   header [style*='opacity'],
   footer [style*='opacity'],
@@ -278,4 +282,9 @@ html:not(.js) .faq-panel {
 
 .animate-marquee {
   animation: marquee 28s linear infinite;
+}
+
+@keyframes hexFadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
 }

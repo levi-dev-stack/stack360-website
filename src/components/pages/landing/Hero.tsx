@@ -62,7 +62,6 @@ function RotatingPhrase({ reduced }: { reduced: boolean | null }) {
 
   const phrase = ROTATING_PHRASES[index];
 
-  // Static first phrase for SSR / no-JS — animated rotator is progressive enhancement.
   if (!canAnimate) {
     return <span className="mt-sm block text-primary">{ROTATING_PHRASES[0]}</span>;
   }
@@ -127,10 +126,7 @@ export default function Hero() {
         style={{ maskImage: 'linear-gradient(180deg, black 0%, transparent 78%)' }}
       />
 
-      <div className="site-container relative flex min-h-[calc(100vh-150px)] w-full items-center justify-center">
-        {/*
-          initial={false}: LCP / SEO content is fully visible in SSR HTML and with JS disabled.
-        */}
+      <div className="site-container relative flex min-h-[calc(100vh-230px)] md:min-h-[calc(100vh-150px)] w-full items-center justify-center">
         <motion.div
           variants={motionVariants(reduced, stagger)}
           initial={false}

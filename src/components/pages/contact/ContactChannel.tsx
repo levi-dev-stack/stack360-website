@@ -57,7 +57,7 @@ export default function ContactChannel() {
                     alt={`${office.country} flag`}
                     width={24}
                     height={16}
-                    className="h-4 w-6 rounded-[2px] border border-neutral-200 object-cover"
+                    className="h-4 w-6 rounded-xs border border-neutral-200 object-cover"
                   />
                   <span className="font-mono text-[10px] font-bold uppercase tracking-wider text-neutral-600">
                     {office.role}

@@ -1,5 +1,4 @@
 import { Globe2, Laptop, TrendingUp, Users } from 'lucide-react';
-import type { CareerRole } from '@/types/career';
 
 export const CAREERS_HERO = {
   eyebrow: 'Work With Us',
@@ -33,8 +32,6 @@ export const CAREERS_BENEFITS = [
     icon: <Users className="h-5 w-5" />,
   },
 ] as const;
-
-export const CAREERS_OPEN_ROLES: CareerRole[] = [] as const;
 
 export const CAREERS_PROCESS = [
   {

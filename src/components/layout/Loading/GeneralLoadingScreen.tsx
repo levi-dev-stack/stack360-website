@@ -1,48 +1,26 @@
-import BlueprintGrid from '@/components/layout/BlueprintGrid';
-
-export default function GeneralLoadingScreen() {
+export default function GeneralLoadingScreen({ hideBody = false }: { hideBody?: boolean }) {
   return (
-    <div className="relative min-h-screen bg-neutral-50">
-      <BlueprintGrid />
+    <div className="relative w-full overflow-hidden py-2xl">
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,var(--token-neutral-50)_0%,var(--token-neutral-50)_40%,color-mix(in_srgb,var(--token-neutral-100)_55%,var(--token-neutral-50))_100%)]"
+      />
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_70%_50%_at_50%_0%,color-mix(in_srgb,var(--token-primary)_10%,transparent),transparent_65%)]"
+      />
 
-      <div className="sticky top-0 z-50 w-full border-b border-neutral-200 bg-neutral-50/90 backdrop-blur-md">
-        <div className="site-container flex h-18 items-center justify-between gap-xl lg:gap-2xl">
-          <div className="h-8 w-36 animate-pulse rounded-md bg-neutral-200/80" />
-
-          <div className="hidden h-full flex-1 items-center justify-center gap-md md:flex">
-            <div className="h-4 w-16 animate-pulse rounded-md bg-neutral-200/70" />
-            <div className="h-4 w-20 animate-pulse rounded-md bg-neutral-200/70" />
-            <div className="h-4 w-24 animate-pulse rounded-md bg-neutral-200/70" />
-            <div className="h-4 w-16 animate-pulse rounded-md bg-neutral-200/70" />
-          </div>
-
-          <div className="flex shrink-0 items-center">
-            <div className="hidden h-11 w-28 animate-pulse rounded-sm bg-neutral-200/80 sm:block" />
-            <div className="h-11 w-11 animate-pulse rounded-sm bg-neutral-200/80 md:hidden" />
+      <div className="site-container relative z-10 space-y-2xl">
+        <div className="max-w-3xl space-y-md">
+          <div className="h-3 w-28 animate-pulse rounded-full bg-primary/20" />
+          <div className="h-10 w-3/4 animate-pulse rounded-lg bg-neutral-200/80 md:h-12" />
+          <div className="space-y-sm pt-xs">
+            <div className="h-4 w-full animate-pulse rounded-md bg-neutral-200/60" />
+            <div className="h-4 w-5/6 animate-pulse rounded-md bg-neutral-200/60" />
           </div>
         </div>
-      </div>
 
-      <main className="relative z-10 w-full overflow-hidden py-2xl">
-        <div
-          aria-hidden
-          className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,var(--token-neutral-50)_0%,var(--token-neutral-50)_40%,color-mix(in_srgb,var(--token-neutral-100)_55%,var(--token-neutral-50))_100%)]"
-        />
-        <div
-          aria-hidden
-          className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_70%_50%_at_50%_0%,color-mix(in_srgb,var(--token-primary)_10%,transparent),transparent_65%)]"
-        />
-
-        <div className="site-container relative z-10 space-y-2xl">
-          <div className="max-w-3xl space-y-md">
-            <div className="h-3 w-28 animate-pulse rounded-full bg-primary/20" />
-            <div className="h-10 w-3/4 animate-pulse rounded-lg bg-neutral-200/80 md:h-12" />
-            <div className="space-y-sm pt-xs">
-              <div className="h-4 w-full animate-pulse rounded-md bg-neutral-200/60" />
-              <div className="h-4 w-5/6 animate-pulse rounded-md bg-neutral-200/60" />
-            </div>
-          </div>
-
+        {hideBody ? null : (
           <div className="grid grid-cols-1 gap-lg sm:grid-cols-2 lg:grid-cols-3">
             {Array.from({ length: 6 }).map((_, idx) => (
               <div
@@ -73,8 +51,8 @@ export default function GeneralLoadingScreen() {
               </div>
             ))}
           </div>
-        </div>
-      </main>
+        )}
+      </div>
     </div>
   );
 }

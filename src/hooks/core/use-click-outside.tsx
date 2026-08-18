@@ -2,7 +2,10 @@
 import type { RefObject } from 'react';
 import { useDocumentEvent } from './use-dom-event';
 
-export function useClickOutside(ref: RefObject<HTMLElement>, handler: () => void) {
+export function useClickOutside<T extends HTMLElement>(
+  ref: RefObject<T | null>,
+  handler: () => void
+) {
   useDocumentEvent('mousedown', (event) => {
     if (!ref.current?.contains(event.target as Node)) {
       handler();

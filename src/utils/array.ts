@@ -10,3 +10,7 @@ export const removeDuplicates = <T>(arr: T[]): T[] => [...new Set(arr)];
 
 export const getArrayTill = (length: number = 5, jump: number = 1): number[] =>
   Array.from({ length }).map((_, i) => i + jump);
+
+export const allowedOrEmpty = <T extends string>(value: string, allowed: readonly T[]): T | '' => {
+  return allowed.includes(value as T) ? (value as T) : '';
+};

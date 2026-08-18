@@ -1,23 +1,52 @@
-export default async function NavbarSkeleton() {
-  await new Promise((resolve) => setTimeout(resolve, 5000));
+export default function NavbarSkeleton() {
   return (
     <header className="relative z-50 w-full border-b border-neutral-200 bg-neutral-50 shadow-xs">
-      <div className="site-container flex h-18 items-center justify-between gap-xl lg:gap-2xl">
-        {/* Logo Skeleton */}
-        <div className="h-8 w-36 rounded-md bg-neutral-200/60 animate-pulse" />
+      <div className="sticky top-0 z-50 w-full border-b border-neutral-200 bg-neutral-50/90 backdrop-blur-md">
+        <div className="site-container flex h-18 items-center justify-between gap-xl lg:gap-2xl">
+          <div className="flex items-center gap-x-sm">
+            <img
+              src="/favicon.svg"
+              alt="Stack360 Logo"
+              className="mt-1 h-9 w-9 animate-pulse object-contain opacity-80"
+            />
+            <img
+              src="/stack360-text.svg"
+              alt="Stack360"
+              className="h-5 animate-pulse object-contain opacity-80"
+            />
+          </div>
 
-        {/* Desktop Links Skeleton */}
-        <div className="hidden h-full flex-1 items-center justify-center gap-md md:flex">
-          <div className="h-4 w-16 rounded-md bg-neutral-200/60 animate-pulse" />
-          <div className="h-4 w-20 rounded-md bg-neutral-200/60 animate-pulse" />
-          <div className="h-4 w-24 rounded-md bg-neutral-200/60 animate-pulse" />
-          <div className="h-4 w-16 rounded-md bg-neutral-200/60 animate-pulse" />
-        </div>
+          <div className="hidden h-full flex-1 items-center justify-center gap-lg md:flex">
+            <div className="flex items-center gap-xs">
+              <div className="h-4 w-28 animate-pulse rounded-md bg-neutral-200/80" />
+              <div className="h-2 w-2 animate-pulse rounded-xs bg-neutral-200/60" />
+            </div>
 
-        {/* CTA Button Skeleton */}
-        <div className="flex shrink-0 items-center">
-          <div className="hidden h-11 w-28 rounded-sm bg-neutral-200/60 animate-pulse sm:block" />
-          <div className="h-11 w-11 rounded-sm bg-neutral-200/60 animate-pulse md:hidden" />
+            <div className="flex items-center gap-xs">
+              <div className="h-4 w-24 animate-pulse rounded-md bg-neutral-200/80" />
+              <div className="h-2 w-2 animate-pulse rounded-xs bg-neutral-200/60" />
+            </div>
+
+            <div className="flex items-center gap-xs">
+              <div className="h-4 w-18 animate-pulse rounded-md bg-neutral-200/80" />
+              <div className="h-2 w-2 animate-pulse rounded-xs bg-neutral-200/60" />
+            </div>
+
+            <div className="flex items-center gap-xs">
+              <div className="h-4 w-24 animate-pulse rounded-md bg-neutral-200/80" />
+              <div className="h-2 w-2 animate-pulse rounded-xs bg-neutral-200/60" />
+            </div>
+
+            <div className="flex items-center gap-xs">
+              <div className="h-4 w-26 animate-pulse rounded-md bg-neutral-200/80" />
+              <div className="h-2 w-2 animate-pulse rounded-xs bg-neutral-200/60" />
+            </div>
+          </div>
+
+          <div className="flex shrink-0 items-center">
+            <div className="hidden h-11 w-28 animate-pulse rounded-sm bg-neutral-200/80 sm:block" />
+            <div className="h-11 w-11 animate-pulse rounded-sm bg-neutral-200/80 md:hidden" />
+          </div>
         </div>
       </div>
     </header>

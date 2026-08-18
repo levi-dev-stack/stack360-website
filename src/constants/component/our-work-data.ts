@@ -34,20 +34,6 @@ export const OUR_WORK_CHAPTERS = [
     cta: 'Read blog',
     tone: 'light' as const,
   },
-  // {
-  //   title: 'News',
-  //   blurb: 'Partnerships, hiring, and campus milestones from the studio.',
-  //   href: '/our-work/news',
-  //   cta: 'See news',
-  //   tone: 'light' as const,
-  // },
-  // {
-  //   title: 'Learning Sessions',
-  //   blurb: 'Workshops and practice sessions that sharpen how we ship.',
-  //   href: '/our-work/learning-sessions',
-  //   cta: 'Explore sessions',
-  //   tone: 'light' as const,
-  // },
   {
     title: 'FAQs',
     blurb: 'Clear answers on services, quality, and how engagements work.',

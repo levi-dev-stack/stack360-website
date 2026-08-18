@@ -1,5 +1,6 @@
 import { Geist, Geist_Mono } from 'next/font/google';
 import Script from 'next/script';
+import InitialLoadingGate from '@/components/layout/Loading/InitialLoadingGate';
 import { seo } from '@/constants/seo';
 import Providers from '@/providers';
 import type { ReactComponentChildren } from '@/types/component';
@@ -28,6 +29,7 @@ export default function RootLayout({ children }: Readonly<ReactComponentChildren
         <noscript>
           <style>{`
             .js-only { display: none !important; }
+            .initial-load-gate { display: none !important; }
             main [style*="opacity"], header [style*="opacity"], footer [style*="opacity"],
             main [style*="transform"], header [style*="transform"] {
               opacity: 1 !important;
@@ -36,7 +38,9 @@ export default function RootLayout({ children }: Readonly<ReactComponentChildren
             }
           `}</style>
         </noscript>
-        <Providers>{children}</Providers>
+        <Providers>
+          <InitialLoadingGate>{children}</InitialLoadingGate>
+        </Providers>
       </body>
     </html>
   );

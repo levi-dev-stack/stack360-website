@@ -1,5 +1,7 @@
 import { envVars } from '@/config/env';
 
+const SUITE360_TENANT_ID = '11111111-1111-1111-1111-111111111111';
+
 export const routes = Object.freeze({
   root: '/',
   ui: {
@@ -9,6 +11,13 @@ export const routes = Object.freeze({
     health: '/api/health',
     ip: '/api/ip',
     mattermostWebhook: '/api/contact/m-webhook', // POST
+  },
+  suite360: {
+    jobs: {
+      filters: `https://suite.stack360.co/api/Jobs/filters/${SUITE360_TENANT_ID}`,
+      organization: `https://suite.stack360.co/api/Jobs/organization/${SUITE360_TENANT_ID}`,
+      getInformation: (jobId: string) => `https://suite.stack360.co/job-application/${jobId}`,
+    },
   },
   webhook: {
     mattermost: `https://team.stack360.co/hooks/${envVars.MATTERMOST_WEBHOOK_ID}`,

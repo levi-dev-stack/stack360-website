@@ -421,18 +421,6 @@ export const seo = {
     path: '/blog',
   }),
 
-  ourWorkNews: pageMeta({
-    title: 'News',
-    description: 'Partnerships, hiring, and campus milestones from the Stack360 studio.',
-    path: '/our-work/news',
-  }),
-
-  ourWorkLearningSessions: pageMeta({
-    title: 'Learning Sessions',
-    description: 'Workshops and practice sessions that sharpen how Stack360 ships software.',
-    path: '/our-work/learning-sessions',
-  }),
-
   ourWorkFaqs: pageMeta({
     title: 'FAQs',
     description: 'Answers on Stack360 services, quality, performance, and how engagements work.',

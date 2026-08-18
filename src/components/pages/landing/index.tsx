@@ -1,7 +1,7 @@
 import dynamic from 'next/dynamic';
 import { Suspense } from 'react';
 import ClientsMarquee from '@/components/pages/landing/ClientsMarquee';
-import HeroSection from '@/components/pages/landing/HeroSection';
+import HeroSectionLoader from '@/components/pages/landing/HeroSectionLoader';
 import HorizontalWedgeTrack from '@/components/pages/landing/HorizontalWedge';
 import ProcessSection from '@/components/pages/landing/ProcessSection';
 import SectionSkeleton from '@/components/pages/landing/SectionSkeleton';
@@ -26,7 +26,7 @@ const TestimonialsSection = dynamic(
 export default function LandingPage() {
   return (
     <div className="flex min-h-[calc(100vh-4.5rem)] w-full flex-col">
-      <HeroSection />
+      <HeroSectionLoader />
       <ClientsMarquee />
 
       <ServicesSection />

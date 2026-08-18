@@ -20,3 +20,7 @@ export const logGroup = (header: string, logs: Record<string, unknown>) => {
   }
   isHeaderPresent && console.groupEnd();
 };
+
+export const waitTill = (seconds: number) => {
+  return new Promise((resolve) => setTimeout(resolve, seconds * 1000));
+};

@@ -1,38 +1,12 @@
 import BlueprintGrid from '../BlueprintGrid';
+import NavbarSkeleton from '../Navbar/NavbarSkeleton';
 
 export default function InitialLoadingScreen() {
   return (
     <div className="relative flex min-h-screen flex-col bg-neutral-50 selection:bg-primary/20 selection:text-primary">
       <BlueprintGrid />
 
-      <div className="sticky top-0 z-50 w-full border-b border-neutral-200 bg-neutral-50/90 backdrop-blur-md">
-        <div className="site-container flex h-18 items-center justify-between gap-xl lg:gap-2xl">
-          <div className="flex items-center gap-xs">
-            <img
-              src="/favicon.svg"
-              alt="Stack360 Logo"
-              className="h-7 w-7 animate-pulse object-contain opacity-80"
-            />
-            <img
-              src="/stack360-text.svg"
-              alt="Stack360"
-              className="h-5 animate-pulse object-contain opacity-80"
-            />
-          </div>
-
-          <div className="hidden h-full flex-1 items-center justify-center gap-md md:flex">
-            <div className="h-4 w-16 animate-pulse rounded-md bg-neutral-200/70" />
-            <div className="h-4 w-20 animate-pulse rounded-md bg-neutral-200/70" />
-            <div className="h-4 w-24 animate-pulse rounded-md bg-neutral-200/70" />
-            <div className="h-4 w-16 animate-pulse rounded-md bg-neutral-200/70" />
-          </div>
-
-          <div className="flex shrink-0 items-center">
-            <div className="hidden h-11 w-28 animate-pulse rounded-sm bg-neutral-200/80 sm:block" />
-            <div className="h-11 w-11 animate-pulse rounded-sm bg-neutral-200/80 md:hidden" />
-          </div>
-        </div>
-      </div>
+      <NavbarSkeleton />
 
       <main className="relative z-10 flex flex-1 items-center justify-center p-md">
         <div

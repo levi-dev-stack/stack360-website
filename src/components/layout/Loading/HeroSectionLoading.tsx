@@ -1,29 +1,16 @@
-import BlueprintGrid from '@/components/layout/BlueprintGrid';
+import BlueprintGrid from '../BlueprintGrid';
+import NavbarSkeleton from '../Navbar/NavbarSkeleton';
 
-export default function LandingLoading() {
+export default function HeroSectionLoading({ hideNavbar = false }: { hideNavbar?: boolean }) {
   return (
-    <div className="relative min-h-screen bg-neutral-50">
-      <BlueprintGrid />
+    <div
+      className={`relative bg-neutral-50 ${hideNavbar ? 'min-h-[calc(100vh-4.5rem)]' : 'min-h-screen'}`}
+    >
+      {hideNavbar ? null : <BlueprintGrid />}
 
-      <div className="sticky top-0 z-50 w-full border-b border-neutral-200 bg-neutral-50/90 backdrop-blur-md">
-        <div className="site-container flex h-18 items-center justify-between gap-xl lg:gap-2xl">
-          <div className="h-8 w-36 animate-pulse rounded-md bg-neutral-200/80" />
+      {hideNavbar ? null : <NavbarSkeleton />}
 
-          <div className="hidden h-full flex-1 items-center justify-center gap-md md:flex">
-            <div className="h-4 w-16 animate-pulse rounded-md bg-neutral-200/70" />
-            <div className="h-4 w-20 animate-pulse rounded-md bg-neutral-200/70" />
-            <div className="h-4 w-24 animate-pulse rounded-md bg-neutral-200/70" />
-            <div className="h-4 w-16 animate-pulse rounded-md bg-neutral-200/70" />
-          </div>
-
-          <div className="flex shrink-0 items-center">
-            <div className="hidden h-11 w-28 animate-pulse rounded-sm bg-neutral-200/80 sm:block" />
-            <div className="h-11 w-11 animate-pulse rounded-sm bg-neutral-200/80 md:hidden" />
-          </div>
-        </div>
-      </div>
-
-      <main className="relative z-10 flex min-h-[calc(100vh-4.5rem)] w-full flex-col items-center justify-center overflow-hidden py-2xl">
+      <div className="relative z-10 flex min-h-[calc(100vh-4.5rem)] w-full flex-col items-center justify-center overflow-hidden py-2xl">
         <div
           aria-hidden
           className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_60%_50%_at_50%_40%,color-mix(in_srgb,var(--token-primary)_12%,transparent),transparent_70%)]"
@@ -51,7 +38,7 @@ export default function LandingLoading() {
             <div className="h-12 w-36 animate-pulse rounded-md border border-neutral-200 bg-white" />
           </div>
         </div>
-      </main>
+      </div>
     </div>
   );
 }
