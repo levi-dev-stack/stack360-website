@@ -33,8 +33,6 @@ export const CAREERS_BENEFITS = [
   },
 ] as const;
 
-export const CAREERS_OPEN_ROLES = [];
-
 export const CAREERS_PROCESS = [
   {
     step: '01',
