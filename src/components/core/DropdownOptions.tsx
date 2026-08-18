@@ -1,7 +1,15 @@
 'use client';
 
 import { Check, ChevronDown, X } from 'lucide-react';
-import { type KeyboardEvent, useEffect, useId, useMemo, useRef, useState } from 'react';
+import {
+  type KeyboardEvent,
+  useCallback,
+  useEffect,
+  useId,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
 import { useClickOutside } from '@/hooks/core';
 import { cn } from '@/styles/tailwind.utils';
 
@@ -40,6 +48,8 @@ export default function DropdownOptions({
   const optionRefs = useRef<Array<HTMLButtonElement | null>>([]);
   const [isOpen, setIsOpen] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
+  const [canScrollUp, setCanScrollUp] = useState(false);
+  const [canScrollDown, setCanScrollDown] = useState(false);
 
   const placeholder = allOptionLabel ?? `${label} (All)`;
   const selectValue = !value || options.some((option) => option.value === value) ? value : '';
@@ -53,6 +63,44 @@ export default function DropdownOptions({
   );
 
   useClickOutside(containerRef, () => setIsOpen(false));
+
+  const updateOverflowState = useCallback(() => {
+    const listbox = listboxRef.current;
+    if (!listbox) {
+      setCanScrollUp(false);
+      setCanScrollDown(false);
+      return;
+    }
+
+    const { scrollTop, scrollHeight, clientHeight } = listbox;
+    const threshold = 2;
+    setCanScrollUp(scrollTop > threshold);
+    setCanScrollDown(scrollTop + clientHeight < scrollHeight - threshold);
+  }, []);
+
+  useEffect(() => {
+    if (!isOpen) {
+      setCanScrollUp(false);
+      setCanScrollDown(false);
+      return;
+    }
+
+    const listbox = listboxRef.current;
+    if (!listbox) {
+      return;
+    }
+
+    const frame = requestAnimationFrame(updateOverflowState);
+    listbox.addEventListener('scroll', updateOverflowState, { passive: true });
+    const observer = new ResizeObserver(updateOverflowState);
+    observer.observe(listbox);
+
+    return () => {
+      cancelAnimationFrame(frame);
+      listbox.removeEventListener('scroll', updateOverflowState);
+      observer.disconnect();
+    };
+  }, [isOpen, updateOverflowState]);
 
   useEffect(() => {
     if (!isOpen) {
@@ -217,7 +265,12 @@ export default function DropdownOptions({
             aria-activedescendant={`${selectId}-option-${activeIndex}`}
             tabIndex={0}
             onKeyDown={handleListKeyDown}
-            className="max-h-60 overflow-y-auto p-xs outline-none focus:outline-none"
+            className={cn(
+              'max-h-60 overflow-y-auto overscroll-contain p-xs outline-none focus:outline-none',
+              '[scrollbar-width:thin] [scrollbar-color:var(--token-neutral-300)_transparent]',
+              '[&::-webkit-scrollbar]:w-1.5 [&::-webkit-scrollbar-track]:bg-transparent',
+              '[&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-neutral-300'
+            )}
           >
             {menuOptions.map((option, index) => {
               const isSelected = selectValue === option.value;
@@ -247,6 +300,22 @@ export default function DropdownOptions({
               );
             })}
           </div>
+
+          {canScrollUp ? (
+            <div
+              aria-hidden
+              className="pointer-events-none absolute inset-x-0 top-0 z-10 h-7 bg-linear-to-b from-white to-transparent"
+            />
+          ) : null}
+
+          {canScrollDown ? (
+            <div
+              aria-hidden
+              className="pointer-events-none absolute inset-x-0 bottom-0 z-10 flex h-9 items-end justify-center bg-linear-to-t from-white from-40% to-transparent pb-1.5"
+            >
+              <ChevronDown className="size-3.5 text-neutral-400" />
+            </div>
+          ) : null}
         </div>
       ) : null}
     </div>
