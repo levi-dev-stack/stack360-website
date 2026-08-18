@@ -5,7 +5,7 @@ export function OpenRolesTableSkeleton() {
   return (
     <div className="animate-pulse overflow-hidden rounded-xl border border-neutral-200/80 bg-white shadow-sm">
       <div className="overflow-x-auto">
-        <table className="w-full min-w-[860px] table-fixed border-collapse text-left">
+        <table className="w-full min-w-215 table-fixed border-collapse text-left">
           <thead>
             <tr className="border-b border-neutral-200 bg-neutral-100/70">
               <th className="px-xl py-md first:pl-xl" scope="col">
