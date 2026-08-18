@@ -17,7 +17,7 @@ export function useOpenRolesFilters() {
   const { filters, jobs } = useOpenRolesCatalog();
   const { getParam, setParams } = useQueryParams({ method: 'replace' });
   const hasSanitizedUrl = useRef(false);
-  const skipInitialSearchSync = useRef(true);
+  const skipSearchSync = useRef(true);
   const prevFilterSignature = useRef('');
 
   const [isTableReady, setIsTableReady] = useState(false);
@@ -118,13 +118,17 @@ export function useOpenRolesFilters() {
   ]);
 
   useEffect(() => {
-    if (skipInitialSearchSync.current) {
-      skipInitialSearchSync.current = false;
+    if (skipSearchSync.current) {
+      skipSearchSync.current = false;
+      return;
+    }
+
+    if (searchFromUrl === debouncedSearch) {
       return;
     }
 
     setParams({ [OPEN_ROLES_QUERY_KEYS.search]: debouncedSearch });
-  }, [debouncedSearch, setParams]);
+  }, [debouncedSearch, searchFromUrl, setParams]);
 
   const catalogJobs = jobs.data;
   const totalRoleCount = catalogJobs.length;

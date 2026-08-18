@@ -1,7 +1,7 @@
 'use client';
 
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
-import { useCallback } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 
 export type QueryParamMethod = 'replace' | 'push';
 
@@ -9,19 +9,51 @@ interface UseQueryParamsOptions {
   method?: QueryParamMethod;
 }
 
+function readParam(query: string, key: string) {
+  return new URLSearchParams(query).get(key)?.trim() ?? '';
+}
+
 export function useQueryParams({ method = 'replace' }: UseQueryParamsOptions = {}) {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
+  const routerQuery = searchParams.toString();
+  const routerQueryRef = useRef(routerQuery);
+  const snapshotRef = useRef(routerQuery);
+  const pendingRef = useRef<{ expected: string; seen: string } | null>(null);
+  const [_queryVersion, setQueryVersion] = useState(0);
 
-  const getParam = useCallback(
-    (key: string) => searchParams.get(key)?.trim() ?? '',
-    [searchParams]
-  );
+  routerQueryRef.current = routerQuery;
+
+  useEffect(() => {
+    const pending = pendingRef.current;
+
+    if (pending) {
+      if (routerQuery === pending.expected) {
+        pendingRef.current = null;
+        return;
+      }
+
+      if (routerQuery === pending.seen) {
+        return;
+      }
+
+      pendingRef.current = null;
+    }
+
+    if (snapshotRef.current === routerQuery) {
+      return;
+    }
+
+    snapshotRef.current = routerQuery;
+    setQueryVersion((version) => version + 1);
+  }, [routerQuery]);
+
+  const getParam = useCallback((key: string) => readParam(snapshotRef.current, key), []);
 
   const setParams = useCallback(
     (updates: Record<string, string | null | undefined>, overrideMethod?: QueryParamMethod) => {
-      const next = new URLSearchParams(searchParams.toString());
+      const next = new URLSearchParams(snapshotRef.current);
       let changed = false;
 
       for (const [key, value] of Object.entries(updates)) {
@@ -47,6 +79,10 @@ export function useQueryParams({ method = 'replace' }: UseQueryParamsOptions = {
       }
 
       const query = next.toString();
+      pendingRef.current = { expected: query, seen: routerQueryRef.current };
+      snapshotRef.current = query;
+      setQueryVersion((version) => version + 1);
+
       const href = query ? `${pathname}?${query}` : pathname;
       const navigation = overrideMethod ?? method;
 
@@ -57,7 +93,7 @@ export function useQueryParams({ method = 'replace' }: UseQueryParamsOptions = {
 
       router.replace(href, { scroll: false });
     },
-    [method, pathname, router, searchParams]
+    [method, pathname, router]
   );
 
   return { getParam, setParams, searchParams };
