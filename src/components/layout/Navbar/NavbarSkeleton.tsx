@@ -1,18 +1,28 @@
+import Image from 'next/image';
+
 export default function NavbarSkeleton() {
   return (
     <header className="relative z-50 w-full border-b border-neutral-200 bg-neutral-50 shadow-xs">
       <div className="sticky top-0 z-50 w-full border-b border-neutral-200 bg-neutral-50/90 backdrop-blur-md">
         <div className="site-container flex h-18 items-center justify-between gap-xl lg:gap-2xl">
           <div className="flex items-center gap-x-sm">
-            <img
-              src="/favicon.svg"
-              alt="Stack360 Logo"
-              className="mt-1 h-9 w-9 animate-pulse object-contain opacity-80"
-            />
-            <img
+            <div className="relative mt-1 h-9 w-9">
+              <Image
+                src="/favicon.svg"
+                alt="Stack360 Logo"
+                fill
+                sizes="36px"
+                className="animate-pulse object-contain opacity-80"
+                priority
+              />
+            </div>
+            <Image
               src="/stack360-text.svg"
               alt="Stack360"
-              className="h-5 animate-pulse object-contain opacity-80"
+              width={108}
+              height={20}
+              className="h-5 w-auto animate-pulse object-contain opacity-80"
+              priority
             />
           </div>
 

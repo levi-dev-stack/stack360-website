@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import BlueprintGrid from '../BlueprintGrid';
 import NavbarSkeleton from '../Navbar/NavbarSkeleton';
 
@@ -23,19 +24,27 @@ export default function InitialLoadingScreen() {
             <div className="absolute h-20 w-20 animate-ping rounded-full bg-primary/10 transition-all duration-1000" />
 
             <div className="relative flex h-16 w-16 items-center justify-center rounded-2xl border border-neutral-200 bg-white p-md shadow-md">
-              <img
-                src="/favicon.svg"
-                alt="Stack360 Icon"
-                className="h-full w-full animate-pulse object-contain"
-              />
+              <div className="relative h-full w-full">
+                <Image
+                  src="/favicon.svg"
+                  alt="Stack360 Icon"
+                  fill
+                  sizes="32px"
+                  className="animate-pulse object-contain"
+                  priority
+                />
+              </div>
             </div>
           </div>
 
           <div className="flex flex-col items-center space-y-sm">
-            <img
+            <Image
               src="/stack360-text.svg"
               alt="Stack360"
-              className="h-6 object-contain opacity-90"
+              width={129}
+              height={24}
+              className="h-6 w-auto object-contain opacity-90"
+              priority
             />
 
             <div className="h-1 w-32 overflow-hidden rounded-full bg-neutral-200">
