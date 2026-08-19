@@ -82,7 +82,7 @@ export default function TrustBadges() {
                 </p>
 
                 <div className="relative flex w-full flex-1 items-center justify-center">
-                  <div className="relative h-28 w-full max-w-[220px] transition-transform duration-300 ease-out group-hover:scale-105 motion-reduce:transition-none motion-reduce:group-hover:scale-100 sm:h-32 md:h-40 lg:h-44 lg:max-w-[260px]">
+                  <div className="relative h-28 w-full max-w-55 transition-transform duration-300 ease-out group-hover:scale-105 motion-reduce:transition-none motion-reduce:group-hover:scale-100 sm:h-32 md:h-40 lg:h-44 lg:max-w-[260px]">
                     <Image
                       src={badge.src}
                       alt={badge.alt}

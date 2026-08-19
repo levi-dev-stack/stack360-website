@@ -267,7 +267,7 @@ export default function DropdownOptions({
             onKeyDown={handleListKeyDown}
             className={cn(
               'max-h-60 overflow-y-auto overscroll-contain p-xs outline-none focus:outline-none',
-              '[scrollbar-width:thin] [scrollbar-color:var(--token-neutral-300)_transparent]',
+              'scrollbar-thin [scrollbar-color:var(--token-neutral-300)_transparent]',
               '[&::-webkit-scrollbar]:w-1.5 [&::-webkit-scrollbar-track]:bg-transparent',
               '[&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-neutral-300'
             )}
