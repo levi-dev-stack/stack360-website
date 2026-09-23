@@ -203,8 +203,9 @@ export default function ChatAssistant() {
   const [showWhatsAppOptions, setShowWhatsAppOptions] = useState(false);
   const [messages, setMessages] = useState<ChatMessage[]>(INITIAL_MESSAGES);
 
-  const whatsappChannels = CONTACT_CHANNELS.filter((channel) =>
-    channel.label.toLowerCase().includes('whatsapp')
+  const whatsappChannels = CONTACT_CHANNELS.filter(
+    (channel): channel is Extract<(typeof CONTACT_CHANNELS)[number], { href: string }> =>
+      channel.label.toLowerCase().includes('whatsapp') && 'href' in channel
   );
 
   const scrollToEnd = useCallback(() => {

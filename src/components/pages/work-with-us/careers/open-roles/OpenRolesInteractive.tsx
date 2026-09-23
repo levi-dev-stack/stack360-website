@@ -48,6 +48,7 @@ export default function OpenRolesInteractive() {
           hasActiveFilters={hasActiveFilters}
         />
       ) : null}
+
       {hasCatalog ? (
         <OpenRolesFilterBar
           selectedJobType={selectedJobType}

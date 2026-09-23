@@ -29,7 +29,7 @@ function RoleCard({ role }: { role: Job }) {
       <Link
         href={href}
         target="_blank"
-        className="flex min-h-[calc(2.75rem+1.5rem)] items-center gap-[calc(0.75rem+0.35vw)] rounded-xl border border-neutral-200/80 bg-white px-[clamp(0.875rem,calc(0.7rem+1vw),1.25rem)] py-[clamp(0.875rem,calc(0.7rem+0.4vw),1.15rem)] shadow-sm transition-colors duration-200 hover:border-primary/25 hover:bg-neutral-50/80 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+        className="flex min-h-17 items-center gap-[calc(0.75rem+0.35vw)] rounded-xl border border-neutral-200/80 bg-white px-[clamp(0.875rem,calc(0.7rem+1vw),1.25rem)] py-[clamp(0.875rem,calc(0.7rem+0.4vw),1.15rem)] shadow-sm transition-colors duration-200 hover:border-primary/25 hover:bg-neutral-50/80 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
       >
         <div className="min-w-0 flex-1 max-w-[calc(100%-3.25rem)]">
           <span className="block text-pretty text-sm font-semibold leading-snug text-neutral-900">

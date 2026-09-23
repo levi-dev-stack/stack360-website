@@ -19,6 +19,7 @@ interface NavItemDesktopProps {
   isDropdownOpen: boolean;
   onMouseEnter: (label: string) => void;
   onMouseLeave: () => void;
+  onToggleDropdown: (label: string) => void;
   onCloseDropdown: () => void;
 }
 
@@ -27,6 +28,7 @@ export default function NavItemDesktop({
   isDropdownOpen,
   onMouseEnter,
   onMouseLeave,
+  onToggleDropdown,
   onCloseDropdown,
 }: NavItemDesktopProps) {
   const pathname = usePathname();
@@ -66,9 +68,13 @@ export default function NavItemDesktop({
       onMouseEnter={() => onMouseEnter(item.label)}
       onMouseLeave={onMouseLeave}
     >
-      <div
+      <button
+        type="button"
+        aria-expanded={isDropdownOpen}
+        aria-haspopup="true"
+        onClick={() => onToggleDropdown(item.label)}
         className={cn(
-          'group/nav relative inline-flex h-9 items-center gap-xs rounded-md px-sm py-xs text-sm font-semibold transition-colors duration-200 lg:px-md hover:cursor-pointer',
+          'group/nav relative inline-flex h-9 items-center gap-xs rounded-md px-sm py-xs text-sm font-semibold transition-colors duration-200 lg:px-md hover:cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary',
           isDropdownOpen || isItemSelected
             ? 'text-primary'
             : 'text-neutral-700 hover:text-neutral-950'
@@ -92,7 +98,7 @@ export default function NavItemDesktop({
               : 'text-neutral-400 group-hover/nav:text-neutral-700'
           )}
         />
-      </div>
+      </button>
 
       {isDropdownOpen && (
         <motion.span

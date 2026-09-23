@@ -27,12 +27,12 @@ export const CONTACT_CHANNELS = [
   },
   {
     type: 'phone',
-    label: 'WhatsApp (US)',
+    label: 'US',
     value: SITE_PHONE_USA,
-    href: `https://wa.me/${SITE_PHONE_USA.replace(/[^0-9]/g, '')}`,
+    // href: `https://wa.me/${SITE_PHONE_USA.replace(/[^0-9]/g, '')}`,
     hint: 'Mon–Fri • 9:00 AM–6:00 PM',
-    target: '_blank',
-    rel: 'noopener noreferrer',
+    // target: '_blank',
+    // rel: 'noopener noreferrer',
   },
   {
     type: 'email',

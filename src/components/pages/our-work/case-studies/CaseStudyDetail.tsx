@@ -71,7 +71,7 @@ export default function CaseStudyDetailView({ study }: CaseStudyDetailProps) {
       <MotionSection className="border-b border-neutral-200 py-2xl">
         <div className="site-container">
           <MotionReveal>
-            <div className="relative aspect-[16/9] w-full overflow-hidden rounded-xl border border-neutral-200 bg-neutral-100 shadow-sm">
+            <div className="relative aspect-video w-full overflow-hidden rounded-xl border border-neutral-200 bg-neutral-100 shadow-sm">
               <Image
                 src={study.image}
                 alt={`${study.name} product mockup`}
