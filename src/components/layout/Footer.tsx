@@ -53,7 +53,7 @@ export default function Footer() {
 
   const waUk1 = SITE_PHONE_E164.replace(/[^0-9]/g, '');
   const waUk2 = SITE_PHONE_E164_2.replace(/[^0-9]/g, '');
-  const waUsa = SITE_PHONE_USA.replace(/[^0-9]/g, '');
+  // const waUsa = SITE_PHONE_USA.replace(/[^0-9]/g, '');
 
   return (
     <footer className="site-section border-t-2 border-primary bg-neutral-50">
@@ -93,15 +93,15 @@ export default function Footer() {
 
                     <div className="pl-6 pt-xs space-y-1">
                       {isUSA ? (
-                        <a
-                          href={`https://wa.me/${waUsa}`}
-                          target="_blank"
-                          rel="noopener noreferrer"
+                        <span
+                          // href={`https://wa.me/${waUsa}`}
+                          // target="_blank"
+                          // rel="noopener noreferrer"
                           className="flex items-center gap-sm text-sm text-neutral-700 transition-colors hover:text-primary"
                         >
                           <Phone size={14} className="shrink-0 text-primary" aria-hidden />
                           <span>{SITE_PHONE_USA}</span>
-                        </a>
+                        </span>
                       ) : (
                         <>
                           <a
