@@ -30,20 +30,40 @@ export default function PremiumNavbar() {
   const handleMouseEnter = (label: string) => {
     if (hoverTimeoutRef.current) {
       clearTimeout(hoverTimeoutRef.current);
+      hoverTimeoutRef.current = null;
     }
     setActiveDropdown(label);
   };
 
   const handleMouseLeave = () => {
+    if (hoverTimeoutRef.current) {
+      clearTimeout(hoverTimeoutRef.current);
+    }
     hoverTimeoutRef.current = setTimeout(() => {
       setActiveDropdown(null);
-    }, 120);
+    }, 220);
+  };
+
+  const handleToggleDropdown = (label: string) => {
+    if (hoverTimeoutRef.current) {
+      clearTimeout(hoverTimeoutRef.current);
+      hoverTimeoutRef.current = null;
+    }
+    setActiveDropdown((prev) => (prev === label ? null : label));
   };
 
   const closeMobile = () => {
     setMobileOpen(false);
     setMobileExpanded(null);
   };
+
+  useEffect(() => {
+    return () => {
+      if (hoverTimeoutRef.current) {
+        clearTimeout(hoverTimeoutRef.current);
+      }
+    };
+  }, []);
 
   useEffect(() => {
     if (!pathname) {
@@ -118,6 +138,7 @@ export default function PremiumNavbar() {
               isDropdownOpen={activeDropdown === item.label}
               onMouseEnter={handleMouseEnter}
               onMouseLeave={handleMouseLeave}
+              onToggleDropdown={handleToggleDropdown}
               onCloseDropdown={() => setActiveDropdown(null)}
             />
           ))}
