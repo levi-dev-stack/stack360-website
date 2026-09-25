@@ -70,13 +70,13 @@ export default function CaseStudyDetailView({ study }: CaseStudyDetailProps) {
       {/* Primary mockup */}
       <MotionSection className="border-b border-neutral-200 py-2xl">
         <div className="site-container">
-          <MotionReveal>
+          <MotionReveal className="mx-auto max-w-4xl">
             <div className="relative aspect-video w-full overflow-hidden rounded-xl border border-neutral-200 bg-neutral-100 shadow-sm">
               <Image
                 src={study.image}
                 alt={`${study.name} product mockup`}
                 fill
-                sizes="(max-width: 1024px) 100vw, 1120px"
+                sizes="(max-width: 1024px) 100vw, 896px"
                 className="object-contain object-center p-md md:p-lg"
                 priority
               />
